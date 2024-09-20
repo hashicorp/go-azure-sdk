@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/availablebalances` Documentation
 
-The `availablebalances` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `availablebalances` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := availablebalances.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := availablebalances.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {

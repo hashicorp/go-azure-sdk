@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OutboundEndpointId{}
 
 func TestNewOutboundEndpointID(t *testing.T) {
-	id := NewOutboundEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverValue", "outboundEndpointValue")
+	id := NewOutboundEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverName", "outboundEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewOutboundEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DnsResolverName != "dnsResolverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsResolverName'", id.DnsResolverName, "dnsResolverValue")
+	if id.DnsResolverName != "dnsResolverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsResolverName'", id.DnsResolverName, "dnsResolverName")
 	}
 
-	if id.OutboundEndpointName != "outboundEndpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutboundEndpointName'", id.OutboundEndpointName, "outboundEndpointValue")
+	if id.OutboundEndpointName != "outboundEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutboundEndpointName'", id.OutboundEndpointName, "outboundEndpointName")
 	}
 }
 
 func TestFormatOutboundEndpointID(t *testing.T) {
-	actual := NewOutboundEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverValue", "outboundEndpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints/outboundEndpointValue"
+	actual := NewOutboundEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverName", "outboundEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints/outboundEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseOutboundEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints/outboundEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints/outboundEndpointName",
 			Expected: &OutboundEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DnsResolverName:      "dnsResolverValue",
-				OutboundEndpointName: "outboundEndpointValue",
+				DnsResolverName:      "dnsResolverName",
+				OutboundEndpointName: "outboundEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints/outboundEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints/outboundEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseOutboundEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE/oUtBoUnDeNdPoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe/oUtBoUnDeNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints/outboundEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints/outboundEndpointName",
 			Expected: &OutboundEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				DnsResolverName:      "dnsResolverValue",
-				OutboundEndpointName: "outboundEndpointValue",
+				DnsResolverName:      "dnsResolverName",
+				OutboundEndpointName: "outboundEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/outboundEndpoints/outboundEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/outboundEndpoints/outboundEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE/oUtBoUnDeNdPoInTs/oUtBoUnDeNdPoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe/oUtBoUnDeNdPoInTs/oUtBoUnDeNdPoInTnAmE",
 			Expected: &OutboundEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				DnsResolverName:      "dNsReSoLvErVaLuE",
-				OutboundEndpointName: "oUtBoUnDeNdPoInTvAlUe",
+				DnsResolverName:      "dNsReSoLvErNaMe",
+				OutboundEndpointName: "oUtBoUnDeNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE/oUtBoUnDeNdPoInTs/oUtBoUnDeNdPoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe/oUtBoUnDeNdPoInTs/oUtBoUnDeNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

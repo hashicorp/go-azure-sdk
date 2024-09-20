@@ -45,7 +45,6 @@ func (c ApiDefinitionsClient) Get(ctx context.Context, id DefinitionId) (result 
 
 	var model ApiDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

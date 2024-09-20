@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-05-01/commitmentplans` Documentation
 
-The `commitmentplans` SDK allows for interaction with the Azure Resource Manager Service `cognitive` (API Version `2023-05-01`).
+The `commitmentplans` SDK allows for interaction with Azure Resource Manager `cognitive` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "commitmentPlanValue")
+id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "commitmentPlanName")
 
 payload := commitmentplans.CommitmentPlan{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName", "commitmentPlanAssociationName")
 
 payload := commitmentplans.CommitmentPlanAccountAssociation{
 	// ...
@@ -62,7 +62,7 @@ if err := client.CreateOrUpdateAssociationThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "commitmentPlanValue")
+id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "commitmentPlanName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -74,7 +74,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName", "commitmentPlanAssociationName")
 
 if err := client.DeleteAssociationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -86,7 +86,7 @@ if err := client.DeleteAssociationThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "commitmentPlanValue")
+id := commitmentplans.NewAccountCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "commitmentPlanName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName", "commitmentPlanAssociationName")
 
 read, err := client.GetAssociation(ctx, id)
 if err != nil {
@@ -118,7 +118,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := commitmentplans.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -135,7 +135,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+id := commitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 // alternatively `client.ListAssociations(ctx, id)` can be used to do batched pagination
 items, err := client.ListAssociationsComplete(ctx, id)

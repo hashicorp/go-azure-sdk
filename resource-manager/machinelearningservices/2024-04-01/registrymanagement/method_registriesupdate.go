@@ -49,7 +49,6 @@ func (c RegistryManagementClient) RegistriesUpdate(ctx context.Context, id Regis
 
 	var model RegistryTrackedResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

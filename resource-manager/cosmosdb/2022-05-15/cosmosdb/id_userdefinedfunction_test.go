@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UserDefinedFunctionId{}
 
 func TestNewUserDefinedFunctionID(t *testing.T) {
-	id := NewUserDefinedFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "sqlDatabaseValue", "containerValue", "userDefinedFunctionValue")
+	id := NewUserDefinedFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "containerName", "userDefinedFunctionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,26 +22,26 @@ func TestNewUserDefinedFunctionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DatabaseAccountName != "databaseAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
+	if id.DatabaseAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "accountName")
 	}
 
-	if id.SqlDatabaseName != "sqlDatabaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SqlDatabaseName'", id.SqlDatabaseName, "sqlDatabaseValue")
+	if id.SqlDatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SqlDatabaseName'", id.SqlDatabaseName, "databaseName")
 	}
 
-	if id.ContainerName != "containerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerName'", id.ContainerName, "containerValue")
+	if id.ContainerName != "containerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerName'", id.ContainerName, "containerName")
 	}
 
-	if id.UserDefinedFunctionName != "userDefinedFunctionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserDefinedFunctionName'", id.UserDefinedFunctionName, "userDefinedFunctionValue")
+	if id.UserDefinedFunctionName != "userDefinedFunctionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserDefinedFunctionName'", id.UserDefinedFunctionName, "userDefinedFunctionName")
 	}
 }
 
 func TestFormatUserDefinedFunctionID(t *testing.T) {
-	actual := NewUserDefinedFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "sqlDatabaseValue", "containerValue", "userDefinedFunctionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions/userDefinedFunctionValue"
+	actual := NewUserDefinedFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "containerName", "userDefinedFunctionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions/userDefinedFunctionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -95,49 +95,49 @@ func TestParseUserDefinedFunctionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions/userDefinedFunctionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions/userDefinedFunctionName",
 			Expected: &UserDefinedFunctionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				DatabaseAccountName:     "databaseAccountValue",
-				SqlDatabaseName:         "sqlDatabaseValue",
-				ContainerName:           "containerValue",
-				UserDefinedFunctionName: "userDefinedFunctionValue",
+				DatabaseAccountName:     "accountName",
+				SqlDatabaseName:         "databaseName",
+				ContainerName:           "containerName",
+				UserDefinedFunctionName: "userDefinedFunctionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions/userDefinedFunctionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions/userDefinedFunctionName/extra",
 			Error: true,
 		},
 	}
@@ -266,96 +266,96 @@ func TestParseUserDefinedFunctionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cOnTaInErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cOnTaInErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cOnTaInErS/cOnTaInErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cOnTaInErS/cOnTaInErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cOnTaInErS/cOnTaInErVaLuE/uSeRdEfInEdFuNcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cOnTaInErS/cOnTaInErNaMe/uSeRdEfInEdFuNcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions/userDefinedFunctionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions/userDefinedFunctionName",
 			Expected: &UserDefinedFunctionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				DatabaseAccountName:     "databaseAccountValue",
-				SqlDatabaseName:         "sqlDatabaseValue",
-				ContainerName:           "containerValue",
-				UserDefinedFunctionName: "userDefinedFunctionValue",
+				DatabaseAccountName:     "accountName",
+				SqlDatabaseName:         "databaseName",
+				ContainerName:           "containerName",
+				UserDefinedFunctionName: "userDefinedFunctionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/containers/containerValue/userDefinedFunctions/userDefinedFunctionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/containers/containerName/userDefinedFunctions/userDefinedFunctionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cOnTaInErS/cOnTaInErVaLuE/uSeRdEfInEdFuNcTiOnS/uSeRdEfInEdFuNcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cOnTaInErS/cOnTaInErNaMe/uSeRdEfInEdFuNcTiOnS/uSeRdEfInEdFuNcTiOnNaMe",
 			Expected: &UserDefinedFunctionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				DatabaseAccountName:     "dAtAbAsEaCcOuNtVaLuE",
-				SqlDatabaseName:         "sQlDaTaBaSeVaLuE",
-				ContainerName:           "cOnTaInErVaLuE",
-				UserDefinedFunctionName: "uSeRdEfInEdFuNcTiOnVaLuE",
+				DatabaseAccountName:     "aCcOuNtNaMe",
+				SqlDatabaseName:         "dAtAbAsEnAmE",
+				ContainerName:           "cOnTaInErNaMe",
+				UserDefinedFunctionName: "uSeRdEfInEdFuNcTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cOnTaInErS/cOnTaInErVaLuE/uSeRdEfInEdFuNcTiOnS/uSeRdEfInEdFuNcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cOnTaInErS/cOnTaInErNaMe/uSeRdEfInEdFuNcTiOnS/uSeRdEfInEdFuNcTiOnNaMe/extra",
 			Error: true,
 		},
 	}

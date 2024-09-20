@@ -15,6 +15,14 @@ type A2ARecoveryPointDetails struct {
 	RecoveryPointSyncType *RecoveryPointSyncType `json:"recoveryPointSyncType,omitempty"`
 
 	// Fields inherited from ProviderSpecificRecoveryPointDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s A2ARecoveryPointDetails) ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl {
+	return BaseProviderSpecificRecoveryPointDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = A2ARecoveryPointDetails{}
@@ -28,9 +36,10 @@ func (s A2ARecoveryPointDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling A2ARecoveryPointDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "A2A"
 
 	encoded, err = json.Marshal(decoded)

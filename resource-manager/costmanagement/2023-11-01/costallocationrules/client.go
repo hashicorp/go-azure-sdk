@@ -15,7 +15,7 @@ type CostAllocationRulesClient struct {
 }
 
 func NewCostAllocationRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*CostAllocationRulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "costallocationrules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "costallocationrules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CostAllocationRulesClient: %+v", err)
 	}

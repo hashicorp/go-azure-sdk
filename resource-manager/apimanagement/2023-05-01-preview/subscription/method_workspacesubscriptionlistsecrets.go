@@ -46,7 +46,6 @@ func (c SubscriptionClient) WorkspaceSubscriptionListSecrets(ctx context.Context
 
 	var model SubscriptionKeysContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DatabaseInstanceId{}
 
 func TestNewDatabaseInstanceID(t *testing.T) {
-	id := NewDatabaseInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sapVirtualInstanceValue", "databaseInstanceValue")
+	id := NewDatabaseInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sapVirtualInstanceName", "databaseInstanceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDatabaseInstanceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SapVirtualInstanceName != "sapVirtualInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SapVirtualInstanceName'", id.SapVirtualInstanceName, "sapVirtualInstanceValue")
+	if id.SapVirtualInstanceName != "sapVirtualInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SapVirtualInstanceName'", id.SapVirtualInstanceName, "sapVirtualInstanceName")
 	}
 
-	if id.DatabaseInstanceName != "databaseInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseInstanceName'", id.DatabaseInstanceName, "databaseInstanceValue")
+	if id.DatabaseInstanceName != "databaseInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseInstanceName'", id.DatabaseInstanceName, "databaseInstanceName")
 	}
 }
 
 func TestFormatDatabaseInstanceID(t *testing.T) {
-	actual := NewDatabaseInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sapVirtualInstanceValue", "databaseInstanceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances/databaseInstanceValue"
+	actual := NewDatabaseInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sapVirtualInstanceName", "databaseInstanceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances/databaseInstanceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDatabaseInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances/databaseInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances/databaseInstanceName",
 			Expected: &DatabaseInstanceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				SapVirtualInstanceName: "sapVirtualInstanceValue",
-				DatabaseInstanceName:   "databaseInstanceValue",
+				SapVirtualInstanceName: "sapVirtualInstanceName",
+				DatabaseInstanceName:   "databaseInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances/databaseInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances/databaseInstanceName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDatabaseInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEvAlUe/dAtAbAsEiNsTaNcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEnAmE/dAtAbAsEiNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances/databaseInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances/databaseInstanceName",
 			Expected: &DatabaseInstanceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				SapVirtualInstanceName: "sapVirtualInstanceValue",
-				DatabaseInstanceName:   "databaseInstanceValue",
+				SapVirtualInstanceName: "sapVirtualInstanceName",
+				DatabaseInstanceName:   "databaseInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceValue/databaseInstances/databaseInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Workloads/sapVirtualInstances/sapVirtualInstanceName/databaseInstances/databaseInstanceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEvAlUe/dAtAbAsEiNsTaNcEs/dAtAbAsEiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEnAmE/dAtAbAsEiNsTaNcEs/dAtAbAsEiNsTaNcEnAmE",
 			Expected: &DatabaseInstanceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				SapVirtualInstanceName: "sApViRtUaLiNsTaNcEvAlUe",
-				DatabaseInstanceName:   "dAtAbAsEiNsTaNcEvAlUe",
+				SapVirtualInstanceName: "sApViRtUaLiNsTaNcEnAmE",
+				DatabaseInstanceName:   "dAtAbAsEiNsTaNcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEvAlUe/dAtAbAsEiNsTaNcEs/dAtAbAsEiNsTaNcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wOrKlOaDs/sApViRtUaLiNsTaNcEs/sApViRtUaLiNsTaNcEnAmE/dAtAbAsEiNsTaNcEs/dAtAbAsEiNsTaNcEnAmE/extra",
 			Error: true,
 		},
 	}

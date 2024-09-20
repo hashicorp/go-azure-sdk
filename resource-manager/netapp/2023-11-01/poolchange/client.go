@@ -15,7 +15,7 @@ type PoolChangeClient struct {
 }
 
 func NewPoolChangeClientWithBaseURI(sdkApi sdkEnv.Api) (*PoolChangeClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "poolchange", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "poolchange", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PoolChangeClient: %+v", err)
 	}

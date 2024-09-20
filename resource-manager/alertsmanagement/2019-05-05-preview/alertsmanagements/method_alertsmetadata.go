@@ -34,6 +34,7 @@ func (o AlertsMetaDataOperationOptions) ToHeaders() *client.Headers {
 
 func (o AlertsMetaDataOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c AlertsManagementsClient) AlertsMetaData(ctx context.Context, options Ale
 
 	var model AlertsMetaData
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

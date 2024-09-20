@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2021-10-01/billingsubscriptions` Documentation
 
-The `billingsubscriptions` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2021-10-01`).
+The `billingsubscriptions` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2021-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscriptions.BillingSubscriptionMergeRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.BillingSubscriptionsMergeThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscriptions.MoveBillingSubscriptionRequest{
 	// ...
@@ -58,7 +58,7 @@ if err := client.BillingSubscriptionsMoveThenPoll(ctx, id, payload); err != nil 
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscriptions.BillingSubscriptionSplitRequest{
 	// ...
@@ -75,7 +75,7 @@ if err := client.BillingSubscriptionsSplitThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscriptions.MoveBillingSubscriptionRequest{
 	// ...
@@ -96,7 +96,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -108,7 +108,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingAccountID("billingAccountValue")
+id := billingsubscriptions.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id)
@@ -141,7 +141,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptions.NewBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscriptions.NewBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscriptions.BillingSubscription{
 	// ...

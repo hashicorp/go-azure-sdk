@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DaprComponentId{}
 
 func TestNewDaprComponentID(t *testing.T) {
-	id := NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue")
+	id := NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDaprComponentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedEnvironmentName != "managedEnvironmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "managedEnvironmentValue")
+	if id.ManagedEnvironmentName != "environmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "environmentName")
 	}
 
-	if id.DaprComponentName != "daprComponentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DaprComponentName'", id.DaprComponentName, "daprComponentValue")
+	if id.DaprComponentName != "componentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DaprComponentName'", id.DaprComponentName, "componentName")
 	}
 }
 
 func TestFormatDaprComponentID(t *testing.T) {
-	actual := NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "daprComponentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents/daprComponentValue"
+	actual := NewDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "componentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents/componentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDaprComponentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents/daprComponentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents/componentName",
 			Expected: &DaprComponentId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "managedEnvironmentValue",
-				DaprComponentName:      "daprComponentValue",
+				ManagedEnvironmentName: "environmentName",
+				DaprComponentName:      "componentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents/daprComponentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents/componentName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDaprComponentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/dApRcOmPoNeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dApRcOmPoNeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents/daprComponentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents/componentName",
 			Expected: &DaprComponentId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "managedEnvironmentValue",
-				DaprComponentName:      "daprComponentValue",
+				ManagedEnvironmentName: "environmentName",
+				DaprComponentName:      "componentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/daprComponents/daprComponentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/daprComponents/componentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/dApRcOmPoNeNtS/dApRcOmPoNeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dApRcOmPoNeNtS/cOmPoNeNtNaMe",
 			Expected: &DaprComponentId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedEnvironmentName: "mAnAgEdEnViRoNmEnTvAlUe",
-				DaprComponentName:      "dApRcOmPoNeNtVaLuE",
+				ManagedEnvironmentName: "eNvIrOnMeNtNaMe",
+				DaprComponentName:      "cOmPoNeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/dApRcOmPoNeNtS/dApRcOmPoNeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dApRcOmPoNeNtS/cOmPoNeNtNaMe/extra",
 			Error: true,
 		},
 	}

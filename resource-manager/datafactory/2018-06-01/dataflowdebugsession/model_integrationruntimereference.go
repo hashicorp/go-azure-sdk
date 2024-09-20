@@ -15,6 +15,14 @@ type IntegrationRuntimeReference struct {
 	ReferenceName string                  `json:"referenceName"`
 
 	// Fields inherited from Reference
+
+	Type string `json:"type"`
+}
+
+func (s IntegrationRuntimeReference) Reference() BaseReferenceImpl {
+	return BaseReferenceImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = IntegrationRuntimeReference{}
@@ -28,9 +36,10 @@ func (s IntegrationRuntimeReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IntegrationRuntimeReference: %+v", err)
 	}
+
 	decoded["type"] = "IntegrationRuntimeReference"
 
 	encoded, err = json.Marshal(decoded)

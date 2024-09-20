@@ -16,6 +16,14 @@ type GcpProjectEnvironmentData struct {
 	ScanInterval       *int64                `json:"scanInterval,omitempty"`
 
 	// Fields inherited from EnvironmentData
+
+	EnvironmentType EnvironmentType `json:"environmentType"`
+}
+
+func (s GcpProjectEnvironmentData) EnvironmentData() BaseEnvironmentDataImpl {
+	return BaseEnvironmentDataImpl{
+		EnvironmentType: s.EnvironmentType,
+	}
 }
 
 var _ json.Marshaler = GcpProjectEnvironmentData{}
@@ -29,9 +37,10 @@ func (s GcpProjectEnvironmentData) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GcpProjectEnvironmentData: %+v", err)
 	}
+
 	decoded["environmentType"] = "GcpProject"
 
 	encoded, err = json.Marshal(decoded)
@@ -51,6 +60,7 @@ func (s *GcpProjectEnvironmentData) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into GcpProjectEnvironmentData: %+v", err)
 	}
 
+	s.EnvironmentType = decoded.EnvironmentType
 	s.ProjectDetails = decoded.ProjectDetails
 	s.ScanInterval = decoded.ScanInterval
 
@@ -60,7 +70,7 @@ func (s *GcpProjectEnvironmentData) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["organizationalData"]; ok {
-		impl, err := unmarshalGcpOrganizationalDataImplementation(v)
+		impl, err := UnmarshalGcpOrganizationalDataImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'OrganizationalData' for 'GcpProjectEnvironmentData': %+v", err)
 		}

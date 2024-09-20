@@ -46,7 +46,7 @@ func ParseNamespaceTopicEventSubscriptionID(input string) (*NamespaceTopicEventS
 	}
 
 	id := NamespaceTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseNamespaceTopicEventSubscriptionIDInsensitively(input string) (*Namespa
 	}
 
 	id := NamespaceTopicEventSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id NamespaceTopicEventSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftEventGrid", "Microsoft.EventGrid", "Microsoft.EventGrid"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
-		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
+		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticTopics", "topics", "topics"),
-		resourceids.UserSpecifiedSegment("topicName", "topicValue"),
+		resourceids.UserSpecifiedSegment("topicName", "topicName"),
 		resourceids.StaticSegment("staticEventSubscriptions", "eventSubscriptions", "eventSubscriptions"),
-		resourceids.UserSpecifiedSegment("eventSubscriptionName", "eventSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("eventSubscriptionName", "eventSubscriptionName"),
 	}
 }
 

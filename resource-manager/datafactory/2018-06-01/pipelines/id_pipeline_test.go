@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PipelineId{}
 
 func TestNewPipelineID(t *testing.T) {
-	id := NewPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "pipelineValue")
+	id := NewPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "pipelineName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPipelineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FactoryName != "factoryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryValue")
+	if id.FactoryName != "factoryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.PipelineName != "pipelineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PipelineName'", id.PipelineName, "pipelineValue")
+	if id.PipelineName != "pipelineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PipelineName'", id.PipelineName, "pipelineName")
 	}
 }
 
 func TestFormatPipelineID(t *testing.T) {
-	actual := NewPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "pipelineValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines/pipelineValue"
+	actual := NewPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "pipelineName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines/pipelineName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePipelineID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines/pipelineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines/pipelineName",
 			Expected: &PipelineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				PipelineName:      "pipelineValue",
+				FactoryName:       "factoryName",
+				PipelineName:      "pipelineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines/pipelineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines/pipelineName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePipelineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/pIpElInEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/pIpElInEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines/pipelineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines/pipelineName",
 			Expected: &PipelineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				PipelineName:      "pipelineValue",
+				FactoryName:       "factoryName",
+				PipelineName:      "pipelineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/pipelines/pipelineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/pipelines/pipelineName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/pIpElInEs/pIpElInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/pIpElInEs/pIpElInEnAmE",
 			Expected: &PipelineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FactoryName:       "fAcToRyVaLuE",
-				PipelineName:      "pIpElInEvAlUe",
+				FactoryName:       "fAcToRyNaMe",
+				PipelineName:      "pIpElInEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/pIpElInEs/pIpElInEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/pIpElInEs/pIpElInEnAmE/extra",
 			Error: true,
 		},
 	}

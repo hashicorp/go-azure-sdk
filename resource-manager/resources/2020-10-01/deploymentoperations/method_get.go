@@ -45,7 +45,6 @@ func (c DeploymentOperationsClient) Get(ctx context.Context, id ResourceGroupDep
 
 	var model DeploymentOperation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

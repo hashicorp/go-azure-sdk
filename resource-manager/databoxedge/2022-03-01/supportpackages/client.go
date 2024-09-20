@@ -15,7 +15,7 @@ type SupportPackagesClient struct {
 }
 
 func NewSupportPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*SupportPackagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "supportpackages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "supportpackages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SupportPackagesClient: %+v", err)
 	}

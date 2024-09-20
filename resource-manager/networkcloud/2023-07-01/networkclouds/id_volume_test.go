@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VolumeId{}
 
 func TestNewVolumeID(t *testing.T) {
-	id := NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "volumeValue")
+	id := NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "volumeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVolumeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VolumeName != "volumeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VolumeName'", id.VolumeName, "volumeValue")
+	if id.VolumeName != "volumeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VolumeName'", id.VolumeName, "volumeName")
 	}
 }
 
 func TestFormatVolumeID(t *testing.T) {
-	actual := NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "volumeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeValue"
+	actual := NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "volumeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVolumeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeName",
 			Expected: &VolumeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VolumeName:        "volumeValue",
+				VolumeName:        "volumeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVolumeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeName",
 			Expected: &VolumeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VolumeName:        "volumeValue",
+				VolumeName:        "volumeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/volumes/volumeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vOlUmEs/vOlUmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vOlUmEs/vOlUmEnAmE",
 			Expected: &VolumeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VolumeName:        "vOlUmEvAlUe",
+				VolumeName:        "vOlUmEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vOlUmEs/vOlUmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/vOlUmEs/vOlUmEnAmE/extra",
 			Error: true,
 		},
 	}

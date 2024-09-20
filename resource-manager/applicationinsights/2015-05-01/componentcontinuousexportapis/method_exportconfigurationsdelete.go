@@ -45,7 +45,6 @@ func (c ComponentContinuousExportAPIsClient) ExportConfigurationsDelete(ctx cont
 
 	var model ApplicationInsightsComponentExportConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

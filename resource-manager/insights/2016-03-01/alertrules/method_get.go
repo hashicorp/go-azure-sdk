@@ -45,7 +45,6 @@ func (c AlertRulesClient) Get(ctx context.Context, id AlertRuleId) (result GetOp
 
 	var model AlertRuleResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VersionId{}
 
 func TestNewVersionID(t *testing.T) {
-	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "packageValue", "archiveValue", "versionValue")
+	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "packageType", "archiveName", "archiveVersionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,26 +22,26 @@ func TestNewVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RegistryName != "registryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryValue")
+	if id.RegistryName != "registryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryName")
 	}
 
-	if id.PackageName != "packageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PackageName'", id.PackageName, "packageValue")
+	if id.PackageName != "packageType" {
+		t.Fatalf("Expected %q but got %q for Segment 'PackageName'", id.PackageName, "packageType")
 	}
 
-	if id.ArchiveName != "archiveValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ArchiveName'", id.ArchiveName, "archiveValue")
+	if id.ArchiveName != "archiveName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ArchiveName'", id.ArchiveName, "archiveName")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "archiveVersionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "archiveVersionName")
 	}
 }
 
 func TestFormatVersionID(t *testing.T) {
-	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "packageValue", "archiveValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions/versionValue"
+	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "packageType", "archiveName", "archiveVersionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions/archiveVersionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -95,49 +95,49 @@ func TestParseVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions/archiveVersionName",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RegistryName:      "registryValue",
-				PackageName:       "packageValue",
-				ArchiveName:       "archiveValue",
-				VersionName:       "versionValue",
+				RegistryName:      "registryName",
+				PackageName:       "packageType",
+				ArchiveName:       "archiveName",
+				VersionName:       "archiveVersionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions/archiveVersionName/extra",
 			Error: true,
 		},
 	}
@@ -266,96 +266,96 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE/aRcHiVeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe/aRcHiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE/aRcHiVeS/aRcHiVeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe/aRcHiVeS/aRcHiVeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE/aRcHiVeS/aRcHiVeVaLuE/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe/aRcHiVeS/aRcHiVeNaMe/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions/archiveVersionName",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RegistryName:      "registryValue",
-				PackageName:       "packageValue",
-				ArchiveName:       "archiveValue",
-				VersionName:       "versionValue",
+				RegistryName:      "registryName",
+				PackageName:       "packageType",
+				ArchiveName:       "archiveName",
+				VersionName:       "archiveVersionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/packages/packageValue/archives/archiveValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/packages/packageType/archives/archiveName/versions/archiveVersionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE/aRcHiVeS/aRcHiVeVaLuE/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe/aRcHiVeS/aRcHiVeNaMe/vErSiOnS/aRcHiVeVeRsIoNnAmE",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RegistryName:      "rEgIsTrYvAlUe",
-				PackageName:       "pAcKaGeVaLuE",
-				ArchiveName:       "aRcHiVeVaLuE",
-				VersionName:       "vErSiOnVaLuE",
+				RegistryName:      "rEgIsTrYnAmE",
+				PackageName:       "pAcKaGeTyPe",
+				ArchiveName:       "aRcHiVeNaMe",
+				VersionName:       "aRcHiVeVeRsIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/pAcKaGeS/pAcKaGeVaLuE/aRcHiVeS/aRcHiVeVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/pAcKaGeS/pAcKaGeTyPe/aRcHiVeS/aRcHiVeNaMe/vErSiOnS/aRcHiVeVeRsIoNnAmE/extra",
 			Error: true,
 		},
 	}

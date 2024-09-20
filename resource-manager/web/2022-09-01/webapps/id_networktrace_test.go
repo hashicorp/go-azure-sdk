@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NetworkTraceId{}
 
 func TestNewNetworkTraceID(t *testing.T) {
-	id := NewNetworkTraceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "operationIdValue")
+	id := NewNetworkTraceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "operationId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNetworkTraceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatNetworkTraceID(t *testing.T) {
-	actual := NewNetworkTraceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "operationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace/operationIdValue"
+	actual := NewNetworkTraceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "operationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNetworkTraceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace/operationId",
 			Expected: &NetworkTraceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SiteName:          "siteValue",
-				OperationId:       "operationIdValue",
+				SiteName:          "name",
+				OperationId:       "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace/operationId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNetworkTraceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/nEtWoRkTrAcE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/nEtWoRkTrAcE",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace/operationId",
 			Expected: &NetworkTraceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SiteName:          "siteValue",
-				OperationId:       "operationIdValue",
+				SiteName:          "name",
+				OperationId:       "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/networkTrace/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/networkTrace/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/nEtWoRkTrAcE/oPeRaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/nEtWoRkTrAcE/oPeRaTiOnId",
 			Expected: &NetworkTraceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:          "sItEvAlUe",
-				OperationId:       "oPeRaTiOnIdVaLuE",
+				SiteName:          "nAmE",
+				OperationId:       "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/nEtWoRkTrAcE/oPeRaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/nEtWoRkTrAcE/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -50,7 +50,6 @@ func (c NetAppResourceClient) CheckQuotaAvailability(ctx context.Context, id Loc
 
 	var model CheckAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

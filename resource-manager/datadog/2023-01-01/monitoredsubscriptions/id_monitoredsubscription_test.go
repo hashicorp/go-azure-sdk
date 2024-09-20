@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MonitoredSubscriptionId{}
 
 func TestNewMonitoredSubscriptionID(t *testing.T) {
-	id := NewMonitoredSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "monitoredSubscriptionValue")
+	id := NewMonitoredSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "configurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewMonitoredSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.MonitoredSubscriptionName != "monitoredSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitoredSubscriptionName'", id.MonitoredSubscriptionName, "monitoredSubscriptionValue")
+	if id.MonitoredSubscriptionName != "configurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitoredSubscriptionName'", id.MonitoredSubscriptionName, "configurationName")
 	}
 }
 
 func TestFormatMonitoredSubscriptionID(t *testing.T) {
-	actual := NewMonitoredSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "monitoredSubscriptionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions/monitoredSubscriptionValue"
+	actual := NewMonitoredSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "configurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions/configurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseMonitoredSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions/monitoredSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions/configurationName",
 			Expected: &MonitoredSubscriptionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				MonitorName:               "monitorValue",
-				MonitoredSubscriptionName: "monitoredSubscriptionValue",
+				MonitorName:               "monitorName",
+				MonitoredSubscriptionName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions/monitoredSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions/configurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseMonitoredSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrVaLuE/mOnItOrEdSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/mOnItOrEdSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions/monitoredSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions/configurationName",
 			Expected: &MonitoredSubscriptionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				MonitorName:               "monitorValue",
-				MonitoredSubscriptionName: "monitoredSubscriptionValue",
+				MonitorName:               "monitorName",
+				MonitoredSubscriptionName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorValue/monitoredSubscriptions/monitoredSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/monitoredSubscriptions/configurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrVaLuE/mOnItOrEdSuBsCrIpTiOnS/mOnItOrEdSuBsCrIpTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/mOnItOrEdSuBsCrIpTiOnS/cOnFiGuRaTiOnNaMe",
 			Expected: &MonitoredSubscriptionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:               "mOnItOrVaLuE",
-				MonitoredSubscriptionName: "mOnItOrEdSuBsCrIpTiOnVaLuE",
+				MonitorName:               "mOnItOrNaMe",
+				MonitoredSubscriptionName: "cOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrVaLuE/mOnItOrEdSuBsCrIpTiOnS/mOnItOrEdSuBsCrIpTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/mOnItOrEdSuBsCrIpTiOnS/cOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

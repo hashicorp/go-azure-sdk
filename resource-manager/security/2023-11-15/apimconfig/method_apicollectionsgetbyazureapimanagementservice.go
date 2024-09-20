@@ -45,7 +45,6 @@ func (c APIMConfigClient) APICollectionsGetByAzureApiManagementService(ctx conte
 
 	var model ApiCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

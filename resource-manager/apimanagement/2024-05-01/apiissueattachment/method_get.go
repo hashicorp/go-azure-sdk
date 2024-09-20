@@ -45,7 +45,6 @@ func (c ApiIssueAttachmentClient) Get(ctx context.Context, id AttachmentId) (res
 
 	var model IssueAttachmentContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

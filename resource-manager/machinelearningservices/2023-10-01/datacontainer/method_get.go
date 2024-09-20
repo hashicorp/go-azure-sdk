@@ -45,7 +45,6 @@ func (c DataContainerClient) Get(ctx context.Context, id WorkspaceDataId) (resul
 
 	var model DataContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

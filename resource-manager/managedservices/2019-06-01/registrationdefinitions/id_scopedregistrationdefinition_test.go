@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedRegistrationDefinitionId{}
 
 func TestNewScopedRegistrationDefinitionID(t *testing.T) {
-	id := NewScopedRegistrationDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "registrationDefinitionIdValue")
+	id := NewScopedRegistrationDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "registrationDefinitionId")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RegistrationDefinitionId != "registrationDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegistrationDefinitionId'", id.RegistrationDefinitionId, "registrationDefinitionIdValue")
+	if id.RegistrationDefinitionId != "registrationDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegistrationDefinitionId'", id.RegistrationDefinitionId, "registrationDefinitionId")
 	}
 }
 
 func TestFormatScopedRegistrationDefinitionID(t *testing.T) {
-	actual := NewScopedRegistrationDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "registrationDefinitionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionIdValue"
+	actual := NewScopedRegistrationDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "registrationDefinitionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedRegistrationDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionId",
 			Expected: &ScopedRegistrationDefinitionId{
 				Scope:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RegistrationDefinitionId: "registrationDefinitionIdValue",
+				RegistrationDefinitionId: "registrationDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedRegistrationDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionId",
 			Expected: &ScopedRegistrationDefinitionId{
 				Scope:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RegistrationDefinitionId: "registrationDefinitionIdValue",
+				RegistrationDefinitionId: "registrationDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ManagedServices/registrationDefinitions/registrationDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/rEgIsTrAtIoNdEfInItIoNs/rEgIsTrAtIoNdEfInItIoNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/rEgIsTrAtIoNdEfInItIoNs/rEgIsTrAtIoNdEfInItIoNiD",
 			Expected: &ScopedRegistrationDefinitionId{
 				Scope:                    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RegistrationDefinitionId: "rEgIsTrAtIoNdEfInItIoNiDvAlUe",
+				RegistrationDefinitionId: "rEgIsTrAtIoNdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/rEgIsTrAtIoNdEfInItIoNs/rEgIsTrAtIoNdEfInItIoNiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/rEgIsTrAtIoNdEfInItIoNs/rEgIsTrAtIoNdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

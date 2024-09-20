@@ -36,6 +36,7 @@ func (o ListSupportedOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListSupportedOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c PrivateLinkResourcesClient) ListSupported(ctx context.Context, id Search
 
 	var model PrivateLinkResourcesResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type FindRestorableTimeRangesClient struct {
 }
 
 func NewFindRestorableTimeRangesClientWithBaseURI(sdkApi sdkEnv.Api) (*FindRestorableTimeRangesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "findrestorabletimeranges", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "findrestorabletimeranges", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FindRestorableTimeRangesClient: %+v", err)
 	}

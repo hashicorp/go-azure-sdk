@@ -15,7 +15,7 @@ type ManagedAzResiliencyStatusClient struct {
 }
 
 func NewManagedAzResiliencyStatusClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedAzResiliencyStatusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedazresiliencystatus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedazresiliencystatus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedAzResiliencyStatusClient: %+v", err)
 	}

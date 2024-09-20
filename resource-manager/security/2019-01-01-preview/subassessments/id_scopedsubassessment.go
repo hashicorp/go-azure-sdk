@@ -42,7 +42,7 @@ func ParseScopedSubAssessmentID(input string) (*ScopedSubAssessmentId, error) {
 	}
 
 	id := ScopedSubAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseScopedSubAssessmentIDInsensitively(input string) (*ScopedSubAssessment
 	}
 
 	id := ScopedSubAssessmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -112,9 +112,9 @@ func (id ScopedSubAssessmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticAssessments", "assessments", "assessments"),
-		resourceids.UserSpecifiedSegment("assessmentName", "assessmentValue"),
+		resourceids.UserSpecifiedSegment("assessmentName", "assessmentName"),
 		resourceids.StaticSegment("staticSubAssessments", "subAssessments", "subAssessments"),
-		resourceids.UserSpecifiedSegment("subAssessmentName", "subAssessmentValue"),
+		resourceids.UserSpecifiedSegment("subAssessmentName", "subAssessmentName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HostNameBindingId{}
 
 func TestNewHostNameBindingID(t *testing.T) {
-	id := NewHostNameBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "hostNameBindingValue")
+	id := NewHostNameBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "hostName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHostNameBindingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.HostNameBindingName != "hostNameBindingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HostNameBindingName'", id.HostNameBindingName, "hostNameBindingValue")
+	if id.HostNameBindingName != "hostName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HostNameBindingName'", id.HostNameBindingName, "hostName")
 	}
 }
 
 func TestFormatHostNameBindingID(t *testing.T) {
-	actual := NewHostNameBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "hostNameBindingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings/hostNameBindingValue"
+	actual := NewHostNameBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "hostName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings/hostName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHostNameBindingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings/hostNameBindingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings/hostName",
 			Expected: &HostNameBindingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				SiteName:            "siteValue",
-				HostNameBindingName: "hostNameBindingValue",
+				SiteName:            "name",
+				HostNameBindingName: "hostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings/hostNameBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings/hostName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHostNameBindingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTnAmEbInDiNgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTnAmEbInDiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings/hostNameBindingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings/hostName",
 			Expected: &HostNameBindingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				SiteName:            "siteValue",
-				HostNameBindingName: "hostNameBindingValue",
+				SiteName:            "name",
+				HostNameBindingName: "hostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostNameBindings/hostNameBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostNameBindings/hostName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTnAmEbInDiNgS/hOsTnAmEbInDiNgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTnAmEbInDiNgS/hOsTnAmE",
 			Expected: &HostNameBindingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:            "sItEvAlUe",
-				HostNameBindingName: "hOsTnAmEbInDiNgVaLuE",
+				SiteName:            "nAmE",
+				HostNameBindingName: "hOsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTnAmEbInDiNgS/hOsTnAmEbInDiNgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTnAmEbInDiNgS/hOsTnAmE/extra",
 			Error: true,
 		},
 	}

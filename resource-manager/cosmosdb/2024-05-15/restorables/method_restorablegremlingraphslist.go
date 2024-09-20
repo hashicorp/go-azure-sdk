@@ -36,6 +36,7 @@ func (o RestorableGremlinGraphsListOperationOptions) ToHeaders() *client.Headers
 
 func (o RestorableGremlinGraphsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c RestorablesClient) RestorableGremlinGraphsList(ctx context.Context, id R
 
 	var model RestorableGremlinGraphsListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

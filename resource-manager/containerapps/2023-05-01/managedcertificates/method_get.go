@@ -45,7 +45,6 @@ func (c ManagedCertificatesClient) Get(ctx context.Context, id ManagedCertificat
 
 	var model ManagedCertificate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

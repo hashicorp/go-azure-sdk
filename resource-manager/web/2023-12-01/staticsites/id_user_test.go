@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UserId{}
 
 func TestNewUserID(t *testing.T) {
-	id := NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue", "authProviderValue", "userValue")
+	id := NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "authprovider", "userid")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewUserID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StaticSiteName != "staticSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "staticSiteValue")
+	if id.StaticSiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "name")
 	}
 
-	if id.AuthProviderName != "authProviderValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthProviderName'", id.AuthProviderName, "authProviderValue")
+	if id.AuthProviderName != "authprovider" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthProviderName'", id.AuthProviderName, "authprovider")
 	}
 
-	if id.UserName != "userValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userValue")
+	if id.UserName != "userid" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userid")
 	}
 }
 
 func TestFormatUserID(t *testing.T) {
-	actual := NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue", "authProviderValue", "userValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users/userValue"
+	actual := NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "authprovider", "userid").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users/userid"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseUserID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users/userValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users/userid",
 			Expected: &UserId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StaticSiteName:    "staticSiteValue",
-				AuthProviderName:  "authProviderValue",
-				UserName:          "userValue",
+				StaticSiteName:    "name",
+				AuthProviderName:  "authprovider",
+				UserName:          "userid",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users/userValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users/userid/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseUserIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/aUtHpRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/aUtHpRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/aUtHpRoViDeRs/aUtHpRoViDeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/aUtHpRoViDeRs/aUtHpRoViDeR",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/aUtHpRoViDeRs/aUtHpRoViDeRvAlUe/uSeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/aUtHpRoViDeRs/aUtHpRoViDeR/uSeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users/userValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users/userid",
 			Expected: &UserId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StaticSiteName:    "staticSiteValue",
-				AuthProviderName:  "authProviderValue",
-				UserName:          "userValue",
+				StaticSiteName:    "name",
+				AuthProviderName:  "authprovider",
+				UserName:          "userid",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/authProviders/authProviderValue/users/userValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/authProviders/authprovider/users/userid/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/aUtHpRoViDeRs/aUtHpRoViDeRvAlUe/uSeRs/uSeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/aUtHpRoViDeRs/aUtHpRoViDeR/uSeRs/uSeRiD",
 			Expected: &UserId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StaticSiteName:    "sTaTiCsItEvAlUe",
-				AuthProviderName:  "aUtHpRoViDeRvAlUe",
-				UserName:          "uSeRvAlUe",
+				StaticSiteName:    "nAmE",
+				AuthProviderName:  "aUtHpRoViDeR",
+				UserName:          "uSeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/aUtHpRoViDeRs/aUtHpRoViDeRvAlUe/uSeRs/uSeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/aUtHpRoViDeRs/aUtHpRoViDeR/uSeRs/uSeRiD/extra",
 			Error: true,
 		},
 	}

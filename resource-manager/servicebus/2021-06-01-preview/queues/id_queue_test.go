@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &QueueId{}
 
 func TestNewQueueID(t *testing.T) {
-	id := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "queueValue")
+	id := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "queueName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewQueueID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.QueueName != "queueValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'QueueName'", id.QueueName, "queueValue")
+	if id.QueueName != "queueName" {
+		t.Fatalf("Expected %q but got %q for Segment 'QueueName'", id.QueueName, "queueName")
 	}
 }
 
 func TestFormatQueueID(t *testing.T) {
-	actual := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "queueValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues/queueValue"
+	actual := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "queueName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues/queueName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseQueueID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues/queueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues/queueName",
 			Expected: &QueueId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				QueueName:         "queueValue",
+				NamespaceName:     "namespaceName",
+				QueueName:         "queueName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues/queueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues/queueName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseQueueIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/qUeUeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeNaMe/qUeUeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues/queueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues/queueName",
 			Expected: &QueueId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				QueueName:         "queueValue",
+				NamespaceName:     "namespaceName",
+				QueueName:         "queueName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/queues/queueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceName/queues/queueName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/qUeUeS/qUeUeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeNaMe/qUeUeS/qUeUeNaMe",
 			Expected: &QueueId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:     "nAmEsPaCeVaLuE",
-				QueueName:         "qUeUeVaLuE",
+				NamespaceName:     "nAmEsPaCeNaMe",
+				QueueName:         "qUeUeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/qUeUeS/qUeUeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeNaMe/qUeUeS/qUeUeNaMe/extra",
 			Error: true,
 		},
 	}

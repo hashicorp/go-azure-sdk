@@ -15,6 +15,14 @@ type SelfDependencyTumblingWindowTriggerReference struct {
 	Size   *string `json:"size,omitempty"`
 
 	// Fields inherited from DependencyReference
+
+	Type string `json:"type"`
+}
+
+func (s SelfDependencyTumblingWindowTriggerReference) DependencyReference() BaseDependencyReferenceImpl {
+	return BaseDependencyReferenceImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = SelfDependencyTumblingWindowTriggerReference{}
@@ -28,9 +36,10 @@ func (s SelfDependencyTumblingWindowTriggerReference) MarshalJSON() ([]byte, err
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SelfDependencyTumblingWindowTriggerReference: %+v", err)
 	}
+
 	decoded["type"] = "SelfDependencyTumblingWindowTriggerReference"
 
 	encoded, err = json.Marshal(decoded)

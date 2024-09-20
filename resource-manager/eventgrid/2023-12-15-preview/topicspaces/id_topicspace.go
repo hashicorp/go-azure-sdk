@@ -44,7 +44,7 @@ func ParseTopicSpaceID(input string) (*TopicSpaceId, error) {
 	}
 
 	id := TopicSpaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTopicSpaceIDInsensitively(input string) (*TopicSpaceId, error) {
 	}
 
 	id := TopicSpaceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id TopicSpaceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftEventGrid", "Microsoft.EventGrid", "Microsoft.EventGrid"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
-		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
+		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticTopicSpaces", "topicSpaces", "topicSpaces"),
-		resourceids.UserSpecifiedSegment("topicSpaceName", "topicSpaceValue"),
+		resourceids.UserSpecifiedSegment("topicSpaceName", "topicSpaceName"),
 	}
 }
 

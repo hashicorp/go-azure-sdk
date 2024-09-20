@@ -46,7 +46,7 @@ func (s *SftpServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["passPhrase"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PassPhrase' for 'SftpServerLinkedServiceTypeProperties': %+v", err)
 		}
@@ -54,7 +54,7 @@ func (s *SftpServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'SftpServerLinkedServiceTypeProperties': %+v", err)
 		}
@@ -62,7 +62,7 @@ func (s *SftpServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["privateKeyContent"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrivateKeyContent' for 'SftpServerLinkedServiceTypeProperties': %+v", err)
 		}

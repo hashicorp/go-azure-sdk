@@ -49,7 +49,6 @@ func (c ComputePoliciesClient) Update(ctx context.Context, id ComputePolicyId, i
 
 	var model ComputePolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

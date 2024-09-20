@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DiskRestorePointId{}
 
 func TestNewDiskRestorePointID(t *testing.T) {
-	id := NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue", "diskRestorePointValue")
+	id := NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewDiskRestorePointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RestorePointCollectionName != "restorePointCollectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestorePointCollectionName'", id.RestorePointCollectionName, "restorePointCollectionValue")
+	if id.RestorePointCollectionName != "restorePointCollectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestorePointCollectionName'", id.RestorePointCollectionName, "restorePointCollectionName")
 	}
 
-	if id.RestorePointName != "restorePointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestorePointName'", id.RestorePointName, "restorePointValue")
+	if id.RestorePointName != "vmRestorePointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestorePointName'", id.RestorePointName, "vmRestorePointName")
 	}
 
-	if id.DiskRestorePointName != "diskRestorePointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiskRestorePointName'", id.DiskRestorePointName, "diskRestorePointValue")
+	if id.DiskRestorePointName != "diskRestorePointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiskRestorePointName'", id.DiskRestorePointName, "diskRestorePointName")
 	}
 }
 
 func TestFormatDiskRestorePointID(t *testing.T) {
-	actual := NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue", "diskRestorePointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints/diskRestorePointValue"
+	actual := NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints/diskRestorePointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseDiskRestorePointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints/diskRestorePointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints/diskRestorePointName",
 			Expected: &DiskRestorePointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				RestorePointCollectionName: "restorePointCollectionValue",
-				RestorePointName:           "restorePointValue",
-				DiskRestorePointName:       "diskRestorePointValue",
+				RestorePointCollectionName: "restorePointCollectionName",
+				RestorePointName:           "vmRestorePointName",
+				DiskRestorePointName:       "diskRestorePointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints/diskRestorePointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints/diskRestorePointName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseDiskRestorePointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe/rEsToRePoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE/rEsToRePoInTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe/rEsToRePoInTs/rEsToRePoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE/rEsToRePoInTs/vMrEsToRePoInTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe/rEsToRePoInTs/rEsToRePoInTvAlUe/dIsKrEsToRePoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE/rEsToRePoInTs/vMrEsToRePoInTnAmE/dIsKrEsToRePoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints/diskRestorePointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints/diskRestorePointName",
 			Expected: &DiskRestorePointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				RestorePointCollectionName: "restorePointCollectionValue",
-				RestorePointName:           "restorePointValue",
-				DiskRestorePointName:       "diskRestorePointValue",
+				RestorePointCollectionName: "restorePointCollectionName",
+				RestorePointName:           "vmRestorePointName",
+				DiskRestorePointName:       "diskRestorePointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionValue/restorePoints/restorePointValue/diskRestorePoints/diskRestorePointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/restorePointCollections/restorePointCollectionName/restorePoints/vmRestorePointName/diskRestorePoints/diskRestorePointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe/rEsToRePoInTs/rEsToRePoInTvAlUe/dIsKrEsToRePoInTs/dIsKrEsToRePoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE/rEsToRePoInTs/vMrEsToRePoInTnAmE/dIsKrEsToRePoInTs/dIsKrEsToRePoInTnAmE",
 			Expected: &DiskRestorePointId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				RestorePointCollectionName: "rEsToRePoInTcOlLeCtIoNvAlUe",
-				RestorePointName:           "rEsToRePoInTvAlUe",
-				DiskRestorePointName:       "dIsKrEsToRePoInTvAlUe",
+				RestorePointCollectionName: "rEsToRePoInTcOlLeCtIoNnAmE",
+				RestorePointName:           "vMrEsToRePoInTnAmE",
+				DiskRestorePointName:       "dIsKrEsToRePoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNvAlUe/rEsToRePoInTs/rEsToRePoInTvAlUe/dIsKrEsToRePoInTs/dIsKrEsToRePoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/rEsToRePoInTcOlLeCtIoNs/rEsToRePoInTcOlLeCtIoNnAmE/rEsToRePoInTs/vMrEsToRePoInTnAmE/dIsKrEsToRePoInTs/dIsKrEsToRePoInTnAmE/extra",
 			Error: true,
 		},
 	}

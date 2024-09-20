@@ -45,7 +45,6 @@ func (c JobTargetExecutionsClient) Get(ctx context.Context, id TargetId) (result
 
 	var model JobExecution
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

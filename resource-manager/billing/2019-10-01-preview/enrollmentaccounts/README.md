@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/enrollmentaccounts` Documentation
 
-The `enrollmentaccounts` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `enrollmentaccounts` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccounts.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := enrollmentaccounts.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 read, err := client.GetByEnrollmentAccountId(ctx, id, enrollmentaccounts.DefaultGetByEnrollmentAccountIdOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccounts.NewBillingAccountID("billingAccountValue")
+id := enrollmentaccounts.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccountName(ctx, id, enrollmentaccounts.DefaultListByBillingAccountNameOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountNameComplete(ctx, id, enrollmentaccounts.DefaultListByBillingAccountNameOperationOptions())

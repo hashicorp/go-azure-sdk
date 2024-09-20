@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &CapabilityTypeId{}
 
 func TestNewCapabilityTypeID(t *testing.T) {
-	id := NewCapabilityTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "targetTypeValue", "capabilityTypeValue")
+	id := NewCapabilityTypeID("12345678-1234-9876-4563-123456789012", "locationName", "targetTypeName", "capabilityTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.TargetTypeName != "targetTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TargetTypeName'", id.TargetTypeName, "targetTypeValue")
+	if id.TargetTypeName != "targetTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TargetTypeName'", id.TargetTypeName, "targetTypeName")
 	}
 
-	if id.CapabilityTypeName != "capabilityTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CapabilityTypeName'", id.CapabilityTypeName, "capabilityTypeValue")
+	if id.CapabilityTypeName != "capabilityTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CapabilityTypeName'", id.CapabilityTypeName, "capabilityTypeName")
 	}
 }
 
 func TestFormatCapabilityTypeID(t *testing.T) {
-	actual := NewCapabilityTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "targetTypeValue", "capabilityTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes/capabilityTypeValue"
+	actual := NewCapabilityTypeID("12345678-1234-9876-4563-123456789012", "locationName", "targetTypeName", "capabilityTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes/capabilityTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -77,37 +77,37 @@ func TestParseCapabilityTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes/capabilityTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes/capabilityTypeName",
 			Expected: &CapabilityTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "locationValue",
-				TargetTypeName:     "targetTypeValue",
-				CapabilityTypeName: "capabilityTypeValue",
+				LocationName:       "locationName",
+				TargetTypeName:     "targetTypeName",
+				CapabilityTypeName: "capabilityTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes/capabilityTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes/capabilityTypeName/extra",
 			Error: true,
 		},
 	}
@@ -208,72 +208,72 @@ func TestParseCapabilityTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe/tArGeTtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE/tArGeTtYpEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe/tArGeTtYpEs/tArGeTtYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE/tArGeTtYpEs/tArGeTtYpEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe/tArGeTtYpEs/tArGeTtYpEvAlUe/cApAbIlItYtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE/tArGeTtYpEs/tArGeTtYpEnAmE/cApAbIlItYtYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes/capabilityTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes/capabilityTypeName",
 			Expected: &CapabilityTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "locationValue",
-				TargetTypeName:     "targetTypeValue",
-				CapabilityTypeName: "capabilityTypeValue",
+				LocationName:       "locationName",
+				TargetTypeName:     "targetTypeName",
+				CapabilityTypeName: "capabilityTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationValue/targetTypes/targetTypeValue/capabilityTypes/capabilityTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Chaos/locations/locationName/targetTypes/targetTypeName/capabilityTypes/capabilityTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe/tArGeTtYpEs/tArGeTtYpEvAlUe/cApAbIlItYtYpEs/cApAbIlItYtYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE/tArGeTtYpEs/tArGeTtYpEnAmE/cApAbIlItYtYpEs/cApAbIlItYtYpEnAmE",
 			Expected: &CapabilityTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "lOcAtIoNvAlUe",
-				TargetTypeName:     "tArGeTtYpEvAlUe",
-				CapabilityTypeName: "cApAbIlItYtYpEvAlUe",
+				LocationName:       "lOcAtIoNnAmE",
+				TargetTypeName:     "tArGeTtYpEnAmE",
+				CapabilityTypeName: "cApAbIlItYtYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNvAlUe/tArGeTtYpEs/tArGeTtYpEvAlUe/cApAbIlItYtYpEs/cApAbIlItYtYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cHaOs/lOcAtIoNs/lOcAtIoNnAmE/tArGeTtYpEs/tArGeTtYpEnAmE/cApAbIlItYtYpEs/cApAbIlItYtYpEnAmE/extra",
 			Error: true,
 		},
 	}

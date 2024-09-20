@@ -45,7 +45,6 @@ func (c JitNetworkAccessPoliciesClient) Get(ctx context.Context, id JitNetworkAc
 
 	var model JitNetworkAccessPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

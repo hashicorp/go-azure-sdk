@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UpgradeGraphId{}
 
 func TestNewUpgradeGraphID(t *testing.T) {
-	id := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceValue", "upgradeGraphValue")
+	id := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "upgradeGraph")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewUpgradeGraphID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplianceName != "applianceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplianceName'", id.ApplianceName, "applianceValue")
+	if id.ApplianceName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplianceName'", id.ApplianceName, "resourceName")
 	}
 
-	if id.UpgradeGraphName != "upgradeGraphValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UpgradeGraphName'", id.UpgradeGraphName, "upgradeGraphValue")
+	if id.UpgradeGraphName != "upgradeGraph" {
+		t.Fatalf("Expected %q but got %q for Segment 'UpgradeGraphName'", id.UpgradeGraphName, "upgradeGraph")
 	}
 }
 
 func TestFormatUpgradeGraphID(t *testing.T) {
-	actual := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceValue", "upgradeGraphValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue"
+	actual := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "upgradeGraph").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs/upgradeGraph"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseUpgradeGraphID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs/upgradeGraph",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplianceName:     "applianceValue",
-				UpgradeGraphName:  "upgradeGraphValue",
+				ApplianceName:     "resourceName",
+				UpgradeGraphName:  "upgradeGraph",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs/upgradeGraph/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseUpgradeGraphIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE/uPgRaDeGrApHs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs/upgradeGraph",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplianceName:     "applianceValue",
-				UpgradeGraphName:  "upgradeGraphValue",
+				ApplianceName:     "resourceName",
+				UpgradeGraphName:  "upgradeGraph",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/upgradeGraphs/upgradeGraph/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE/uPgRaDeGrApHs/uPgRaDeGrApH",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplianceName:     "aPpLiAnCeVaLuE",
-				UpgradeGraphName:  "uPgRaDeGrApHvAlUe",
+				ApplianceName:     "rEsOuRcEnAmE",
+				UpgradeGraphName:  "uPgRaDeGrApH",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE/uPgRaDeGrApHs/uPgRaDeGrApH/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c BillingRoleDefinitionsClient) GetByInvoiceSection(ctx context.Context, i
 
 	var model BillingRoleDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

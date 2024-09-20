@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicydefinitionId{}
 
 func TestNewPolicydefinitionID(t *testing.T) {
-	id := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policydefinitionValue")
+	id := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policyDefinitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PolicydefinitionName != "policydefinitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicydefinitionName'", id.PolicydefinitionName, "policydefinitionValue")
+	if id.PolicydefinitionName != "policyDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicydefinitionName'", id.PolicydefinitionName, "policyDefinitionName")
 	}
 }
 
 func TestFormatPolicydefinitionID(t *testing.T) {
-	actual := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policydefinitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionValue"
+	actual := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policyDefinitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParsePolicydefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName",
 			Expected: &PolicydefinitionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PolicydefinitionName: "policydefinitionValue",
+				PolicydefinitionName: "policyDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParsePolicydefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName",
 			Expected: &PolicydefinitionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PolicydefinitionName: "policydefinitionValue",
+				PolicydefinitionName: "policyDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYdEfInItIoNs/pOlIcYdEfInItIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYdEfInItIoNs/pOlIcYdEfInItIoNnAmE",
 			Expected: &PolicydefinitionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PolicydefinitionName: "pOlIcYdEfInItIoNvAlUe",
+				PolicydefinitionName: "pOlIcYdEfInItIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYdEfInItIoNs/pOlIcYdEfInItIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/pOlIcYdEfInItIoNs/pOlIcYdEfInItIoNnAmE/extra",
 			Error: true,
 		},
 	}

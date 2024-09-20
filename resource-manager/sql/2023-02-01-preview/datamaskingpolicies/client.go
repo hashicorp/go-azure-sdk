@@ -15,7 +15,7 @@ type DataMaskingPoliciesClient struct {
 }
 
 func NewDataMaskingPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*DataMaskingPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datamaskingpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datamaskingpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataMaskingPoliciesClient: %+v", err)
 	}

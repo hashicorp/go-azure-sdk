@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2024-02-01/environmentdefinitions` Documentation
 
-The `environmentdefinitions` SDK allows for interaction with the Azure Resource Manager Service `devcenter` (API Version `2024-02-01`).
+The `environmentdefinitions` SDK allows for interaction with Azure Resource Manager `devcenter` (API Version `2024-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue", "environmentDefinitionValue")
+id := environmentdefinitions.NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName", "environmentDefinitionName")
 
 read, err := client.EnvironmentDefinitionsGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectValue", "catalogValue", "environmentDefinitionValue")
+id := environmentdefinitions.NewEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "catalogName", "environmentDefinitionName")
 
 read, err := client.EnvironmentDefinitionsGetByProjectCatalog(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue", "environmentDefinitionValue")
+id := environmentdefinitions.NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName", "environmentDefinitionName")
 
 read, err := client.EnvironmentDefinitionsGetErrorDetails(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := environmentdefinitions.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 // alternatively `client.EnvironmentDefinitionsListByCatalog(ctx, id, environmentdefinitions.DefaultEnvironmentDefinitionsListByCatalogOperationOptions())` can be used to do batched pagination
 items, err := client.EnvironmentDefinitionsListByCatalogComplete(ctx, id, environmentdefinitions.DefaultEnvironmentDefinitionsListByCatalogOperationOptions())
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectValue", "catalogValue")
+id := environmentdefinitions.NewCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "catalogName")
 
 // alternatively `client.EnvironmentDefinitionsListByProjectCatalog(ctx, id)` can be used to do batched pagination
 items, err := client.EnvironmentDefinitionsListByProjectCatalogComplete(ctx, id)
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := environmentdefinitions.NewEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectValue", "catalogValue", "environmentDefinitionValue")
+id := environmentdefinitions.NewEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "catalogName", "environmentDefinitionName")
 
 read, err := client.ProjectCatalogEnvironmentDefinitionsGetErrorDetails(ctx, id)
 if err != nil {

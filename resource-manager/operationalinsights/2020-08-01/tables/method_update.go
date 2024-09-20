@@ -49,7 +49,6 @@ func (c TablesClient) Update(ctx context.Context, id TableId, input Table) (resu
 
 	var model Table
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

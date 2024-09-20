@@ -49,7 +49,6 @@ func (c NetworkcloudsClient) TrunkedNetworksUpdate(ctx context.Context, id Trunk
 
 	var model TrunkedNetwork
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

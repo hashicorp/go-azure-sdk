@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReplicationLinkId{}
 
 func TestNewReplicationLinkID(t *testing.T) {
-	id := NewReplicationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "linkIdValue")
+	id := NewReplicationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "linkId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewReplicationLinkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.DatabaseName != "databaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseValue")
+	if id.DatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseName")
 	}
 
-	if id.LinkId != "linkIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LinkId'", id.LinkId, "linkIdValue")
+	if id.LinkId != "linkId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LinkId'", id.LinkId, "linkId")
 	}
 }
 
 func TestFormatReplicationLinkID(t *testing.T) {
-	actual := NewReplicationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "linkIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks/linkIdValue"
+	actual := NewReplicationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "linkId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks/linkId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseReplicationLinkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks/linkIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks/linkId",
 			Expected: &ReplicationLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				DatabaseName:      "databaseValue",
-				LinkId:            "linkIdValue",
+				ServerName:        "serverName",
+				DatabaseName:      "databaseName",
+				LinkId:            "linkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks/linkIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks/linkId/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseReplicationLinkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/rEpLiCaTiOnLiNkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/rEpLiCaTiOnLiNkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks/linkIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks/linkId",
 			Expected: &ReplicationLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				DatabaseName:      "databaseValue",
-				LinkId:            "linkIdValue",
+				ServerName:        "serverName",
+				DatabaseName:      "databaseName",
+				LinkId:            "linkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/replicationLinks/linkIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/replicationLinks/linkId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/rEpLiCaTiOnLiNkS/lInKiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/rEpLiCaTiOnLiNkS/lInKiD",
 			Expected: &ReplicationLinkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				DatabaseName:      "dAtAbAsEvAlUe",
-				LinkId:            "lInKiDvAlUe",
+				ServerName:        "sErVeRnAmE",
+				DatabaseName:      "dAtAbAsEnAmE",
+				LinkId:            "lInKiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/rEpLiCaTiOnLiNkS/lInKiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/rEpLiCaTiOnLiNkS/lInKiD/extra",
 			Error: true,
 		},
 	}

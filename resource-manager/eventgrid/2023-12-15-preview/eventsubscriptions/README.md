@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions` Documentation
 
-The `eventsubscriptions` SDK allows for interaction with the Azure Resource Manager Service `eventgrid` (API Version `2023-12-15-preview`).
+The `eventsubscriptions` SDK allows for interaction with Azure Resource Manager `eventgrid` (API Version `2023-12-15-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -71,7 +71,7 @@ if err := client.DomainEventSubscriptionsCreateOrUpdateThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 if err := client.DomainEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -83,7 +83,7 @@ if err := client.DomainEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 read, err := client.DomainEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 read, err := client.DomainEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 read, err := client.DomainEventSubscriptionsGetFullUrl(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+id := eventsubscriptions.NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 // alternatively `client.DomainEventSubscriptionsList(ctx, id, eventsubscriptions.DefaultDomainEventSubscriptionsListOperationOptions())` can be used to do batched pagination
 items, err := client.DomainEventSubscriptionsListComplete(ctx, id, eventsubscriptions.DefaultDomainEventSubscriptionsListOperationOptions())
@@ -148,7 +148,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewDomainEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...
@@ -165,7 +165,7 @@ if err := client.DomainEventSubscriptionsUpdateThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -182,7 +182,7 @@ if err := client.DomainTopicEventSubscriptionsCreateOrUpdateThenPoll(ctx, id, pa
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 if err := client.DomainTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -194,7 +194,7 @@ if err := client.DomainTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 read, err := client.DomainTopicEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -210,7 +210,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 read, err := client.DomainTopicEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -226,7 +226,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 read, err := client.DomainTopicEventSubscriptionsGetFullUrl(ctx, id)
 if err != nil {
@@ -242,7 +242,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
 
 // alternatively `client.DomainTopicEventSubscriptionsList(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())` can be used to do batched pagination
 items, err := client.DomainTopicEventSubscriptionsListComplete(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())
@@ -259,7 +259,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...
@@ -276,7 +276,7 @@ if err := client.DomainTopicEventSubscriptionsUpdateThenPoll(ctx, id, payload); 
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -292,7 +292,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 read, err := client.GetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -308,7 +308,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 read, err := client.GetFullUrl(ctx, id)
 if err != nil {
@@ -324,7 +324,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
 
 // alternatively `client.ListByDomainTopic(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDomainTopicComplete(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())
@@ -375,7 +375,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewResourceGroupProviderTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicTypeValue")
+id := eventsubscriptions.NewResourceGroupProviderTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicTypeName")
 
 // alternatively `client.ListGlobalByResourceGroupForTopicType(ctx, id, eventsubscriptions.DefaultListGlobalByResourceGroupForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListGlobalByResourceGroupForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListGlobalByResourceGroupForTopicTypeOperationOptions())
@@ -409,7 +409,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewProviderTopicTypeID("12345678-1234-9876-4563-123456789012", "topicTypeValue")
+id := eventsubscriptions.NewProviderTopicTypeID("12345678-1234-9876-4563-123456789012", "topicTypeName")
 
 // alternatively `client.ListGlobalBySubscriptionForTopicType(ctx, id, eventsubscriptions.DefaultListGlobalBySubscriptionForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListGlobalBySubscriptionForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListGlobalBySubscriptionForTopicTypeOperationOptions())
@@ -426,7 +426,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue")
+id := eventsubscriptions.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
 
 // alternatively `client.ListRegionalByResourceGroup(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalByResourceGroupComplete(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupOperationOptions())
@@ -443,7 +443,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewProviderLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "topicTypeValue")
+id := eventsubscriptions.NewProviderLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "topicTypeName")
 
 // alternatively `client.ListRegionalByResourceGroupForTopicType(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalByResourceGroupForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupForTopicTypeOperationOptions())
@@ -460,7 +460,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := eventsubscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 // alternatively `client.ListRegionalBySubscription(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalBySubscriptionComplete(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionOperationOptions())
@@ -477,7 +477,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "topicTypeValue")
+id := eventsubscriptions.NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "location", "topicTypeName")
 
 // alternatively `client.ListRegionalBySubscriptionForTopicType(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalBySubscriptionForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionForTopicTypeOperationOptions())
@@ -494,7 +494,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.Subscription{
 	// ...
@@ -511,7 +511,7 @@ if err := client.NamespaceTopicEventSubscriptionsCreateOrUpdateThenPoll(ctx, id,
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 if err := client.NamespaceTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -523,7 +523,7 @@ if err := client.NamespaceTopicEventSubscriptionsDeleteThenPoll(ctx, id); err !=
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 read, err := client.NamespaceTopicEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -539,7 +539,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 read, err := client.NamespaceTopicEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -555,7 +555,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue")
+id := eventsubscriptions.NewNamespaceTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName")
 
 // alternatively `client.NamespaceTopicEventSubscriptionsListByNamespaceTopic(ctx, id, eventsubscriptions.DefaultNamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions())` can be used to do batched pagination
 items, err := client.NamespaceTopicEventSubscriptionsListByNamespaceTopicComplete(ctx, id, eventsubscriptions.DefaultNamespaceTopicEventSubscriptionsListByNamespaceTopicOperationOptions())
@@ -572,7 +572,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.SubscriptionUpdateParameters{
 	// ...
@@ -589,7 +589,7 @@ if err := client.NamespaceTopicEventSubscriptionsUpdateThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -606,7 +606,7 @@ if err := client.PartnerTopicEventSubscriptionsCreateOrUpdateThenPoll(ctx, id, p
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 if err := client.PartnerTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -618,7 +618,7 @@ if err := client.PartnerTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != n
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 read, err := client.PartnerTopicEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -634,7 +634,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 read, err := client.PartnerTopicEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -650,7 +650,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 read, err := client.PartnerTopicEventSubscriptionsGetFullUrl(ctx, id)
 if err != nil {
@@ -666,7 +666,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue")
+id := eventsubscriptions.NewPartnerTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName")
 
 // alternatively `client.PartnerTopicEventSubscriptionsListByPartnerTopic(ctx, id, eventsubscriptions.DefaultPartnerTopicEventSubscriptionsListByPartnerTopicOperationOptions())` can be used to do batched pagination
 items, err := client.PartnerTopicEventSubscriptionsListByPartnerTopicComplete(ctx, id, eventsubscriptions.DefaultPartnerTopicEventSubscriptionsListByPartnerTopicOperationOptions())
@@ -683,7 +683,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...
@@ -700,7 +700,7 @@ if err := client.PartnerTopicEventSubscriptionsUpdateThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -717,7 +717,7 @@ if err := client.SystemTopicEventSubscriptionsCreateOrUpdateThenPoll(ctx, id, pa
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 if err := client.SystemTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -729,7 +729,7 @@ if err := client.SystemTopicEventSubscriptionsDeleteThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 read, err := client.SystemTopicEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -745,7 +745,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 read, err := client.SystemTopicEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -761,7 +761,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 read, err := client.SystemTopicEventSubscriptionsGetFullUrl(ctx, id)
 if err != nil {
@@ -777,7 +777,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue")
+id := eventsubscriptions.NewSystemTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName")
 
 // alternatively `client.SystemTopicEventSubscriptionsListBySystemTopic(ctx, id, eventsubscriptions.DefaultSystemTopicEventSubscriptionsListBySystemTopicOperationOptions())` can be used to do batched pagination
 items, err := client.SystemTopicEventSubscriptionsListBySystemTopicComplete(ctx, id, eventsubscriptions.DefaultSystemTopicEventSubscriptionsListBySystemTopicOperationOptions())
@@ -794,7 +794,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewSystemTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "systemTopicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...
@@ -811,7 +811,7 @@ if err := client.SystemTopicEventSubscriptionsUpdateThenPoll(ctx, id, payload); 
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscription{
 	// ...
@@ -828,7 +828,7 @@ if err := client.TopicEventSubscriptionsCreateOrUpdateThenPoll(ctx, id, payload)
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 if err := client.TopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -840,7 +840,7 @@ if err := client.TopicEventSubscriptionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 read, err := client.TopicEventSubscriptionsGet(ctx, id)
 if err != nil {
@@ -856,7 +856,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 read, err := client.TopicEventSubscriptionsGetDeliveryAttributes(ctx, id)
 if err != nil {
@@ -872,7 +872,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 read, err := client.TopicEventSubscriptionsGetFullUrl(ctx, id)
 if err != nil {
@@ -888,7 +888,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue")
+id := eventsubscriptions.NewTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName")
 
 // alternatively `client.TopicEventSubscriptionsList(ctx, id, eventsubscriptions.DefaultTopicEventSubscriptionsListOperationOptions())` can be used to do batched pagination
 items, err := client.TopicEventSubscriptionsListComplete(ctx, id, eventsubscriptions.DefaultTopicEventSubscriptionsListOperationOptions())
@@ -905,7 +905,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicValue", "eventSubscriptionValue")
+id := eventsubscriptions.NewEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "topicName", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...
@@ -922,7 +922,7 @@ if err := client.TopicEventSubscriptionsUpdateThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionValue")
+id := eventsubscriptions.NewScopedEventSubscriptionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "eventSubscriptionName")
 
 payload := eventsubscriptions.EventSubscriptionUpdateParameters{
 	// ...

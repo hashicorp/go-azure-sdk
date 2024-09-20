@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AutonomousDatabaseId{}
 
 func TestNewAutonomousDatabaseID(t *testing.T) {
-	id := NewAutonomousDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autonomousDatabaseValue")
+	id := NewAutonomousDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autonomousdatabasename")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAutonomousDatabaseID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutonomousDatabaseName != "autonomousDatabaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDatabaseName'", id.AutonomousDatabaseName, "autonomousDatabaseValue")
+	if id.AutonomousDatabaseName != "autonomousdatabasename" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDatabaseName'", id.AutonomousDatabaseName, "autonomousdatabasename")
 	}
 }
 
 func TestFormatAutonomousDatabaseID(t *testing.T) {
-	actual := NewAutonomousDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autonomousDatabaseValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousDatabaseValue"
+	actual := NewAutonomousDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autonomousdatabasename").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousdatabasename"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAutonomousDatabaseID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousdatabasename",
 			Expected: &AutonomousDatabaseId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AutonomousDatabaseName: "autonomousDatabaseValue",
+				AutonomousDatabaseName: "autonomousdatabasename",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousDatabaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousdatabasename/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAutonomousDatabaseIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousdatabasename",
 			Expected: &AutonomousDatabaseId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AutonomousDatabaseName: "autonomousDatabaseValue",
+				AutonomousDatabaseName: "autonomousdatabasename",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousDatabaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/autonomousDatabases/autonomousdatabasename/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/aUtOnOmOuSdAtAbAsEs/aUtOnOmOuSdAtAbAsEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/aUtOnOmOuSdAtAbAsEs/aUtOnOmOuSdAtAbAsEnAmE",
 			Expected: &AutonomousDatabaseId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				AutonomousDatabaseName: "aUtOnOmOuSdAtAbAsEvAlUe",
+				AutonomousDatabaseName: "aUtOnOmOuSdAtAbAsEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/aUtOnOmOuSdAtAbAsEs/aUtOnOmOuSdAtAbAsEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/aUtOnOmOuSdAtAbAsEs/aUtOnOmOuSdAtAbAsEnAmE/extra",
 			Error: true,
 		},
 	}

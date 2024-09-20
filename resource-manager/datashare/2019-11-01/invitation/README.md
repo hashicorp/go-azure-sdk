@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/invitation` Documentation
 
-The `invitation` SDK allows for interaction with the Azure Resource Manager Service `datashare` (API Version `2019-11-01`).
+The `invitation` SDK allows for interaction with Azure Resource Manager `datashare` (API Version `2019-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue", "invitationValue")
+id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName", "invitationName")
 
 payload := invitation.Invitation{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue", "invitationValue")
+id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName", "invitationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue", "invitationValue")
+id := invitation.NewInvitationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName", "invitationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invitation.NewShareID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue")
+id := invitation.NewShareID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName")
 
 // alternatively `client.ListByShare(ctx, id, invitation.DefaultListByShareOperationOptions())` can be used to do batched pagination
 items, err := client.ListByShareComplete(ctx, id, invitation.DefaultListByShareOperationOptions())

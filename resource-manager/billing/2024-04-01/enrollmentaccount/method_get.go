@@ -45,7 +45,6 @@ func (c EnrollmentAccountClient) Get(ctx context.Context, id EnrollmentAccountId
 
 	var model EnrollmentAccount
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/operationsmanagement/2015-11-01-preview/managementassociation` Documentation
 
-The `managementassociation` SDK allows for interaction with the Azure Resource Manager Service `operationsmanagement` (API Version `2015-11-01-preview`).
+The `managementassociation` SDK allows for interaction with Azure Resource Manager `operationsmanagement` (API Version `2015-11-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationValue")
+id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationName")
 
 payload := managementassociation.ManagementAssociation{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationValue")
+id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationValue")
+id := managementassociation.NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

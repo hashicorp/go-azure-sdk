@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TapConfigurationId{}
 
 func TestNewTapConfigurationID(t *testing.T) {
-	id := NewTapConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceValue", "tapConfigurationValue")
+	id := NewTapConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceName", "tapConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTapConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkInterfaceName != "networkInterfaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkInterfaceName'", id.NetworkInterfaceName, "networkInterfaceValue")
+	if id.NetworkInterfaceName != "networkInterfaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkInterfaceName'", id.NetworkInterfaceName, "networkInterfaceName")
 	}
 
-	if id.TapConfigurationName != "tapConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TapConfigurationName'", id.TapConfigurationName, "tapConfigurationValue")
+	if id.TapConfigurationName != "tapConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TapConfigurationName'", id.TapConfigurationName, "tapConfigurationName")
 	}
 }
 
 func TestFormatTapConfigurationID(t *testing.T) {
-	actual := NewTapConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceValue", "tapConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations/tapConfigurationValue"
+	actual := NewTapConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceName", "tapConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations/tapConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTapConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations/tapConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations/tapConfigurationName",
 			Expected: &TapConfigurationId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				NetworkInterfaceName: "networkInterfaceValue",
-				TapConfigurationName: "tapConfigurationValue",
+				NetworkInterfaceName: "networkInterfaceName",
+				TapConfigurationName: "tapConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations/tapConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations/tapConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTapConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEvAlUe/tApCoNfIgUrAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEnAmE/tApCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations/tapConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations/tapConfigurationName",
 			Expected: &TapConfigurationId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				NetworkInterfaceName: "networkInterfaceValue",
-				TapConfigurationName: "tapConfigurationValue",
+				NetworkInterfaceName: "networkInterfaceName",
+				TapConfigurationName: "tapConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceValue/tapConfigurations/tapConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkInterfaces/networkInterfaceName/tapConfigurations/tapConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEvAlUe/tApCoNfIgUrAtIoNs/tApCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEnAmE/tApCoNfIgUrAtIoNs/tApCoNfIgUrAtIoNnAmE",
 			Expected: &TapConfigurationId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkInterfaceName: "nEtWoRkInTeRfAcEvAlUe",
-				TapConfigurationName: "tApCoNfIgUrAtIoNvAlUe",
+				NetworkInterfaceName: "nEtWoRkInTeRfAcEnAmE",
+				TapConfigurationName: "tApCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEvAlUe/tApCoNfIgUrAtIoNs/tApCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkInTeRfAcEs/nEtWoRkInTeRfAcEnAmE/tApCoNfIgUrAtIoNs/tApCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

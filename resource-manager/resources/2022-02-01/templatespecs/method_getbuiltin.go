@@ -34,6 +34,7 @@ func (o GetBuiltInOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetBuiltInOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c TemplateSpecsClient) GetBuiltIn(ctx context.Context, id BuiltInTemplateS
 
 	var model TemplateSpec
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

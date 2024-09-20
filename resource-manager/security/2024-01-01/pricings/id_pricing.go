@@ -40,7 +40,7 @@ func ParsePricingID(input string) (*PricingId, error) {
 	}
 
 	id := PricingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePricingIDInsensitively(input string) (*PricingId, error) {
 	}
 
 	id := PricingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -102,11 +102,11 @@ func (id PricingId) ID() string {
 // Segments returns a slice of Resource ID Segments which comprise this Pricing ID
 func (id PricingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.UserSpecifiedSegment("scopeId", "scopeIdValue"),
+		resourceids.UserSpecifiedSegment("scopeId", "scopeId"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticPricings", "pricings", "pricings"),
-		resourceids.UserSpecifiedSegment("pricingName", "pricingValue"),
+		resourceids.UserSpecifiedSegment("pricingName", "pricingName"),
 	}
 }
 

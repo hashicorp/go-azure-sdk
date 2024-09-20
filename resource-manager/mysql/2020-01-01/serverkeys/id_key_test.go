@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KeyId{}
 
 func TestNewKeyID(t *testing.T) {
-	id := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "keyValue")
+	id := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "keyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.KeyName != "keyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KeyName'", id.KeyName, "keyValue")
+	if id.KeyName != "keyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'KeyName'", id.KeyName, "keyName")
 	}
 }
 
 func TestFormatKeyID(t *testing.T) {
-	actual := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "keyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys/keyValue"
+	actual := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "keyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys/keyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseKeyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys/keyName",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				KeyName:           "keyValue",
+				ServerName:        "serverName",
+				KeyName:           "keyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys/keyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRvAlUe/kEyS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRnAmE/kEyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys/keyName",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				KeyName:           "keyValue",
+				ServerName:        "serverName",
+				KeyName:           "keyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverValue/keys/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/servers/serverName/keys/keyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRvAlUe/kEyS/kEyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRnAmE/kEyS/kEyNaMe",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				KeyName:           "kEyVaLuE",
+				ServerName:        "sErVeRnAmE",
+				KeyName:           "kEyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRvAlUe/kEyS/kEyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/sErVeRs/sErVeRnAmE/kEyS/kEyNaMe/extra",
 			Error: true,
 		},
 	}

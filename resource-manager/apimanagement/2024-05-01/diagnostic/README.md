@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/diagnostic` Documentation
 
-The `diagnostic` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `diagnostic` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "diagnosticIdValue")
+id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "diagnosticId")
 
 payload := diagnostic.DiagnosticContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "diagnosticIdValue")
+id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "diagnosticId")
 
 read, err := client.Delete(ctx, id, diagnostic.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "diagnosticIdValue")
+id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "diagnosticId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "diagnosticIdValue")
+id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "diagnosticId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := diagnostic.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id, diagnostic.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, diagnostic.DefaultListByServiceOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "diagnosticIdValue")
+id := diagnostic.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "diagnosticId")
 
 payload := diagnostic.DiagnosticContract{
 	// ...
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "diagnosticIdValue")
+id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "diagnosticId")
 
 payload := diagnostic.DiagnosticContract{
 	// ...
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "diagnosticIdValue")
+id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "diagnosticId")
 
 read, err := client.WorkspaceDiagnosticDelete(ctx, id, diagnostic.DefaultWorkspaceDiagnosticDeleteOperationOptions())
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "diagnosticIdValue")
+id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "diagnosticId")
 
 read, err := client.WorkspaceDiagnosticGet(ctx, id)
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "diagnosticIdValue")
+id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "diagnosticId")
 
 read, err := client.WorkspaceDiagnosticGetEntityTag(ctx, id)
 if err != nil {
@@ -200,7 +200,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := diagnostic.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceDiagnosticListByWorkspace(ctx, id, diagnostic.DefaultWorkspaceDiagnosticListByWorkspaceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceDiagnosticListByWorkspaceComplete(ctx, id, diagnostic.DefaultWorkspaceDiagnosticListByWorkspaceOperationOptions())
@@ -217,7 +217,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "diagnosticIdValue")
+id := diagnostic.NewWorkspaceDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "diagnosticId")
 
 payload := diagnostic.DiagnosticUpdateContract{
 	// ...

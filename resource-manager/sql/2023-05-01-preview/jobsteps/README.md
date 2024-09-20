@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-05-01-preview/jobsteps` Documentation
 
-The `jobsteps` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-05-01-preview`).
+The `jobsteps` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "stepValue")
+id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "stepName")
 
 payload := jobsteps.JobStep{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "stepValue")
+id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "stepName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "stepValue")
+id := jobsteps.NewStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "stepName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewVersionStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "versionValue", "stepValue")
+id := jobsteps.NewVersionStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobVersion", "stepName")
 
 read, err := client.GetByVersion(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue")
+id := jobsteps.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName")
 
 // alternatively `client.ListByJob(ctx, id)` can be used to do batched pagination
 items, err := client.ListByJobComplete(ctx, id)
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "versionValue")
+id := jobsteps.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobVersion")
 
 // alternatively `client.ListByVersion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByVersionComplete(ctx, id)

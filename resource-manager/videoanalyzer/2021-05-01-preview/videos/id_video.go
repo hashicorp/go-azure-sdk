@@ -44,7 +44,7 @@ func ParseVideoID(input string) (*VideoId, error) {
 	}
 
 	id := VideoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVideoIDInsensitively(input string) (*VideoId, error) {
 	}
 
 	id := VideoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id VideoId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticVideoAnalyzers", "videoAnalyzers", "videoAnalyzers"),
-		resourceids.UserSpecifiedSegment("videoAnalyzerName", "videoAnalyzerValue"),
+		resourceids.UserSpecifiedSegment("videoAnalyzerName", "accountName"),
 		resourceids.StaticSegment("staticVideos", "videos", "videos"),
-		resourceids.UserSpecifiedSegment("videoName", "videoValue"),
+		resourceids.UserSpecifiedSegment("videoName", "videoName"),
 	}
 }
 

@@ -37,7 +37,7 @@ func (s *EntityTimelineResponse) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]EntityTimelineItem, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalEntityTimelineItemImplementation(val)
+			impl, err := UnmarshalEntityTimelineItemImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Value' for 'EntityTimelineResponse': %+v", i, err)
 			}

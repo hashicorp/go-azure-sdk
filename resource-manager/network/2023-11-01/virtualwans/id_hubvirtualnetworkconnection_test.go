@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HubVirtualNetworkConnectionId{}
 
 func TestNewHubVirtualNetworkConnectionID(t *testing.T) {
-	id := NewHubVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "hubVirtualNetworkConnectionValue")
+	id := NewHubVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "connectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHubVirtualNetworkConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualHubName != "virtualHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualHubName'", id.VirtualHubName, "virtualHubValue")
+	if id.VirtualHubName != "virtualHubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualHubName'", id.VirtualHubName, "virtualHubName")
 	}
 
-	if id.HubVirtualNetworkConnectionName != "hubVirtualNetworkConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HubVirtualNetworkConnectionName'", id.HubVirtualNetworkConnectionName, "hubVirtualNetworkConnectionValue")
+	if id.HubVirtualNetworkConnectionName != "connectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HubVirtualNetworkConnectionName'", id.HubVirtualNetworkConnectionName, "connectionName")
 	}
 }
 
 func TestFormatHubVirtualNetworkConnectionID(t *testing.T) {
-	actual := NewHubVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "hubVirtualNetworkConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections/hubVirtualNetworkConnectionValue"
+	actual := NewHubVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "connectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections/connectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHubVirtualNetworkConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections/hubVirtualNetworkConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections/connectionName",
 			Expected: &HubVirtualNetworkConnectionId{
 				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:               "example-resource-group",
-				VirtualHubName:                  "virtualHubValue",
-				HubVirtualNetworkConnectionName: "hubVirtualNetworkConnectionValue",
+				VirtualHubName:                  "virtualHubName",
+				HubVirtualNetworkConnectionName: "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections/hubVirtualNetworkConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections/connectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHubVirtualNetworkConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/hUbViRtUaLnEtWoRkCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbViRtUaLnEtWoRkCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections/hubVirtualNetworkConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections/connectionName",
 			Expected: &HubVirtualNetworkConnectionId{
 				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:               "example-resource-group",
-				VirtualHubName:                  "virtualHubValue",
-				HubVirtualNetworkConnectionName: "hubVirtualNetworkConnectionValue",
+				VirtualHubName:                  "virtualHubName",
+				HubVirtualNetworkConnectionName: "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/hubVirtualNetworkConnections/hubVirtualNetworkConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubVirtualNetworkConnections/connectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/hUbViRtUaLnEtWoRkCoNnEcTiOnS/hUbViRtUaLnEtWoRkCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbViRtUaLnEtWoRkCoNnEcTiOnS/cOnNeCtIoNnAmE",
 			Expected: &HubVirtualNetworkConnectionId{
 				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:               "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualHubName:                  "vIrTuAlHuBvAlUe",
-				HubVirtualNetworkConnectionName: "hUbViRtUaLnEtWoRkCoNnEcTiOnVaLuE",
+				VirtualHubName:                  "vIrTuAlHuBnAmE",
+				HubVirtualNetworkConnectionName: "cOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/hUbViRtUaLnEtWoRkCoNnEcTiOnS/hUbViRtUaLnEtWoRkCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbViRtUaLnEtWoRkCoNnEcTiOnS/cOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

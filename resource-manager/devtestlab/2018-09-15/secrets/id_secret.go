@@ -46,7 +46,7 @@ func ParseSecretID(input string) (*SecretId, error) {
 	}
 
 	id := SecretId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSecretIDInsensitively(input string) (*SecretId, error) {
 	}
 
 	id := SecretId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id SecretId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
-		resourceids.UserSpecifiedSegment("labName", "labValue"),
+		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticUsers", "users", "users"),
-		resourceids.UserSpecifiedSegment("userName", "userValue"),
+		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticSecrets", "secrets", "secrets"),
-		resourceids.UserSpecifiedSegment("secretName", "secretValue"),
+		resourceids.UserSpecifiedSegment("secretName", "name"),
 	}
 }
 

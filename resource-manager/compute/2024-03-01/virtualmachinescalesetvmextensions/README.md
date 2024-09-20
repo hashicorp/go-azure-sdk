@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachinescalesetvmextensions` Documentation
 
-The `virtualmachinescalesetvmextensions` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2024-03-01`).
+The `virtualmachinescalesetvmextensions` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "extensionValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName")
 
 payload := virtualmachinescalesetvmextensions.VirtualMachineScaleSetVMExtension{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "extensionValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "extensionValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName")
 
 read, err := client.Get(ctx, id, virtualmachinescalesetvmextensions.DefaultGetOperationOptions())
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId")
 
 read, err := client.List(ctx, id, virtualmachinescalesetvmextensions.DefaultListOperationOptions())
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "extensionValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName")
 
 payload := virtualmachinescalesetvmextensions.VirtualMachineScaleSetVMExtensionUpdate{
 	// ...

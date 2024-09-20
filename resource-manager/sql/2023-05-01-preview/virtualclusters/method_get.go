@@ -45,7 +45,6 @@ func (c VirtualClustersClient) Get(ctx context.Context, id VirtualClusterId) (re
 
 	var model VirtualCluster
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

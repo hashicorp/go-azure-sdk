@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageTaskAssignmentId{}
 
 func TestNewStorageTaskAssignmentID(t *testing.T) {
-	id := NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "storageTaskAssignmentValue")
+	id := NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewStorageTaskAssignmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageAccountName != "storageAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "storageAccountValue")
+	if id.StorageAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "accountName")
 	}
 
-	if id.StorageTaskAssignmentName != "storageTaskAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageTaskAssignmentName'", id.StorageTaskAssignmentName, "storageTaskAssignmentValue")
+	if id.StorageTaskAssignmentName != "storageTaskAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageTaskAssignmentName'", id.StorageTaskAssignmentName, "storageTaskAssignmentName")
 	}
 }
 
 func TestFormatStorageTaskAssignmentID(t *testing.T) {
-	actual := NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "storageTaskAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments/storageTaskAssignmentValue"
+	actual := NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments/storageTaskAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseStorageTaskAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments/storageTaskAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments/storageTaskAssignmentName",
 			Expected: &StorageTaskAssignmentId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				StorageAccountName:        "storageAccountValue",
-				StorageTaskAssignmentName: "storageTaskAssignmentValue",
+				StorageAccountName:        "accountName",
+				StorageTaskAssignmentName: "storageTaskAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments/storageTaskAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments/storageTaskAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseStorageTaskAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/sToRaGeTaSkAsSiGnMeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtNaMe/sToRaGeTaSkAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments/storageTaskAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments/storageTaskAssignmentName",
 			Expected: &StorageTaskAssignmentId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				StorageAccountName:        "storageAccountValue",
-				StorageTaskAssignmentName: "storageTaskAssignmentValue",
+				StorageAccountName:        "accountName",
+				StorageTaskAssignmentName: "storageTaskAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/storageTaskAssignments/storageTaskAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountName/storageTaskAssignments/storageTaskAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/sToRaGeTaSkAsSiGnMeNtS/sToRaGeTaSkAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtNaMe/sToRaGeTaSkAsSiGnMeNtS/sToRaGeTaSkAsSiGnMeNtNaMe",
 			Expected: &StorageTaskAssignmentId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageAccountName:        "sToRaGeAcCoUnTvAlUe",
-				StorageTaskAssignmentName: "sToRaGeTaSkAsSiGnMeNtVaLuE",
+				StorageAccountName:        "aCcOuNtNaMe",
+				StorageTaskAssignmentName: "sToRaGeTaSkAsSiGnMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/sToRaGeTaSkAsSiGnMeNtS/sToRaGeTaSkAsSiGnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtNaMe/sToRaGeTaSkAsSiGnMeNtS/sToRaGeTaSkAsSiGnMeNtNaMe/extra",
 			Error: true,
 		},
 	}

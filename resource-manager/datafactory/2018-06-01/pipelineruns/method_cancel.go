@@ -33,6 +33,7 @@ func (o CancelOperationOptions) ToHeaders() *client.Headers {
 
 func (o CancelOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

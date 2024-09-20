@@ -17,6 +17,14 @@ type DeploymentWithOSConfiguration struct {
 	SoftwareConfiguration       SoftwareConfiguration       `json:"softwareConfiguration"`
 
 	// Fields inherited from SAPConfiguration
+
+	ConfigurationType SAPConfigurationType `json:"configurationType"`
+}
+
+func (s DeploymentWithOSConfiguration) SAPConfiguration() BaseSAPConfigurationImpl {
+	return BaseSAPConfigurationImpl{
+		ConfigurationType: s.ConfigurationType,
+	}
 }
 
 var _ json.Marshaler = DeploymentWithOSConfiguration{}
@@ -30,9 +38,10 @@ func (s DeploymentWithOSConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DeploymentWithOSConfiguration: %+v", err)
 	}
+
 	decoded["configurationType"] = "DeploymentWithOSConfig"
 
 	encoded, err = json.Marshal(decoded)
@@ -53,6 +62,7 @@ func (s *DeploymentWithOSConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.AppLocation = decoded.AppLocation
+	s.ConfigurationType = decoded.ConfigurationType
 	s.OsSapConfiguration = decoded.OsSapConfiguration
 
 	var temp map[string]json.RawMessage
@@ -61,7 +71,7 @@ func (s *DeploymentWithOSConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["infrastructureConfiguration"]; ok {
-		impl, err := unmarshalInfrastructureConfigurationImplementation(v)
+		impl, err := UnmarshalInfrastructureConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'InfrastructureConfiguration' for 'DeploymentWithOSConfiguration': %+v", err)
 		}
@@ -69,7 +79,7 @@ func (s *DeploymentWithOSConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["softwareConfiguration"]; ok {
-		impl, err := unmarshalSoftwareConfigurationImplementation(v)
+		impl, err := UnmarshalSoftwareConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SoftwareConfiguration' for 'DeploymentWithOSConfiguration': %+v", err)
 		}

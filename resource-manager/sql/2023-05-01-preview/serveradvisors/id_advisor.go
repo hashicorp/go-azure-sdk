@@ -44,7 +44,7 @@ func ParseAdvisorID(input string) (*AdvisorId, error) {
 	}
 
 	id := AdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAdvisorIDInsensitively(input string) (*AdvisorId, error) {
 	}
 
 	id := AdvisorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AdvisorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticAdvisors", "advisors", "advisors"),
-		resourceids.UserSpecifiedSegment("advisorName", "advisorValue"),
+		resourceids.UserSpecifiedSegment("advisorName", "advisorName"),
 	}
 }
 

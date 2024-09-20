@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apimanagementworkspacelinks` Documentation
 
-The `apimanagementworkspacelinks` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `apimanagementworkspacelinks` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := apimanagementworkspacelinks.NewWorkspaceLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := apimanagementworkspacelinks.NewWorkspaceLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 read, err := client.ApiManagementWorkspaceLinkGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apimanagementworkspacelinks.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := apimanagementworkspacelinks.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id)` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id)

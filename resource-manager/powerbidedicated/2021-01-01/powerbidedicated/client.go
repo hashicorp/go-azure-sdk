@@ -15,7 +15,7 @@ type PowerBIDedicatedClient struct {
 }
 
 func NewPowerBIDedicatedClientWithBaseURI(sdkApi sdkEnv.Api) (*PowerBIDedicatedClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "powerbidedicated", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "powerbidedicated", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PowerBIDedicatedClient: %+v", err)
 	}

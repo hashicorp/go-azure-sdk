@@ -15,10 +15,22 @@ type ServerPropertiesForDefaultCreate struct {
 	AdministratorLoginPassword string `json:"administratorLoginPassword"`
 
 	// Fields inherited from ServerPropertiesForCreate
+
+	CreateMode        CreateMode             `json:"createMode"`
 	MinimalTlsVersion *MinimalTlsVersionEnum `json:"minimalTlsVersion,omitempty"`
 	SslEnforcement    *SslEnforcementEnum    `json:"sslEnforcement,omitempty"`
 	StorageProfile    *StorageProfile        `json:"storageProfile,omitempty"`
 	Version           *ServerVersion         `json:"version,omitempty"`
+}
+
+func (s ServerPropertiesForDefaultCreate) ServerPropertiesForCreate() BaseServerPropertiesForCreateImpl {
+	return BaseServerPropertiesForCreateImpl{
+		CreateMode:        s.CreateMode,
+		MinimalTlsVersion: s.MinimalTlsVersion,
+		SslEnforcement:    s.SslEnforcement,
+		StorageProfile:    s.StorageProfile,
+		Version:           s.Version,
+	}
 }
 
 var _ json.Marshaler = ServerPropertiesForDefaultCreate{}
@@ -32,9 +44,10 @@ func (s ServerPropertiesForDefaultCreate) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ServerPropertiesForDefaultCreate: %+v", err)
 	}
+
 	decoded["createMode"] = "Default"
 
 	encoded, err = json.Marshal(decoded)

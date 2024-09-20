@@ -45,7 +45,6 @@ func (c VMwaresClient) WorkloadNetworksGetPortMirroring(ctx context.Context, id 
 
 	var model WorkloadNetworkPortMirroring
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

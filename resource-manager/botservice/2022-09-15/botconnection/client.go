@@ -15,7 +15,7 @@ type BotConnectionClient struct {
 }
 
 func NewBotConnectionClientWithBaseURI(sdkApi sdkEnv.Api) (*BotConnectionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "botconnection", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "botconnection", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BotConnectionClient: %+v", err)
 	}

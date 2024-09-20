@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-07-01/dedicatedhost` Documentation
 
-The `dedicatedhost` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2024-07-01`).
+The `dedicatedhost` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2024-07-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
 
 read, err := client.ListAvailableSizes(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewDedicatedHostGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue")
+id := commonids.NewDedicatedHostGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName")
 
 // alternatively `client.ListByHostGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByHostGroupComplete(ctx, id)
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
 
 if err := client.RedeployThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.RedeployThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupValue", "hostValue")
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error

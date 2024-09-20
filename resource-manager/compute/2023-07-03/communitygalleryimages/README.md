@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/communitygalleryimages` Documentation
 
-The `communitygalleryimages` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2023-07-03`).
+The `communitygalleryimages` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2023-07-03`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := communitygalleryimages.NewCommunityGalleryImageID("12345678-1234-9876-4563-123456789012", "locationValue", "communityGalleryValue", "imageValue")
+id := communitygalleryimages.NewCommunityGalleryImageID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName", "galleryImageName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := communitygalleryimages.NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "communityGalleryValue")
+id := communitygalleryimages.NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

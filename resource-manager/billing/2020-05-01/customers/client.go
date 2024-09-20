@@ -15,7 +15,7 @@ type CustomersClient struct {
 }
 
 func NewCustomersClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "customers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "customers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CustomersClient: %+v", err)
 	}

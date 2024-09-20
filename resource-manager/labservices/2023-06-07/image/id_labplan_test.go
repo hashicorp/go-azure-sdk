@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LabPlanId{}
 
 func TestNewLabPlanID(t *testing.T) {
-	id := NewLabPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue")
+	id := NewLabPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLabPlanID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LabPlanName != "labPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LabPlanName'", id.LabPlanName, "labPlanValue")
+	if id.LabPlanName != "labPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LabPlanName'", id.LabPlanName, "labPlanName")
 	}
 }
 
 func TestFormatLabPlanID(t *testing.T) {
-	actual := NewLabPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue"
+	actual := NewLabPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLabPlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName",
 			Expected: &LabPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LabPlanName:       "labPlanValue",
+				LabPlanName:       "labPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLabPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName",
 			Expected: &LabPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LabPlanName:       "labPlanValue",
+				LabPlanName:       "labPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe",
 			Expected: &LabPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LabPlanName:       "lAbPlAnVaLuE",
+				LabPlanName:       "lAbPlAnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe/extra",
 			Error: true,
 		},
 	}

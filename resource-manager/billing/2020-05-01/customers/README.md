@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2020-05-01/customers` Documentation
 
-The `customers` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2020-05-01`).
+The `customers` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2020-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := customers.NewCustomerID("billingAccountValue", "customerValue")
+id := customers.NewCustomerID("billingAccountName", "customerName")
 
 read, err := client.Get(ctx, id, customers.DefaultGetOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customers.NewBillingAccountID("billingAccountValue")
+id := customers.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, customers.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, customers.DefaultListByBillingAccountOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := customers.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := customers.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, customers.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, customers.DefaultListByBillingProfileOperationOptions())

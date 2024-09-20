@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MonitorId{}
 
 func TestNewMonitorID(t *testing.T) {
-	id := NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+	id := NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewMonitorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MonitorName != "monitorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
+	if id.MonitorName != "monitorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 }
 
 func TestFormatMonitorID(t *testing.T) {
-	actual := NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue"
+	actual := NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseMonitorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName",
 			Expected: &MonitorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
+				MonitorName:       "monitorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseMonitorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName",
 			Expected: &MonitorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
+				MonitorName:       "monitorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/NewRelic.Observability/monitors/monitorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe",
 			Expected: &MonitorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:       "mOnItOrVaLuE",
+				MonitorName:       "mOnItOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nEwReLiC.ObSeRvAbIlItY/mOnItOrS/mOnItOrNaMe/extra",
 			Error: true,
 		},
 	}

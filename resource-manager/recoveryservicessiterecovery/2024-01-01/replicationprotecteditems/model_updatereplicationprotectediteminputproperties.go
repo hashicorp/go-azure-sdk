@@ -46,7 +46,7 @@ func (s *UpdateReplicationProtectedItemInputProperties) UnmarshalJSON(bytes []by
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalUpdateReplicationProtectedItemProviderInputImplementation(v)
+		impl, err := UnmarshalUpdateReplicationProtectedItemProviderInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'UpdateReplicationProtectedItemInputProperties': %+v", err)
 		}

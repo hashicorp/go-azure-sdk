@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &SubscriptionOperationId{}
 
 func TestNewSubscriptionOperationID(t *testing.T) {
-	id := NewSubscriptionOperationID("operationIdValue")
+	id := NewSubscriptionOperationID("operationId")
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatSubscriptionOperationID(t *testing.T) {
-	actual := NewSubscriptionOperationID("operationIdValue").ID()
-	expected := "/providers/Microsoft.Subscription/subscriptionOperations/operationIdValue"
+	actual := NewSubscriptionOperationID("operationId").ID()
+	expected := "/providers/Microsoft.Subscription/subscriptionOperations/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseSubscriptionOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationIdValue",
+			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationId",
 			Expected: &SubscriptionOperationId{
-				OperationId: "operationIdValue",
+				OperationId: "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseSubscriptionOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationIdValue",
+			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationId",
 			Expected: &SubscriptionOperationId{
-				OperationId: "operationIdValue",
+				OperationId: "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Subscription/subscriptionOperations/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/sUbScRiPtIoNoPeRaTiOnS/oPeRaTiOnIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/sUbScRiPtIoNoPeRaTiOnS/oPeRaTiOnId",
 			Expected: &SubscriptionOperationId{
-				OperationId: "oPeRaTiOnIdVaLuE",
+				OperationId: "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/sUbScRiPtIoNoPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/sUbScRiPtIoNoPeRaTiOnS/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

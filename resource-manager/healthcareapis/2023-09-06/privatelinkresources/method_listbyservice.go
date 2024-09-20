@@ -46,7 +46,6 @@ func (c PrivateLinkResourcesClient) ListByService(ctx context.Context, id Servic
 
 	var model PrivateLinkResourceListResultDescription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

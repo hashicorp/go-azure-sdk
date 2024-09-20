@@ -45,7 +45,6 @@ func (c TagRulesClient) SubAccountTagRulesGet(ctx context.Context, id AccountTag
 
 	var model MonitoringTagRules
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

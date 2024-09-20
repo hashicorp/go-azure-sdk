@@ -46,7 +46,6 @@ func (c AdvancedThreatProtectionSettingsClient) Get(ctx context.Context, id Flex
 
 	var model AdvancedThreatProtection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

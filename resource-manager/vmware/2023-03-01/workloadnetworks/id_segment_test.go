@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SegmentId{}
 
 func TestNewSegmentID(t *testing.T) {
-	id := NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
+	id := NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSegmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateCloudName != "privateCloudValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudValue")
+	if id.PrivateCloudName != "privateCloudName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudName")
 	}
 
-	if id.SegmentId != "segmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SegmentId'", id.SegmentId, "segmentIdValue")
+	if id.SegmentId != "segmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SegmentId'", id.SegmentId, "segmentId")
 	}
 }
 
 func TestFormatSegmentID(t *testing.T) {
-	actual := NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments/segmentIdValue"
+	actual := NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments/segmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,37 +87,37 @@ func TestParseSegmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments/segmentIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments/segmentId",
 			Expected: &SegmentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				SegmentId:         "segmentIdValue",
+				PrivateCloudName:  "privateCloudName",
+				SegmentId:         "segmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments/segmentIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments/segmentId/extra",
 			Error: true,
 		},
 	}
@@ -238,72 +238,72 @@ func TestParseSegmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/wOrKlOaDnEtWoRkS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS/dEfAuLt",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/wOrKlOaDnEtWoRkS/dEfAuLt",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments/segmentIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments/segmentId",
 			Expected: &SegmentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				SegmentId:         "segmentIdValue",
+				PrivateCloudName:  "privateCloudName",
+				SegmentId:         "segmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/segments/segmentIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/workloadNetworks/default/segments/segmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS/sEgMeNtIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS/sEgMeNtId",
 			Expected: &SegmentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateCloudName:  "pRiVaTeClOuDvAlUe",
-				SegmentId:         "sEgMeNtIdVaLuE",
+				PrivateCloudName:  "pRiVaTeClOuDnAmE",
+				SegmentId:         "sEgMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS/sEgMeNtIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/wOrKlOaDnEtWoRkS/dEfAuLt/sEgMeNtS/sEgMeNtId/extra",
 			Error: true,
 		},
 	}

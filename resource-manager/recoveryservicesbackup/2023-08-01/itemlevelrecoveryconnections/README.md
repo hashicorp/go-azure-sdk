@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-08-01/itemlevelrecoveryconnections` Documentation
 
-The `itemlevelrecoveryconnections` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicesbackup` (API Version `2023-08-01`).
+The `itemlevelrecoveryconnections` SDK allows for interaction with Azure Resource Manager `recoveryservicesbackup` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue", "recoveryPointIdValue")
+id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName", "protectedItemName", "recoveryPointId")
 
 payload := itemlevelrecoveryconnections.ILRRequestResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue", "recoveryPointIdValue")
+id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName", "protectedItemName", "recoveryPointId")
 
 read, err := client.Revoke(ctx, id)
 if err != nil {

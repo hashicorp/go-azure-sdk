@@ -36,6 +36,7 @@ func (o PrivateEndpointConnectionCreateOrUpdateOperationOptions) ToHeaders() *cl
 
 func (o PrivateEndpointConnectionCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionCreateOrUpdat
 
 	var model PrivateEndpointConnectionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

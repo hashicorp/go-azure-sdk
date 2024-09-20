@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateEndpointConnectionId{}
 
 func TestNewPrivateEndpointConnectionID(t *testing.T) {
-	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "privateEndpointConnectionValue")
+	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "privateEndpointConnectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.HostPoolName != "hostPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HostPoolName'", id.HostPoolName, "hostPoolValue")
+	if id.HostPoolName != "hostPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HostPoolName'", id.HostPoolName, "hostPoolName")
 	}
 
-	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionName'", id.PrivateEndpointConnectionName, "privateEndpointConnectionValue")
+	if id.PrivateEndpointConnectionName != "privateEndpointConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionName'", id.PrivateEndpointConnectionName, "privateEndpointConnectionName")
 	}
 }
 
 func TestFormatPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "privateEndpointConnectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections/privateEndpointConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections/privateEndpointConnectionName",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				HostPoolName:                  "hostPoolValue",
-				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
+				HostPoolName:                  "hostPoolName",
+				PrivateEndpointConnectionName: "privateEndpointConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections/privateEndpointConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections/privateEndpointConnectionName",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				HostPoolName:                  "hostPoolValue",
-				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
+				HostPoolName:                  "hostPoolName",
+				PrivateEndpointConnectionName: "privateEndpointConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/privateEndpointConnections/privateEndpointConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnNaMe",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				HostPoolName:                  "hOsTpOoLvAlUe",
-				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+				HostPoolName:                  "hOsTpOoLnAmE",
+				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnNaMe/extra",
 			Error: true,
 		},
 	}

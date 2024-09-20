@@ -16,7 +16,16 @@ type ManagedIntegrationRuntime struct {
 	TypeProperties        ManagedIntegrationRuntimeTypeProperties                  `json:"typeProperties"`
 
 	// Fields inherited from IntegrationRuntime
-	Description *string `json:"description,omitempty"`
+
+	Description *string                `json:"description,omitempty"`
+	Type        IntegrationRuntimeType `json:"type"`
+}
+
+func (s ManagedIntegrationRuntime) IntegrationRuntime() BaseIntegrationRuntimeImpl {
+	return BaseIntegrationRuntimeImpl{
+		Description: s.Description,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = ManagedIntegrationRuntime{}
@@ -30,9 +39,10 @@ func (s ManagedIntegrationRuntime) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedIntegrationRuntime: %+v", err)
 	}
+
 	decoded["type"] = "Managed"
 
 	encoded, err = json.Marshal(decoded)

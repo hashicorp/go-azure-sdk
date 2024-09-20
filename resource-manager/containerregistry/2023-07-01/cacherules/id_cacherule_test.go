@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CacheRuleId{}
 
 func TestNewCacheRuleID(t *testing.T) {
-	id := NewCacheRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "cacheRuleValue")
+	id := NewCacheRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "cacheRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewCacheRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RegistryName != "registryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryValue")
+	if id.RegistryName != "registryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryName")
 	}
 
-	if id.CacheRuleName != "cacheRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CacheRuleName'", id.CacheRuleName, "cacheRuleValue")
+	if id.CacheRuleName != "cacheRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CacheRuleName'", id.CacheRuleName, "cacheRuleName")
 	}
 }
 
 func TestFormatCacheRuleID(t *testing.T) {
-	actual := NewCacheRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "cacheRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules/cacheRuleValue"
+	actual := NewCacheRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "cacheRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules/cacheRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseCacheRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules/cacheRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules/cacheRuleName",
 			Expected: &CacheRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RegistryName:      "registryValue",
-				CacheRuleName:     "cacheRuleValue",
+				RegistryName:      "registryName",
+				CacheRuleName:     "cacheRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules/cacheRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules/cacheRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseCacheRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/cAcHeRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/cAcHeRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules/cacheRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules/cacheRuleName",
 			Expected: &CacheRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RegistryName:      "registryValue",
-				CacheRuleName:     "cacheRuleValue",
+				RegistryName:      "registryName",
+				CacheRuleName:     "cacheRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/cacheRules/cacheRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/cacheRules/cacheRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/cAcHeRuLeS/cAcHeRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/cAcHeRuLeS/cAcHeRuLeNaMe",
 			Expected: &CacheRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RegistryName:      "rEgIsTrYvAlUe",
-				CacheRuleName:     "cAcHeRuLeVaLuE",
+				RegistryName:      "rEgIsTrYnAmE",
+				CacheRuleName:     "cAcHeRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/cAcHeRuLeS/cAcHeRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/cAcHeRuLeS/cAcHeRuLeNaMe/extra",
 			Error: true,
 		},
 	}

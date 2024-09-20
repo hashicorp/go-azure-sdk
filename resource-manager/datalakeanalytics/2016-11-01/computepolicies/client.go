@@ -15,7 +15,7 @@ type ComputePoliciesClient struct {
 }
 
 func NewComputePoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ComputePoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "computepolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "computepolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComputePoliciesClient: %+v", err)
 	}

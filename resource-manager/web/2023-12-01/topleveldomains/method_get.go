@@ -45,7 +45,6 @@ func (c TopLevelDomainsClient) Get(ctx context.Context, id TopLevelDomainId) (re
 
 	var model TopLevelDomain
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

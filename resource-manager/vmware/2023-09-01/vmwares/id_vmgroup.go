@@ -44,7 +44,7 @@ func ParseVMGroupID(input string) (*VMGroupId, error) {
 	}
 
 	id := VMGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVMGroupIDInsensitively(input string) (*VMGroupId, error) {
 	}
 
 	id := VMGroupId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id VMGroupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticWorkloadNetworks", "workloadNetworks", "workloadNetworks"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticVmGroups", "vmGroups", "vmGroups"),
-		resourceids.UserSpecifiedSegment("vmGroupId", "vmGroupIdValue"),
+		resourceids.UserSpecifiedSegment("vmGroupId", "vmGroupId"),
 	}
 }
 

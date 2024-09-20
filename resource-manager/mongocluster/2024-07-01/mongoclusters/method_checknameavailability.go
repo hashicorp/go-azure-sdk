@@ -50,7 +50,6 @@ func (c MongoClustersClient) CheckNameAvailability(ctx context.Context, id Locat
 
 	var model CheckNameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

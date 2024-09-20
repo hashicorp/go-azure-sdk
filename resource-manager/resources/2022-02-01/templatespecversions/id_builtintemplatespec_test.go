@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &BuiltInTemplateSpecId{}
 
 func TestNewBuiltInTemplateSpecID(t *testing.T) {
-	id := NewBuiltInTemplateSpecID("builtInTemplateSpecValue")
+	id := NewBuiltInTemplateSpecID("templateSpecName")
 
-	if id.BuiltInTemplateSpecName != "builtInTemplateSpecValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BuiltInTemplateSpecName'", id.BuiltInTemplateSpecName, "builtInTemplateSpecValue")
+	if id.BuiltInTemplateSpecName != "templateSpecName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BuiltInTemplateSpecName'", id.BuiltInTemplateSpecName, "templateSpecName")
 	}
 }
 
 func TestFormatBuiltInTemplateSpecID(t *testing.T) {
-	actual := NewBuiltInTemplateSpecID("builtInTemplateSpecValue").ID()
-	expected := "/providers/Microsoft.Resources/builtInTemplateSpecs/builtInTemplateSpecValue"
+	actual := NewBuiltInTemplateSpecID("templateSpecName").ID()
+	expected := "/providers/Microsoft.Resources/builtInTemplateSpecs/templateSpecName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseBuiltInTemplateSpecID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/builtInTemplateSpecValue",
+			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/templateSpecName",
 			Expected: &BuiltInTemplateSpecId{
-				BuiltInTemplateSpecName: "builtInTemplateSpecValue",
+				BuiltInTemplateSpecName: "templateSpecName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/builtInTemplateSpecValue/extra",
+			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/templateSpecName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseBuiltInTemplateSpecIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/builtInTemplateSpecValue",
+			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/templateSpecName",
 			Expected: &BuiltInTemplateSpecId{
-				BuiltInTemplateSpecName: "builtInTemplateSpecValue",
+				BuiltInTemplateSpecName: "templateSpecName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/builtInTemplateSpecValue/extra",
+			Input: "/providers/Microsoft.Resources/builtInTemplateSpecs/templateSpecName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/bUiLtInTeMpLaTeSpEcS/bUiLtInTeMpLaTeSpEcVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/bUiLtInTeMpLaTeSpEcS/tEmPlAtEsPeCnAmE",
 			Expected: &BuiltInTemplateSpecId{
-				BuiltInTemplateSpecName: "bUiLtInTeMpLaTeSpEcVaLuE",
+				BuiltInTemplateSpecName: "tEmPlAtEsPeCnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/bUiLtInTeMpLaTeSpEcS/bUiLtInTeMpLaTeSpEcVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/bUiLtInTeMpLaTeSpEcS/tEmPlAtEsPeCnAmE/extra",
 			Error: true,
 		},
 	}

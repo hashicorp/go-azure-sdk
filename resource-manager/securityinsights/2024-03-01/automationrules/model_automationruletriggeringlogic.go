@@ -58,7 +58,7 @@ func (s *AutomationRuleTriggeringLogic) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]AutomationRuleCondition, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalAutomationRuleConditionImplementation(val)
+			impl, err := UnmarshalAutomationRuleConditionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Conditions' for 'AutomationRuleTriggeringLogic': %+v", i, err)
 			}

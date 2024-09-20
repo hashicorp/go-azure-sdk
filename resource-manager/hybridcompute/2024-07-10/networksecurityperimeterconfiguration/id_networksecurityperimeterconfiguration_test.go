@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NetworkSecurityPerimeterConfigurationId{}
 
 func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue", "networkSecurityPerimeterConfigurationValue")
+	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeName", "perimeterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateLinkScopeName != "privateLinkScopeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkScopeName'", id.PrivateLinkScopeName, "privateLinkScopeValue")
+	if id.PrivateLinkScopeName != "scopeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkScopeName'", id.PrivateLinkScopeName, "scopeName")
 	}
 
-	if id.NetworkSecurityPerimeterConfigurationName != "networkSecurityPerimeterConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "networkSecurityPerimeterConfigurationValue")
+	if id.NetworkSecurityPerimeterConfigurationName != "perimeterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "perimeterName")
 	}
 }
 
 func TestFormatNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue", "networkSecurityPerimeterConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue"
+	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeName", "perimeterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations/perimeterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations/perimeterName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:                            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                         "example-resource-group",
-				PrivateLinkScopeName:                      "privateLinkScopeValue",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				PrivateLinkScopeName:                      "scopeName",
+				NetworkSecurityPerimeterConfigurationName: "perimeterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations/perimeterName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNetworkSecurityPerimeterConfigurationIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations/perimeterName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:                            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                         "example-resource-group",
-				PrivateLinkScopeName:                      "privateLinkScopeValue",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				PrivateLinkScopeName:                      "scopeName",
+				NetworkSecurityPerimeterConfigurationName: "perimeterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeName/networkSecurityPerimeterConfigurations/perimeterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/pErImEtErNaMe",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:                            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                         "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateLinkScopeName:                      "pRiVaTeLiNkScOpEvAlUe",
-				NetworkSecurityPerimeterConfigurationName: "nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+				PrivateLinkScopeName:                      "sCoPeNaMe",
+				NetworkSecurityPerimeterConfigurationName: "pErImEtErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/pErImEtErNaMe/extra",
 			Error: true,
 		},
 	}

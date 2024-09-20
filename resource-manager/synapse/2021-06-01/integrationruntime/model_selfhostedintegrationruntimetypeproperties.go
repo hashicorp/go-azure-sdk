@@ -22,7 +22,7 @@ func (s *SelfHostedIntegrationRuntimeTypeProperties) UnmarshalJSON(bytes []byte)
 	}
 
 	if v, ok := temp["linkedInfo"]; ok {
-		impl, err := unmarshalLinkedIntegrationRuntimeTypeImplementation(v)
+		impl, err := UnmarshalLinkedIntegrationRuntimeTypeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'LinkedInfo' for 'SelfHostedIntegrationRuntimeTypeProperties': %+v", err)
 		}

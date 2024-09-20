@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EnvironmentTypeId{}
 
 func TestNewEnvironmentTypeID(t *testing.T) {
-	id := NewEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectValue", "environmentTypeValue")
+	id := NewEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "environmentTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewEnvironmentTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ProjectName != "projectValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectValue")
+	if id.ProjectName != "projectName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectName")
 	}
 
-	if id.EnvironmentTypeName != "environmentTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentTypeName'", id.EnvironmentTypeName, "environmentTypeValue")
+	if id.EnvironmentTypeName != "environmentTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentTypeName'", id.EnvironmentTypeName, "environmentTypeName")
 	}
 }
 
 func TestFormatEnvironmentTypeID(t *testing.T) {
-	actual := NewEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectValue", "environmentTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes/environmentTypeValue"
+	actual := NewEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "environmentTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes/environmentTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseEnvironmentTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes/environmentTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes/environmentTypeName",
 			Expected: &EnvironmentTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ProjectName:         "projectValue",
-				EnvironmentTypeName: "environmentTypeValue",
+				ProjectName:         "projectName",
+				EnvironmentTypeName: "environmentTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes/environmentTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes/environmentTypeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseEnvironmentTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtVaLuE/eNvIrOnMeNtTyPeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/eNvIrOnMeNtTyPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes/environmentTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes/environmentTypeName",
 			Expected: &EnvironmentTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ProjectName:         "projectValue",
-				EnvironmentTypeName: "environmentTypeValue",
+				ProjectName:         "projectName",
+				EnvironmentTypeName: "environmentTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectValue/environmentTypes/environmentTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/environmentTypes/environmentTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtVaLuE/eNvIrOnMeNtTyPeS/eNvIrOnMeNtTyPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/eNvIrOnMeNtTyPeS/eNvIrOnMeNtTyPeNaMe",
 			Expected: &EnvironmentTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				ProjectName:         "pRoJeCtVaLuE",
-				EnvironmentTypeName: "eNvIrOnMeNtTyPeVaLuE",
+				ProjectName:         "pRoJeCtNaMe",
+				EnvironmentTypeName: "eNvIrOnMeNtTyPeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtVaLuE/eNvIrOnMeNtTyPeS/eNvIrOnMeNtTyPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/eNvIrOnMeNtTyPeS/eNvIrOnMeNtTyPeNaMe/extra",
 			Error: true,
 		},
 	}

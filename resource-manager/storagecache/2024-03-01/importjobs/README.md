@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-03-01/importjobs` Documentation
 
-The `importjobs` SDK allows for interaction with the Azure Resource Manager Service `storagecache` (API Version `2024-03-01`).
+The `importjobs` SDK allows for interaction with Azure Resource Manager `storagecache` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue")
+id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName")
 
 payload := importjobs.ImportJob{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue")
+id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue")
+id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := importjobs.NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue")
+id := importjobs.NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName")
 
 // alternatively `client.ListByAmlFilesystem(ctx, id)` can be used to do batched pagination
 items, err := client.ListByAmlFilesystemComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue", "importJobValue")
+id := importjobs.NewImportJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName", "importJobName")
 
 payload := importjobs.ImportJobUpdate{
 	// ...

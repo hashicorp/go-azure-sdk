@@ -44,7 +44,7 @@ func ParseMetadataSchemaID(input string) (*MetadataSchemaId, error) {
 	}
 
 	id := MetadataSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMetadataSchemaIDInsensitively(input string) (*MetadataSchemaId, error)
 	}
 
 	id := MetadataSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MetadataSchemaId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiCenter", "Microsoft.ApiCenter", "Microsoft.ApiCenter"),
 		resourceids.StaticSegment("staticServices", "services", "services"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticMetadataSchemas", "metadataSchemas", "metadataSchemas"),
-		resourceids.UserSpecifiedSegment("metadataSchemaName", "metadataSchemaValue"),
+		resourceids.UserSpecifiedSegment("metadataSchemaName", "metadataSchemaName"),
 	}
 }
 

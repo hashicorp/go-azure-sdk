@@ -45,7 +45,6 @@ func (c PrivateLinkForAzureAdClient) Get(ctx context.Context, id PrivateLinkForA
 
 	var model PrivateLinkPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

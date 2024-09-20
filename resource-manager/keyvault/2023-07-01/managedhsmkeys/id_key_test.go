@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KeyId{}
 
 func TestNewKeyID(t *testing.T) {
-	id := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue")
+	id := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedHSMName != "managedHSMValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedHSMName'", id.ManagedHSMName, "managedHSMValue")
+	if id.ManagedHSMName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedHSMName'", id.ManagedHSMName, "name")
 	}
 
-	if id.KeyName != "keyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KeyName'", id.KeyName, "keyValue")
+	if id.KeyName != "keyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'KeyName'", id.KeyName, "keyName")
 	}
 }
 
 func TestFormatKeyID(t *testing.T) {
-	actual := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys/keyValue"
+	actual := NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys/keyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseKeyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys/keyName",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ManagedHSMName:    "managedHSMValue",
-				KeyName:           "keyValue",
+				ManagedHSMName:    "name",
+				KeyName:           "keyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys/keyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/mAnAgEdHsMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/mAnAgEdHsMvAlUe/kEyS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/nAmE/kEyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys/keyName",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ManagedHSMName:    "managedHSMValue",
-				KeyName:           "keyValue",
+				ManagedHSMName:    "name",
+				KeyName:           "keyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/managedHSMValue/keys/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/managedHSMs/name/keys/keyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/mAnAgEdHsMvAlUe/kEyS/kEyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/nAmE/kEyS/kEyNaMe",
 			Expected: &KeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedHSMName:    "mAnAgEdHsMvAlUe",
-				KeyName:           "kEyVaLuE",
+				ManagedHSMName:    "nAmE",
+				KeyName:           "kEyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/mAnAgEdHsMvAlUe/kEyS/kEyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kEyVaUlT/mAnAgEdHsMs/nAmE/kEyS/kEyNaMe/extra",
 			Error: true,
 		},
 	}

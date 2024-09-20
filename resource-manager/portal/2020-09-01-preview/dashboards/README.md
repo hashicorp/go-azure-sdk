@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/dashboards` Documentation
 
-The `dashboards` SDK allows for interaction with the Azure Resource Manager Service `portal` (API Version `2020-09-01-preview`).
+The `dashboards` SDK allows for interaction with Azure Resource Manager `portal` (API Version `2020-09-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue")
+id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName")
 
 payload := dashboards.Dashboard{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue")
+id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue")
+id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -112,7 +112,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue")
+id := dashboards.NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName")
 
 payload := dashboards.PatchableDashboard{
 	// ...

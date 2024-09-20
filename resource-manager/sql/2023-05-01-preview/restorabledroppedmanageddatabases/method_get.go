@@ -45,7 +45,6 @@ func (c RestorableDroppedManagedDatabasesClient) Get(ctx context.Context, id Man
 
 	var model RestorableDroppedManagedDatabase
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/provider` Documentation
 
-The `provider` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2023-01-01`).
+The `provider` SDK allows for interaction with Azure Resource Manager `web` (API Version `2023-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -76,7 +76,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provider.NewLocationID("locationValue")
+id := provider.NewLocationID("location")
 
 // alternatively `client.GetFunctionAppStacksForLocation(ctx, id, provider.DefaultGetFunctionAppStacksForLocationOperationOptions())` can be used to do batched pagination
 items, err := client.GetFunctionAppStacksForLocationComplete(ctx, id, provider.DefaultGetFunctionAppStacksForLocationOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provider.NewLocationID("locationValue")
+id := provider.NewLocationID("location")
 
 // alternatively `client.GetWebAppStacksForLocation(ctx, id, provider.DefaultGetWebAppStacksForLocationOperationOptions())` can be used to do batched pagination
 items, err := client.GetWebAppStacksForLocationComplete(ctx, id, provider.DefaultGetWebAppStacksForLocationOperationOptions())

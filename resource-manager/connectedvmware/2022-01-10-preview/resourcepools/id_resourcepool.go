@@ -42,7 +42,7 @@ func ParseResourcePoolID(input string) (*ResourcePoolId, error) {
 	}
 
 	id := ResourcePoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseResourcePoolIDInsensitively(input string) (*ResourcePoolId, error) {
 	}
 
 	id := ResourcePoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id ResourcePoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere"),
 		resourceids.StaticSegment("staticResourcePools", "resourcePools", "resourcePools"),
-		resourceids.UserSpecifiedSegment("resourcePoolName", "resourcePoolValue"),
+		resourceids.UserSpecifiedSegment("resourcePoolName", "resourcePoolName"),
 	}
 }
 

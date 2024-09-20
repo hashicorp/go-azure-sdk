@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FirewallRuleId{}
 
 func TestNewFirewallRuleID(t *testing.T) {
-	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "firewallRuleValue")
+	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "firewallRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFirewallRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.FirewallRuleName != "firewallRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FirewallRuleName'", id.FirewallRuleName, "firewallRuleValue")
+	if id.FirewallRuleName != "firewallRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FirewallRuleName'", id.FirewallRuleName, "firewallRuleName")
 	}
 }
 
 func TestFormatFirewallRuleID(t *testing.T) {
-	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "firewallRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules/firewallRuleValue"
+	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "firewallRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules/firewallRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFirewallRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules/firewallRuleName",
 			Expected: &FirewallRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				FirewallRuleName:  "firewallRuleValue",
+				AccountName:       "accountName",
+				FirewallRuleName:  "firewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules/firewallRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFirewallRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/fIrEwAlLrUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/fIrEwAlLrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules/firewallRuleName",
 			Expected: &FirewallRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				FirewallRuleName:  "firewallRuleValue",
+				AccountName:       "accountName",
+				FirewallRuleName:  "firewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/firewallRules/firewallRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE",
 			Expected: &FirewallRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
-				FirewallRuleName:  "fIrEwAlLrUlEvAlUe",
+				AccountName:       "aCcOuNtNaMe",
+				FirewallRuleName:  "fIrEwAlLrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE/extra",
 			Error: true,
 		},
 	}

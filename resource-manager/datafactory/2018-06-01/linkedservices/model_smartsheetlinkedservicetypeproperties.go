@@ -30,7 +30,7 @@ func (s *SmartsheetLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["apiToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ApiToken' for 'SmartsheetLinkedServiceTypeProperties': %+v", err)
 		}

@@ -42,7 +42,7 @@ func ParseMyWorkbookID(input string) (*MyWorkbookId, error) {
 	}
 
 	id := MyWorkbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMyWorkbookIDInsensitively(input string) (*MyWorkbookId, error) {
 	}
 
 	id := MyWorkbookId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id MyWorkbookId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticMyWorkbooks", "myWorkbooks", "myWorkbooks"),
-		resourceids.UserSpecifiedSegment("myWorkbookName", "myWorkbookValue"),
+		resourceids.UserSpecifiedSegment("myWorkbookName", "resourceName"),
 	}
 }
 

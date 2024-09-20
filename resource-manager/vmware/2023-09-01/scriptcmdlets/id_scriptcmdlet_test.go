@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScriptCmdletId{}
 
 func TestNewScriptCmdletID(t *testing.T) {
-	id := NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptPackageValue", "scriptCmdletValue")
+	id := NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptPackageName", "scriptCmdletName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewScriptCmdletID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateCloudName != "privateCloudValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudValue")
+	if id.PrivateCloudName != "privateCloudName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudName")
 	}
 
-	if id.ScriptPackageName != "scriptPackageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScriptPackageName'", id.ScriptPackageName, "scriptPackageValue")
+	if id.ScriptPackageName != "scriptPackageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScriptPackageName'", id.ScriptPackageName, "scriptPackageName")
 	}
 
-	if id.ScriptCmdletName != "scriptCmdletValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScriptCmdletName'", id.ScriptCmdletName, "scriptCmdletValue")
+	if id.ScriptCmdletName != "scriptCmdletName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScriptCmdletName'", id.ScriptCmdletName, "scriptCmdletName")
 	}
 }
 
 func TestFormatScriptCmdletID(t *testing.T) {
-	actual := NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "scriptPackageValue", "scriptCmdletValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets/scriptCmdletValue"
+	actual := NewScriptCmdletID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "scriptPackageName", "scriptCmdletName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets/scriptCmdletName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseScriptCmdletID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets/scriptCmdletValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets/scriptCmdletName",
 			Expected: &ScriptCmdletId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				ScriptPackageName: "scriptPackageValue",
-				ScriptCmdletName:  "scriptCmdletValue",
+				PrivateCloudName:  "privateCloudName",
+				ScriptPackageName: "scriptPackageName",
+				ScriptCmdletName:  "scriptCmdletName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets/scriptCmdletValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets/scriptCmdletName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseScriptCmdletIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/sCrIpTpAcKaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/sCrIpTpAcKaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/sCrIpTpAcKaGeS/sCrIpTpAcKaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/sCrIpTpAcKaGeS/sCrIpTpAcKaGeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/sCrIpTpAcKaGeS/sCrIpTpAcKaGeVaLuE/sCrIpTcMdLeTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/sCrIpTpAcKaGeS/sCrIpTpAcKaGeNaMe/sCrIpTcMdLeTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets/scriptCmdletValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets/scriptCmdletName",
 			Expected: &ScriptCmdletId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				ScriptPackageName: "scriptPackageValue",
-				ScriptCmdletName:  "scriptCmdletValue",
+				PrivateCloudName:  "privateCloudName",
+				ScriptPackageName: "scriptPackageName",
+				ScriptCmdletName:  "scriptCmdletName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/scriptPackages/scriptPackageValue/scriptCmdlets/scriptCmdletValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/scriptPackages/scriptPackageName/scriptCmdlets/scriptCmdletName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/sCrIpTpAcKaGeS/sCrIpTpAcKaGeVaLuE/sCrIpTcMdLeTs/sCrIpTcMdLeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/sCrIpTpAcKaGeS/sCrIpTpAcKaGeNaMe/sCrIpTcMdLeTs/sCrIpTcMdLeTnAmE",
 			Expected: &ScriptCmdletId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateCloudName:  "pRiVaTeClOuDvAlUe",
-				ScriptPackageName: "sCrIpTpAcKaGeVaLuE",
-				ScriptCmdletName:  "sCrIpTcMdLeTvAlUe",
+				PrivateCloudName:  "pRiVaTeClOuDnAmE",
+				ScriptPackageName: "sCrIpTpAcKaGeNaMe",
+				ScriptCmdletName:  "sCrIpTcMdLeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/sCrIpTpAcKaGeS/sCrIpTpAcKaGeVaLuE/sCrIpTcMdLeTs/sCrIpTcMdLeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/sCrIpTpAcKaGeS/sCrIpTpAcKaGeNaMe/sCrIpTcMdLeTs/sCrIpTcMdLeTnAmE/extra",
 			Error: true,
 		},
 	}

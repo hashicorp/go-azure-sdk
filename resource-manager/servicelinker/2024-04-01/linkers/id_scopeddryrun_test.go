@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedDryrunId{}
 
 func TestNewScopedDryrunID(t *testing.T) {
-	id := NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue")
+	id := NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.DryrunName != "dryrunValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DryrunName'", id.DryrunName, "dryrunValue")
+	if id.DryrunName != "dryrunName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DryrunName'", id.DryrunName, "dryrunName")
 	}
 }
 
 func TestFormatScopedDryrunID(t *testing.T) {
-	actual := NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunValue"
+	actual := NewScopedDryrunID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dryrunName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedDryrunID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunName",
 			Expected: &ScopedDryrunId{
 				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				DryrunName:  "dryrunValue",
+				DryrunName:  "dryrunName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedDryrunIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunName",
 			Expected: &ScopedDryrunId{
 				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				DryrunName:  "dryrunValue",
+				DryrunName:  "dryrunName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/dryruns/dryrunName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/dRyRuNs/dRyRuNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/dRyRuNs/dRyRuNnAmE",
 			Expected: &ScopedDryrunId{
 				ResourceUri: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				DryrunName:  "dRyRuNvAlUe",
+				DryrunName:  "dRyRuNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/dRyRuNs/dRyRuNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/dRyRuNs/dRyRuNnAmE/extra",
 			Error: true,
 		},
 	}

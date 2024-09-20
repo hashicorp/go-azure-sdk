@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WebPubSubId{}
 
 func TestNewWebPubSubID(t *testing.T) {
-	id := NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue")
+	id := NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewWebPubSubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WebPubSubName != "webPubSubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "webPubSubValue")
+	if id.WebPubSubName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "resourceName")
 	}
 }
 
 func TestFormatWebPubSubID(t *testing.T) {
-	actual := NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue"
+	actual := NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseWebPubSubID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Expected: &WebPubSubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WebPubSubName:     "webPubSubValue",
+				WebPubSubName:     "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseWebPubSubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Expected: &WebPubSubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WebPubSubName:     "webPubSubValue",
+				WebPubSubName:     "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE",
 			Expected: &WebPubSubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WebPubSubName:     "wEbPuBsUbVaLuE",
+				WebPubSubName:     "rEsOuRcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/extra",
 			Error: true,
 		},
 	}

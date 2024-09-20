@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2024-03-01/deploymentstacks` Documentation
 
-The `deploymentstacks` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2024-03-01`).
+The `deploymentstacks` SDK allows for interaction with Azure Resource Manager `resources` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupIdValue", "deploymentStackValue")
+id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupId", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateAtManagementGroupThenPoll(ctx, id, payload); err 
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackValue")
+id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...
@@ -59,7 +59,7 @@ if err := client.CreateOrUpdateAtResourceGroupThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...
@@ -76,7 +76,7 @@ if err := client.CreateOrUpdateAtSubscriptionThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupIdValue", "deploymentStackValue")
+id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupId", "deploymentStackName")
 
 if err := client.DeleteAtManagementGroupThenPoll(ctx, id, deploymentstacks.DefaultDeleteAtManagementGroupOperationOptions()); err != nil {
 	// handle the error
@@ -88,7 +88,7 @@ if err := client.DeleteAtManagementGroupThenPoll(ctx, id, deploymentstacks.Defau
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackValue")
+id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackName")
 
 if err := client.DeleteAtResourceGroupThenPoll(ctx, id, deploymentstacks.DefaultDeleteAtResourceGroupOperationOptions()); err != nil {
 	// handle the error
@@ -100,7 +100,7 @@ if err := client.DeleteAtResourceGroupThenPoll(ctx, id, deploymentstacks.Default
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 if err := client.DeleteAtSubscriptionThenPoll(ctx, id, deploymentstacks.DefaultDeleteAtSubscriptionOperationOptions()); err != nil {
 	// handle the error
@@ -112,7 +112,7 @@ if err := client.DeleteAtSubscriptionThenPoll(ctx, id, deploymentstacks.DefaultD
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupIdValue", "deploymentStackValue")
+id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupId", "deploymentStackName")
 
 read, err := client.ExportTemplateAtManagementGroup(ctx, id)
 if err != nil {
@@ -128,7 +128,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackValue")
+id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackName")
 
 read, err := client.ExportTemplateAtResourceGroup(ctx, id)
 if err != nil {
@@ -144,7 +144,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 read, err := client.ExportTemplateAtSubscription(ctx, id)
 if err != nil {
@@ -160,7 +160,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupIdValue", "deploymentStackValue")
+id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupId", "deploymentStackName")
 
 read, err := client.GetAtManagementGroup(ctx, id)
 if err != nil {
@@ -176,7 +176,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackValue")
+id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackName")
 
 read, err := client.GetAtResourceGroup(ctx, id)
 if err != nil {
@@ -192,7 +192,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 read, err := client.GetAtSubscription(ctx, id)
 if err != nil {
@@ -208,7 +208,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewManagementGroupID("groupIdValue")
+id := commonids.NewManagementGroupID("groupId")
 
 // alternatively `client.ListAtManagementGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListAtManagementGroupComplete(ctx, id)
@@ -259,7 +259,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupIdValue", "deploymentStackValue")
+id := deploymentstacks.NewProviders2DeploymentStackID("managementGroupId", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...
@@ -276,7 +276,7 @@ if err := client.ValidateStackAtManagementGroupThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackValue")
+id := deploymentstacks.NewProviderDeploymentStackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...
@@ -293,7 +293,7 @@ if err := client.ValidateStackAtResourceGroupThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackValue")
+id := deploymentstacks.NewDeploymentStackID("12345678-1234-9876-4563-123456789012", "deploymentStackName")
 
 payload := deploymentstacks.DeploymentStack{
 	// ...

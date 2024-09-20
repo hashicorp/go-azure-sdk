@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExtensionId{}
 
 func TestNewExtensionID(t *testing.T) {
-	id := NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "extensionValue")
+	id := NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "extensionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewExtensionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MachineName != "machineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineValue")
+	if id.MachineName != "machineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineName")
 	}
 
-	if id.ExtensionName != "extensionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionValue")
+	if id.ExtensionName != "extensionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionName")
 	}
 }
 
 func TestFormatExtensionID(t *testing.T) {
-	actual := NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "extensionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions/extensionValue"
+	actual := NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "extensionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions/extensionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions/extensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions/extensionName",
 			Expected: &ExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MachineName:       "machineValue",
-				ExtensionName:     "extensionValue",
+				MachineName:       "machineName",
+				ExtensionName:     "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions/extensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions/extensionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/eXtEnSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions/extensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions/extensionName",
 			Expected: &ExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MachineName:       "machineValue",
-				ExtensionName:     "extensionValue",
+				MachineName:       "machineName",
+				ExtensionName:     "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/extensions/extensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/extensions/extensionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/eXtEnSiOnS/eXtEnSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/eXtEnSiOnS/eXtEnSiOnNaMe",
 			Expected: &ExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MachineName:       "mAcHiNeVaLuE",
-				ExtensionName:     "eXtEnSiOnVaLuE",
+				MachineName:       "mAcHiNeNaMe",
+				ExtensionName:     "eXtEnSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/eXtEnSiOnS/eXtEnSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/eXtEnSiOnS/eXtEnSiOnNaMe/extra",
 			Error: true,
 		},
 	}

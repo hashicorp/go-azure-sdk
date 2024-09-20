@@ -40,7 +40,7 @@ func (s *AcceleratorGitRepository) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["authSetting"]; ok {
-		impl, err := unmarshalAcceleratorAuthSettingImplementation(v)
+		impl, err := UnmarshalAcceleratorAuthSettingImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AuthSetting' for 'AcceleratorGitRepository': %+v", err)
 		}

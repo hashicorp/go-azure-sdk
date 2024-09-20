@@ -15,6 +15,14 @@ type RuleEmailAction struct {
 	SendToServiceOwners *bool     `json:"sendToServiceOwners,omitempty"`
 
 	// Fields inherited from RuleAction
+
+	OdataType string `json:"odata.type"`
+}
+
+func (s RuleEmailAction) RuleAction() BaseRuleActionImpl {
+	return BaseRuleActionImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = RuleEmailAction{}
@@ -28,9 +36,10 @@ func (s RuleEmailAction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling RuleEmailAction: %+v", err)
 	}
+
 	decoded["odata.type"] = "Microsoft.Azure.Management.Insights.Models.RuleEmailAction"
 
 	encoded, err = json.Marshal(decoded)

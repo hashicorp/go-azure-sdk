@@ -13,7 +13,16 @@ var _ Filter = IsNotNullFilter{}
 type IsNotNullFilter struct {
 
 	// Fields inherited from Filter
-	Key *string `json:"key,omitempty"`
+
+	Key          *string            `json:"key,omitempty"`
+	OperatorType FilterOperatorType `json:"operatorType"`
+}
+
+func (s IsNotNullFilter) Filter() BaseFilterImpl {
+	return BaseFilterImpl{
+		Key:          s.Key,
+		OperatorType: s.OperatorType,
+	}
 }
 
 var _ json.Marshaler = IsNotNullFilter{}
@@ -27,9 +36,10 @@ func (s IsNotNullFilter) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IsNotNullFilter: %+v", err)
 	}
+
 	decoded["operatorType"] = "IsNotNull"
 
 	encoded, err = json.Marshal(decoded)

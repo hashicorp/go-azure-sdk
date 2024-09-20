@@ -44,7 +44,7 @@ func ParseEntityQueryTemplateID(input string) (*EntityQueryTemplateId, error) {
 	}
 
 	id := EntityQueryTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEntityQueryTemplateIDInsensitively(input string) (*EntityQueryTemplate
 	}
 
 	id := EntityQueryTemplateId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id EntityQueryTemplateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOperationalInsights", "Microsoft.OperationalInsights", "Microsoft.OperationalInsights"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticEntityQueryTemplates", "entityQueryTemplates", "entityQueryTemplates"),
-		resourceids.UserSpecifiedSegment("entityQueryTemplateId", "entityQueryTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("entityQueryTemplateId", "entityQueryTemplateId"),
 	}
 }
 

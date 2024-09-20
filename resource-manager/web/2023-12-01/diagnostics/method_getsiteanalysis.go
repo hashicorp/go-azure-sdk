@@ -45,7 +45,6 @@ func (c DiagnosticsClient) GetSiteAnalysis(ctx context.Context, id AnalysisId) (
 
 	var model AnalysisDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

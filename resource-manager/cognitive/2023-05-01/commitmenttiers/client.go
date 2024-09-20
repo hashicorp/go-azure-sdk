@@ -15,7 +15,7 @@ type CommitmentTiersClient struct {
 }
 
 func NewCommitmentTiersClientWithBaseURI(sdkApi sdkEnv.Api) (*CommitmentTiersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "commitmenttiers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "commitmenttiers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CommitmentTiersClient: %+v", err)
 	}

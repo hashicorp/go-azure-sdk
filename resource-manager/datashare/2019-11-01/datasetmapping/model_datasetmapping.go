@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataSetMapping interface {
+	DataSetMapping() BaseDataSetMappingImpl
 }
 
-// RawDataSetMappingImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataSetMapping = BaseDataSetMappingImpl{}
+
+type BaseDataSetMappingImpl struct {
+	Id   *string            `json:"id,omitempty"`
+	Kind DataSetMappingKind `json:"kind"`
+	Name *string            `json:"name,omitempty"`
+	Type *string            `json:"type,omitempty"`
+}
+
+func (s BaseDataSetMappingImpl) DataSetMapping() BaseDataSetMappingImpl {
+	return s
+}
+
+var _ DataSetMapping = RawDataSetMappingImpl{}
+
+// RawDataSetMappingImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataSetMappingImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataSetMapping BaseDataSetMappingImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalDataSetMappingImplementation(input []byte) (DataSetMapping, error) {
+func (s RawDataSetMappingImpl) DataSetMapping() BaseDataSetMappingImpl {
+	return s.dataSetMapping
+}
+
+func UnmarshalDataSetMappingImplementation(input []byte) (DataSetMapping, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -116,10 +136,15 @@ func unmarshalDataSetMappingImplementation(input []byte) (DataSetMapping, error)
 		return out, nil
 	}
 
-	out := RawDataSetMappingImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataSetMappingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataSetMappingImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataSetMappingImpl{
+		dataSetMapping: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

@@ -32,7 +32,7 @@ func (s *RulesEngineAction) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["routeConfigurationOverride"]; ok {
-		impl, err := unmarshalRouteConfigurationImplementation(v)
+		impl, err := UnmarshalRouteConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RouteConfigurationOverride' for 'RulesEngineAction': %+v", err)
 		}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-01-01/resourceguardproxies` Documentation
 
-The `resourceguardproxies` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicesbackup` (API Version `2024-01-01`).
+The `resourceguardproxies` SDK allows for interaction with Azure Resource Manager `recoveryservicesbackup` (API Version `2024-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourceguardproxies.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := resourceguardproxies.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.Get(ctx, id)` can be used to do batched pagination
 items, err := client.GetComplete(ctx, id)

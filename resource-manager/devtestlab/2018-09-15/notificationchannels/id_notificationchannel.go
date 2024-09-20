@@ -44,7 +44,7 @@ func ParseNotificationChannelID(input string) (*NotificationChannelId, error) {
 	}
 
 	id := NotificationChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseNotificationChannelIDInsensitively(input string) (*NotificationChannel
 	}
 
 	id := NotificationChannelId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id NotificationChannelId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
-		resourceids.UserSpecifiedSegment("labName", "labValue"),
+		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticNotificationChannels", "notificationChannels", "notificationChannels"),
-		resourceids.UserSpecifiedSegment("notificationChannelName", "notificationChannelValue"),
+		resourceids.UserSpecifiedSegment("notificationChannelName", "name"),
 	}
 }
 

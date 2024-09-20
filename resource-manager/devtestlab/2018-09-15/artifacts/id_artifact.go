@@ -46,7 +46,7 @@ func ParseArtifactID(input string) (*ArtifactId, error) {
 	}
 
 	id := ArtifactId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseArtifactIDInsensitively(input string) (*ArtifactId, error) {
 	}
 
 	id := ArtifactId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id ArtifactId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
-		resourceids.UserSpecifiedSegment("labName", "labValue"),
+		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticArtifactSources", "artifactSources", "artifactSources"),
-		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceValue"),
+		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceName"),
 		resourceids.StaticSegment("staticArtifacts", "artifacts", "artifacts"),
-		resourceids.UserSpecifiedSegment("artifactName", "artifactValue"),
+		resourceids.UserSpecifiedSegment("artifactName", "name"),
 	}
 }
 

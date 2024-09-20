@@ -36,6 +36,7 @@ func (o RestorableSqlContainersListOperationOptions) ToHeaders() *client.Headers
 
 func (o RestorableSqlContainersListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c RestorablesClient) RestorableSqlContainersList(ctx context.Context, id R
 
 	var model RestorableSqlContainersListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

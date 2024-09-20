@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FeatureValidationRequestBase interface {
+	FeatureValidationRequestBase() BaseFeatureValidationRequestBaseImpl
 }
 
-// RawFeatureValidationRequestBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ FeatureValidationRequestBase = BaseFeatureValidationRequestBaseImpl{}
+
+type BaseFeatureValidationRequestBaseImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseFeatureValidationRequestBaseImpl) FeatureValidationRequestBase() BaseFeatureValidationRequestBaseImpl {
+	return s
+}
+
+var _ FeatureValidationRequestBase = RawFeatureValidationRequestBaseImpl{}
+
+// RawFeatureValidationRequestBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFeatureValidationRequestBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	featureValidationRequestBase BaseFeatureValidationRequestBaseImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalFeatureValidationRequestBaseImplementation(input []byte) (FeatureValidationRequestBase, error) {
+func (s RawFeatureValidationRequestBaseImpl) FeatureValidationRequestBase() BaseFeatureValidationRequestBaseImpl {
+	return s.featureValidationRequestBase
+}
+
+func UnmarshalFeatureValidationRequestBaseImplementation(input []byte) (FeatureValidationRequestBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalFeatureValidationRequestBaseImplementation(input []byte) (FeatureV
 		return out, nil
 	}
 
-	out := RawFeatureValidationRequestBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseFeatureValidationRequestBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFeatureValidationRequestBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawFeatureValidationRequestBaseImpl{
+		featureValidationRequestBase: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WorkloadClassifierId{}
 
 func TestNewWorkloadClassifierID(t *testing.T) {
-	id := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "workloadGroupValue", "workloadClassifierValue")
+	id := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "workloadGroupName", "workloadClassifierName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,26 +22,26 @@ func TestNewWorkloadClassifierID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.DatabaseName != "databaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseValue")
+	if id.DatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseName")
 	}
 
-	if id.WorkloadGroupName != "workloadGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkloadGroupName'", id.WorkloadGroupName, "workloadGroupValue")
+	if id.WorkloadGroupName != "workloadGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkloadGroupName'", id.WorkloadGroupName, "workloadGroupName")
 	}
 
-	if id.WorkloadClassifierName != "workloadClassifierValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkloadClassifierName'", id.WorkloadClassifierName, "workloadClassifierValue")
+	if id.WorkloadClassifierName != "workloadClassifierName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkloadClassifierName'", id.WorkloadClassifierName, "workloadClassifierName")
 	}
 }
 
 func TestFormatWorkloadClassifierID(t *testing.T) {
-	actual := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "workloadGroupValue", "workloadClassifierValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue"
+	actual := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "workloadGroupName", "workloadClassifierName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -95,49 +95,49 @@ func TestParseWorkloadClassifierID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ServerName:             "serverValue",
-				DatabaseName:           "databaseValue",
-				WorkloadGroupName:      "workloadGroupValue",
-				WorkloadClassifierName: "workloadClassifierValue",
+				ServerName:             "serverName",
+				DatabaseName:           "databaseName",
+				WorkloadGroupName:      "workloadGroupName",
+				WorkloadClassifierName: "workloadClassifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName/extra",
 			Error: true,
 		},
 	}
@@ -266,96 +266,96 @@ func TestParseWorkloadClassifierIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/wOrKlOaDgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/wOrKlOaDgRoUpS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ServerName:             "serverValue",
-				DatabaseName:           "databaseValue",
-				WorkloadGroupName:      "workloadGroupValue",
-				WorkloadClassifierName: "workloadClassifierValue",
+				ServerName:             "serverName",
+				DatabaseName:           "databaseName",
+				WorkloadGroupName:      "workloadGroupName",
+				WorkloadClassifierName: "workloadClassifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/databases/databaseValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRnAmE",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:             "sErVeRvAlUe",
-				DatabaseName:           "dAtAbAsEvAlUe",
-				WorkloadGroupName:      "wOrKlOaDgRoUpVaLuE",
-				WorkloadClassifierName: "wOrKlOaDcLaSsIfIeRvAlUe",
+				ServerName:             "sErVeRnAmE",
+				DatabaseName:           "dAtAbAsEnAmE",
+				WorkloadGroupName:      "wOrKlOaDgRoUpNaMe",
+				WorkloadClassifierName: "wOrKlOaDcLaSsIfIeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRnAmE/extra",
 			Error: true,
 		},
 	}

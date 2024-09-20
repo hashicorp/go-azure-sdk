@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExportPipelineId{}
 
 func TestNewExportPipelineID(t *testing.T) {
-	id := NewExportPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "exportPipelineValue")
+	id := NewExportPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "exportPipelineName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewExportPipelineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RegistryName != "registryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryValue")
+	if id.RegistryName != "registryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryName")
 	}
 
-	if id.ExportPipelineName != "exportPipelineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExportPipelineName'", id.ExportPipelineName, "exportPipelineValue")
+	if id.ExportPipelineName != "exportPipelineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExportPipelineName'", id.ExportPipelineName, "exportPipelineName")
 	}
 }
 
 func TestFormatExportPipelineID(t *testing.T) {
-	actual := NewExportPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "exportPipelineValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines/exportPipelineValue"
+	actual := NewExportPipelineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "exportPipelineName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines/exportPipelineName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseExportPipelineID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines/exportPipelineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines/exportPipelineName",
 			Expected: &ExportPipelineId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				RegistryName:       "registryValue",
-				ExportPipelineName: "exportPipelineValue",
+				RegistryName:       "registryName",
+				ExportPipelineName: "exportPipelineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines/exportPipelineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines/exportPipelineName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseExportPipelineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/eXpOrTpIpElInEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/eXpOrTpIpElInEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines/exportPipelineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines/exportPipelineName",
 			Expected: &ExportPipelineId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				RegistryName:       "registryValue",
-				ExportPipelineName: "exportPipelineValue",
+				RegistryName:       "registryName",
+				ExportPipelineName: "exportPipelineName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryValue/exportPipelines/exportPipelineValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/exportPipelines/exportPipelineName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/eXpOrTpIpElInEs/eXpOrTpIpElInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/eXpOrTpIpElInEs/eXpOrTpIpElInEnAmE",
 			Expected: &ExportPipelineId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				RegistryName:       "rEgIsTrYvAlUe",
-				ExportPipelineName: "eXpOrTpIpElInEvAlUe",
+				RegistryName:       "rEgIsTrYnAmE",
+				ExportPipelineName: "eXpOrTpIpElInEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYvAlUe/eXpOrTpIpElInEs/eXpOrTpIpElInEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErReGiStRy/rEgIsTrIeS/rEgIsTrYnAmE/eXpOrTpIpElInEs/eXpOrTpIpElInEnAmE/extra",
 			Error: true,
 		},
 	}

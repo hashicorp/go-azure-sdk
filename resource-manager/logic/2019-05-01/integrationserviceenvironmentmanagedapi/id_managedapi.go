@@ -44,7 +44,7 @@ func ParseManagedApiID(input string) (*ManagedApiId, error) {
 	}
 
 	id := ManagedApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedApiIDInsensitively(input string) (*ManagedApiId, error) {
 	}
 
 	id := ManagedApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ManagedApiId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftLogic", "Microsoft.Logic", "Microsoft.Logic"),
 		resourceids.StaticSegment("staticIntegrationServiceEnvironments", "integrationServiceEnvironments", "integrationServiceEnvironments"),
-		resourceids.UserSpecifiedSegment("integrationServiceEnvironmentName", "integrationServiceEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("integrationServiceEnvironmentName", "integrationServiceEnvironmentName"),
 		resourceids.StaticSegment("staticManagedApis", "managedApis", "managedApis"),
-		resourceids.UserSpecifiedSegment("managedApiName", "managedApiValue"),
+		resourceids.UserSpecifiedSegment("managedApiName", "apiName"),
 	}
 }
 

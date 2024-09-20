@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VolumeGroupId{}
 
 func TestNewVolumeGroupID(t *testing.T) {
-	id := NewVolumeGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "elasticSanValue", "volumeGroupValue")
+	id := NewVolumeGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "elasticSanName", "volumeGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVolumeGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ElasticSanName != "elasticSanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ElasticSanName'", id.ElasticSanName, "elasticSanValue")
+	if id.ElasticSanName != "elasticSanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ElasticSanName'", id.ElasticSanName, "elasticSanName")
 	}
 
-	if id.VolumeGroupName != "volumeGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VolumeGroupName'", id.VolumeGroupName, "volumeGroupValue")
+	if id.VolumeGroupName != "volumeGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VolumeGroupName'", id.VolumeGroupName, "volumeGroupName")
 	}
 }
 
 func TestFormatVolumeGroupID(t *testing.T) {
-	actual := NewVolumeGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "elasticSanValue", "volumeGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups/volumeGroupValue"
+	actual := NewVolumeGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "elasticSanName", "volumeGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups/volumeGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVolumeGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups/volumeGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups/volumeGroupName",
 			Expected: &VolumeGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ElasticSanName:    "elasticSanValue",
-				VolumeGroupName:   "volumeGroupValue",
+				ElasticSanName:    "elasticSanName",
+				VolumeGroupName:   "volumeGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups/volumeGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups/volumeGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVolumeGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNvAlUe/vOlUmEgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNnAmE/vOlUmEgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups/volumeGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups/volumeGroupName",
 			Expected: &VolumeGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ElasticSanName:    "elasticSanValue",
-				VolumeGroupName:   "volumeGroupValue",
+				ElasticSanName:    "elasticSanName",
+				VolumeGroupName:   "volumeGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanValue/volumeGroups/volumeGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ElasticSan/elasticSans/elasticSanName/volumeGroups/volumeGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNvAlUe/vOlUmEgRoUpS/vOlUmEgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNnAmE/vOlUmEgRoUpS/vOlUmEgRoUpNaMe",
 			Expected: &VolumeGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ElasticSanName:    "eLaStIcSaNvAlUe",
-				VolumeGroupName:   "vOlUmEgRoUpVaLuE",
+				ElasticSanName:    "eLaStIcSaNnAmE",
+				VolumeGroupName:   "vOlUmEgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNvAlUe/vOlUmEgRoUpS/vOlUmEgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIcSaN/eLaStIcSaNs/eLaStIcSaNnAmE/vOlUmEgRoUpS/vOlUmEgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

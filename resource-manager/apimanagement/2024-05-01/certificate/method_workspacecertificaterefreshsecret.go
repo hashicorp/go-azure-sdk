@@ -46,7 +46,6 @@ func (c CertificateClient) WorkspaceCertificateRefreshSecret(ctx context.Context
 
 	var model CertificateContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

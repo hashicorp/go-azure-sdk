@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ZoneId{}
 
 func TestNewZoneID(t *testing.T) {
-	id := NewZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsZoneValue", "A")
+	id := NewZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "zoneName", "A")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewZoneID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DnsZoneName != "dnsZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsZoneName'", id.DnsZoneName, "dnsZoneValue")
+	if id.DnsZoneName != "zoneName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsZoneName'", id.DnsZoneName, "zoneName")
 	}
 
 	if id.RecordType != "A" {
@@ -32,8 +32,8 @@ func TestNewZoneID(t *testing.T) {
 }
 
 func TestFormatZoneID(t *testing.T) {
-	actual := NewZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsZoneValue", "A").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue/A"
+	actual := NewZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "zoneName", "A").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName/A"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,22 +87,22 @@ func TestParseZoneID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue/A",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName/A",
 			Expected: &ZoneId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DnsZoneName:       "dnsZoneValue",
+				DnsZoneName:       "zoneName",
 				RecordType:        "A",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue/A/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName/A/extra",
 			Error: true,
 		},
 	}
@@ -223,42 +223,42 @@ func TestParseZoneIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/dNsZoNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/zOnEnAmE",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue/A",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName/A",
 			Expected: &ZoneId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DnsZoneName:       "dnsZoneValue",
+				DnsZoneName:       "zoneName",
 				RecordType:        "A",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/dnsZoneValue/A/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsZones/zoneName/A/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/dNsZoNeVaLuE/a",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/zOnEnAmE/a",
 			Expected: &ZoneId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DnsZoneName:       "dNsZoNeVaLuE",
+				DnsZoneName:       "zOnEnAmE",
 				RecordType:        "A",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/dNsZoNeVaLuE/a/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsZoNeS/zOnEnAmE/a/extra",
 			Error: true,
 		},
 	}

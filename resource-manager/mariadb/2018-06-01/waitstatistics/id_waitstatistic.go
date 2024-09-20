@@ -44,7 +44,7 @@ func ParseWaitStatisticID(input string) (*WaitStatisticId, error) {
 	}
 
 	id := WaitStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWaitStatisticIDInsensitively(input string) (*WaitStatisticId, error) {
 	}
 
 	id := WaitStatisticId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id WaitStatisticId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMariaDB", "Microsoft.DBforMariaDB", "Microsoft.DBforMariaDB"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticWaitStatistics", "waitStatistics", "waitStatistics"),
-		resourceids.UserSpecifiedSegment("waitStatisticsId", "waitStatisticsIdValue"),
+		resourceids.UserSpecifiedSegment("waitStatisticsId", "waitStatisticsId"),
 	}
 }
 

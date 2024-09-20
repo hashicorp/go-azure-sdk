@@ -4,24 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Entity interface {
+	Entity() BaseEntityImpl
 }
 
-// RawEntityImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Entity = BaseEntityImpl{}
+
+type BaseEntityImpl struct {
+	Id         *string                `json:"id,omitempty"`
+	Kind       EntityKindEnum         `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseEntityImpl) Entity() BaseEntityImpl {
+	return s
+}
+
+var _ Entity = RawEntityImpl{}
+
+// RawEntityImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEntityImpl struct {
+	entity BaseEntityImpl
 	Type   string
 	Values map[string]interface{}
 }
 
-func unmarshalEntityImplementation(input []byte) (Entity, error) {
+func (s RawEntityImpl) Entity() BaseEntityImpl {
+	return s.entity
+}
+
+func UnmarshalEntityImplementation(input []byte) (Entity, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +75,15 @@ func unmarshalEntityImplementation(input []byte) (Entity, error) {
 		return out, nil
 	}
 
-	out := RawEntityImpl{
+	var parent BaseEntityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEntityImpl: %+v", err)
+	}
+
+	return RawEntityImpl{
+		entity: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

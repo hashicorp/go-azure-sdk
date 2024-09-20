@@ -15,7 +15,7 @@ type MsixImageClient struct {
 }
 
 func NewMsixImageClientWithBaseURI(sdkApi sdkEnv.Api) (*MsixImageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "msiximage", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "msiximage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MsixImageClient: %+v", err)
 	}

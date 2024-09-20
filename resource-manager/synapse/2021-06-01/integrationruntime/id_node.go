@@ -46,7 +46,7 @@ func ParseNodeID(input string) (*NodeId, error) {
 	}
 
 	id := NodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseNodeIDInsensitively(input string) (*NodeId, error) {
 	}
 
 	id := NodeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id NodeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticIntegrationRuntimes", "integrationRuntimes", "integrationRuntimes"),
-		resourceids.UserSpecifiedSegment("integrationRuntimeName", "integrationRuntimeValue"),
+		resourceids.UserSpecifiedSegment("integrationRuntimeName", "integrationRuntimeName"),
 		resourceids.StaticSegment("staticNodes", "nodes", "nodes"),
-		resourceids.UserSpecifiedSegment("nodeName", "nodeValue"),
+		resourceids.UserSpecifiedSegment("nodeName", "nodeName"),
 	}
 }
 

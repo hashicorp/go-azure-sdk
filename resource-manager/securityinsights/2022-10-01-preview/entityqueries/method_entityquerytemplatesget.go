@@ -15,7 +15,7 @@ import (
 type EntityQueryTemplatesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *EntityQueryTemplate
+	Model        EntityQueryTemplate
 }
 
 // EntityQueryTemplatesGet ...
@@ -48,11 +48,11 @@ func (c EntityQueriesClient) EntityQueryTemplatesGet(ctx context.Context, id Ent
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalEntityQueryTemplateImplementation(respObj)
+	model, err := UnmarshalEntityQueryTemplateImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

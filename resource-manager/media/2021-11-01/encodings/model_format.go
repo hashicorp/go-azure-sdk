@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Format interface {
+	Format() BaseFormatImpl
 }
 
-// RawFormatImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Format = BaseFormatImpl{}
+
+type BaseFormatImpl struct {
+	FilenamePattern string `json:"filenamePattern"`
+	OdataType       string `json:"@odata.type"`
+}
+
+func (s BaseFormatImpl) Format() BaseFormatImpl {
+	return s
+}
+
+var _ Format = RawFormatImpl{}
+
+// RawFormatImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFormatImpl struct {
+	format BaseFormatImpl
 	Type   string
 	Values map[string]interface{}
 }
 
-func unmarshalFormatImplementation(input []byte) (Format, error) {
+func (s RawFormatImpl) Format() BaseFormatImpl {
+	return s.format
+}
+
+func UnmarshalFormatImplementation(input []byte) (Format, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -84,10 +102,15 @@ func unmarshalFormatImplementation(input []byte) (Format, error) {
 		return out, nil
 	}
 
-	out := RawFormatImpl{
+	var parent BaseFormatImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFormatImpl: %+v", err)
+	}
+
+	return RawFormatImpl{
+		format: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

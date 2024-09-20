@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LoadBalancerId{}
 
 func TestNewLoadBalancerID(t *testing.T) {
-	id := NewLoadBalancerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue")
+	id := NewLoadBalancerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLoadBalancerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LoadBalancerName != "loadBalancerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerValue")
+	if id.LoadBalancerName != "loadBalancerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerName")
 	}
 }
 
 func TestFormatLoadBalancerID(t *testing.T) {
-	actual := NewLoadBalancerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue"
+	actual := NewLoadBalancerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLoadBalancerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Expected: &LoadBalancerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadBalancerName:  "loadBalancerValue",
+				LoadBalancerName:  "loadBalancerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLoadBalancerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Expected: &LoadBalancerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadBalancerName:  "loadBalancerValue",
+				LoadBalancerName:  "loadBalancerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE",
 			Expected: &LoadBalancerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LoadBalancerName:  "lOaDbAlAnCeRvAlUe",
+				LoadBalancerName:  "lOaDbAlAnCeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/extra",
 			Error: true,
 		},
 	}

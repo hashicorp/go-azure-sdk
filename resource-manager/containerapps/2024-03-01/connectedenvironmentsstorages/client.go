@@ -15,7 +15,7 @@ type ConnectedEnvironmentsStoragesClient struct {
 }
 
 func NewConnectedEnvironmentsStoragesClientWithBaseURI(sdkApi sdkEnv.Api) (*ConnectedEnvironmentsStoragesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "connectedenvironmentsstorages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "connectedenvironmentsstorages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConnectedEnvironmentsStoragesClient: %+v", err)
 	}

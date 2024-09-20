@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingPeriodId{}
 
 func TestNewBillingPeriodID(t *testing.T) {
-	id := NewBillingPeriodID("12345678-1234-9876-4563-123456789012", "billingPeriodValue")
+	id := NewBillingPeriodID("12345678-1234-9876-4563-123456789012", "billingPeriodName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.BillingPeriodName != "billingPeriodValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodValue")
+	if id.BillingPeriodName != "billingPeriodName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodName")
 	}
 }
 
 func TestFormatBillingPeriodID(t *testing.T) {
-	actual := NewBillingPeriodID("12345678-1234-9876-4563-123456789012", "billingPeriodValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodValue"
+	actual := NewBillingPeriodID("12345678-1234-9876-4563-123456789012", "billingPeriodName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseBillingPeriodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodName",
 			Expected: &BillingPeriodId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				BillingPeriodName: "billingPeriodValue",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseBillingPeriodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodName",
 			Expected: &BillingPeriodId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				BillingPeriodName: "billingPeriodValue",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Billing/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe",
 			Expected: &BillingPeriodId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				BillingPeriodName: "bIlLiNgPeRiOdVaLuE",
+				BillingPeriodName: "bIlLiNgPeRiOdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe/extra",
 			Error: true,
 		},
 	}

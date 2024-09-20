@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription` Documentation
 
-The `billingsubscription` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `billingsubscription` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingSubscriptionAliasID("billingAccountValue", "billingSubscriptionAliasValue")
+id := billingsubscription.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
 
 payload := billingsubscription.BillingSubscriptionAlias{
 	// ...
@@ -41,7 +41,7 @@ if err := client.AliasesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingSubscriptionAliasID("billingAccountValue", "billingSubscriptionAliasValue")
+id := billingsubscription.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
 
 read, err := client.AliasesGet(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountID("billingAccountValue")
+id := billingsubscription.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.AliasesListByBillingAccount(ctx, id, billingsubscription.DefaultAliasesListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.AliasesListByBillingAccountComplete(ctx, id, billingsubscription.DefaultAliasesListByBillingAccountOperationOptions())
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.CancelSubscriptionRequest{
 	// ...
@@ -91,7 +91,7 @@ if err := client.CancelThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -103,7 +103,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 read, err := client.Get(ctx, id, billingsubscription.DefaultGetOperationOptions())
 if err != nil {
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingProfileBillingSubscriptionID("billingAccountValue", "billingProfileValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingProfileBillingSubscriptionID("billingAccountName", "billingProfileName", "billingSubscriptionName")
 
 read, err := client.GetByBillingProfile(ctx, id, billingsubscription.DefaultGetByBillingProfileOperationOptions())
 if err != nil {
@@ -135,7 +135,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountID("billingAccountValue")
+id := billingsubscription.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, billingsubscription.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, billingsubscription.DefaultListByBillingAccountOperationOptions())
@@ -152,7 +152,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingsubscription.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, billingsubscription.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, billingsubscription.DefaultListByBillingProfileOperationOptions())
@@ -169,7 +169,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingsubscription.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 // alternatively `client.ListByCustomer(ctx, id, billingsubscription.DefaultListByCustomerOperationOptions())` can be used to do batched pagination
 items, err := client.ListByCustomerComplete(ctx, id, billingsubscription.DefaultListByCustomerOperationOptions())
@@ -186,7 +186,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewCustomerID("billingAccountValue", "customerValue")
+id := billingsubscription.NewCustomerID("billingAccountName", "customerName")
 
 // alternatively `client.ListByCustomerAtBillingAccount(ctx, id, billingsubscription.DefaultListByCustomerAtBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByCustomerAtBillingAccountComplete(ctx, id, billingsubscription.DefaultListByCustomerAtBillingAccountOperationOptions())
@@ -203,7 +203,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := billingsubscription.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 // alternatively `client.ListByEnrollmentAccount(ctx, id, billingsubscription.DefaultListByEnrollmentAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByEnrollmentAccountComplete(ctx, id, billingsubscription.DefaultListByEnrollmentAccountOperationOptions())
@@ -220,7 +220,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingsubscription.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ListByInvoiceSection(ctx, id, billingsubscription.DefaultListByInvoiceSectionOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInvoiceSectionComplete(ctx, id, billingsubscription.DefaultListByInvoiceSectionOperationOptions())
@@ -237,7 +237,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.BillingSubscriptionMergeRequest{
 	// ...
@@ -254,7 +254,7 @@ if err := client.MergeThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.MoveBillingSubscriptionRequest{
 	// ...
@@ -271,7 +271,7 @@ if err := client.MoveThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.BillingSubscriptionSplitRequest{
 	// ...
@@ -288,7 +288,7 @@ if err := client.SplitThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.BillingSubscriptionPatch{
 	// ...
@@ -305,7 +305,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountValue", "billingSubscriptionValue")
+id := billingsubscription.NewBillingAccountBillingSubscriptionID("billingAccountName", "billingSubscriptionName")
 
 payload := billingsubscription.MoveBillingSubscriptionRequest{
 	// ...

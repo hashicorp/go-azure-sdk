@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/resourcehealthmetadata` Documentation
 
-The `resourcehealthmetadata` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2022-09-01`).
+The `resourcehealthmetadata` SDK allows for interaction with Azure Resource Manager `web` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.GetBySite(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "slotValue")
+id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
 
 read, err := client.GetBySiteSlot(ctx, id)
 if err != nil {
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := commonids.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.ListBySite(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySiteComplete(ctx, id)
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "slotValue")
+id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
 
 // alternatively `client.ListBySiteSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySiteSlotComplete(ctx, id)

@@ -44,7 +44,7 @@ func ParseTransformID(input string) (*TransformId, error) {
 	}
 
 	id := TransformId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTransformIDInsensitively(input string) (*TransformId, error) {
 	}
 
 	id := TransformId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id TransformId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticTransforms", "transforms", "transforms"),
-		resourceids.UserSpecifiedSegment("transformName", "transformValue"),
+		resourceids.UserSpecifiedSegment("transformName", "transformName"),
 	}
 }
 

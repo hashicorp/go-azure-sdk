@@ -45,7 +45,6 @@ func (c DotNetComponentsClient) Get(ctx context.Context, id DotNetComponentId) (
 
 	var model DotNetComponent
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

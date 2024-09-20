@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SiteExtensionId{}
 
 func TestNewSiteExtensionID(t *testing.T) {
-	id := NewSiteExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "siteExtensionIdValue")
+	id := NewSiteExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "siteExtensionId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSiteExtensionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.SiteExtensionId != "siteExtensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteExtensionId'", id.SiteExtensionId, "siteExtensionIdValue")
+	if id.SiteExtensionId != "siteExtensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteExtensionId'", id.SiteExtensionId, "siteExtensionId")
 	}
 }
 
 func TestFormatSiteExtensionID(t *testing.T) {
-	actual := NewSiteExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "siteExtensionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions/siteExtensionIdValue"
+	actual := NewSiteExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "siteExtensionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions/siteExtensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSiteExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions/siteExtensionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions/siteExtensionId",
 			Expected: &SiteExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SiteName:          "siteValue",
-				SiteExtensionId:   "siteExtensionIdValue",
+				SiteName:          "name",
+				SiteExtensionId:   "siteExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions/siteExtensionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions/siteExtensionId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSiteExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sItEeXtEnSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sItEeXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions/siteExtensionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions/siteExtensionId",
 			Expected: &SiteExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SiteName:          "siteValue",
-				SiteExtensionId:   "siteExtensionIdValue",
+				SiteName:          "name",
+				SiteExtensionId:   "siteExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/siteExtensions/siteExtensionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/siteExtensions/siteExtensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sItEeXtEnSiOnS/sItEeXtEnSiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sItEeXtEnSiOnS/sItEeXtEnSiOnId",
 			Expected: &SiteExtensionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:          "sItEvAlUe",
-				SiteExtensionId:   "sItEeXtEnSiOnIdVaLuE",
+				SiteName:          "nAmE",
+				SiteExtensionId:   "sItEeXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sItEeXtEnSiOnS/sItEeXtEnSiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sItEeXtEnSiOnS/sItEeXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

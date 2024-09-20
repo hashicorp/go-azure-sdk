@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RestorableDroppedSqlPoolId{}
 
 func TestNewRestorableDroppedSqlPoolID(t *testing.T) {
-	id := NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "restorableDroppedSqlPoolIdValue")
+	id := NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "restorableDroppedSqlPoolId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRestorableDroppedSqlPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.RestorableDroppedSqlPoolId != "restorableDroppedSqlPoolIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedSqlPoolId'", id.RestorableDroppedSqlPoolId, "restorableDroppedSqlPoolIdValue")
+	if id.RestorableDroppedSqlPoolId != "restorableDroppedSqlPoolId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedSqlPoolId'", id.RestorableDroppedSqlPoolId, "restorableDroppedSqlPoolId")
 	}
 }
 
 func TestFormatRestorableDroppedSqlPoolID(t *testing.T) {
-	actual := NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "restorableDroppedSqlPoolIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools/restorableDroppedSqlPoolIdValue"
+	actual := NewRestorableDroppedSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "restorableDroppedSqlPoolId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools/restorableDroppedSqlPoolId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRestorableDroppedSqlPoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools/restorableDroppedSqlPoolIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools/restorableDroppedSqlPoolId",
 			Expected: &RestorableDroppedSqlPoolId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				WorkspaceName:              "workspaceValue",
-				RestorableDroppedSqlPoolId: "restorableDroppedSqlPoolIdValue",
+				WorkspaceName:              "workspaceName",
+				RestorableDroppedSqlPoolId: "restorableDroppedSqlPoolId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools/restorableDroppedSqlPoolIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools/restorableDroppedSqlPoolId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRestorableDroppedSqlPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/rEsToRaBlEdRoPpEdSqLpOoLs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEsToRaBlEdRoPpEdSqLpOoLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools/restorableDroppedSqlPoolIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools/restorableDroppedSqlPoolId",
 			Expected: &RestorableDroppedSqlPoolId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				WorkspaceName:              "workspaceValue",
-				RestorableDroppedSqlPoolId: "restorableDroppedSqlPoolIdValue",
+				WorkspaceName:              "workspaceName",
+				RestorableDroppedSqlPoolId: "restorableDroppedSqlPoolId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/restorableDroppedSqlPools/restorableDroppedSqlPoolIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/restorableDroppedSqlPools/restorableDroppedSqlPoolId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/rEsToRaBlEdRoPpEdSqLpOoLs/rEsToRaBlEdRoPpEdSqLpOoLiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEsToRaBlEdRoPpEdSqLpOoLs/rEsToRaBlEdRoPpEdSqLpOoLiD",
 			Expected: &RestorableDroppedSqlPoolId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:              "wOrKsPaCeVaLuE",
-				RestorableDroppedSqlPoolId: "rEsToRaBlEdRoPpEdSqLpOoLiDvAlUe",
+				WorkspaceName:              "wOrKsPaCeNaMe",
+				RestorableDroppedSqlPoolId: "rEsToRaBlEdRoPpEdSqLpOoLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/rEsToRaBlEdRoPpEdSqLpOoLs/rEsToRaBlEdRoPpEdSqLpOoLiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEsToRaBlEdRoPpEdSqLpOoLs/rEsToRaBlEdRoPpEdSqLpOoLiD/extra",
 			Error: true,
 		},
 	}

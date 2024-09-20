@@ -39,7 +39,7 @@ func (s *FirewallPolicyRuleCollectionGroupProperties) UnmarshalJSON(bytes []byte
 
 		output := make([]FirewallPolicyRuleCollection, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalFirewallPolicyRuleCollectionImplementation(val)
+			impl, err := UnmarshalFirewallPolicyRuleCollectionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'RuleCollections' for 'FirewallPolicyRuleCollectionGroupProperties': %+v", i, err)
 			}

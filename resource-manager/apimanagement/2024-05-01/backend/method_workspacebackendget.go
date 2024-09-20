@@ -45,7 +45,6 @@ func (c BackendClient) WorkspaceBackendGet(ctx context.Context, id WorkspaceBack
 
 	var model BackendContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

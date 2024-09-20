@@ -15,7 +15,7 @@ type ManagedInstancePrivateEndpointConnectionsClient struct {
 }
 
 func NewManagedInstancePrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedInstancePrivateEndpointConnectionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedinstanceprivateendpointconnections", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedinstanceprivateendpointconnections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstancePrivateEndpointConnectionsClient: %+v", err)
 	}

@@ -13,6 +13,14 @@ var _ FeatureSupportRequest = AzureBackupGoalFeatureSupportRequest{}
 type AzureBackupGoalFeatureSupportRequest struct {
 
 	// Fields inherited from FeatureSupportRequest
+
+	FeatureType string `json:"featureType"`
+}
+
+func (s AzureBackupGoalFeatureSupportRequest) FeatureSupportRequest() BaseFeatureSupportRequestImpl {
+	return BaseFeatureSupportRequestImpl{
+		FeatureType: s.FeatureType,
+	}
 }
 
 var _ json.Marshaler = AzureBackupGoalFeatureSupportRequest{}
@@ -26,9 +34,10 @@ func (s AzureBackupGoalFeatureSupportRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBackupGoalFeatureSupportRequest: %+v", err)
 	}
+
 	decoded["featureType"] = "AzureBackupGoals"
 
 	encoded, err = json.Marshal(decoded)

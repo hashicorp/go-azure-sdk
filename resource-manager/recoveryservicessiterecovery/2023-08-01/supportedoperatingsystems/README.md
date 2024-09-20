@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-08-01/supportedoperatingsystems` Documentation
 
-The `supportedoperatingsystems` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicessiterecovery` (API Version `2023-08-01`).
+The `supportedoperatingsystems` SDK allows for interaction with Azure Resource Manager `recoveryservicessiterecovery` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := supportedoperatingsystems.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := supportedoperatingsystems.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 read, err := client.Get(ctx, id, supportedoperatingsystems.DefaultGetOperationOptions())
 if err != nil {

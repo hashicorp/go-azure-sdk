@@ -48,7 +48,7 @@ func ParseReplicationProtectionClusterID(input string) (*ReplicationProtectionCl
 	}
 
 	id := ReplicationProtectionClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseReplicationProtectionClusterIDInsensitively(input string) (*Replicatio
 	}
 
 	id := ReplicationProtectionClusterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id ReplicationProtectionClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "fabricName"),
 		resourceids.StaticSegment("staticReplicationProtectionContainers", "replicationProtectionContainers", "replicationProtectionContainers"),
-		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "replicationProtectionContainerValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "protectionContainerName"),
 		resourceids.StaticSegment("staticReplicationProtectionClusters", "replicationProtectionClusters", "replicationProtectionClusters"),
-		resourceids.UserSpecifiedSegment("replicationProtectionClusterName", "replicationProtectionClusterValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionClusterName", "replicationProtectionClusterName"),
 	}
 }
 

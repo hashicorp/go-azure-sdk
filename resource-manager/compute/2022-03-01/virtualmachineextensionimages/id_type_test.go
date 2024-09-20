@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &TypeId{}
 
 func TestNewTypeID(t *testing.T) {
-	id := NewTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "typeValue")
+	id := NewTypeID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.PublisherName != "publisherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherValue")
+	if id.PublisherName != "publisherName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherName")
 	}
 
-	if id.TypeName != "typeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TypeName'", id.TypeName, "typeValue")
+	if id.TypeName != "typeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TypeName'", id.TypeName, "typeName")
 	}
 }
 
 func TestFormatTypeID(t *testing.T) {
-	actual := NewTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "typeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue"
+	actual := NewTypeID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types/typeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -77,47 +77,47 @@ func TestParseTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types/typeName",
 			Expected: &TypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				PublisherName:  "publisherValue",
-				TypeName:       "typeValue",
+				LocationName:   "location",
+				PublisherName:  "publisherName",
+				TypeName:       "typeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types/typeName/extra",
 			Error: true,
 		},
 	}
@@ -218,92 +218,92 @@ func TestParseTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMeXtEnSiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMeXtEnSiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types/typeName",
 			Expected: &TypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				PublisherName:  "publisherValue",
-				TypeName:       "typeValue",
+				LocationName:   "location",
+				PublisherName:  "publisherName",
+				TypeName:       "typeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/publishers/publisherName/artifactTypes/vmExtension/types/typeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs/tYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs/tYpEnAmE",
 			Expected: &TypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				PublisherName:  "pUbLiShErVaLuE",
-				TypeName:       "tYpEvAlUe",
+				LocationName:   "lOcAtIoN",
+				PublisherName:  "pUbLiShErNaMe",
+				TypeName:       "tYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs/tYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs/tYpEnAmE/extra",
 			Error: true,
 		},
 	}

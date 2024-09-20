@@ -15,7 +15,7 @@ type QuotaByCounterKeysClient struct {
 }
 
 func NewQuotaByCounterKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*QuotaByCounterKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "quotabycounterkeys", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "quotabycounterkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QuotaByCounterKeysClient: %+v", err)
 	}

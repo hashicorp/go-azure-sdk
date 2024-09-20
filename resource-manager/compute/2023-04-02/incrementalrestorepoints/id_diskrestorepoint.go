@@ -46,7 +46,7 @@ func ParseDiskRestorePointID(input string) (*DiskRestorePointId, error) {
 	}
 
 	id := DiskRestorePointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDiskRestorePointIDInsensitively(input string) (*DiskRestorePointId, er
 	}
 
 	id := DiskRestorePointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id DiskRestorePointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticRestorePointCollections", "restorePointCollections", "restorePointCollections"),
-		resourceids.UserSpecifiedSegment("restorePointCollectionName", "restorePointCollectionValue"),
+		resourceids.UserSpecifiedSegment("restorePointCollectionName", "restorePointCollectionName"),
 		resourceids.StaticSegment("staticRestorePoints", "restorePoints", "restorePoints"),
-		resourceids.UserSpecifiedSegment("restorePointName", "restorePointValue"),
+		resourceids.UserSpecifiedSegment("restorePointName", "vmRestorePointName"),
 		resourceids.StaticSegment("staticDiskRestorePoints", "diskRestorePoints", "diskRestorePoints"),
-		resourceids.UserSpecifiedSegment("diskRestorePointName", "diskRestorePointValue"),
+		resourceids.UserSpecifiedSegment("diskRestorePointName", "diskRestorePointName"),
 	}
 }
 

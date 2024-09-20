@@ -15,7 +15,7 @@ type PermissionBindingsClient struct {
 }
 
 func NewPermissionBindingsClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionBindingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "permissionbindings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "permissionbindings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PermissionBindingsClient: %+v", err)
 	}

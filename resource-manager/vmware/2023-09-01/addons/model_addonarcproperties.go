@@ -14,7 +14,16 @@ type AddonArcProperties struct {
 	VCenter *string `json:"vCenter,omitempty"`
 
 	// Fields inherited from AddonProperties
+
+	AddonType         AddonType               `json:"addonType"`
 	ProvisioningState *AddonProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s AddonArcProperties) AddonProperties() BaseAddonPropertiesImpl {
+	return BaseAddonPropertiesImpl{
+		AddonType:         s.AddonType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = AddonArcProperties{}
@@ -28,9 +37,10 @@ func (s AddonArcProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AddonArcProperties: %+v", err)
 	}
+
 	decoded["addonType"] = "Arc"
 
 	encoded, err = json.Marshal(decoded)

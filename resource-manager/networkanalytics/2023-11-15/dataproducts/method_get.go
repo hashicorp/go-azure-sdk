@@ -45,7 +45,6 @@ func (c DataProductsClient) Get(ctx context.Context, id DataProductId) (result G
 
 	var model DataProduct
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

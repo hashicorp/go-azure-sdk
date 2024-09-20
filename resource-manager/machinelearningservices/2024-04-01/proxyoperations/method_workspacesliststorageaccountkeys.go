@@ -46,7 +46,6 @@ func (c ProxyOperationsClient) WorkspacesListStorageAccountKeys(ctx context.Cont
 
 	var model ListStorageAccountKeysResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

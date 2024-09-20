@@ -4,24 +4,48 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Settings interface {
+	Settings() BaseSettingsImpl
 }
 
-// RawSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Settings = BaseSettingsImpl{}
+
+type BaseSettingsImpl struct {
+	Etag       *string                `json:"etag,omitempty"`
+	Id         *string                `json:"id,omitempty"`
+	Kind       SettingKind            `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseSettingsImpl) Settings() BaseSettingsImpl {
+	return s
+}
+
+var _ Settings = RawSettingsImpl{}
+
+// RawSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	settings BaseSettingsImpl
+	Type     string
+	Values   map[string]interface{}
 }
 
-func unmarshalSettingsImplementation(input []byte) (Settings, error) {
+func (s RawSettingsImpl) Settings() BaseSettingsImpl {
+	return s.settings
+}
+
+func UnmarshalSettingsImplementation(input []byte) (Settings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +92,15 @@ func unmarshalSettingsImplementation(input []byte) (Settings, error) {
 		return out, nil
 	}
 
-	out := RawSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawSettingsImpl{
+		settings: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
 
 }

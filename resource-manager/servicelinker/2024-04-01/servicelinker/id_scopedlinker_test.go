@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedLinkerId{}
 
 func TestNewScopedLinkerID(t *testing.T) {
-	id := NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+	id := NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.LinkerName != "linkerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LinkerName'", id.LinkerName, "linkerValue")
+	if id.LinkerName != "linkerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LinkerName'", id.LinkerName, "linkerName")
 	}
 }
 
 func TestFormatScopedLinkerID(t *testing.T) {
-	actual := NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerValue"
+	actual := NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedLinkerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerName",
 			Expected: &ScopedLinkerId{
 				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				LinkerName:  "linkerValue",
+				LinkerName:  "linkerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedLinkerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerName",
 			Expected: &ScopedLinkerId{
 				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				LinkerName:  "linkerValue",
+				LinkerName:  "linkerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.ServiceLinker/linkers/linkerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/lInKeRs/lInKeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/lInKeRs/lInKeRnAmE",
 			Expected: &ScopedLinkerId{
 				ResourceUri: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				LinkerName:  "lInKeRvAlUe",
+				LinkerName:  "lInKeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/lInKeRs/lInKeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.sErViCeLiNkEr/lInKeRs/lInKeRnAmE/extra",
 			Error: true,
 		},
 	}

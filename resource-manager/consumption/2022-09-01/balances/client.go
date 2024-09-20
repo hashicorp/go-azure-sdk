@@ -15,7 +15,7 @@ type BalancesClient struct {
 }
 
 func NewBalancesClientWithBaseURI(sdkApi sdkEnv.Api) (*BalancesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "balances", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "balances", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BalancesClient: %+v", err)
 	}

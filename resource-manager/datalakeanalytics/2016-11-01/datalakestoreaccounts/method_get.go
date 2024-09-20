@@ -45,7 +45,6 @@ func (c DataLakeStoreAccountsClient) Get(ctx context.Context, id DataLakeStoreAc
 
 	var model DataLakeStoreAccountInformation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

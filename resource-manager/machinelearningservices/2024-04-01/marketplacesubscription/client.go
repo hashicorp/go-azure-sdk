@@ -15,7 +15,7 @@ type MarketplaceSubscriptionClient struct {
 }
 
 func NewMarketplaceSubscriptionClientWithBaseURI(sdkApi sdkEnv.Api) (*MarketplaceSubscriptionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "marketplacesubscription", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "marketplacesubscription", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MarketplaceSubscriptionClient: %+v", err)
 	}

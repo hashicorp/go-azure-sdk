@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachineextensionimages` Documentation
 
-The `virtualmachineextensionimages` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2022-03-01`).
+The `virtualmachineextensionimages` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2022-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "typeValue", "versionValue")
+id := virtualmachineextensionimages.NewVersionID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName", "version")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewPublisherID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue")
+id := virtualmachineextensionimages.NewPublisherID("12345678-1234-9876-4563-123456789012", "location", "publisherName")
 
 read, err := client.ListTypes(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "typeValue")
+id := virtualmachineextensionimages.NewTypeID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName")
 
 read, err := client.ListVersions(ctx, id, virtualmachineextensionimages.DefaultListVersionsOperationOptions())
 if err != nil {

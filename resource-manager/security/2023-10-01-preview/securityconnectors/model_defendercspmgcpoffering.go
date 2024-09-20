@@ -18,7 +18,16 @@ type DefenderCspmGcpOffering struct {
 	VMScanners                         *DefenderCspmGcpOfferingVMScanners                         `json:"vmScanners,omitempty"`
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s DefenderCspmGcpOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = DefenderCspmGcpOffering{}
@@ -32,9 +41,10 @@ func (s DefenderCspmGcpOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DefenderCspmGcpOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "DefenderCspmGcp"
 
 	encoded, err = json.Marshal(decoded)

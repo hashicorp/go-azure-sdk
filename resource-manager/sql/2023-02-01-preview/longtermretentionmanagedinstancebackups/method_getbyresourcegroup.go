@@ -45,7 +45,6 @@ func (c LongTermRetentionManagedInstanceBackupsClient) GetByResourceGroup(ctx co
 
 	var model ManagedInstanceLongTermRetentionBackup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

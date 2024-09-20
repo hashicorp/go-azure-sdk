@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualMachineId{}
 
 func TestNewVirtualMachineID(t *testing.T) {
-	id := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "virtualMachineIdValue")
+	id := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName", "virtualMachineId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewVirtualMachineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateCloudName != "privateCloudValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudValue")
+	if id.PrivateCloudName != "privateCloudName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudName")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.VirtualMachineId != "virtualMachineIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineId'", id.VirtualMachineId, "virtualMachineIdValue")
+	if id.VirtualMachineId != "virtualMachineId" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineId'", id.VirtualMachineId, "virtualMachineId")
 	}
 }
 
 func TestFormatVirtualMachineID(t *testing.T) {
-	actual := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "virtualMachineIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines/virtualMachineIdValue"
+	actual := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName", "virtualMachineId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines/virtualMachineId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseVirtualMachineID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines/virtualMachineIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines/virtualMachineId",
 			Expected: &VirtualMachineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				ClusterName:       "clusterValue",
-				VirtualMachineId:  "virtualMachineIdValue",
+				PrivateCloudName:  "privateCloudName",
+				ClusterName:       "clusterName",
+				VirtualMachineId:  "virtualMachineId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines/virtualMachineIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines/virtualMachineId/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseVirtualMachineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/cLuStErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/cLuStErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/cLuStErS/cLuStErVaLuE/vIrTuAlMaChInEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/cLuStErS/cLuStErNaMe/vIrTuAlMaChInEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines/virtualMachineIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines/virtualMachineId",
 			Expected: &VirtualMachineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				PrivateCloudName:  "privateCloudValue",
-				ClusterName:       "clusterValue",
-				VirtualMachineId:  "virtualMachineIdValue",
+				PrivateCloudName:  "privateCloudName",
+				ClusterName:       "clusterName",
+				VirtualMachineId:  "virtualMachineId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/virtualMachines/virtualMachineIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/clusters/clusterName/virtualMachines/virtualMachineId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/cLuStErS/cLuStErVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/cLuStErS/cLuStErNaMe/vIrTuAlMaChInEs/vIrTuAlMaChInEiD",
 			Expected: &VirtualMachineId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateCloudName:  "pRiVaTeClOuDvAlUe",
-				ClusterName:       "cLuStErVaLuE",
-				VirtualMachineId:  "vIrTuAlMaChInEiDvAlUe",
+				PrivateCloudName:  "pRiVaTeClOuDnAmE",
+				ClusterName:       "cLuStErNaMe",
+				VirtualMachineId:  "vIrTuAlMaChInEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/cLuStErS/cLuStErVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/cLuStErS/cLuStErNaMe/vIrTuAlMaChInEs/vIrTuAlMaChInEiD/extra",
 			Error: true,
 		},
 	}

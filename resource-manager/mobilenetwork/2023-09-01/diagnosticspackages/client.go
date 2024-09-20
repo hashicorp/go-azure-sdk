@@ -15,7 +15,7 @@ type DiagnosticsPackagesClient struct {
 }
 
 func NewDiagnosticsPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*DiagnosticsPackagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "diagnosticspackages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "diagnosticspackages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DiagnosticsPackagesClient: %+v", err)
 	}

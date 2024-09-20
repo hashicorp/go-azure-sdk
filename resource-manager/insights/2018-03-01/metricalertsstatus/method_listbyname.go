@@ -45,7 +45,6 @@ func (c MetricAlertsStatusClient) ListByName(ctx context.Context, id StatusId) (
 
 	var model MetricAlertStatusCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

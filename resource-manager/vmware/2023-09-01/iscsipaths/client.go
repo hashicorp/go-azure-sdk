@@ -15,7 +15,7 @@ type IscsiPathsClient struct {
 }
 
 func NewIscsiPathsClientWithBaseURI(sdkApi sdkEnv.Api) (*IscsiPathsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "iscsipaths", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "iscsipaths", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IscsiPathsClient: %+v", err)
 	}

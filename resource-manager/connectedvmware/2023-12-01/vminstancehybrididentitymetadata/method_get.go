@@ -47,7 +47,6 @@ func (c VMInstanceHybridIdentityMetadataClient) Get(ctx context.Context, id comm
 
 	var model VMInstanceHybridIdentityMetadata
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

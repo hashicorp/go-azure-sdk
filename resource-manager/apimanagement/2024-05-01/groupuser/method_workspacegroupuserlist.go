@@ -41,6 +41,7 @@ func (o WorkspaceGroupUserListOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceGroupUserListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

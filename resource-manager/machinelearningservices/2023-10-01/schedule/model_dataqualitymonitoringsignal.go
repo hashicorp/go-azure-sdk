@@ -19,8 +19,18 @@ type DataQualityMonitoringSignal struct {
 	ReferenceData             MonitoringInputDataBase               `json:"referenceData"`
 
 	// Fields inherited from MonitoringSignalBase
+
 	NotificationTypes *[]MonitoringNotificationType `json:"notificationTypes,omitempty"`
 	Properties        *map[string]string            `json:"properties,omitempty"`
+	SignalType        MonitoringSignalType          `json:"signalType"`
+}
+
+func (s DataQualityMonitoringSignal) MonitoringSignalBase() BaseMonitoringSignalBaseImpl {
+	return BaseMonitoringSignalBaseImpl{
+		NotificationTypes: s.NotificationTypes,
+		Properties:        s.Properties,
+		SignalType:        s.SignalType,
+	}
 }
 
 var _ json.Marshaler = DataQualityMonitoringSignal{}
@@ -34,9 +44,10 @@ func (s DataQualityMonitoringSignal) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DataQualityMonitoringSignal: %+v", err)
 	}
+
 	decoded["signalType"] = "DataQuality"
 
 	encoded, err = json.Marshal(decoded)
@@ -60,6 +71,7 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	s.FeatureImportanceSettings = decoded.FeatureImportanceSettings
 	s.NotificationTypes = decoded.NotificationTypes
 	s.Properties = decoded.Properties
+	s.SignalType = decoded.SignalType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -67,7 +79,7 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["features"]; ok {
-		impl, err := unmarshalMonitoringFeatureFilterBaseImplementation(v)
+		impl, err := UnmarshalMonitoringFeatureFilterBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Features' for 'DataQualityMonitoringSignal': %+v", err)
 		}
@@ -82,7 +94,7 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]DataQualityMetricThresholdBase, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalDataQualityMetricThresholdBaseImplementation(val)
+			impl, err := UnmarshalDataQualityMetricThresholdBaseImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'MetricThresholds' for 'DataQualityMonitoringSignal': %+v", i, err)
 			}
@@ -92,7 +104,7 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["productionData"]; ok {
-		impl, err := unmarshalMonitoringInputDataBaseImplementation(v)
+		impl, err := UnmarshalMonitoringInputDataBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProductionData' for 'DataQualityMonitoringSignal': %+v", err)
 		}
@@ -100,7 +112,7 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["referenceData"]; ok {
-		impl, err := unmarshalMonitoringInputDataBaseImplementation(v)
+		impl, err := UnmarshalMonitoringInputDataBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ReferenceData' for 'DataQualityMonitoringSignal': %+v", err)
 		}

@@ -15,7 +15,7 @@ type LotsClient struct {
 }
 
 func NewLotsClientWithBaseURI(sdkApi sdkEnv.Api) (*LotsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "lots", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "lots", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LotsClient: %+v", err)
 	}

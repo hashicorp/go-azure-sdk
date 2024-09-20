@@ -15,7 +15,7 @@ type UserOrganizationClient struct {
 }
 
 func NewUserOrganizationClientWithBaseURI(sdkApi sdkEnv.Api) (*UserOrganizationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "userorganization", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "userorganization", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating UserOrganizationClient: %+v", err)
 	}

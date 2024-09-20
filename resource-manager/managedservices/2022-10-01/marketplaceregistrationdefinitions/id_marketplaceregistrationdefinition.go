@@ -38,7 +38,7 @@ func ParseMarketplaceRegistrationDefinitionID(input string) (*MarketplaceRegistr
 	}
 
 	id := MarketplaceRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseMarketplaceRegistrationDefinitionIDInsensitively(input string) (*Marke
 	}
 
 	id := MarketplaceRegistrationDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id MarketplaceRegistrationDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftManagedServices", "Microsoft.ManagedServices", "Microsoft.ManagedServices"),
 		resourceids.StaticSegment("staticMarketplaceRegistrationDefinitions", "marketplaceRegistrationDefinitions", "marketplaceRegistrationDefinitions"),
-		resourceids.UserSpecifiedSegment("marketplaceIdentifier", "marketplaceIdentifierValue"),
+		resourceids.UserSpecifiedSegment("marketplaceIdentifier", "marketplaceIdentifier"),
 	}
 }
 

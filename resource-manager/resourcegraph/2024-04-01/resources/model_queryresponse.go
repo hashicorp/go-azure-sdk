@@ -45,7 +45,7 @@ func (s *QueryResponse) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Facet, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalFacetImplementation(val)
+			impl, err := UnmarshalFacetImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Facets' for 'QueryResponse': %+v", i, err)
 			}

@@ -15,7 +15,7 @@ type RecoverableSqlPoolsClient struct {
 }
 
 func NewRecoverableSqlPoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoverableSqlPoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "recoverablesqlpools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "recoverablesqlpools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RecoverableSqlPoolsClient: %+v", err)
 	}

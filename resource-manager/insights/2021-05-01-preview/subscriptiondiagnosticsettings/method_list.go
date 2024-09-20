@@ -47,7 +47,6 @@ func (c SubscriptionDiagnosticSettingsClient) List(ctx context.Context, id commo
 
 	var model SubscriptionDiagnosticSettingsResourceCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

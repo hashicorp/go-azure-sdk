@@ -44,7 +44,7 @@ func ParseJavaComponentID(input string) (*JavaComponentId, error) {
 	}
 
 	id := JavaComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseJavaComponentIDInsensitively(input string) (*JavaComponentId, error) {
 	}
 
 	id := JavaComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id JavaComponentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticManagedEnvironments", "managedEnvironments", "managedEnvironments"),
-		resourceids.UserSpecifiedSegment("managedEnvironmentName", "managedEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("managedEnvironmentName", "environmentName"),
 		resourceids.StaticSegment("staticJavaComponents", "javaComponents", "javaComponents"),
-		resourceids.UserSpecifiedSegment("javaComponentName", "javaComponentValue"),
+		resourceids.UserSpecifiedSegment("javaComponentName", "name"),
 	}
 }
 

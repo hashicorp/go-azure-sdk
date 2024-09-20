@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConfigurationId{}
 
 func TestNewConfigurationID(t *testing.T) {
-	id := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "nginxDeploymentValue", "configurationValue")
+	id := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName", "configurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NginxDeploymentName != "nginxDeploymentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NginxDeploymentName'", id.NginxDeploymentName, "nginxDeploymentValue")
+	if id.NginxDeploymentName != "deploymentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NginxDeploymentName'", id.NginxDeploymentName, "deploymentName")
 	}
 
-	if id.ConfigurationName != "configurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationName'", id.ConfigurationName, "configurationValue")
+	if id.ConfigurationName != "configurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationName'", id.ConfigurationName, "configurationName")
 	}
 }
 
 func TestFormatConfigurationID(t *testing.T) {
-	actual := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "nginxDeploymentValue", "configurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations/configurationValue"
+	actual := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName", "configurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations/configurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations/configurationName",
 			Expected: &ConfigurationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				NginxDeploymentName: "nginxDeploymentValue",
-				ConfigurationName:   "configurationValue",
+				NginxDeploymentName: "deploymentName",
+				ConfigurationName:   "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations/configurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/nGiNxDePlOyMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/dEpLoYmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/nGiNxDePlOyMeNtVaLuE/cOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/dEpLoYmEnTnAmE/cOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations/configurationName",
 			Expected: &ConfigurationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				NginxDeploymentName: "nginxDeploymentValue",
-				ConfigurationName:   "configurationValue",
+				NginxDeploymentName: "deploymentName",
+				ConfigurationName:   "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentValue/configurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/deploymentName/configurations/configurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/nGiNxDePlOyMeNtVaLuE/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/dEpLoYmEnTnAmE/cOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
 			Expected: &ConfigurationId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				NginxDeploymentName: "nGiNxDePlOyMeNtVaLuE",
-				ConfigurationName:   "cOnFiGuRaTiOnVaLuE",
+				NginxDeploymentName: "dEpLoYmEnTnAmE",
+				ConfigurationName:   "cOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/nGiNxDePlOyMeNtVaLuE/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/nGiNx.nGiNxPlUs/nGiNxDePlOyMeNtS/dEpLoYmEnTnAmE/cOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

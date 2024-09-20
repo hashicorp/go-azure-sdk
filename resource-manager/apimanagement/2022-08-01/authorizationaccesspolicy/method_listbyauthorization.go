@@ -41,6 +41,7 @@ func (o ListByAuthorizationOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByAuthorizationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

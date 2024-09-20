@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VideoId{}
 
 func TestNewVideoID(t *testing.T) {
-	id := NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue")
+	id := NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVideoID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VideoAnalyzerName != "videoAnalyzerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VideoAnalyzerName'", id.VideoAnalyzerName, "videoAnalyzerValue")
+	if id.VideoAnalyzerName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VideoAnalyzerName'", id.VideoAnalyzerName, "accountName")
 	}
 
-	if id.VideoName != "videoValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VideoName'", id.VideoName, "videoValue")
+	if id.VideoName != "videoName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VideoName'", id.VideoName, "videoName")
 	}
 }
 
 func TestFormatVideoID(t *testing.T) {
-	actual := NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "videoValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos/videoValue"
+	actual := NewVideoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "videoName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos/videoName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVideoID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos/videoValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos/videoName",
 			Expected: &VideoId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VideoAnalyzerName: "videoAnalyzerValue",
-				VideoName:         "videoValue",
+				VideoAnalyzerName: "accountName",
+				VideoName:         "videoName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos/videoValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos/videoName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVideoIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/vIdEoS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtNaMe/vIdEoS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos/videoValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos/videoName",
 			Expected: &VideoId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VideoAnalyzerName: "videoAnalyzerValue",
-				VideoName:         "videoValue",
+				VideoAnalyzerName: "accountName",
+				VideoName:         "videoName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/videos/videoValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountName/videos/videoName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/vIdEoS/vIdEoVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtNaMe/vIdEoS/vIdEoNaMe",
 			Expected: &VideoId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VideoAnalyzerName: "vIdEoAnAlYzErVaLuE",
-				VideoName:         "vIdEoVaLuE",
+				VideoAnalyzerName: "aCcOuNtNaMe",
+				VideoName:         "vIdEoNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/vIdEoS/vIdEoVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtNaMe/vIdEoS/vIdEoNaMe/extra",
 			Error: true,
 		},
 	}

@@ -44,7 +44,7 @@ func ParseRecoverableDatabaseID(input string) (*RecoverableDatabaseId, error) {
 	}
 
 	id := RecoverableDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRecoverableDatabaseIDInsensitively(input string) (*RecoverableDatabase
 	}
 
 	id := RecoverableDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id RecoverableDatabaseId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticRecoverableDatabases", "recoverableDatabases", "recoverableDatabases"),
-		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "recoverableDatabaseValue"),
+		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "databaseName"),
 	}
 }
 

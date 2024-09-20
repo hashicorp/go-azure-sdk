@@ -39,6 +39,7 @@ func (o DeleteAtManagementGroupOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAtManagementGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

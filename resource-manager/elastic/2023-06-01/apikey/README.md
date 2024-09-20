@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/apikey` Documentation
 
-The `apikey` SDK allows for interaction with the Azure Resource Manager Service `elastic` (API Version `2023-06-01`).
+The `apikey` SDK allows for interaction with Azure Resource Manager `elastic` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

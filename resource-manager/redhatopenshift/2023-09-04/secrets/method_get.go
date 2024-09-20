@@ -45,7 +45,6 @@ func (c SecretsClient) Get(ctx context.Context, id SecretId) (result GetOperatio
 
 	var model Secret
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BigDataPoolId{}
 
 func TestNewBigDataPoolID(t *testing.T) {
-	id := NewBigDataPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "bigDataPoolValue")
+	id := NewBigDataPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "bigDataPoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewBigDataPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.BigDataPoolName != "bigDataPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BigDataPoolName'", id.BigDataPoolName, "bigDataPoolValue")
+	if id.BigDataPoolName != "bigDataPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BigDataPoolName'", id.BigDataPoolName, "bigDataPoolName")
 	}
 }
 
 func TestFormatBigDataPoolID(t *testing.T) {
-	actual := NewBigDataPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "bigDataPoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools/bigDataPoolValue"
+	actual := NewBigDataPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "bigDataPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools/bigDataPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseBigDataPoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools/bigDataPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools/bigDataPoolName",
 			Expected: &BigDataPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				BigDataPoolName:   "bigDataPoolValue",
+				WorkspaceName:     "workspaceName",
+				BigDataPoolName:   "bigDataPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools/bigDataPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools/bigDataPoolName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseBigDataPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/bIgDaTaPoOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/bIgDaTaPoOlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools/bigDataPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools/bigDataPoolName",
 			Expected: &BigDataPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				BigDataPoolName:   "bigDataPoolValue",
+				WorkspaceName:     "workspaceName",
+				BigDataPoolName:   "bigDataPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/bigDataPools/bigDataPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/bigDataPools/bigDataPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/bIgDaTaPoOlS/bIgDaTaPoOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/bIgDaTaPoOlS/bIgDaTaPoOlNaMe",
 			Expected: &BigDataPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
-				BigDataPoolName:   "bIgDaTaPoOlVaLuE",
+				WorkspaceName:     "wOrKsPaCeNaMe",
+				BigDataPoolName:   "bIgDaTaPoOlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/bIgDaTaPoOlS/bIgDaTaPoOlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/bIgDaTaPoOlS/bIgDaTaPoOlNaMe/extra",
 			Error: true,
 		},
 	}

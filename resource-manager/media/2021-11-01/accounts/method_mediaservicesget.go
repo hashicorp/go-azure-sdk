@@ -45,7 +45,6 @@ func (c AccountsClient) MediaservicesGet(ctx context.Context, id MediaServiceId)
 
 	var model MediaService
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

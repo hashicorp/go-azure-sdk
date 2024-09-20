@@ -45,7 +45,6 @@ func (c NetworkVirtualAppliancesClient) InboundSecurityRuleGet(ctx context.Conte
 
 	var model InboundSecurityRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

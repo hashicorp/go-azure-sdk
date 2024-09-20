@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UpdateId{}
 
 func TestNewUpdateID(t *testing.T) {
-	id := NewUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "updateValue")
+	id := NewUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "updateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewUpdateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.UpdateName != "updateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UpdateName'", id.UpdateName, "updateValue")
+	if id.UpdateName != "updateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'UpdateName'", id.UpdateName, "updateName")
 	}
 }
 
 func TestFormatUpdateID(t *testing.T) {
-	actual := NewUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "updateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates/updateValue"
+	actual := NewUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "updateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates/updateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseUpdateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates/updateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates/updateName",
 			Expected: &UpdateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				UpdateName:        "updateValue",
+				ClusterName:       "clusterName",
+				UpdateName:        "updateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates/updateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates/updateName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseUpdateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErVaLuE/uPdAtEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/uPdAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates/updateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates/updateName",
 			Expected: &UpdateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				UpdateName:        "updateValue",
+				ClusterName:       "clusterName",
+				UpdateName:        "updateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterValue/updates/updateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/updates/updateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErVaLuE/uPdAtEs/uPdAtEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/uPdAtEs/uPdAtEnAmE",
 			Expected: &UpdateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				UpdateName:        "uPdAtEvAlUe",
+				ClusterName:       "cLuStErNaMe",
+				UpdateName:        "uPdAtEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErVaLuE/uPdAtEs/uPdAtEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/uPdAtEs/uPdAtEnAmE/extra",
 			Error: true,
 		},
 	}

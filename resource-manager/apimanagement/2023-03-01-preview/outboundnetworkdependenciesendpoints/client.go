@@ -15,7 +15,7 @@ type OutboundNetworkDependenciesEndpointsClient struct {
 }
 
 func NewOutboundNetworkDependenciesEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*OutboundNetworkDependenciesEndpointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "outboundnetworkdependenciesendpoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "outboundnetworkdependenciesendpoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OutboundNetworkDependenciesEndpointsClient: %+v", err)
 	}

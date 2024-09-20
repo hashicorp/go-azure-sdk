@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationSecurityGroupId{}
 
 func TestNewApplicationSecurityGroupID(t *testing.T) {
-	id := NewApplicationSecurityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationSecurityGroupValue")
+	id := NewApplicationSecurityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationSecurityGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewApplicationSecurityGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationSecurityGroupName != "applicationSecurityGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationSecurityGroupName'", id.ApplicationSecurityGroupName, "applicationSecurityGroupValue")
+	if id.ApplicationSecurityGroupName != "applicationSecurityGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationSecurityGroupName'", id.ApplicationSecurityGroupName, "applicationSecurityGroupName")
 	}
 }
 
 func TestFormatApplicationSecurityGroupID(t *testing.T) {
-	actual := NewApplicationSecurityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationSecurityGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupValue"
+	actual := NewApplicationSecurityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationSecurityGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseApplicationSecurityGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupName",
 			Expected: &ApplicationSecurityGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ApplicationSecurityGroupName: "applicationSecurityGroupValue",
+				ApplicationSecurityGroupName: "applicationSecurityGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseApplicationSecurityGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupName",
 			Expected: &ApplicationSecurityGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ApplicationSecurityGroupName: "applicationSecurityGroupValue",
+				ApplicationSecurityGroupName: "applicationSecurityGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationSecurityGroups/applicationSecurityGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnSeCuRiTyGrOuPs/aPpLiCaTiOnSeCuRiTyGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnSeCuRiTyGrOuPs/aPpLiCaTiOnSeCuRiTyGrOuPnAmE",
 			Expected: &ApplicationSecurityGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationSecurityGroupName: "aPpLiCaTiOnSeCuRiTyGrOuPvAlUe",
+				ApplicationSecurityGroupName: "aPpLiCaTiOnSeCuRiTyGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnSeCuRiTyGrOuPs/aPpLiCaTiOnSeCuRiTyGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnSeCuRiTyGrOuPs/aPpLiCaTiOnSeCuRiTyGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

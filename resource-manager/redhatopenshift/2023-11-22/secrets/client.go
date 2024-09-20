@@ -15,7 +15,7 @@ type SecretsClient struct {
 }
 
 func NewSecretsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecretsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "secrets", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "secrets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecretsClient: %+v", err)
 	}

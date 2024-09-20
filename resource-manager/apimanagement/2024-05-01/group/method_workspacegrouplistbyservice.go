@@ -41,6 +41,7 @@ func (o WorkspaceGroupListByServiceOperationOptions) ToHeaders() *client.Headers
 
 func (o WorkspaceGroupListByServiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

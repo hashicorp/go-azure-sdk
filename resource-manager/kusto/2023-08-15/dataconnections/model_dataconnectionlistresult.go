@@ -29,7 +29,7 @@ func (s *DataConnectionListResult) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]DataConnection, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalDataConnectionImplementation(val)
+			impl, err := UnmarshalDataConnectionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Value' for 'DataConnectionListResult': %+v", i, err)
 			}

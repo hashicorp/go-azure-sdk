@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DatabasePrincipalAssignmentId{}
 
 func TestNewDatabasePrincipalAssignmentID(t *testing.T) {
-	id := NewDatabasePrincipalAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "databaseValue", "principalAssignmentValue")
+	id := NewDatabasePrincipalAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "databaseName", "principalAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewDatabasePrincipalAssignmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.DatabaseName != "databaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseValue")
+	if id.DatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseName")
 	}
 
-	if id.PrincipalAssignmentName != "principalAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrincipalAssignmentName'", id.PrincipalAssignmentName, "principalAssignmentValue")
+	if id.PrincipalAssignmentName != "principalAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrincipalAssignmentName'", id.PrincipalAssignmentName, "principalAssignmentName")
 	}
 }
 
 func TestFormatDatabasePrincipalAssignmentID(t *testing.T) {
-	actual := NewDatabasePrincipalAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "databaseValue", "principalAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments/principalAssignmentValue"
+	actual := NewDatabasePrincipalAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "databaseName", "principalAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments/principalAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseDatabasePrincipalAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments/principalAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments/principalAssignmentName",
 			Expected: &DatabasePrincipalAssignmentId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ClusterName:             "clusterValue",
-				DatabaseName:            "databaseValue",
-				PrincipalAssignmentName: "principalAssignmentValue",
+				ClusterName:             "clusterName",
+				DatabaseName:            "databaseName",
+				PrincipalAssignmentName: "principalAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments/principalAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments/principalAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseDatabasePrincipalAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/dAtAbAsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/dAtAbAsEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/dAtAbAsEs/dAtAbAsEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/dAtAbAsEs/dAtAbAsEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/pRiNcIpAlAsSiGnMeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/dAtAbAsEs/dAtAbAsEnAmE/pRiNcIpAlAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments/principalAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments/principalAssignmentName",
 			Expected: &DatabasePrincipalAssignmentId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ClusterName:             "clusterValue",
-				DatabaseName:            "databaseValue",
-				PrincipalAssignmentName: "principalAssignmentValue",
+				ClusterName:             "clusterName",
+				DatabaseName:            "databaseName",
+				PrincipalAssignmentName: "principalAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue/principalAssignments/principalAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/databases/databaseName/principalAssignments/principalAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/pRiNcIpAlAsSiGnMeNtS/pRiNcIpAlAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/dAtAbAsEs/dAtAbAsEnAmE/pRiNcIpAlAsSiGnMeNtS/pRiNcIpAlAsSiGnMeNtNaMe",
 			Expected: &DatabasePrincipalAssignmentId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:             "cLuStErVaLuE",
-				DatabaseName:            "dAtAbAsEvAlUe",
-				PrincipalAssignmentName: "pRiNcIpAlAsSiGnMeNtVaLuE",
+				ClusterName:             "cLuStErNaMe",
+				DatabaseName:            "dAtAbAsEnAmE",
+				PrincipalAssignmentName: "pRiNcIpAlAsSiGnMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/pRiNcIpAlAsSiGnMeNtS/pRiNcIpAlAsSiGnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/dAtAbAsEs/dAtAbAsEnAmE/pRiNcIpAlAsSiGnMeNtS/pRiNcIpAlAsSiGnMeNtNaMe/extra",
 			Error: true,
 		},
 	}

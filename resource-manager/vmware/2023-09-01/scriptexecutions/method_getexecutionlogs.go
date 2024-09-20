@@ -50,7 +50,6 @@ func (c ScriptExecutionsClient) GetExecutionLogs(ctx context.Context, id ScriptE
 
 	var model ScriptExecution
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type FeaturesetContainerClient struct {
 }
 
 func NewFeaturesetContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*FeaturesetContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "featuresetcontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "featuresetcontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FeaturesetContainerClient: %+v", err)
 	}

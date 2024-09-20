@@ -50,7 +50,7 @@ func ParseReplicationProtectionClusterRecoveryPointID(input string) (*Replicatio
 	}
 
 	id := ReplicationProtectionClusterRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseReplicationProtectionClusterRecoveryPointIDInsensitively(input string)
 	}
 
 	id := ReplicationProtectionClusterRecoveryPointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -139,15 +139,15 @@ func (id ReplicationProtectionClusterRecoveryPointId) Segments() []resourceids.S
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "fabricName"),
 		resourceids.StaticSegment("staticReplicationProtectionContainers", "replicationProtectionContainers", "replicationProtectionContainers"),
-		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "replicationProtectionContainerValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionContainerName", "protectionContainerName"),
 		resourceids.StaticSegment("staticReplicationProtectionClusters", "replicationProtectionClusters", "replicationProtectionClusters"),
-		resourceids.UserSpecifiedSegment("replicationProtectionClusterName", "replicationProtectionClusterValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionClusterName", "replicationProtectionClusterName"),
 		resourceids.StaticSegment("staticRecoveryPoints", "recoveryPoints", "recoveryPoints"),
-		resourceids.UserSpecifiedSegment("recoveryPointName", "recoveryPointValue"),
+		resourceids.UserSpecifiedSegment("recoveryPointName", "recoveryPointName"),
 	}
 }
 

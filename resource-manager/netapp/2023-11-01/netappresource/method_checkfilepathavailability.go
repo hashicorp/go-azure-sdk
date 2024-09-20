@@ -50,7 +50,6 @@ func (c NetAppResourceClient) CheckFilePathAvailability(ctx context.Context, id 
 
 	var model CheckAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

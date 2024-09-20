@@ -45,7 +45,6 @@ func (c OrganizationsClient) Get(ctx context.Context, id OrganizationId) (result
 
 	var model InformaticaOrganizationResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -50,7 +50,6 @@ func (c ConnectorClient) GenerateConfigurations(ctx context.Context, id Connecto
 
 	var model ConfigurationResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

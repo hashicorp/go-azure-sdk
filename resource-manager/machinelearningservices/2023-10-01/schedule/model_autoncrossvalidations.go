@@ -13,6 +13,14 @@ var _ NCrossValidations = AutoNCrossValidations{}
 type AutoNCrossValidations struct {
 
 	// Fields inherited from NCrossValidations
+
+	Mode NCrossValidationsMode `json:"mode"`
+}
+
+func (s AutoNCrossValidations) NCrossValidations() BaseNCrossValidationsImpl {
+	return BaseNCrossValidationsImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = AutoNCrossValidations{}
@@ -26,9 +34,10 @@ func (s AutoNCrossValidations) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutoNCrossValidations: %+v", err)
 	}
+
 	decoded["mode"] = "Auto"
 
 	encoded, err = json.Marshal(decoded)

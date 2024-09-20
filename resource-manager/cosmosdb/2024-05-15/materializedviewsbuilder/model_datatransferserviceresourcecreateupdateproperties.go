@@ -13,8 +13,18 @@ var _ ServiceResourceCreateUpdateProperties = DataTransferServiceResourceCreateU
 type DataTransferServiceResourceCreateUpdateProperties struct {
 
 	// Fields inherited from ServiceResourceCreateUpdateProperties
+
 	InstanceCount *int64       `json:"instanceCount,omitempty"`
 	InstanceSize  *ServiceSize `json:"instanceSize,omitempty"`
+	ServiceType   ServiceType  `json:"serviceType"`
+}
+
+func (s DataTransferServiceResourceCreateUpdateProperties) ServiceResourceCreateUpdateProperties() BaseServiceResourceCreateUpdatePropertiesImpl {
+	return BaseServiceResourceCreateUpdatePropertiesImpl{
+		InstanceCount: s.InstanceCount,
+		InstanceSize:  s.InstanceSize,
+		ServiceType:   s.ServiceType,
+	}
 }
 
 var _ json.Marshaler = DataTransferServiceResourceCreateUpdateProperties{}
@@ -28,9 +38,10 @@ func (s DataTransferServiceResourceCreateUpdateProperties) MarshalJSON() ([]byte
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DataTransferServiceResourceCreateUpdateProperties: %+v", err)
 	}
+
 	decoded["serviceType"] = "DataTransfer"
 
 	encoded, err = json.Marshal(decoded)

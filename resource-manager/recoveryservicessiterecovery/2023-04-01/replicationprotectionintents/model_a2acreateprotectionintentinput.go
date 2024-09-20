@@ -35,6 +35,14 @@ type A2ACreateProtectionIntentInput struct {
 	VMManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 
 	// Fields inherited from CreateProtectionIntentProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s A2ACreateProtectionIntentInput) CreateProtectionIntentProviderSpecificDetails() BaseCreateProtectionIntentProviderSpecificDetailsImpl {
+	return BaseCreateProtectionIntentProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = A2ACreateProtectionIntentInput{}
@@ -48,9 +56,10 @@ func (s A2ACreateProtectionIntentInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling A2ACreateProtectionIntentInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "A2A"
 
 	encoded, err = json.Marshal(decoded)
@@ -76,6 +85,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	s.AutomationAccountAuthenticationType = decoded.AutomationAccountAuthenticationType
 	s.DiskEncryptionInfo = decoded.DiskEncryptionInfo
 	s.FabricObjectId = decoded.FabricObjectId
+	s.InstanceType = decoded.InstanceType
 	s.MultiVMGroupId = decoded.MultiVMGroupId
 	s.MultiVMGroupName = decoded.MultiVMGroupName
 	s.PrimaryLocation = decoded.PrimaryLocation
@@ -93,7 +103,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["primaryStagingStorageAccountCustomInput"]; ok {
-		impl, err := unmarshalStorageAccountCustomDetailsImplementation(v)
+		impl, err := UnmarshalStorageAccountCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrimaryStagingStorageAccountCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
@@ -101,7 +111,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["protectionProfileCustomInput"]; ok {
-		impl, err := unmarshalProtectionProfileCustomDetailsImplementation(v)
+		impl, err := UnmarshalProtectionProfileCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProtectionProfileCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
@@ -109,7 +119,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["recoveryAvailabilitySetCustomInput"]; ok {
-		impl, err := unmarshalRecoveryAvailabilitySetCustomDetailsImplementation(v)
+		impl, err := UnmarshalRecoveryAvailabilitySetCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryAvailabilitySetCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
@@ -117,7 +127,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["recoveryBootDiagStorageAccount"]; ok {
-		impl, err := unmarshalStorageAccountCustomDetailsImplementation(v)
+		impl, err := UnmarshalStorageAccountCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryBootDiagStorageAccount' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
@@ -125,7 +135,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["recoveryProximityPlacementGroupCustomInput"]; ok {
-		impl, err := unmarshalRecoveryProximityPlacementGroupCustomDetailsImplementation(v)
+		impl, err := UnmarshalRecoveryProximityPlacementGroupCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryProximityPlacementGroupCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
@@ -133,7 +143,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["recoveryVirtualNetworkCustomInput"]; ok {
-		impl, err := unmarshalRecoveryVirtualNetworkCustomDetailsImplementation(v)
+		impl, err := UnmarshalRecoveryVirtualNetworkCustomDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryVirtualNetworkCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}

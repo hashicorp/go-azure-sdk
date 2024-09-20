@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &Providers2DeploymentOperationId{}
 
 func TestNewProviders2DeploymentOperationID(t *testing.T) {
-	id := NewProviders2DeploymentOperationID("groupIdValue", "deploymentValue", "operationIdValue")
+	id := NewProviders2DeploymentOperationID("groupId", "deploymentName", "operationId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DeploymentName != "deploymentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentValue")
+	if id.DeploymentName != "deploymentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentName")
 	}
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatProviders2DeploymentOperationID(t *testing.T) {
-	actual := NewProviders2DeploymentOperationID("groupIdValue", "deploymentValue", "operationIdValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue"
+	actual := NewProviders2DeploymentOperationID("groupId", "deploymentName", "operationId").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,46 +63,46 @@ func TestParseProviders2DeploymentOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId",
 			Expected: &Providers2DeploymentOperationId{
-				GroupId:        "groupIdValue",
-				DeploymentName: "deploymentValue",
-				OperationId:    "operationIdValue",
+				GroupId:        "groupId",
+				DeploymentName: "deploymentName",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId/extra",
 			Error: true,
 		},
 	}
@@ -179,90 +179,90 @@ func TestParseProviders2DeploymentOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId",
 			Expected: &Providers2DeploymentOperationId{
-				GroupId:        "groupIdValue",
-				DeploymentName: "deploymentValue",
-				OperationId:    "operationIdValue",
+				GroupId:        "groupId",
+				DeploymentName: "deploymentName",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/Microsoft.Resources/deployments/deploymentValue/operations/operationIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupId/providers/Microsoft.Resources/deployments/deploymentName/operations/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS/oPeRaTiOnIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS/oPeRaTiOnId",
 			Expected: &Providers2DeploymentOperationId{
-				GroupId:        "gRoUpIdVaLuE",
-				DeploymentName: "dEpLoYmEnTvAlUe",
-				OperationId:    "oPeRaTiOnIdVaLuE",
+				GroupId:        "gRoUpId",
+				DeploymentName: "dEpLoYmEnTnAmE",
+				OperationId:    "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTvAlUe/oPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpId/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTs/dEpLoYmEnTnAmE/oPeRaTiOnS/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

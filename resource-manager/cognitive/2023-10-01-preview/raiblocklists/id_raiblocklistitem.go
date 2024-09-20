@@ -46,7 +46,7 @@ func ParseRaiBlocklistItemID(input string) (*RaiBlocklistItemId, error) {
 	}
 
 	id := RaiBlocklistItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRaiBlocklistItemIDInsensitively(input string) (*RaiBlocklistItemId, er
 	}
 
 	id := RaiBlocklistItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id RaiBlocklistItemId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCognitiveServices", "Microsoft.CognitiveServices", "Microsoft.CognitiveServices"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticRaiBlocklists", "raiBlocklists", "raiBlocklists"),
-		resourceids.UserSpecifiedSegment("raiBlocklistName", "raiBlocklistValue"),
+		resourceids.UserSpecifiedSegment("raiBlocklistName", "raiBlocklistName"),
 		resourceids.StaticSegment("staticRaiBlocklistItems", "raiBlocklistItems", "raiBlocklistItems"),
-		resourceids.UserSpecifiedSegment("raiBlocklistItemName", "raiBlocklistItemValue"),
+		resourceids.UserSpecifiedSegment("raiBlocklistItemName", "raiBlocklistItemName"),
 	}
 }
 

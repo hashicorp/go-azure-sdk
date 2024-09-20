@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualmachineschedules` Documentation
 
-The `virtualmachineschedules` SDK allows for interaction with the Azure Resource Manager Service `devtestlab` (API Version `2018-09-15`).
+The `virtualmachineschedules` SDK allows for interaction with Azure Resource Manager `devtestlab` (API Version `2018-09-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualMachineName", "name")
 
 payload := virtualmachineschedules.Schedule{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualMachineName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualMachineName", "name")
 
 if err := client.ExecuteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -73,7 +73,7 @@ if err := client.ExecuteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualMachineName", "name")
 
 read, err := client.Get(ctx, id, virtualmachineschedules.DefaultGetOperationOptions())
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
+id := virtualmachineschedules.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
 
 // alternatively `client.List(ctx, id, virtualmachineschedules.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, virtualmachineschedules.DefaultListOperationOptions())
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualMachineName", "name")
 
 payload := virtualmachineschedules.UpdateResource{
 	// ...

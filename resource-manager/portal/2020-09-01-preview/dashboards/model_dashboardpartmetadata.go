@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DashboardPartMetadata interface {
+	DashboardPartMetadata() BaseDashboardPartMetadataImpl
 }
 
-// RawDashboardPartMetadataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DashboardPartMetadata = BaseDashboardPartMetadataImpl{}
+
+type BaseDashboardPartMetadataImpl struct {
+	Type DashboardPartMetadataType `json:"type"`
+}
+
+func (s BaseDashboardPartMetadataImpl) DashboardPartMetadata() BaseDashboardPartMetadataImpl {
+	return s
+}
+
+var _ DashboardPartMetadata = RawDashboardPartMetadataImpl{}
+
+// RawDashboardPartMetadataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDashboardPartMetadataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dashboardPartMetadata BaseDashboardPartMetadataImpl
+	Type                  string
+	Values                map[string]interface{}
 }
 
-func unmarshalDashboardPartMetadataImplementation(input []byte) (DashboardPartMetadata, error) {
+func (s RawDashboardPartMetadataImpl) DashboardPartMetadata() BaseDashboardPartMetadataImpl {
+	return s.dashboardPartMetadata
+}
+
+func UnmarshalDashboardPartMetadataImplementation(input []byte) (DashboardPartMetadata, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalDashboardPartMetadataImplementation(input []byte) (DashboardPartMe
 		return out, nil
 	}
 
-	out := RawDashboardPartMetadataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDashboardPartMetadataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDashboardPartMetadataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDashboardPartMetadataImpl{
+		dashboardPartMetadata: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
 
 }

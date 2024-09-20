@@ -15,7 +15,7 @@ type MetricDefinitionsClient struct {
 }
 
 func NewMetricDefinitionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricDefinitionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "metricdefinitions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "metricdefinitions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MetricDefinitionsClient: %+v", err)
 	}

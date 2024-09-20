@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/fileimports` Documentation
 
-The `fileimports` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2022-10-01-preview`).
+The `fileimports` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2022-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "fileImportIdValue")
+id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "fileImportId")
 
 payload := fileimports.FileImport{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "fileImportIdValue")
+id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "fileImportId")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "fileImportIdValue")
+id := fileimports.NewFileImportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "fileImportId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := fileimports.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := fileimports.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, fileimports.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, fileimports.DefaultListOperationOptions())

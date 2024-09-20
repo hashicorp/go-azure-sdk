@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NatRuleId{}
 
 func TestNewNatRuleID(t *testing.T) {
-	id := NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnGatewayValue", "natRuleValue")
+	id := NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayName", "natRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNatRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VpnGatewayName != "vpnGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VpnGatewayName'", id.VpnGatewayName, "vpnGatewayValue")
+	if id.VpnGatewayName != "gatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VpnGatewayName'", id.VpnGatewayName, "gatewayName")
 	}
 
-	if id.NatRuleName != "natRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NatRuleName'", id.NatRuleName, "natRuleValue")
+	if id.NatRuleName != "natRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NatRuleName'", id.NatRuleName, "natRuleName")
 	}
 }
 
 func TestFormatNatRuleID(t *testing.T) {
-	actual := NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnGatewayValue", "natRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules/natRuleValue"
+	actual := NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayName", "natRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules/natRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNatRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules/natRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules/natRuleName",
 			Expected: &NatRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VpnGatewayName:    "vpnGatewayValue",
-				NatRuleName:       "natRuleValue",
+				VpnGatewayName:    "gatewayName",
+				NatRuleName:       "natRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules/natRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules/natRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNatRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/vPnGaTeWaYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/gAtEwAyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/vPnGaTeWaYvAlUe/nAtRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/gAtEwAyNaMe/nAtRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules/natRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules/natRuleName",
 			Expected: &NatRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VpnGatewayName:    "vpnGatewayValue",
-				NatRuleName:       "natRuleValue",
+				VpnGatewayName:    "gatewayName",
+				NatRuleName:       "natRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/vpnGatewayValue/natRules/natRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnGateways/gatewayName/natRules/natRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/vPnGaTeWaYvAlUe/nAtRuLeS/nAtRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/gAtEwAyNaMe/nAtRuLeS/nAtRuLeNaMe",
 			Expected: &NatRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VpnGatewayName:    "vPnGaTeWaYvAlUe",
-				NatRuleName:       "nAtRuLeVaLuE",
+				VpnGatewayName:    "gAtEwAyNaMe",
+				NatRuleName:       "nAtRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/vPnGaTeWaYvAlUe/nAtRuLeS/nAtRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnGaTeWaYs/gAtEwAyNaMe/nAtRuLeS/nAtRuLeNaMe/extra",
 			Error: true,
 		},
 	}

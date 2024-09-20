@@ -39,6 +39,7 @@ func (o GetAllVCentersInSiteOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetAllVCentersInSiteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

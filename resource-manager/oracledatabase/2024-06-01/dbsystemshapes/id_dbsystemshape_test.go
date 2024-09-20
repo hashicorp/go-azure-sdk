@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DbSystemShapeId{}
 
 func TestNewDbSystemShapeID(t *testing.T) {
-	id := NewDbSystemShapeID("12345678-1234-9876-4563-123456789012", "locationValue", "dbSystemShapeValue")
+	id := NewDbSystemShapeID("12345678-1234-9876-4563-123456789012", "location", "dbsystemshapename")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.DbSystemShapeName != "dbSystemShapeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DbSystemShapeName'", id.DbSystemShapeName, "dbSystemShapeValue")
+	if id.DbSystemShapeName != "dbsystemshapename" {
+		t.Fatalf("Expected %q but got %q for Segment 'DbSystemShapeName'", id.DbSystemShapeName, "dbsystemshapename")
 	}
 }
 
 func TestFormatDbSystemShapeID(t *testing.T) {
-	actual := NewDbSystemShapeID("12345678-1234-9876-4563-123456789012", "locationValue", "dbSystemShapeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes/dbSystemShapeValue"
+	actual := NewDbSystemShapeID("12345678-1234-9876-4563-123456789012", "location", "dbsystemshapename").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes/dbsystemshapename"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDbSystemShapeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes/dbSystemShapeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes/dbsystemshapename",
 			Expected: &DbSystemShapeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				DbSystemShapeName: "dbSystemShapeValue",
+				LocationName:      "location",
+				DbSystemShapeName: "dbsystemshapename",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes/dbSystemShapeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes/dbsystemshapename/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDbSystemShapeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/dBsYsTeMsHaPeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dBsYsTeMsHaPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes/dbSystemShapeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes/dbsystemshapename",
 			Expected: &DbSystemShapeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				DbSystemShapeName: "dbSystemShapeValue",
+				LocationName:      "location",
+				DbSystemShapeName: "dbsystemshapename",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/dbSystemShapes/dbSystemShapeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dbSystemShapes/dbsystemshapename/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/dBsYsTeMsHaPeS/dBsYsTeMsHaPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dBsYsTeMsHaPeS/dBsYsTeMsHaPeNaMe",
 			Expected: &DbSystemShapeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "lOcAtIoNvAlUe",
-				DbSystemShapeName: "dBsYsTeMsHaPeVaLuE",
+				LocationName:      "lOcAtIoN",
+				DbSystemShapeName: "dBsYsTeMsHaPeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/dBsYsTeMsHaPeS/dBsYsTeMsHaPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dBsYsTeMsHaPeS/dBsYsTeMsHaPeNaMe/extra",
 			Error: true,
 		},
 	}

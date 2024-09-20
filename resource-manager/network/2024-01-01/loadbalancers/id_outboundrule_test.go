@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OutboundRuleId{}
 
 func TestNewOutboundRuleID(t *testing.T) {
-	id := NewOutboundRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue", "outboundRuleValue")
+	id := NewOutboundRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "outboundRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewOutboundRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LoadBalancerName != "loadBalancerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerValue")
+	if id.LoadBalancerName != "loadBalancerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerName")
 	}
 
-	if id.OutboundRuleName != "outboundRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutboundRuleName'", id.OutboundRuleName, "outboundRuleValue")
+	if id.OutboundRuleName != "outboundRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutboundRuleName'", id.OutboundRuleName, "outboundRuleName")
 	}
 }
 
 func TestFormatOutboundRuleID(t *testing.T) {
-	actual := NewOutboundRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerValue", "outboundRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules/outboundRuleValue"
+	actual := NewOutboundRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "outboundRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules/outboundRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseOutboundRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules/outboundRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules/outboundRuleName",
 			Expected: &OutboundRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadBalancerName:  "loadBalancerValue",
-				OutboundRuleName:  "outboundRuleValue",
+				LoadBalancerName:  "loadBalancerName",
+				OutboundRuleName:  "outboundRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules/outboundRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules/outboundRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseOutboundRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/oUtBoUnDrUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/oUtBoUnDrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules/outboundRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules/outboundRuleName",
 			Expected: &OutboundRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadBalancerName:  "loadBalancerValue",
-				OutboundRuleName:  "outboundRuleValue",
+				LoadBalancerName:  "loadBalancerName",
+				OutboundRuleName:  "outboundRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerValue/outboundRules/outboundRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/loadBalancers/loadBalancerName/outboundRules/outboundRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/oUtBoUnDrUlEs/oUtBoUnDrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/oUtBoUnDrUlEs/oUtBoUnDrUlEnAmE",
 			Expected: &OutboundRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LoadBalancerName:  "lOaDbAlAnCeRvAlUe",
-				OutboundRuleName:  "oUtBoUnDrUlEvAlUe",
+				LoadBalancerName:  "lOaDbAlAnCeRnAmE",
+				OutboundRuleName:  "oUtBoUnDrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRvAlUe/oUtBoUnDrUlEs/oUtBoUnDrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/oUtBoUnDrUlEs/oUtBoUnDrUlEnAmE/extra",
 			Error: true,
 		},
 	}

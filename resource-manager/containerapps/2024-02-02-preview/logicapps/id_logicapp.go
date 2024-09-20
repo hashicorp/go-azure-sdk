@@ -44,7 +44,7 @@ func ParseLogicAppID(input string) (*LogicAppId, error) {
 	}
 
 	id := LogicAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLogicAppIDInsensitively(input string) (*LogicAppId, error) {
 	}
 
 	id := LogicAppId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id LogicAppId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "containerAppValue"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp2", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticLogicApps", "logicApps", "logicApps"),
-		resourceids.UserSpecifiedSegment("logicAppName", "logicAppValue"),
+		resourceids.UserSpecifiedSegment("logicAppName", "logicAppName"),
 	}
 }
 

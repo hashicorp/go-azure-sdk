@@ -38,7 +38,7 @@ func (s *Addon) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalAddonPropertiesImplementation(v)
+		impl, err := UnmarshalAddonPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'Addon': %+v", err)
 		}

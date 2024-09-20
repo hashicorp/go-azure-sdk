@@ -15,7 +15,7 @@ type ServerValidateEstimateHighAvailabilityClient struct {
 }
 
 func NewServerValidateEstimateHighAvailabilityClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerValidateEstimateHighAvailabilityClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servervalidateestimatehighavailability", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "servervalidateestimatehighavailability", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerValidateEstimateHighAvailabilityClient: %+v", err)
 	}

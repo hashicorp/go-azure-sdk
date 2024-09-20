@@ -15,7 +15,7 @@ type ResourceSkusClient struct {
 }
 
 func NewResourceSkusClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceSkusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "resourceskus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "resourceskus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ResourceSkusClient: %+v", err)
 	}

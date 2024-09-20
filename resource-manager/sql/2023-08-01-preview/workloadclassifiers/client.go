@@ -15,7 +15,7 @@ type WorkloadClassifiersClient struct {
 }
 
 func NewWorkloadClassifiersClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadClassifiersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workloadclassifiers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workloadclassifiers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkloadClassifiersClient: %+v", err)
 	}

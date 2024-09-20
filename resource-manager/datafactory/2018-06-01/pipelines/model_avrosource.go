@@ -15,10 +15,22 @@ type AvroSource struct {
 	StoreSettings     StoreReadSettings `json:"storeSettings"`
 
 	// Fields inherited from CopySource
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
 	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
+	Type                     string  `json:"type"`
+}
+
+func (s AvroSource) CopySource() BaseCopySourceImpl {
+	return BaseCopySourceImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SourceRetryCount:         s.SourceRetryCount,
+		SourceRetryWait:          s.SourceRetryWait,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AvroSource{}
@@ -32,9 +44,10 @@ func (s AvroSource) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AvroSource: %+v", err)
 	}
+
 	decoded["type"] = "AvroSource"
 
 	encoded, err = json.Marshal(decoded)
@@ -59,6 +72,7 @@ func (s *AvroSource) UnmarshalJSON(bytes []byte) error {
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SourceRetryCount = decoded.SourceRetryCount
 	s.SourceRetryWait = decoded.SourceRetryWait
+	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -66,7 +80,7 @@ func (s *AvroSource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["storeSettings"]; ok {
-		impl, err := unmarshalStoreReadSettingsImplementation(v)
+		impl, err := UnmarshalStoreReadSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'StoreSettings' for 'AvroSource': %+v", err)
 		}

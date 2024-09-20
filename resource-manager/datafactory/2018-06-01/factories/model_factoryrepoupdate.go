@@ -30,7 +30,7 @@ func (s *FactoryRepoUpdate) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["repoConfiguration"]; ok {
-		impl, err := unmarshalFactoryRepoConfigurationImplementation(v)
+		impl, err := UnmarshalFactoryRepoConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RepoConfiguration' for 'FactoryRepoUpdate': %+v", err)
 		}

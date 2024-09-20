@@ -45,7 +45,6 @@ func (c JitRequestsClient) Get(ctx context.Context, id JitRequestId) (result Get
 
 	var model JitRequestDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

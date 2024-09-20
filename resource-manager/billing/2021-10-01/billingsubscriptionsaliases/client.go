@@ -15,7 +15,7 @@ type BillingSubscriptionsAliasesClient struct {
 }
 
 func NewBillingSubscriptionsAliasesClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingSubscriptionsAliasesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "billingsubscriptionsaliases", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "billingsubscriptionsaliases", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BillingSubscriptionsAliasesClient: %+v", err)
 	}

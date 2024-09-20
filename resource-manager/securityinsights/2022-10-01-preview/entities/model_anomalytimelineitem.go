@@ -24,6 +24,14 @@ type AnomalyTimelineItem struct {
 	Vendor          *string   `json:"vendor,omitempty"`
 
 	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}
+
+func (s AnomalyTimelineItem) EntityTimelineItem() BaseEntityTimelineItemImpl {
+	return BaseEntityTimelineItemImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AnomalyTimelineItem{}
@@ -37,9 +45,10 @@ func (s AnomalyTimelineItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AnomalyTimelineItem: %+v", err)
 	}
+
 	decoded["kind"] = "Anomaly"
 
 	encoded, err = json.Marshal(decoded)

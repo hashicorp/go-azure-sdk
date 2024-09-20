@@ -15,7 +15,7 @@ type EventCategoriesClient struct {
 }
 
 func NewEventCategoriesClientWithBaseURI(sdkApi sdkEnv.Api) (*EventCategoriesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "eventcategories", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "eventcategories", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EventCategoriesClient: %+v", err)
 	}

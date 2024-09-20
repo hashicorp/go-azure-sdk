@@ -48,7 +48,7 @@ func (s *AzureBlobFSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["sasToken"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SasToken' for 'AzureBlobFSLinkedServiceTypeProperties': %+v", err)
 		}
@@ -56,7 +56,7 @@ func (s *AzureBlobFSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["servicePrincipalCredential"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalCredential' for 'AzureBlobFSLinkedServiceTypeProperties': %+v", err)
 		}
@@ -64,7 +64,7 @@ func (s *AzureBlobFSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 	}
 
 	if v, ok := temp["servicePrincipalKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ServicePrincipalKey' for 'AzureBlobFSLinkedServiceTypeProperties': %+v", err)
 		}

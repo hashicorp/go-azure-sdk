@@ -35,6 +35,7 @@ func (o CreationSupportedGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o CreationSupportedGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c CreateResourceClient) CreationSupportedGet(ctx context.Context, id commo
 
 	var model CreateResourceSupportedResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

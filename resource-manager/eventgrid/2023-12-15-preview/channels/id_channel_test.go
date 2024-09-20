@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ChannelId{}
 
 func TestNewChannelID(t *testing.T) {
-	id := NewChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerNamespaceValue", "channelValue")
+	id := NewChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerNamespaceName", "channelName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewChannelID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PartnerNamespaceName != "partnerNamespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PartnerNamespaceName'", id.PartnerNamespaceName, "partnerNamespaceValue")
+	if id.PartnerNamespaceName != "partnerNamespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PartnerNamespaceName'", id.PartnerNamespaceName, "partnerNamespaceName")
 	}
 
-	if id.ChannelName != "channelValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChannelName'", id.ChannelName, "channelValue")
+	if id.ChannelName != "channelName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChannelName'", id.ChannelName, "channelName")
 	}
 }
 
 func TestFormatChannelID(t *testing.T) {
-	actual := NewChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerNamespaceValue", "channelValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels/channelValue"
+	actual := NewChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerNamespaceName", "channelName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels/channelName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseChannelID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels/channelValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels/channelName",
 			Expected: &ChannelId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				PartnerNamespaceName: "partnerNamespaceValue",
-				ChannelName:          "channelValue",
+				PartnerNamespaceName: "partnerNamespaceName",
+				ChannelName:          "channelName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels/channelValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels/channelName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseChannelIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEvAlUe/cHaNnElS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEnAmE/cHaNnElS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels/channelValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels/channelName",
 			Expected: &ChannelId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				PartnerNamespaceName: "partnerNamespaceValue",
-				ChannelName:          "channelValue",
+				PartnerNamespaceName: "partnerNamespaceName",
+				ChannelName:          "channelName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceValue/channels/channelValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespaceName/channels/channelName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEvAlUe/cHaNnElS/cHaNnElVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEnAmE/cHaNnElS/cHaNnElNaMe",
 			Expected: &ChannelId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				PartnerNamespaceName: "pArTnErNaMeSpAcEvAlUe",
-				ChannelName:          "cHaNnElVaLuE",
+				PartnerNamespaceName: "pArTnErNaMeSpAcEnAmE",
+				ChannelName:          "cHaNnElNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEvAlUe/cHaNnElS/cHaNnElVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErNaMeSpAcEs/pArTnErNaMeSpAcEnAmE/cHaNnElS/cHaNnElNaMe/extra",
 			Error: true,
 		},
 	}

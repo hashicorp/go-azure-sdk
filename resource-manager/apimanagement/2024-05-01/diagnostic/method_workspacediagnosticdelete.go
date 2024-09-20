@@ -35,6 +35,7 @@ func (o WorkspaceDiagnosticDeleteOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceDiagnosticDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

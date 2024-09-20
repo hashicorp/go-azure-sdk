@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DiagnosticsPackageId{}
 
 func TestNewDiagnosticsPackageID(t *testing.T) {
-	id := NewDiagnosticsPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "diagnosticsPackageValue")
+	id := NewDiagnosticsPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "diagnosticsPackageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDiagnosticsPackageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PacketCoreControlPlaneName != "packetCoreControlPlaneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneName'", id.PacketCoreControlPlaneName, "packetCoreControlPlaneValue")
+	if id.PacketCoreControlPlaneName != "packetCoreControlPlaneName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneName'", id.PacketCoreControlPlaneName, "packetCoreControlPlaneName")
 	}
 
-	if id.DiagnosticsPackageName != "diagnosticsPackageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticsPackageName'", id.DiagnosticsPackageName, "diagnosticsPackageValue")
+	if id.DiagnosticsPackageName != "diagnosticsPackageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticsPackageName'", id.DiagnosticsPackageName, "diagnosticsPackageName")
 	}
 }
 
 func TestFormatDiagnosticsPackageID(t *testing.T) {
-	actual := NewDiagnosticsPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "diagnosticsPackageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages/diagnosticsPackageValue"
+	actual := NewDiagnosticsPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "diagnosticsPackageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages/diagnosticsPackageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDiagnosticsPackageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages/diagnosticsPackageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages/diagnosticsPackageName",
 			Expected: &DiagnosticsPackageId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				PacketCoreControlPlaneName: "packetCoreControlPlaneValue",
-				DiagnosticsPackageName:     "diagnosticsPackageValue",
+				PacketCoreControlPlaneName: "packetCoreControlPlaneName",
+				DiagnosticsPackageName:     "diagnosticsPackageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages/diagnosticsPackageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages/diagnosticsPackageName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDiagnosticsPackageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/dIaGnOsTiCsPaCkAgEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/dIaGnOsTiCsPaCkAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages/diagnosticsPackageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages/diagnosticsPackageName",
 			Expected: &DiagnosticsPackageId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				PacketCoreControlPlaneName: "packetCoreControlPlaneValue",
-				DiagnosticsPackageName:     "diagnosticsPackageValue",
+				PacketCoreControlPlaneName: "packetCoreControlPlaneName",
+				DiagnosticsPackageName:     "diagnosticsPackageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/diagnosticsPackages/diagnosticsPackageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/diagnosticsPackages/diagnosticsPackageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/dIaGnOsTiCsPaCkAgEs/dIaGnOsTiCsPaCkAgEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/dIaGnOsTiCsPaCkAgEs/dIaGnOsTiCsPaCkAgEnAmE",
 			Expected: &DiagnosticsPackageId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				PacketCoreControlPlaneName: "pAcKeTcOrEcOnTrOlPlAnEvAlUe",
-				DiagnosticsPackageName:     "dIaGnOsTiCsPaCkAgEvAlUe",
+				PacketCoreControlPlaneName: "pAcKeTcOrEcOnTrOlPlAnEnAmE",
+				DiagnosticsPackageName:     "dIaGnOsTiCsPaCkAgEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/dIaGnOsTiCsPaCkAgEs/dIaGnOsTiCsPaCkAgEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/dIaGnOsTiCsPaCkAgEs/dIaGnOsTiCsPaCkAgEnAmE/extra",
 			Error: true,
 		},
 	}

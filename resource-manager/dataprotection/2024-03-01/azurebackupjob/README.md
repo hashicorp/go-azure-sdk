@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-03-01/azurebackupjob` Documentation
 
-The `azurebackupjob` SDK allows for interaction with the Azure Resource Manager Service `dataprotection` (API Version `2024-03-01`).
+The `azurebackupjob` SDK allows for interaction with Azure Resource Manager `dataprotection` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewOperationIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "operationIdValue")
+id := azurebackupjob.NewOperationIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "operationId")
 
 read, err := client.ExportJobsOperationResultGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue")
+id := azurebackupjob.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 if err := client.ExportJobsTriggerThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -52,7 +52,7 @@ if err := client.ExportJobsTriggerThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "jobIdValue")
+id := azurebackupjob.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "jobId")
 
 read, err := client.JobsGet(ctx, id)
 if err != nil {

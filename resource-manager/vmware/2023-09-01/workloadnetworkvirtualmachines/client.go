@@ -15,7 +15,7 @@ type WorkloadNetworkVirtualMachinesClient struct {
 }
 
 func NewWorkloadNetworkVirtualMachinesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadNetworkVirtualMachinesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workloadnetworkvirtualmachines", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workloadnetworkvirtualmachines", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkloadNetworkVirtualMachinesClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DashboardId{}
 
 func TestNewDashboardID(t *testing.T) {
-	id := NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue")
+	id := NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDashboardID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DashboardName != "dashboardValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DashboardName'", id.DashboardName, "dashboardValue")
+	if id.DashboardName != "dashboardName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DashboardName'", id.DashboardName, "dashboardName")
 	}
 }
 
 func TestFormatDashboardID(t *testing.T) {
-	actual := NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardValue"
+	actual := NewDashboardID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dashboardName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDashboardID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardName",
 			Expected: &DashboardId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DashboardName:     "dashboardValue",
+				DashboardName:     "dashboardName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDashboardIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardName",
 			Expected: &DashboardId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DashboardName:     "dashboardValue",
+				DashboardName:     "dashboardName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Portal/dashboards/dashboardName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOrTaL/dAsHbOaRdS/dAsHbOaRdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOrTaL/dAsHbOaRdS/dAsHbOaRdNaMe",
 			Expected: &DashboardId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DashboardName:     "dAsHbOaRdVaLuE",
+				DashboardName:     "dAsHbOaRdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOrTaL/dAsHbOaRdS/dAsHbOaRdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOrTaL/dAsHbOaRdS/dAsHbOaRdNaMe/extra",
 			Error: true,
 		},
 	}

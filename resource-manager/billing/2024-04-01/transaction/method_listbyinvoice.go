@@ -44,6 +44,7 @@ func (o ListByInvoiceOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByInvoiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

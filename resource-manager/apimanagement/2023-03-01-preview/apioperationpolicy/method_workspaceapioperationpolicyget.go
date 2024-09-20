@@ -34,6 +34,7 @@ func (o WorkspaceApiOperationPolicyGetOperationOptions) ToHeaders() *client.Head
 
 func (o WorkspaceApiOperationPolicyGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c ApiOperationPolicyClient) WorkspaceApiOperationPolicyGet(ctx context.Con
 
 	var model PolicyContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

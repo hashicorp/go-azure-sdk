@@ -48,7 +48,7 @@ func ParseNotificationRecipientEmailID(input string) (*NotificationRecipientEmai
 	}
 
 	id := NotificationRecipientEmailId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseNotificationRecipientEmailIDInsensitively(input string) (*Notification
 	}
 
 	id := NotificationRecipientEmailId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -141,13 +141,13 @@ func (id NotificationRecipientEmailId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceId", "workspaceIdValue"),
+		resourceids.UserSpecifiedSegment("workspaceId", "workspaceId"),
 		resourceids.StaticSegment("staticNotifications", "notifications", "notifications"),
 		resourceids.ConstantSegment("notificationName", PossibleValuesForNotificationName(), "AccountClosedPublisher"),
 		resourceids.StaticSegment("staticRecipientEmails", "recipientEmails", "recipientEmails"),
-		resourceids.UserSpecifiedSegment("recipientEmailName", "recipientEmailValue"),
+		resourceids.UserSpecifiedSegment("recipientEmailName", "email"),
 	}
 }
 

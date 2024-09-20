@@ -35,6 +35,7 @@ func (o GetOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c DepartmentsClient) Get(ctx context.Context, id DepartmentId, options Get
 
 	var model Department
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type ManagedDatabaseSecurityAlertPoliciesClient struct {
 }
 
 func NewManagedDatabaseSecurityAlertPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseSecurityAlertPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasesecurityalertpolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasesecurityalertpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseSecurityAlertPoliciesClient: %+v", err)
 	}

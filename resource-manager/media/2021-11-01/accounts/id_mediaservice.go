@@ -42,7 +42,7 @@ func ParseMediaServiceID(input string) (*MediaServiceId, error) {
 	}
 
 	id := MediaServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseMediaServiceIDInsensitively(input string) (*MediaServiceId, error) {
 	}
 
 	id := MediaServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id MediaServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 	}
 }
 

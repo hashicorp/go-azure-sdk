@@ -43,7 +43,7 @@ func (s *RoleManagementPolicyAssignmentProperties) UnmarshalJSON(bytes []byte) e
 
 		output := make([]RoleManagementPolicyRule, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRoleManagementPolicyRuleImplementation(val)
+			impl, err := UnmarshalRoleManagementPolicyRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'EffectiveRules' for 'RoleManagementPolicyAssignmentProperties': %+v", i, err)
 			}

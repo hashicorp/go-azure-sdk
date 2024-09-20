@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MarketplaceGalleryImageId{}
 
 func TestNewMarketplaceGalleryImageID(t *testing.T) {
-	id := NewMarketplaceGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "marketplaceGalleryImageValue")
+	id := NewMarketplaceGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "marketplaceGalleryImageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewMarketplaceGalleryImageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MarketplaceGalleryImageName != "marketplaceGalleryImageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceGalleryImageName'", id.MarketplaceGalleryImageName, "marketplaceGalleryImageValue")
+	if id.MarketplaceGalleryImageName != "marketplaceGalleryImageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceGalleryImageName'", id.MarketplaceGalleryImageName, "marketplaceGalleryImageName")
 	}
 }
 
 func TestFormatMarketplaceGalleryImageID(t *testing.T) {
-	actual := NewMarketplaceGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "marketplaceGalleryImageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageValue"
+	actual := NewMarketplaceGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "marketplaceGalleryImageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseMarketplaceGalleryImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageName",
 			Expected: &MarketplaceGalleryImageId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				MarketplaceGalleryImageName: "marketplaceGalleryImageValue",
+				MarketplaceGalleryImageName: "marketplaceGalleryImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseMarketplaceGalleryImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageName",
 			Expected: &MarketplaceGalleryImageId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				MarketplaceGalleryImageName: "marketplaceGalleryImageValue",
+				MarketplaceGalleryImageName: "marketplaceGalleryImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/marketplaceGalleryImageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/mArKeTpLaCeGaLlErYiMaGeS/mArKeTpLaCeGaLlErYiMaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/mArKeTpLaCeGaLlErYiMaGeS/mArKeTpLaCeGaLlErYiMaGeNaMe",
 			Expected: &MarketplaceGalleryImageId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				MarketplaceGalleryImageName: "mArKeTpLaCeGaLlErYiMaGeVaLuE",
+				MarketplaceGalleryImageName: "mArKeTpLaCeGaLlErYiMaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/mArKeTpLaCeGaLlErYiMaGeS/mArKeTpLaCeGaLlErYiMaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/mArKeTpLaCeGaLlErYiMaGeS/mArKeTpLaCeGaLlErYiMaGeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2024-01-01/pricings` Documentation
 
-The `pricings` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2024-01-01`).
+The `pricings` SDK allows for interaction with Azure Resource Manager `security` (API Version `2024-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := pricings.NewPricingID("scopeIdValue", "pricingValue")
+id := pricings.NewPricingID("scopeId", "pricingName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pricings.NewPricingID("scopeIdValue", "pricingValue")
+id := pricings.NewPricingID("scopeId", "pricingName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pricings.NewScopeIdID("scopeIdValue")
+id := pricings.NewScopeIdID("scopeId")
 
 read, err := client.List(ctx, id, pricings.DefaultListOperationOptions())
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pricings.NewPricingID("scopeIdValue", "pricingValue")
+id := pricings.NewPricingID("scopeId", "pricingName")
 
 payload := pricings.Pricing{
 	// ...

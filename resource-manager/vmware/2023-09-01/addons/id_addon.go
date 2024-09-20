@@ -44,7 +44,7 @@ func ParseAddonID(input string) (*AddonId, error) {
 	}
 
 	id := AddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAddonIDInsensitively(input string) (*AddonId, error) {
 	}
 
 	id := AddonId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AddonId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticAddons", "addons", "addons"),
-		resourceids.UserSpecifiedSegment("addonName", "addonValue"),
+		resourceids.UserSpecifiedSegment("addonName", "addonName"),
 	}
 }
 

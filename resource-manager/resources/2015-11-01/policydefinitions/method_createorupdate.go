@@ -49,7 +49,6 @@ func (c PolicyDefinitionsClient) CreateOrUpdate(ctx context.Context, id Policyde
 
 	var model PolicyDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

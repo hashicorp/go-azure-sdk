@@ -15,7 +15,7 @@ type MachinePoolsClient struct {
 }
 
 func NewMachinePoolsClientWithBaseURI(sdkApi sdkEnv.Api) (*MachinePoolsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "machinepools", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "machinepools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MachinePoolsClient: %+v", err)
 	}

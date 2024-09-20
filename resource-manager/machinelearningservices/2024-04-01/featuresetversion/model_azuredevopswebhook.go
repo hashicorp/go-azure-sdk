@@ -13,7 +13,16 @@ var _ Webhook = AzureDevOpsWebhook{}
 type AzureDevOpsWebhook struct {
 
 	// Fields inherited from Webhook
-	EventType *string `json:"eventType,omitempty"`
+
+	EventType   *string     `json:"eventType,omitempty"`
+	WebhookType WebhookType `json:"webhookType"`
+}
+
+func (s AzureDevOpsWebhook) Webhook() BaseWebhookImpl {
+	return BaseWebhookImpl{
+		EventType:   s.EventType,
+		WebhookType: s.WebhookType,
+	}
 }
 
 var _ json.Marshaler = AzureDevOpsWebhook{}
@@ -27,9 +36,10 @@ func (s AzureDevOpsWebhook) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureDevOpsWebhook: %+v", err)
 	}
+
 	decoded["webhookType"] = "AzureDevOps"
 
 	encoded, err = json.Marshal(decoded)

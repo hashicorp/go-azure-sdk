@@ -45,7 +45,6 @@ func (c DevOpsClient) AzureDevOpsReposGet(ctx context.Context, id ProjectRepoId)
 
 	var model AzureDevOpsRepository
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

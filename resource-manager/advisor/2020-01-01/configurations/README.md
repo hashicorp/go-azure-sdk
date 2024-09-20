@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2020-01-01/configurations` Documentation
 
-The `configurations` SDK allows for interaction with the Azure Resource Manager Service `advisor` (API Version `2020-01-01`).
+The `configurations` SDK allows for interaction with Azure Resource Manager `advisor` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

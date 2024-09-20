@@ -37,7 +37,7 @@ func (s *MicrosoftAccessLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte)
 	}
 
 	if v, ok := temp["credential"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Credential' for 'MicrosoftAccessLinkedServiceTypeProperties': %+v", err)
 		}
@@ -45,7 +45,7 @@ func (s *MicrosoftAccessLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte)
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'MicrosoftAccessLinkedServiceTypeProperties': %+v", err)
 		}

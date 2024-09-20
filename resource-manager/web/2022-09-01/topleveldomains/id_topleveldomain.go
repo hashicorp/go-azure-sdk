@@ -40,7 +40,7 @@ func ParseTopLevelDomainID(input string) (*TopLevelDomainId, error) {
 	}
 
 	id := TopLevelDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseTopLevelDomainIDInsensitively(input string) (*TopLevelDomainId, error)
 	}
 
 	id := TopLevelDomainId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id TopLevelDomainId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDomainRegistration", "Microsoft.DomainRegistration", "Microsoft.DomainRegistration"),
 		resourceids.StaticSegment("staticTopLevelDomains", "topLevelDomains", "topLevelDomains"),
-		resourceids.UserSpecifiedSegment("topLevelDomainName", "topLevelDomainValue"),
+		resourceids.UserSpecifiedSegment("topLevelDomainName", "name"),
 	}
 }
 

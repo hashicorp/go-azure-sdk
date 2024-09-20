@@ -45,6 +45,7 @@ func (o ListByStepOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByStepOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

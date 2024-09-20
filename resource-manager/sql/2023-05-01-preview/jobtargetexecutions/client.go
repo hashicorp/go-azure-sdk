@@ -15,7 +15,7 @@ type JobTargetExecutionsClient struct {
 }
 
 func NewJobTargetExecutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobTargetExecutionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jobtargetexecutions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jobtargetexecutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobTargetExecutionsClient: %+v", err)
 	}

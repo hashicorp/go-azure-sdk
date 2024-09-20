@@ -15,7 +15,7 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SecurityMLAnalyticsSetting
+	Model        SecurityMLAnalyticsSetting
 }
 
 // CreateOrUpdate ...
@@ -53,11 +53,11 @@ func (c SecurityMLAnalyticsSettingsClient) CreateOrUpdate(ctx context.Context, i
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalSecurityMLAnalyticsSettingImplementation(respObj)
+	model, err := UnmarshalSecurityMLAnalyticsSettingImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

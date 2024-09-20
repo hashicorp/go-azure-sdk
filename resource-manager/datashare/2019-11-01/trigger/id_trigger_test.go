@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TriggerId{}
 
 func TestNewTriggerID(t *testing.T) {
-	id := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue", "triggerValue")
+	id := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName", "triggerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewTriggerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.ShareSubscriptionName != "shareSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ShareSubscriptionName'", id.ShareSubscriptionName, "shareSubscriptionValue")
+	if id.ShareSubscriptionName != "shareSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ShareSubscriptionName'", id.ShareSubscriptionName, "shareSubscriptionName")
 	}
 
-	if id.TriggerName != "triggerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TriggerName'", id.TriggerName, "triggerValue")
+	if id.TriggerName != "triggerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TriggerName'", id.TriggerName, "triggerName")
 	}
 }
 
 func TestFormatTriggerID(t *testing.T) {
-	actual := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue", "triggerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers/triggerValue"
+	actual := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName", "triggerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers/triggerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseTriggerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers/triggerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers/triggerName",
 			Expected: &TriggerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
-				ShareSubscriptionName: "shareSubscriptionValue",
-				TriggerName:           "triggerValue",
+				AccountName:           "accountName",
+				ShareSubscriptionName: "shareSubscriptionName",
+				TriggerName:           "triggerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers/triggerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers/triggerName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseTriggerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE/tRiGgErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnNaMe/tRiGgErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers/triggerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers/triggerName",
 			Expected: &TriggerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
-				ShareSubscriptionName: "shareSubscriptionValue",
-				TriggerName:           "triggerValue",
+				AccountName:           "accountName",
+				ShareSubscriptionName: "shareSubscriptionName",
+				TriggerName:           "triggerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/triggers/triggerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shareSubscriptions/shareSubscriptionName/triggers/triggerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE/tRiGgErS/tRiGgErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnNaMe/tRiGgErS/tRiGgErNaMe",
 			Expected: &TriggerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:           "aCcOuNtVaLuE",
-				ShareSubscriptionName: "sHaReSuBsCrIpTiOnVaLuE",
-				TriggerName:           "tRiGgErVaLuE",
+				AccountName:           "aCcOuNtNaMe",
+				ShareSubscriptionName: "sHaReSuBsCrIpTiOnNaMe",
+				TriggerName:           "tRiGgErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE/tRiGgErS/tRiGgErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnNaMe/tRiGgErS/tRiGgErNaMe/extra",
 			Error: true,
 		},
 	}

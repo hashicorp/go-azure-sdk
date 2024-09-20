@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/jobruns` Documentation
 
-The `jobruns` SDK allows for interaction with the Azure Resource Manager Service `storagemover` (API Version `2023-03-01`).
+The `jobruns` SDK allows for interaction with Azure Resource Manager `storagemover` (API Version `2023-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobruns.NewJobRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "projectValue", "jobDefinitionValue", "jobRunValue")
+id := jobruns.NewJobRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "projectName", "jobDefinitionName", "jobRunName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobruns.NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "projectValue", "jobDefinitionValue")
+id := jobruns.NewJobDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "projectName", "jobDefinitionName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

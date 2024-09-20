@@ -30,6 +30,7 @@ type AzureVMWorkloadSAPHanaDatabaseProtectedItem struct {
 	ServerName                *string                                   `json:"serverName,omitempty"`
 
 	// Fields inherited from ProtectedItem
+
 	BackupManagementType             *BackupManagementType `json:"backupManagementType,omitempty"`
 	BackupSetName                    *string               `json:"backupSetName,omitempty"`
 	ContainerName                    *string               `json:"containerName,omitempty"`
@@ -43,11 +44,36 @@ type AzureVMWorkloadSAPHanaDatabaseProtectedItem struct {
 	LastRecoveryPoint                *string               `json:"lastRecoveryPoint,omitempty"`
 	PolicyId                         *string               `json:"policyId,omitempty"`
 	PolicyName                       *string               `json:"policyName,omitempty"`
+	ProtectedItemType                string                `json:"protectedItemType"`
 	ResourceGuardOperationRequests   *[]string             `json:"resourceGuardOperationRequests,omitempty"`
 	SoftDeleteRetentionPeriodInDays  *int64                `json:"softDeleteRetentionPeriodInDays,omitempty"`
 	SourceResourceId                 *string               `json:"sourceResourceId,omitempty"`
 	VaultId                          *string               `json:"vaultId,omitempty"`
 	WorkloadType                     *DataSourceType       `json:"workloadType,omitempty"`
+}
+
+func (s AzureVMWorkloadSAPHanaDatabaseProtectedItem) ProtectedItem() BaseProtectedItemImpl {
+	return BaseProtectedItemImpl{
+		BackupManagementType:             s.BackupManagementType,
+		BackupSetName:                    s.BackupSetName,
+		ContainerName:                    s.ContainerName,
+		CreateMode:                       s.CreateMode,
+		DeferredDeleteTimeInUTC:          s.DeferredDeleteTimeInUTC,
+		DeferredDeleteTimeRemaining:      s.DeferredDeleteTimeRemaining,
+		IsArchiveEnabled:                 s.IsArchiveEnabled,
+		IsDeferredDeleteScheduleUpcoming: s.IsDeferredDeleteScheduleUpcoming,
+		IsRehydrate:                      s.IsRehydrate,
+		IsScheduledForDeferredDelete:     s.IsScheduledForDeferredDelete,
+		LastRecoveryPoint:                s.LastRecoveryPoint,
+		PolicyId:                         s.PolicyId,
+		PolicyName:                       s.PolicyName,
+		ProtectedItemType:                s.ProtectedItemType,
+		ResourceGuardOperationRequests:   s.ResourceGuardOperationRequests,
+		SoftDeleteRetentionPeriodInDays:  s.SoftDeleteRetentionPeriodInDays,
+		SourceResourceId:                 s.SourceResourceId,
+		VaultId:                          s.VaultId,
+		WorkloadType:                     s.WorkloadType,
+	}
 }
 
 func (o *AzureVMWorkloadSAPHanaDatabaseProtectedItem) GetDeferredDeleteTimeInUTCAsTime() (*time.Time, error) {
@@ -85,9 +111,10 @@ func (s AzureVMWorkloadSAPHanaDatabaseProtectedItem) MarshalJSON() ([]byte, erro
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureVMWorkloadSAPHanaDatabaseProtectedItem: %+v", err)
 	}
+
 	decoded["protectedItemType"] = "AzureVmWorkloadSAPHanaDatabase"
 
 	encoded, err = json.Marshal(decoded)

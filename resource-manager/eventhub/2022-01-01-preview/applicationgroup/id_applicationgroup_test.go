@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationGroupId{}
 
 func TestNewApplicationGroupID(t *testing.T) {
-	id := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "applicationGroupValue")
+	id := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "applicationGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewApplicationGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.ApplicationGroupName != "applicationGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupValue")
+	if id.ApplicationGroupName != "applicationGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupName")
 	}
 }
 
 func TestFormatApplicationGroupID(t *testing.T) {
-	actual := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "applicationGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups/applicationGroupValue"
+	actual := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "applicationGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups/applicationGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseApplicationGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups/applicationGroupName",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				NamespaceName:        "namespaceValue",
-				ApplicationGroupName: "applicationGroupValue",
+				NamespaceName:        "namespaceName",
+				ApplicationGroupName: "applicationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups/applicationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups/applicationGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseApplicationGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/aPpLiCaTiOnGrOuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/aPpLiCaTiOnGrOuPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups/applicationGroupName",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				NamespaceName:        "namespaceValue",
-				ApplicationGroupName: "applicationGroupValue",
+				NamespaceName:        "namespaceName",
+				ApplicationGroupName: "applicationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/applicationGroups/applicationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/applicationGroups/applicationGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:        "nAmEsPaCeVaLuE",
-				ApplicationGroupName: "aPpLiCaTiOnGrOuPvAlUe",
+				NamespaceName:        "nAmEsPaCeNaMe",
+				ApplicationGroupName: "aPpLiCaTiOnGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

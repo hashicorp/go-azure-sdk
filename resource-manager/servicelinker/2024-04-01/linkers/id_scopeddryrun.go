@@ -40,7 +40,7 @@ func ParseScopedDryrunID(input string) (*ScopedDryrunId, error) {
 	}
 
 	id := ScopedDryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedDryrunIDInsensitively(input string) (*ScopedDryrunId, error) {
 	}
 
 	id := ScopedDryrunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedDryrunId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceLinker", "Microsoft.ServiceLinker", "Microsoft.ServiceLinker"),
 		resourceids.StaticSegment("staticDryruns", "dryruns", "dryruns"),
-		resourceids.UserSpecifiedSegment("dryrunName", "dryrunValue"),
+		resourceids.UserSpecifiedSegment("dryrunName", "dryrunName"),
 	}
 }
 

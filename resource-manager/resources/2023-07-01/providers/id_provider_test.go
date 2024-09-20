@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ProviderId{}
 
 func TestNewProviderID(t *testing.T) {
-	id := NewProviderID("providerValue")
+	id := NewProviderID("resourceProviderNamespace")
 
-	if id.ProviderName != "providerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
+	if id.ProviderName != "resourceProviderNamespace" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "resourceProviderNamespace")
 	}
 }
 
 func TestFormatProviderID(t *testing.T) {
-	actual := NewProviderID("providerValue").ID()
-	expected := "/providers/providerValue"
+	actual := NewProviderID("resourceProviderNamespace").ID()
+	expected := "/providers/resourceProviderNamespace"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/providerValue",
+			Input: "/providers/resourceProviderNamespace",
 			Expected: &ProviderId{
-				ProviderName: "providerValue",
+				ProviderName: "resourceProviderNamespace",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/providerValue/extra",
+			Input: "/providers/resourceProviderNamespace/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/providerValue",
+			Input: "/providers/resourceProviderNamespace",
 			Expected: &ProviderId{
-				ProviderName: "providerValue",
+				ProviderName: "resourceProviderNamespace",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/providerValue/extra",
+			Input: "/providers/resourceProviderNamespace/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pRoViDeRvAlUe",
+			Input: "/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe",
 			Expected: &ProviderId{
-				ProviderName: "pRoViDeRvAlUe",
+				ProviderName: "rEsOuRcEpRoViDeRnAmEsPaCe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pRoViDeRvAlUe/extra",
+			Input: "/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/extra",
 			Error: true,
 		},
 	}

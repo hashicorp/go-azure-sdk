@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KubernetesClusterId{}
 
 func TestNewKubernetesClusterID(t *testing.T) {
-	id := NewKubernetesClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterValue")
+	id := NewKubernetesClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewKubernetesClusterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.KubernetesClusterName != "kubernetesClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KubernetesClusterName'", id.KubernetesClusterName, "kubernetesClusterValue")
+	if id.KubernetesClusterName != "kubernetesClusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'KubernetesClusterName'", id.KubernetesClusterName, "kubernetesClusterName")
 	}
 }
 
 func TestFormatKubernetesClusterID(t *testing.T) {
-	actual := NewKubernetesClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue"
+	actual := NewKubernetesClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseKubernetesClusterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName",
 			Expected: &KubernetesClusterId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				KubernetesClusterName: "kubernetesClusterValue",
+				KubernetesClusterName: "kubernetesClusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseKubernetesClusterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName",
 			Expected: &KubernetesClusterId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				KubernetesClusterName: "kubernetesClusterValue",
+				KubernetesClusterName: "kubernetesClusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe",
 			Expected: &KubernetesClusterId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				KubernetesClusterName: "kUbErNeTeScLuStErVaLuE",
+				KubernetesClusterName: "kUbErNeTeScLuStErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe/extra",
 			Error: true,
 		},
 	}

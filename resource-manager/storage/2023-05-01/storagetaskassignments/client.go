@@ -15,7 +15,7 @@ type StorageTaskAssignmentsClient struct {
 }
 
 func NewStorageTaskAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageTaskAssignmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "storagetaskassignments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "storagetaskassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageTaskAssignmentsClient: %+v", err)
 	}

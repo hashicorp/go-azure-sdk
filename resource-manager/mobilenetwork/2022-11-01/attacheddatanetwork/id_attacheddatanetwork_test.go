@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AttachedDataNetworkId{}
 
 func TestNewAttachedDataNetworkID(t *testing.T) {
-	id := NewAttachedDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCoreDataPlaneValue", "attachedDataNetworkValue")
+	id := NewAttachedDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCoreDataPlaneName", "attachedDataNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewAttachedDataNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PacketCoreControlPlaneName != "packetCoreControlPlaneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneName'", id.PacketCoreControlPlaneName, "packetCoreControlPlaneValue")
+	if id.PacketCoreControlPlaneName != "packetCoreControlPlaneName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneName'", id.PacketCoreControlPlaneName, "packetCoreControlPlaneName")
 	}
 
-	if id.PacketCoreDataPlaneName != "packetCoreDataPlaneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreDataPlaneName'", id.PacketCoreDataPlaneName, "packetCoreDataPlaneValue")
+	if id.PacketCoreDataPlaneName != "packetCoreDataPlaneName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreDataPlaneName'", id.PacketCoreDataPlaneName, "packetCoreDataPlaneName")
 	}
 
-	if id.AttachedDataNetworkName != "attachedDataNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachedDataNetworkName'", id.AttachedDataNetworkName, "attachedDataNetworkValue")
+	if id.AttachedDataNetworkName != "attachedDataNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachedDataNetworkName'", id.AttachedDataNetworkName, "attachedDataNetworkName")
 	}
 }
 
 func TestFormatAttachedDataNetworkID(t *testing.T) {
-	actual := NewAttachedDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCoreDataPlaneValue", "attachedDataNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks/attachedDataNetworkValue"
+	actual := NewAttachedDataNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCoreDataPlaneName", "attachedDataNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks/attachedDataNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseAttachedDataNetworkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks/attachedDataNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks/attachedDataNetworkName",
 			Expected: &AttachedDataNetworkId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				PacketCoreControlPlaneName: "packetCoreControlPlaneValue",
-				PacketCoreDataPlaneName:    "packetCoreDataPlaneValue",
-				AttachedDataNetworkName:    "attachedDataNetworkValue",
+				PacketCoreControlPlaneName: "packetCoreControlPlaneName",
+				PacketCoreDataPlaneName:    "packetCoreDataPlaneName",
+				AttachedDataNetworkName:    "attachedDataNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks/attachedDataNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks/attachedDataNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseAttachedDataNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/pAcKeTcOrEdAtApLaNeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/pAcKeTcOrEdAtApLaNeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeVaLuE/aTtAcHeDdAtAnEtWoRkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeNaMe/aTtAcHeDdAtAnEtWoRkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks/attachedDataNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks/attachedDataNetworkName",
 			Expected: &AttachedDataNetworkId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				PacketCoreControlPlaneName: "packetCoreControlPlaneValue",
-				PacketCoreDataPlaneName:    "packetCoreDataPlaneValue",
-				AttachedDataNetworkName:    "attachedDataNetworkValue",
+				PacketCoreControlPlaneName: "packetCoreControlPlaneName",
+				PacketCoreDataPlaneName:    "packetCoreDataPlaneName",
+				AttachedDataNetworkName:    "attachedDataNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneValue/packetCoreDataPlanes/packetCoreDataPlaneValue/attachedDataNetworks/attachedDataNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/packetCoreControlPlaneName/packetCoreDataPlanes/packetCoreDataPlaneName/attachedDataNetworks/attachedDataNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeVaLuE/aTtAcHeDdAtAnEtWoRkS/aTtAcHeDdAtAnEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeNaMe/aTtAcHeDdAtAnEtWoRkS/aTtAcHeDdAtAnEtWoRkNaMe",
 			Expected: &AttachedDataNetworkId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				PacketCoreControlPlaneName: "pAcKeTcOrEcOnTrOlPlAnEvAlUe",
-				PacketCoreDataPlaneName:    "pAcKeTcOrEdAtApLaNeVaLuE",
-				AttachedDataNetworkName:    "aTtAcHeDdAtAnEtWoRkVaLuE",
+				PacketCoreControlPlaneName: "pAcKeTcOrEcOnTrOlPlAnEnAmE",
+				PacketCoreDataPlaneName:    "pAcKeTcOrEdAtApLaNeNaMe",
+				AttachedDataNetworkName:    "aTtAcHeDdAtAnEtWoRkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEvAlUe/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeVaLuE/aTtAcHeDdAtAnEtWoRkS/aTtAcHeDdAtAnEtWoRkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEs/pAcKeTcOrEcOnTrOlPlAnEnAmE/pAcKeTcOrEdAtApLaNeS/pAcKeTcOrEdAtApLaNeNaMe/aTtAcHeDdAtAnEtWoRkS/aTtAcHeDdAtAnEtWoRkNaMe/extra",
 			Error: true,
 		},
 	}

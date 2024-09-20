@@ -45,7 +45,6 @@ func (c CommunityGalleryImageVersionsClient) Get(ctx context.Context, id Communi
 
 	var model CommunityGalleryImageVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

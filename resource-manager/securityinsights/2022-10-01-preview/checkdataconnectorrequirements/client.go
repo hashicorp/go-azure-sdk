@@ -15,7 +15,7 @@ type CheckDataConnectorRequirementsClient struct {
 }
 
 func NewCheckDataConnectorRequirementsClientWithBaseURI(sdkApi sdkEnv.Api) (*CheckDataConnectorRequirementsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "checkdataconnectorrequirements", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "checkdataconnectorrequirements", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CheckDataConnectorRequirementsClient: %+v", err)
 	}

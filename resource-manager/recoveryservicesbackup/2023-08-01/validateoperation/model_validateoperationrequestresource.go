@@ -30,7 +30,7 @@ func (s *ValidateOperationRequestResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalValidateOperationRequestImplementation(v)
+		impl, err := UnmarshalValidateOperationRequestImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ValidateOperationRequestResource': %+v", err)
 		}

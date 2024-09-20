@@ -46,7 +46,7 @@ func ParseVirtualMachineExtensionID(input string) (*VirtualMachineExtensionId, e
 	}
 
 	id := VirtualMachineExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualMachineExtensionIDInsensitively(input string) (*VirtualMachineE
 	}
 
 	id := VirtualMachineExtensionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id VirtualMachineExtensionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticVirtualMachineScaleSets", "virtualMachineScaleSets", "virtualMachineScaleSets"),
-		resourceids.UserSpecifiedSegment("virtualMachineScaleSetName", "virtualMachineScaleSetValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineScaleSetName", "virtualMachineScaleSetName"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("instanceId", "instanceIdValue"),
+		resourceids.UserSpecifiedSegment("instanceId", "instanceId"),
 		resourceids.StaticSegment("staticExtensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("extensionName", "extensionValue"),
+		resourceids.UserSpecifiedSegment("extensionName", "vmExtensionName"),
 	}
 }
 

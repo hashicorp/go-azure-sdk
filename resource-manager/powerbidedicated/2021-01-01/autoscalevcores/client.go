@@ -15,7 +15,7 @@ type AutoScaleVCoresClient struct {
 }
 
 func NewAutoScaleVCoresClientWithBaseURI(sdkApi sdkEnv.Api) (*AutoScaleVCoresClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "autoscalevcores", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "autoscalevcores", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AutoScaleVCoresClient: %+v", err)
 	}

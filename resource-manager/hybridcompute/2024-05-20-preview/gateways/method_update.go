@@ -49,7 +49,6 @@ func (c GatewaysClient) Update(ctx context.Context, id GatewayId, input GatewayU
 
 	var model Gateway
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -14,6 +14,14 @@ type VMwareCbtEventDetails struct {
 	MigrationItemName *string `json:"migrationItemName,omitempty"`
 
 	// Fields inherited from EventProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtEventDetails) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return BaseEventProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtEventDetails{}
@@ -27,9 +35,10 @@ func (s VMwareCbtEventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtEventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

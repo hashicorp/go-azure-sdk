@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/trigger` Documentation
 
-The `trigger` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `trigger` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "triggerValue")
+id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "triggerName")
 
 read, err := client.Get(ctx, id, trigger.DefaultGetOperationOptions())
 if err != nil {

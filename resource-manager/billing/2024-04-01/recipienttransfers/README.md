@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/recipienttransfers` Documentation
 
-The `recipienttransfers` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `recipienttransfers` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recipienttransfers.NewTransferID("transferValue")
+id := recipienttransfers.NewTransferID("transferName")
 
 payload := recipienttransfers.AcceptTransferRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recipienttransfers.NewTransferID("transferValue")
+id := recipienttransfers.NewTransferID("transferName")
 
 read, err := client.Decline(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recipienttransfers.NewTransferID("transferValue")
+id := recipienttransfers.NewTransferID("transferName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recipienttransfers.NewTransferID("transferValue")
+id := recipienttransfers.NewTransferID("transferName")
 
 payload := recipienttransfers.AcceptTransferRequest{
 	// ...

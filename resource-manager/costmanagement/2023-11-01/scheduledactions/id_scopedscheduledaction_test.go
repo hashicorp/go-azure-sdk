@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedScheduledActionId{}
 
 func TestNewScopedScheduledActionID(t *testing.T) {
-	id := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "scheduledActionValue")
+	id := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "name")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ScheduledActionName != "scheduledActionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "scheduledActionValue")
+	if id.ScheduledActionName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "name")
 	}
 }
 
 func TestFormatScopedScheduledActionID(t *testing.T) {
-	actual := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "scheduledActionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue"
+	actual := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedScheduledActionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/name",
 			Expected: &ScopedScheduledActionId{
 				Scope:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ScheduledActionName: "scheduledActionValue",
+				ScheduledActionName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/name/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedScheduledActionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/name",
 			Expected: &ScopedScheduledActionId{
 				Scope:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ScheduledActionName: "scheduledActionValue",
+				ScheduledActionName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmE",
 			Expected: &ScopedScheduledActionId{
 				Scope:               "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ScheduledActionName: "sChEdUlEdAcTiOnVaLuE",
+				ScheduledActionName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmE/extra",
 			Error: true,
 		},
 	}

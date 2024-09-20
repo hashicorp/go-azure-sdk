@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DomainServiceId{}
 
 func TestNewDomainServiceID(t *testing.T) {
-	id := NewDomainServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceValue")
+	id := NewDomainServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDomainServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DomainServiceName != "domainServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainServiceName'", id.DomainServiceName, "domainServiceValue")
+	if id.DomainServiceName != "domainServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainServiceName'", id.DomainServiceName, "domainServiceName")
 	}
 }
 
 func TestFormatDomainServiceID(t *testing.T) {
-	actual := NewDomainServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue"
+	actual := NewDomainServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDomainServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName",
 			Expected: &DomainServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainServiceName: "domainServiceValue",
+				DomainServiceName: "domainServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDomainServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName",
 			Expected: &DomainServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainServiceName: "domainServiceValue",
+				DomainServiceName: "domainServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AAD/domainServices/domainServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe",
 			Expected: &DomainServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DomainServiceName: "dOmAiNsErViCeVaLuE",
+				DomainServiceName: "dOmAiNsErViCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAd/dOmAiNsErViCeS/dOmAiNsErViCeNaMe/extra",
 			Error: true,
 		},
 	}

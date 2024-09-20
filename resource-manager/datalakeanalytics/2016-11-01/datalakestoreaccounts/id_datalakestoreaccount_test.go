@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataLakeStoreAccountId{}
 
 func TestNewDataLakeStoreAccountID(t *testing.T) {
-	id := NewDataLakeStoreAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "dataLakeStoreAccountValue")
+	id := NewDataLakeStoreAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "dataLakeStoreAccountName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDataLakeStoreAccountID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.DataLakeStoreAccountName != "dataLakeStoreAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataLakeStoreAccountName'", id.DataLakeStoreAccountName, "dataLakeStoreAccountValue")
+	if id.DataLakeStoreAccountName != "dataLakeStoreAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataLakeStoreAccountName'", id.DataLakeStoreAccountName, "dataLakeStoreAccountName")
 	}
 }
 
 func TestFormatDataLakeStoreAccountID(t *testing.T) {
-	actual := NewDataLakeStoreAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "dataLakeStoreAccountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts/dataLakeStoreAccountValue"
+	actual := NewDataLakeStoreAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "dataLakeStoreAccountName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts/dataLakeStoreAccountName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDataLakeStoreAccountID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts/dataLakeStoreAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts/dataLakeStoreAccountName",
 			Expected: &DataLakeStoreAccountId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				AccountName:              "accountValue",
-				DataLakeStoreAccountName: "dataLakeStoreAccountValue",
+				AccountName:              "accountName",
+				DataLakeStoreAccountName: "dataLakeStoreAccountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts/dataLakeStoreAccountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts/dataLakeStoreAccountName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDataLakeStoreAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/dAtAlAkEsToReAcCoUnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/dAtAlAkEsToReAcCoUnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts/dataLakeStoreAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts/dataLakeStoreAccountName",
 			Expected: &DataLakeStoreAccountId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				AccountName:              "accountValue",
-				DataLakeStoreAccountName: "dataLakeStoreAccountValue",
+				AccountName:              "accountName",
+				DataLakeStoreAccountName: "dataLakeStoreAccountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountValue/dataLakeStoreAccounts/dataLakeStoreAccountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataLakeAnalytics/accounts/accountName/dataLakeStoreAccounts/dataLakeStoreAccountName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/dAtAlAkEsToReAcCoUnTs/dAtAlAkEsToReAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/dAtAlAkEsToReAcCoUnTs/dAtAlAkEsToReAcCoUnTnAmE",
 			Expected: &DataLakeStoreAccountId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:              "aCcOuNtVaLuE",
-				DataLakeStoreAccountName: "dAtAlAkEsToReAcCoUnTvAlUe",
+				AccountName:              "aCcOuNtNaMe",
+				DataLakeStoreAccountName: "dAtAlAkEsToReAcCoUnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtVaLuE/dAtAlAkEsToReAcCoUnTs/dAtAlAkEsToReAcCoUnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAlAkEaNaLyTiCs/aCcOuNtS/aCcOuNtNaMe/dAtAlAkEsToReAcCoUnTs/dAtAlAkEsToReAcCoUnTnAmE/extra",
 			Error: true,
 		},
 	}

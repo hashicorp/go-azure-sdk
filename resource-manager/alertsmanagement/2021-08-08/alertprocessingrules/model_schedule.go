@@ -41,7 +41,7 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Recurrence, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRecurrenceImplementation(val)
+			impl, err := UnmarshalRecurrenceImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Recurrences' for 'Schedule': %+v", i, err)
 			}

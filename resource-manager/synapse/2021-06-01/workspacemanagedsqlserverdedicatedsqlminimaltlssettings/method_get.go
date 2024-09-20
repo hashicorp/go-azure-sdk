@@ -45,7 +45,6 @@ func (c WorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClient) Get(ctx c
 
 	var model DedicatedSQLMinimalTLSSettings
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

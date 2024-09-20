@@ -22,6 +22,7 @@ type SweepJob struct {
 	Trial             TrialComponent         `json:"trial"`
 
 	// Fields inherited from JobBase
+
 	ComponentId    *string                `json:"componentId,omitempty"`
 	ComputeId      *string                `json:"computeId,omitempty"`
 	Description    *string                `json:"description,omitempty"`
@@ -29,10 +30,28 @@ type SweepJob struct {
 	ExperimentName *string                `json:"experimentName,omitempty"`
 	Identity       IdentityConfiguration  `json:"identity"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
+	JobType        JobType                `json:"jobType"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
 	Status         *JobStatus             `json:"status,omitempty"`
 	Tags           *map[string]string     `json:"tags,omitempty"`
+}
+
+func (s SweepJob) JobBase() BaseJobBaseImpl {
+	return BaseJobBaseImpl{
+		ComponentId:    s.ComponentId,
+		ComputeId:      s.ComputeId,
+		Description:    s.Description,
+		DisplayName:    s.DisplayName,
+		ExperimentName: s.ExperimentName,
+		Identity:       s.Identity,
+		IsArchived:     s.IsArchived,
+		JobType:        s.JobType,
+		Properties:     s.Properties,
+		Services:       s.Services,
+		Status:         s.Status,
+		Tags:           s.Tags,
+	}
 }
 
 var _ json.Marshaler = SweepJob{}
@@ -46,9 +65,10 @@ func (s SweepJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SweepJob: %+v", err)
 	}
+
 	decoded["jobType"] = "Sweep"
 
 	encoded, err = json.Marshal(decoded)
@@ -74,6 +94,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
+	s.JobType = decoded.JobType
 	s.Limits = decoded.Limits
 	s.Objective = decoded.Objective
 	s.Properties = decoded.Properties
@@ -90,7 +111,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["earlyTermination"]; ok {
-		impl, err := unmarshalEarlyTerminationPolicyImplementation(v)
+		impl, err := UnmarshalEarlyTerminationPolicyImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EarlyTermination' for 'SweepJob': %+v", err)
 		}
@@ -98,7 +119,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["identity"]; ok {
-		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		impl, err := UnmarshalIdentityConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'SweepJob': %+v", err)
 		}
@@ -113,7 +134,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobInput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Inputs' for 'SweepJob': %+v", key, err)
 			}
@@ -130,7 +151,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobOutput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Outputs' for 'SweepJob': %+v", key, err)
 			}
@@ -140,7 +161,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["samplingAlgorithm"]; ok {
-		impl, err := unmarshalSamplingAlgorithmImplementation(v)
+		impl, err := UnmarshalSamplingAlgorithmImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SamplingAlgorithm' for 'SweepJob': %+v", err)
 		}

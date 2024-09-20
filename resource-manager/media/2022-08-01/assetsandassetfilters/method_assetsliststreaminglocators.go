@@ -46,7 +46,6 @@ func (c AssetsAndAssetFiltersClient) AssetsListStreamingLocators(ctx context.Con
 
 	var model ListStreamingLocatorsResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

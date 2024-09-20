@@ -49,7 +49,6 @@ func (c SettingsClient) Patch(ctx context.Context, id ScopedSettingId, input Set
 
 	var model Settings
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

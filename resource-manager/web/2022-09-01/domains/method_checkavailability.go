@@ -51,7 +51,6 @@ func (c DomainsClient) CheckAvailability(ctx context.Context, id commonids.Subsc
 
 	var model DomainAvailabilityCheckResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

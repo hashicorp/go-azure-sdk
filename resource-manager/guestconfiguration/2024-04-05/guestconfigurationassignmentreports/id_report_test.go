@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReportId{}
 
 func TestNewReportID(t *testing.T) {
-	id := NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "guestConfigurationAssignmentValue", "reportValue")
+	id := NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name", "id")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewReportID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualMachineScaleSetName != "virtualMachineScaleSetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineScaleSetName'", id.VirtualMachineScaleSetName, "virtualMachineScaleSetValue")
+	if id.VirtualMachineScaleSetName != "vmssName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineScaleSetName'", id.VirtualMachineScaleSetName, "vmssName")
 	}
 
-	if id.GuestConfigurationAssignmentName != "guestConfigurationAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GuestConfigurationAssignmentName'", id.GuestConfigurationAssignmentName, "guestConfigurationAssignmentValue")
+	if id.GuestConfigurationAssignmentName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'GuestConfigurationAssignmentName'", id.GuestConfigurationAssignmentName, "name")
 	}
 
-	if id.ReportName != "reportValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReportName'", id.ReportName, "reportValue")
+	if id.ReportName != "id" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReportName'", id.ReportName, "id")
 	}
 }
 
 func TestFormatReportID(t *testing.T) {
-	actual := NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "guestConfigurationAssignmentValue", "reportValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports/reportValue"
+	actual := NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name", "id").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports/id"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,48 +91,48 @@ func TestParseReportID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports/reportValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports/id",
 			Expected: &ReportId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				VirtualMachineScaleSetName:       "virtualMachineScaleSetValue",
-				GuestConfigurationAssignmentName: "guestConfigurationAssignmentValue",
-				ReportName:                       "reportValue",
+				VirtualMachineScaleSetName:       "vmssName",
+				GuestConfigurationAssignmentName: "name",
+				ReportName:                       "id",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports/reportValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports/id/extra",
 			Error: true,
 		},
 	}
@@ -257,94 +257,94 @@ func TestParseReportIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe/rEpOrTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/nAmE/rEpOrTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports/reportValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports/id",
 			Expected: &ReportId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				VirtualMachineScaleSetName:       "virtualMachineScaleSetValue",
-				GuestConfigurationAssignmentName: "guestConfigurationAssignmentValue",
-				ReportName:                       "reportValue",
+				VirtualMachineScaleSetName:       "vmssName",
+				GuestConfigurationAssignmentName: "name",
+				ReportName:                       "id",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/reports/reportValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/name/reports/id/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe/rEpOrTs/rEpOrTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/nAmE/rEpOrTs/iD",
 			Expected: &ReportId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualMachineScaleSetName:       "vIrTuAlMaChInEsCaLeSeTvAlUe",
-				GuestConfigurationAssignmentName: "gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe",
-				ReportName:                       "rEpOrTvAlUe",
+				VirtualMachineScaleSetName:       "vMsSnAmE",
+				GuestConfigurationAssignmentName: "nAmE",
+				ReportName:                       "iD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe/rEpOrTs/rEpOrTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vMsSnAmE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/nAmE/rEpOrTs/iD/extra",
 			Error: true,
 		},
 	}

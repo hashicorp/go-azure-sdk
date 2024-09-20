@@ -42,7 +42,7 @@ func (s *AutonomousDatabase) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalAutonomousDatabaseBasePropertiesImplementation(v)
+		impl, err := UnmarshalAutonomousDatabaseBasePropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'AutonomousDatabase': %+v", err)
 		}

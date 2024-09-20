@@ -47,7 +47,6 @@ func (c DedicatedHostClient) ListAvailableSizes(ctx context.Context, id commonid
 
 	var model DedicatedHostSizeListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

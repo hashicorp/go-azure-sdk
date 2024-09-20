@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HybridRunbookWorkerGroupId{}
 
 func TestNewHybridRunbookWorkerGroupID(t *testing.T) {
-	id := NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue")
+	id := NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "hybridRunbookWorkerGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHybridRunbookWorkerGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutomationAccountName != "automationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
+	if id.AutomationAccountName != "automationAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountName")
 	}
 
-	if id.HybridRunbookWorkerGroupName != "hybridRunbookWorkerGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HybridRunbookWorkerGroupName'", id.HybridRunbookWorkerGroupName, "hybridRunbookWorkerGroupValue")
+	if id.HybridRunbookWorkerGroupName != "hybridRunbookWorkerGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HybridRunbookWorkerGroupName'", id.HybridRunbookWorkerGroupName, "hybridRunbookWorkerGroupName")
 	}
 }
 
 func TestFormatHybridRunbookWorkerGroupID(t *testing.T) {
-	actual := NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupValue"
+	actual := NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "hybridRunbookWorkerGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHybridRunbookWorkerGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupName",
 			Expected: &HybridRunbookWorkerGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				AutomationAccountName:        "automationAccountValue",
-				HybridRunbookWorkerGroupName: "hybridRunbookWorkerGroupValue",
+				AutomationAccountName:        "automationAccountName",
+				HybridRunbookWorkerGroupName: "hybridRunbookWorkerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHybridRunbookWorkerGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/hYbRiDrUnBoOkWoRkErGrOuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/hYbRiDrUnBoOkWoRkErGrOuPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupName",
 			Expected: &HybridRunbookWorkerGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				AutomationAccountName:        "automationAccountValue",
-				HybridRunbookWorkerGroupName: "hybridRunbookWorkerGroupValue",
+				AutomationAccountName:        "automationAccountName",
+				HybridRunbookWorkerGroupName: "hybridRunbookWorkerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/hybridRunbookWorkerGroups/hybridRunbookWorkerGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/hYbRiDrUnBoOkWoRkErGrOuPs/hYbRiDrUnBoOkWoRkErGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/hYbRiDrUnBoOkWoRkErGrOuPs/hYbRiDrUnBoOkWoRkErGrOuPnAmE",
 			Expected: &HybridRunbookWorkerGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				AutomationAccountName:        "aUtOmAtIoNaCcOuNtVaLuE",
-				HybridRunbookWorkerGroupName: "hYbRiDrUnBoOkWoRkErGrOuPvAlUe",
+				AutomationAccountName:        "aUtOmAtIoNaCcOuNtNaMe",
+				HybridRunbookWorkerGroupName: "hYbRiDrUnBoOkWoRkErGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/hYbRiDrUnBoOkWoRkErGrOuPs/hYbRiDrUnBoOkWoRkErGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/hYbRiDrUnBoOkWoRkErGrOuPs/hYbRiDrUnBoOkWoRkErGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

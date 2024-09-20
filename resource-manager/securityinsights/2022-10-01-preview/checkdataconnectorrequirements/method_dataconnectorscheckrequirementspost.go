@@ -50,7 +50,6 @@ func (c CheckDataConnectorRequirementsClient) DataConnectorsCheckRequirementsPos
 
 	var model DataConnectorRequirementsState
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

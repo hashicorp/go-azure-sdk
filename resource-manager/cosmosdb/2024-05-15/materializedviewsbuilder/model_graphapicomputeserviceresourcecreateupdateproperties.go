@@ -13,8 +13,18 @@ var _ ServiceResourceCreateUpdateProperties = GraphAPIComputeServiceResourceCrea
 type GraphAPIComputeServiceResourceCreateUpdateProperties struct {
 
 	// Fields inherited from ServiceResourceCreateUpdateProperties
+
 	InstanceCount *int64       `json:"instanceCount,omitempty"`
 	InstanceSize  *ServiceSize `json:"instanceSize,omitempty"`
+	ServiceType   ServiceType  `json:"serviceType"`
+}
+
+func (s GraphAPIComputeServiceResourceCreateUpdateProperties) ServiceResourceCreateUpdateProperties() BaseServiceResourceCreateUpdatePropertiesImpl {
+	return BaseServiceResourceCreateUpdatePropertiesImpl{
+		InstanceCount: s.InstanceCount,
+		InstanceSize:  s.InstanceSize,
+		ServiceType:   s.ServiceType,
+	}
 }
 
 var _ json.Marshaler = GraphAPIComputeServiceResourceCreateUpdateProperties{}
@@ -28,9 +38,10 @@ func (s GraphAPIComputeServiceResourceCreateUpdateProperties) MarshalJSON() ([]b
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling GraphAPIComputeServiceResourceCreateUpdateProperties: %+v", err)
 	}
+
 	decoded["serviceType"] = "GraphAPICompute"
 
 	encoded, err = json.Marshal(decoded)

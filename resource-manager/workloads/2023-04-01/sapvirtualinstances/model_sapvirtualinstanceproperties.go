@@ -44,7 +44,7 @@ func (s *SAPVirtualInstanceProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["configuration"]; ok {
-		impl, err := unmarshalSAPConfigurationImplementation(v)
+		impl, err := UnmarshalSAPConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Configuration' for 'SAPVirtualInstanceProperties': %+v", err)
 		}

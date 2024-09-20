@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AgreementId{}
 
 func TestNewAgreementID(t *testing.T) {
-	id := NewAgreementID("billingAccountValue", "agreementValue")
+	id := NewAgreementID("billingAccountName", "agreementName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.AgreementName != "agreementValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementName'", id.AgreementName, "agreementValue")
+	if id.AgreementName != "agreementName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementName'", id.AgreementName, "agreementName")
 	}
 }
 
 func TestFormatAgreementID(t *testing.T) {
-	actual := NewAgreementID("billingAccountValue", "agreementValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements/agreementValue"
+	actual := NewAgreementID("billingAccountName", "agreementName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements/agreementName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseAgreementID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements/agreementValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements/agreementName",
 			Expected: &AgreementId{
-				BillingAccountName: "billingAccountValue",
-				AgreementName:      "agreementValue",
+				BillingAccountName: "billingAccountName",
+				AgreementName:      "agreementName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements/agreementValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements/agreementName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseAgreementIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aGrEeMeNtS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aGrEeMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements/agreementValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements/agreementName",
 			Expected: &AgreementId{
-				BillingAccountName: "billingAccountValue",
-				AgreementName:      "agreementValue",
+				BillingAccountName: "billingAccountName",
+				AgreementName:      "agreementName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/agreements/agreementValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/agreements/agreementName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aGrEeMeNtS/aGrEeMeNtVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aGrEeMeNtS/aGrEeMeNtNaMe",
 			Expected: &AgreementId{
-				BillingAccountName: "bIlLiNgAcCoUnTvAlUe",
-				AgreementName:      "aGrEeMeNtVaLuE",
+				BillingAccountName: "bIlLiNgAcCoUnTnAmE",
+				AgreementName:      "aGrEeMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aGrEeMeNtS/aGrEeMeNtVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aGrEeMeNtS/aGrEeMeNtNaMe/extra",
 			Error: true,
 		},
 	}

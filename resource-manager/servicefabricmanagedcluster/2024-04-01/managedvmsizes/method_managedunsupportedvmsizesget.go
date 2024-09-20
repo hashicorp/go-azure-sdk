@@ -45,7 +45,6 @@ func (c ManagedVMSizesClient) ManagedUnsupportedVMSizesGet(ctx context.Context, 
 
 	var model ManagedVMSize
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

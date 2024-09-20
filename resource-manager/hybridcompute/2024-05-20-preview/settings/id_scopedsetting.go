@@ -40,7 +40,7 @@ func ParseScopedSettingID(input string) (*ScopedSettingId, error) {
 	}
 
 	id := ScopedSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedSettingIDInsensitively(input string) (*ScopedSettingId, error) {
 	}
 
 	id := ScopedSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticSettings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("settingName", "settingValue"),
+		resourceids.UserSpecifiedSegment("settingName", "settingsResourceName"),
 	}
 }
 

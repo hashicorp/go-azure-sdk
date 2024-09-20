@@ -36,6 +36,7 @@ func (o WorkspaceTagUpdateOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceTagUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c TagClient) WorkspaceTagUpdate(ctx context.Context, id WorkspaceTagId, in
 
 	var model TagContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

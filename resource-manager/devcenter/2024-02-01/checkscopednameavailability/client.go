@@ -15,7 +15,7 @@ type CheckScopedNameAvailabilityClient struct {
 }
 
 func NewCheckScopedNameAvailabilityClientWithBaseURI(sdkApi sdkEnv.Api) (*CheckScopedNameAvailabilityClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "checkscopednameavailability", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "checkscopednameavailability", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CheckScopedNameAvailabilityClient: %+v", err)
 	}

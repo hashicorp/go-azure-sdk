@@ -41,6 +41,7 @@ func (o ListAtScopeOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListAtScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

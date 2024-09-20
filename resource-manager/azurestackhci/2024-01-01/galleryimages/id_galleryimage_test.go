@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &GalleryImageId{}
 
 func TestNewGalleryImageID(t *testing.T) {
-	id := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryImageValue")
+	id := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryImageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewGalleryImageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.GalleryImageName != "galleryImageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryImageName'", id.GalleryImageName, "galleryImageValue")
+	if id.GalleryImageName != "galleryImageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GalleryImageName'", id.GalleryImageName, "galleryImageName")
 	}
 }
 
 func TestFormatGalleryImageID(t *testing.T) {
-	actual := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryImageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageValue"
+	actual := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryImageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseGalleryImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageName",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				GalleryImageName:  "galleryImageValue",
+				GalleryImageName:  "galleryImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseGalleryImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageName",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				GalleryImageName:  "galleryImageValue",
+				GalleryImageName:  "galleryImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/galleryImages/galleryImageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/gAlLeRyImAgEs/gAlLeRyImAgEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/gAlLeRyImAgEs/gAlLeRyImAgEnAmE",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				GalleryImageName:  "gAlLeRyImAgEvAlUe",
+				GalleryImageName:  "gAlLeRyImAgEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/gAlLeRyImAgEs/gAlLeRyImAgEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/gAlLeRyImAgEs/gAlLeRyImAgEnAmE/extra",
 			Error: true,
 		},
 	}

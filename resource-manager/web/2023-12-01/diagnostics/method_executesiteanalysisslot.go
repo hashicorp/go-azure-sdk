@@ -36,6 +36,7 @@ func (o ExecuteSiteAnalysisSlotOperationOptions) ToHeaders() *client.Headers {
 
 func (o ExecuteSiteAnalysisSlotOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -82,7 +83,6 @@ func (c DiagnosticsClient) ExecuteSiteAnalysisSlot(ctx context.Context, id Diagn
 
 	var model DiagnosticAnalysis
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

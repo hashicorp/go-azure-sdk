@@ -44,7 +44,7 @@ func ParseStreamingLocatorID(input string) (*StreamingLocatorId, error) {
 	}
 
 	id := StreamingLocatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStreamingLocatorIDInsensitively(input string) (*StreamingLocatorId, er
 	}
 
 	id := StreamingLocatorId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StreamingLocatorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticStreamingLocators", "streamingLocators", "streamingLocators"),
-		resourceids.UserSpecifiedSegment("streamingLocatorName", "streamingLocatorValue"),
+		resourceids.UserSpecifiedSegment("streamingLocatorName", "streamingLocatorName"),
 	}
 }
 

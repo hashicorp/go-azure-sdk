@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VersionId{}
 
 func TestNewVersionID(t *testing.T) {
-	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
+	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BatchAccountName != "batchAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BatchAccountName'", id.BatchAccountName, "batchAccountValue")
+	if id.BatchAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BatchAccountName'", id.BatchAccountName, "accountName")
 	}
 
-	if id.ApplicationName != "applicationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationValue")
+	if id.ApplicationName != "applicationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationName")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 }
 
 func TestFormatVersionID(t *testing.T) {
-	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions/versionValue"
+	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "applicationName", "versionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions/versionName",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BatchAccountName:  "batchAccountValue",
-				ApplicationName:   "applicationValue",
-				VersionName:       "versionValue",
+				BatchAccountName:  "accountName",
+				ApplicationName:   "applicationName",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/aPpLiCaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/aPpLiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions/versionName",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BatchAccountName:  "batchAccountValue",
-				ApplicationName:   "applicationValue",
-				VersionName:       "versionValue",
+				BatchAccountName:  "accountName",
+				ApplicationName:   "applicationName",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/applications/applicationValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/applications/applicationName/versions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe/vErSiOnS/vErSiOnNaMe",
 			Expected: &VersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				BatchAccountName:  "bAtChAcCoUnTvAlUe",
-				ApplicationName:   "aPpLiCaTiOnVaLuE",
-				VersionName:       "vErSiOnVaLuE",
+				BatchAccountName:  "aCcOuNtNaMe",
+				ApplicationName:   "aPpLiCaTiOnNaMe",
+				VersionName:       "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe/vErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

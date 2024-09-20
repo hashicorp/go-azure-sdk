@@ -49,7 +49,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["forecastHorizon"]; ok {
-		impl, err := unmarshalForecastHorizonImplementation(v)
+		impl, err := UnmarshalForecastHorizonImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ForecastHorizon' for 'ForecastingSettings': %+v", err)
 		}
@@ -57,7 +57,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["seasonality"]; ok {
-		impl, err := unmarshalSeasonalityImplementation(v)
+		impl, err := UnmarshalSeasonalityImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Seasonality' for 'ForecastingSettings': %+v", err)
 		}
@@ -65,7 +65,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["targetLags"]; ok {
-		impl, err := unmarshalTargetLagsImplementation(v)
+		impl, err := UnmarshalTargetLagsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetLags' for 'ForecastingSettings': %+v", err)
 		}
@@ -73,7 +73,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["targetRollingWindowSize"]; ok {
-		impl, err := unmarshalTargetRollingWindowSizeImplementation(v)
+		impl, err := UnmarshalTargetRollingWindowSizeImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetRollingWindowSize' for 'ForecastingSettings': %+v", err)
 		}

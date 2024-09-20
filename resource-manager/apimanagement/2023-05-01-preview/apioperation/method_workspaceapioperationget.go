@@ -45,7 +45,6 @@ func (c ApiOperationClient) WorkspaceApiOperationGet(ctx context.Context, id Api
 
 	var model OperationContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

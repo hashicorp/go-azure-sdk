@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/dataversion` Documentation
 
-The `dataversion` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2024-04-01`).
+The `dataversion` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataValue", "versionValue")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 payload := dataversion.DataVersionBaseResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataValue", "versionValue")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataValue", "versionValue")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewWorkspaceDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataValue")
+id := dataversion.NewWorkspaceDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 // alternatively `client.List(ctx, id, dataversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, dataversion.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataValue", "versionValue")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 payload := dataversion.DestinationAsset{
 	// ...

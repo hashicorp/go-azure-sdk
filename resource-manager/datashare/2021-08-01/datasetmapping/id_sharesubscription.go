@@ -44,7 +44,7 @@ func ParseShareSubscriptionID(input string) (*ShareSubscriptionId, error) {
 	}
 
 	id := ShareSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseShareSubscriptionIDInsensitively(input string) (*ShareSubscriptionId, 
 	}
 
 	id := ShareSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ShareSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataShare", "Microsoft.DataShare", "Microsoft.DataShare"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticShareSubscriptions", "shareSubscriptions", "shareSubscriptions"),
-		resourceids.UserSpecifiedSegment("shareSubscriptionName", "shareSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("shareSubscriptionName", "shareSubscriptionName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkServiceId{}
 
 func TestNewPrivateLinkServiceID(t *testing.T) {
-	id := NewPrivateLinkServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkServiceValue")
+	id := NewPrivateLinkServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPrivateLinkServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateLinkServiceName != "privateLinkServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkServiceName'", id.PrivateLinkServiceName, "privateLinkServiceValue")
+	if id.PrivateLinkServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkServiceName'", id.PrivateLinkServiceName, "serviceName")
 	}
 }
 
 func TestFormatPrivateLinkServiceID(t *testing.T) {
-	actual := NewPrivateLinkServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/privateLinkServiceValue"
+	actual := NewPrivateLinkServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/serviceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePrivateLinkServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/privateLinkServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/serviceName",
 			Expected: &PrivateLinkServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				PrivateLinkServiceName: "privateLinkServiceValue",
+				PrivateLinkServiceName: "serviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/privateLinkServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/serviceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParsePrivateLinkServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/privateLinkServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/serviceName",
 			Expected: &PrivateLinkServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				PrivateLinkServiceName: "privateLinkServiceValue",
+				PrivateLinkServiceName: "serviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/privateLinkServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateLinkServices/serviceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeLiNkSeRvIcEs/pRiVaTeLiNkSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeLiNkSeRvIcEs/sErViCeNaMe",
 			Expected: &PrivateLinkServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateLinkServiceName: "pRiVaTeLiNkSeRvIcEvAlUe",
+				PrivateLinkServiceName: "sErViCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeLiNkSeRvIcEs/pRiVaTeLiNkSeRvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeLiNkSeRvIcEs/sErViCeNaMe/extra",
 			Error: true,
 		},
 	}

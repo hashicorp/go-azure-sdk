@@ -34,7 +34,7 @@ func (s *TaskRunProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["runRequest"]; ok {
-		impl, err := unmarshalRunRequestImplementation(v)
+		impl, err := UnmarshalRunRequestImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RunRequest' for 'TaskRunProperties': %+v", err)
 		}

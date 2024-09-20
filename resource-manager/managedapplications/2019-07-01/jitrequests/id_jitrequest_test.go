@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &JitRequestId{}
 
 func TestNewJitRequestID(t *testing.T) {
-	id := NewJitRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jitRequestValue")
+	id := NewJitRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jitRequestName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewJitRequestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.JitRequestName != "jitRequestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'JitRequestName'", id.JitRequestName, "jitRequestValue")
+	if id.JitRequestName != "jitRequestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'JitRequestName'", id.JitRequestName, "jitRequestName")
 	}
 }
 
 func TestFormatJitRequestID(t *testing.T) {
-	actual := NewJitRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jitRequestValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestValue"
+	actual := NewJitRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jitRequestName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseJitRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestName",
 			Expected: &JitRequestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				JitRequestName:    "jitRequestValue",
+				JitRequestName:    "jitRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseJitRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestName",
 			Expected: &JitRequestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				JitRequestName:    "jitRequestValue",
+				JitRequestName:    "jitRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/jitRequests/jitRequestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/jItReQuEsTs/jItReQuEsTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/jItReQuEsTs/jItReQuEsTnAmE",
 			Expected: &JitRequestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				JitRequestName:    "jItReQuEsTvAlUe",
+				JitRequestName:    "jItReQuEsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/jItReQuEsTs/jItReQuEsTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/jItReQuEsTs/jItReQuEsTnAmE/extra",
 			Error: true,
 		},
 	}

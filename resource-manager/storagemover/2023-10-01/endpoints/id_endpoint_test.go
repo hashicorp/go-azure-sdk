@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EndpointId{}
 
 func TestNewEndpointID(t *testing.T) {
-	id := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "endpointValue")
+	id := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "endpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageMoverName != "storageMoverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverValue")
+	if id.StorageMoverName != "storageMoverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverName")
 	}
 
-	if id.EndpointName != "endpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EndpointName'", id.EndpointName, "endpointValue")
+	if id.EndpointName != "endpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EndpointName'", id.EndpointName, "endpointName")
 	}
 }
 
 func TestFormatEndpointID(t *testing.T) {
-	actual := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue", "endpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints/endpointValue"
+	actual := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName", "endpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints/endpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints/endpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints/endpointName",
 			Expected: &EndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
-				EndpointName:      "endpointValue",
+				StorageMoverName:  "storageMoverName",
+				EndpointName:      "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints/endpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints/endpointName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/eNdPoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/eNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints/endpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints/endpointName",
 			Expected: &EndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
-				EndpointName:      "endpointValue",
+				StorageMoverName:  "storageMoverName",
+				EndpointName:      "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/endpoints/endpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/endpoints/endpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/eNdPoInTs/eNdPoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/eNdPoInTs/eNdPoInTnAmE",
 			Expected: &EndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageMoverName:  "sToRaGeMoVeRvAlUe",
-				EndpointName:      "eNdPoInTvAlUe",
+				StorageMoverName:  "sToRaGeMoVeRnAmE",
+				EndpointName:      "eNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/eNdPoInTs/eNdPoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/eNdPoInTs/eNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

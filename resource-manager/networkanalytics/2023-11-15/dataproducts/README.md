@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/networkanalytics/2023-11-15/dataproducts` Documentation
 
-The `dataproducts` SDK allows for interaction with the Azure Resource Manager Service `networkanalytics` (API Version `2023-11-15`).
+The `dataproducts` SDK allows for interaction with Azure Resource Manager `networkanalytics` (API Version `2023-11-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.RoleAssignmentCommonProperties{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.DataProduct{
 	// ...
@@ -63,7 +63,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -75,7 +75,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.AccountSas{
 	// ...
@@ -96,7 +96,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -146,7 +146,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 var payload interface{}
 
 read, err := client.ListRolesAssignments(ctx, id, payload)
@@ -163,7 +163,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.RoleAssignmentDetail{
 	// ...
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.KeyVaultInfo{
 	// ...
@@ -205,7 +205,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := dataproducts.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 payload := dataproducts.DataProductUpdate{
 	// ...

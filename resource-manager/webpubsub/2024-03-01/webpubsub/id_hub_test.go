@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HubId{}
 
 func TestNewHubID(t *testing.T) {
-	id := NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue", "hubValue")
+	id := NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "hubName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WebPubSubName != "webPubSubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "webPubSubValue")
+	if id.WebPubSubName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "resourceName")
 	}
 
-	if id.HubName != "hubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HubName'", id.HubName, "hubValue")
+	if id.HubName != "hubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HubName'", id.HubName, "hubName")
 	}
 }
 
 func TestFormatHubID(t *testing.T) {
-	actual := NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue", "hubValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs/hubValue"
+	actual := NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "hubName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs/hubName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHubID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs/hubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs/hubName",
 			Expected: &HubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WebPubSubName:     "webPubSubValue",
-				HubName:           "hubValue",
+				WebPubSubName:     "resourceName",
+				HubName:           "hubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs/hubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs/hubName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/hUbS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/hUbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs/hubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs/hubName",
 			Expected: &HubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WebPubSubName:     "webPubSubValue",
-				HubName:           "hubValue",
+				WebPubSubName:     "resourceName",
+				HubName:           "hubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/hubs/hubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/hubs/hubName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/hUbS/hUbVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/hUbS/hUbNaMe",
 			Expected: &HubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WebPubSubName:     "wEbPuBsUbVaLuE",
-				HubName:           "hUbVaLuE",
+				WebPubSubName:     "rEsOuRcEnAmE",
+				HubName:           "hUbNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/hUbS/hUbVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/hUbS/hUbNaMe/extra",
 			Error: true,
 		},
 	}

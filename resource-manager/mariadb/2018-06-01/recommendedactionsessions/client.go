@@ -15,7 +15,7 @@ type RecommendedActionSessionsClient struct {
 }
 
 func NewRecommendedActionSessionsClientWithBaseURI(sdkApi sdkEnv.Api) (*RecommendedActionSessionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "recommendedactionsessions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "recommendedactionsessions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RecommendedActionSessionsClient: %+v", err)
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice` Documentation
 
-The `invoice` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `invoice` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoice.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 if err := client.AmendThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.AmendThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoice.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 if err := client.DownloadByBillingAccountThenPoll(ctx, id, invoice.DefaultDownloadByBillingAccountOperationOptions()); err != nil {
 	// handle the error
@@ -48,7 +48,7 @@ if err := client.DownloadByBillingAccountThenPoll(ctx, id, invoice.DefaultDownlo
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingSubscriptionInvoiceID("subscriptionIdValue", "invoiceValue")
+id := invoice.NewBillingSubscriptionInvoiceID("subscriptionId", "invoiceName")
 
 if err := client.DownloadByBillingSubscriptionThenPoll(ctx, id, invoice.DefaultDownloadByBillingSubscriptionOperationOptions()); err != nil {
 	// handle the error
@@ -60,7 +60,7 @@ if err := client.DownloadByBillingSubscriptionThenPoll(ctx, id, invoice.DefaultD
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountID("billingAccountValue")
+id := invoice.NewBillingAccountID("billingAccountName")
 var payload []DocumentDownloadRequest
 
 if err := client.DownloadDocumentsByBillingAccountThenPoll(ctx, id, payload); err != nil {
@@ -73,7 +73,7 @@ if err := client.DownloadDocumentsByBillingAccountThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingSubscriptionID("subscriptionIdValue")
+id := invoice.NewBillingSubscriptionID("subscriptionId")
 var payload []DocumentDownloadRequest
 
 if err := client.DownloadDocumentsByBillingSubscriptionThenPoll(ctx, id, payload); err != nil {
@@ -86,7 +86,7 @@ if err := client.DownloadDocumentsByBillingSubscriptionThenPoll(ctx, id, payload
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoice.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 if err := client.DownloadSummaryByBillingAccountThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -98,7 +98,7 @@ if err := client.DownloadSummaryByBillingAccountThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewInvoiceID("invoiceValue")
+id := invoice.NewInvoiceID("invoiceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountInvoiceID("billingAccountValue", "invoiceValue")
+id := invoice.NewBillingAccountInvoiceID("billingAccountName", "invoiceName")
 
 read, err := client.GetByBillingAccount(ctx, id)
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingSubscriptionInvoiceID("subscriptionIdValue", "invoiceValue")
+id := invoice.NewBillingSubscriptionInvoiceID("subscriptionId", "invoiceName")
 
 read, err := client.GetByBillingSubscription(ctx, id)
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingAccountID("billingAccountValue")
+id := invoice.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, invoice.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, invoice.DefaultListByBillingAccountOperationOptions())
@@ -163,7 +163,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := invoice.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id, invoice.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, invoice.DefaultListByBillingProfileOperationOptions())
@@ -180,7 +180,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := invoice.NewBillingSubscriptionID("subscriptionIdValue")
+id := invoice.NewBillingSubscriptionID("subscriptionId")
 
 // alternatively `client.ListByBillingSubscription(ctx, id, invoice.DefaultListByBillingSubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingSubscriptionComplete(ctx, id, invoice.DefaultListByBillingSubscriptionOperationOptions())

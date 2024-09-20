@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FirewallRuleId{}
 
 func TestNewFirewallRuleID(t *testing.T) {
-	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "firewallRuleValue")
+	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "firewallRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFirewallRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerGroupsv2Name != "serverGroupsv2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "serverGroupsv2Value")
+	if id.ServerGroupsv2Name != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "clusterName")
 	}
 
-	if id.FirewallRuleName != "firewallRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FirewallRuleName'", id.FirewallRuleName, "firewallRuleValue")
+	if id.FirewallRuleName != "firewallRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FirewallRuleName'", id.FirewallRuleName, "firewallRuleName")
 	}
 }
 
 func TestFormatFirewallRuleID(t *testing.T) {
-	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "firewallRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules/firewallRuleValue"
+	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "firewallRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules/firewallRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFirewallRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules/firewallRuleName",
 			Expected: &FirewallRuleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ServerGroupsv2Name: "serverGroupsv2Value",
-				FirewallRuleName:   "firewallRuleValue",
+				ServerGroupsv2Name: "clusterName",
+				FirewallRuleName:   "firewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules/firewallRuleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFirewallRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/fIrEwAlLrUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/fIrEwAlLrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules/firewallRuleName",
 			Expected: &FirewallRuleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ServerGroupsv2Name: "serverGroupsv2Value",
-				FirewallRuleName:   "firewallRuleValue",
+				ServerGroupsv2Name: "clusterName",
+				FirewallRuleName:   "firewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/firewallRules/firewallRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE",
 			Expected: &FirewallRuleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerGroupsv2Name: "sErVeRgRoUpSv2vAlUe",
-				FirewallRuleName:   "fIrEwAlLrUlEvAlUe",
+				ServerGroupsv2Name: "cLuStErNaMe",
+				FirewallRuleName:   "fIrEwAlLrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE/extra",
 			Error: true,
 		},
 	}

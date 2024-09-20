@@ -38,7 +38,7 @@ func (s *DatastoreResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalDatastoreImplementation(v)
+		impl, err := UnmarshalDatastoreImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'DatastoreResource': %+v", err)
 		}

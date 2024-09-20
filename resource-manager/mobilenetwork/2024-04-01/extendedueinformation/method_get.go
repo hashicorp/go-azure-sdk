@@ -46,7 +46,6 @@ func (c ExtendedUeInformationClient) Get(ctx context.Context, id UeId) (result G
 
 	var model ExtendedUeInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

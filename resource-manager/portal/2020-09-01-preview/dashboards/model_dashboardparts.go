@@ -30,7 +30,7 @@ func (s *DashboardParts) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["metadata"]; ok {
-		impl, err := unmarshalDashboardPartMetadataImplementation(v)
+		impl, err := UnmarshalDashboardPartMetadataImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Metadata' for 'DashboardParts': %+v", err)
 		}

@@ -12,32 +12,32 @@ import (
 var _ resourceids.ResourceId = &TaskId{}
 
 func TestNewTaskID(t *testing.T) {
-	id := NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+	id := NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ResourceGroupName != "resourceGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "resourceGroupValue")
+	if id.ResourceGroupName != "groupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "groupName")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.ServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.ProjectName != "projectValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectValue")
+	if id.ProjectName != "projectName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectName")
 	}
 
-	if id.TaskName != "taskValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TaskName'", id.TaskName, "taskValue")
+	if id.TaskName != "taskName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TaskName'", id.TaskName, "taskName")
 	}
 }
 
 func TestFormatTaskID(t *testing.T) {
-	actual := NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks/taskValue"
+	actual := NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks/taskName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -71,58 +71,58 @@ func TestParseTaskID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks/taskValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks/taskName",
 			Expected: &TaskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "resourceGroupValue",
-				ServiceName:       "serviceValue",
-				ProjectName:       "projectValue",
-				TaskName:          "taskValue",
+				ResourceGroupName: "groupName",
+				ServiceName:       "serviceName",
+				ProjectName:       "projectName",
+				TaskName:          "taskName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks/taskValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks/taskName/extra",
 			Error: true,
 		},
 	}
@@ -207,114 +207,114 @@ func TestParseTaskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE/pRoJeCtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe/pRoJeCtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE/pRoJeCtS/pRoJeCtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe/pRoJeCtS/pRoJeCtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE/pRoJeCtS/pRoJeCtVaLuE/tAsKs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe/pRoJeCtS/pRoJeCtNaMe/tAsKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks/taskValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks/taskName",
 			Expected: &TaskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "resourceGroupValue",
-				ServiceName:       "serviceValue",
-				ProjectName:       "projectValue",
-				TaskName:          "taskValue",
+				ResourceGroupName: "groupName",
+				ServiceName:       "serviceName",
+				ProjectName:       "projectName",
+				TaskName:          "taskName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupValue/providers/Microsoft.DataMigration/services/serviceValue/projects/projectValue/tasks/taskValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.DataMigration/services/serviceName/projects/projectName/tasks/taskName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE/pRoJeCtS/pRoJeCtVaLuE/tAsKs/tAsKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe/pRoJeCtS/pRoJeCtNaMe/tAsKs/tAsKnAmE",
 			Expected: &TaskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "rEsOuRcEgRoUpVaLuE",
-				ServiceName:       "sErViCeVaLuE",
-				ProjectName:       "pRoJeCtVaLuE",
-				TaskName:          "tAsKvAlUe",
+				ResourceGroupName: "gRoUpNaMe",
+				ServiceName:       "sErViCeNaMe",
+				ProjectName:       "pRoJeCtNaMe",
+				TaskName:          "tAsKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpVaLuE/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeVaLuE/pRoJeCtS/pRoJeCtVaLuE/tAsKs/tAsKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.dAtAmIgRaTiOn/sErViCeS/sErViCeNaMe/pRoJeCtS/pRoJeCtNaMe/tAsKs/tAsKnAmE/extra",
 			Error: true,
 		},
 	}

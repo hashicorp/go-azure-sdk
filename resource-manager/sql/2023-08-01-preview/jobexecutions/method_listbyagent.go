@@ -45,6 +45,7 @@ func (o ListByAgentOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByAgentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

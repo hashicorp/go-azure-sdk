@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CoordinatorConfigurationId{}
 
 func TestNewCoordinatorConfigurationID(t *testing.T) {
-	id := NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "coordinatorConfigurationValue")
+	id := NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "configurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewCoordinatorConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerGroupsv2Name != "serverGroupsv2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "serverGroupsv2Value")
+	if id.ServerGroupsv2Name != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "clusterName")
 	}
 
-	if id.CoordinatorConfigurationName != "coordinatorConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CoordinatorConfigurationName'", id.CoordinatorConfigurationName, "coordinatorConfigurationValue")
+	if id.CoordinatorConfigurationName != "configurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CoordinatorConfigurationName'", id.CoordinatorConfigurationName, "configurationName")
 	}
 }
 
 func TestFormatCoordinatorConfigurationID(t *testing.T) {
-	actual := NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "coordinatorConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations/coordinatorConfigurationValue"
+	actual := NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "configurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations/configurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseCoordinatorConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations/coordinatorConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations/configurationName",
 			Expected: &CoordinatorConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ServerGroupsv2Name:           "serverGroupsv2Value",
-				CoordinatorConfigurationName: "coordinatorConfigurationValue",
+				ServerGroupsv2Name:           "clusterName",
+				CoordinatorConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations/coordinatorConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations/configurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseCoordinatorConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/cOoRdInAtOrCoNfIgUrAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/cOoRdInAtOrCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations/coordinatorConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations/configurationName",
 			Expected: &CoordinatorConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ServerGroupsv2Name:           "serverGroupsv2Value",
-				CoordinatorConfigurationName: "coordinatorConfigurationValue",
+				ServerGroupsv2Name:           "clusterName",
+				CoordinatorConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/coordinatorConfigurations/coordinatorConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/coordinatorConfigurations/configurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/cOoRdInAtOrCoNfIgUrAtIoNs/cOoRdInAtOrCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/cOoRdInAtOrCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe",
 			Expected: &CoordinatorConfigurationId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerGroupsv2Name:           "sErVeRgRoUpSv2vAlUe",
-				CoordinatorConfigurationName: "cOoRdInAtOrCoNfIgUrAtIoNvAlUe",
+				ServerGroupsv2Name:           "cLuStErNaMe",
+				CoordinatorConfigurationName: "cOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/cOoRdInAtOrCoNfIgUrAtIoNs/cOoRdInAtOrCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/cOoRdInAtOrCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

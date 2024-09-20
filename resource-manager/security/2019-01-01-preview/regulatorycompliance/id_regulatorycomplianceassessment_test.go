@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &RegulatoryComplianceAssessmentId{}
 
 func TestNewRegulatoryComplianceAssessmentID(t *testing.T) {
-	id := NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue", "regulatoryComplianceAssessmentValue")
+	id := NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName", "regulatoryComplianceAssessmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.RegulatoryComplianceStandardName != "regulatoryComplianceStandardValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceStandardName'", id.RegulatoryComplianceStandardName, "regulatoryComplianceStandardValue")
+	if id.RegulatoryComplianceStandardName != "regulatoryComplianceStandardName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceStandardName'", id.RegulatoryComplianceStandardName, "regulatoryComplianceStandardName")
 	}
 
-	if id.RegulatoryComplianceControlName != "regulatoryComplianceControlValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceControlName'", id.RegulatoryComplianceControlName, "regulatoryComplianceControlValue")
+	if id.RegulatoryComplianceControlName != "regulatoryComplianceControlName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceControlName'", id.RegulatoryComplianceControlName, "regulatoryComplianceControlName")
 	}
 
-	if id.RegulatoryComplianceAssessmentName != "regulatoryComplianceAssessmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceAssessmentName'", id.RegulatoryComplianceAssessmentName, "regulatoryComplianceAssessmentValue")
+	if id.RegulatoryComplianceAssessmentName != "regulatoryComplianceAssessmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegulatoryComplianceAssessmentName'", id.RegulatoryComplianceAssessmentName, "regulatoryComplianceAssessmentName")
 	}
 }
 
 func TestFormatRegulatoryComplianceAssessmentID(t *testing.T) {
-	actual := NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardValue", "regulatoryComplianceControlValue", "regulatoryComplianceAssessmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments/regulatoryComplianceAssessmentValue"
+	actual := NewRegulatoryComplianceAssessmentID("12345678-1234-9876-4563-123456789012", "regulatoryComplianceStandardName", "regulatoryComplianceControlName", "regulatoryComplianceAssessmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments/regulatoryComplianceAssessmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -77,37 +77,37 @@ func TestParseRegulatoryComplianceAssessmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments/regulatoryComplianceAssessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments/regulatoryComplianceAssessmentName",
 			Expected: &RegulatoryComplianceAssessmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName:   "regulatoryComplianceStandardValue",
-				RegulatoryComplianceControlName:    "regulatoryComplianceControlValue",
-				RegulatoryComplianceAssessmentName: "regulatoryComplianceAssessmentValue",
+				RegulatoryComplianceStandardName:   "regulatoryComplianceStandardName",
+				RegulatoryComplianceControlName:    "regulatoryComplianceControlName",
+				RegulatoryComplianceAssessmentName: "regulatoryComplianceAssessmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments/regulatoryComplianceAssessmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments/regulatoryComplianceAssessmentName/extra",
 			Error: true,
 		},
 	}
@@ -208,72 +208,72 @@ func TestParseRegulatoryComplianceAssessmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments/regulatoryComplianceAssessmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments/regulatoryComplianceAssessmentName",
 			Expected: &RegulatoryComplianceAssessmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName:   "regulatoryComplianceStandardValue",
-				RegulatoryComplianceControlName:    "regulatoryComplianceControlValue",
-				RegulatoryComplianceAssessmentName: "regulatoryComplianceAssessmentValue",
+				RegulatoryComplianceStandardName:   "regulatoryComplianceStandardName",
+				RegulatoryComplianceControlName:    "regulatoryComplianceControlName",
+				RegulatoryComplianceAssessmentName: "regulatoryComplianceAssessmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardValue/regulatoryComplianceControls/regulatoryComplianceControlValue/regulatoryComplianceAssessments/regulatoryComplianceAssessmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/regulatoryComplianceStandards/regulatoryComplianceStandardName/regulatoryComplianceControls/regulatoryComplianceControlName/regulatoryComplianceAssessments/regulatoryComplianceAssessmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTnAmE",
 			Expected: &RegulatoryComplianceAssessmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
-				RegulatoryComplianceStandardName:   "rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe",
-				RegulatoryComplianceControlName:    "rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE",
-				RegulatoryComplianceAssessmentName: "rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTvAlUe",
+				RegulatoryComplianceStandardName:   "rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE",
+				RegulatoryComplianceControlName:    "rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe",
+				RegulatoryComplianceAssessmentName: "rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDvAlUe/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlVaLuE/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/rEgUlAtOrYcOmPlIaNcEsTaNdArDs/rEgUlAtOrYcOmPlIaNcEsTaNdArDnAmE/rEgUlAtOrYcOmPlIaNcEcOnTrOlS/rEgUlAtOrYcOmPlIaNcEcOnTrOlNaMe/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTs/rEgUlAtOrYcOmPlIaNcEaSsEsSmEnTnAmE/extra",
 			Error: true,
 		},
 	}

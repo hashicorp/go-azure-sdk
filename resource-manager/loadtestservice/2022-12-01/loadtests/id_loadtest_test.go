@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LoadTestId{}
 
 func TestNewLoadTestID(t *testing.T) {
-	id := NewLoadTestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadTestValue")
+	id := NewLoadTestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadTestName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewLoadTestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LoadTestName != "loadTestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LoadTestName'", id.LoadTestName, "loadTestValue")
+	if id.LoadTestName != "loadTestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LoadTestName'", id.LoadTestName, "loadTestName")
 	}
 }
 
 func TestFormatLoadTestID(t *testing.T) {
-	actual := NewLoadTestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadTestValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestValue"
+	actual := NewLoadTestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadTestName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseLoadTestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestName",
 			Expected: &LoadTestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadTestName:      "loadTestValue",
+				LoadTestName:      "loadTestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseLoadTestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestName",
 			Expected: &LoadTestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LoadTestName:      "loadTestValue",
+				LoadTestName:      "loadTestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LoadTestService/loadTests/loadTestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOaDtEsTs/lOaDtEsTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOaDtEsTs/lOaDtEsTnAmE",
 			Expected: &LoadTestId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LoadTestName:      "lOaDtEsTvAlUe",
+				LoadTestName:      "lOaDtEsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOaDtEsTs/lOaDtEsTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOaDtEsTs/lOaDtEsTnAmE/extra",
 			Error: true,
 		},
 	}

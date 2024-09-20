@@ -15,7 +15,7 @@ type DatabaseEncryptionProtectorRevertClient struct {
 }
 
 func NewDatabaseEncryptionProtectorRevertClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseEncryptionProtectorRevertClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseencryptionprotectorrevert", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseencryptionprotectorrevert", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseEncryptionProtectorRevertClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationGroupId{}
 
 func TestNewApplicationGroupID(t *testing.T) {
-	id := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupValue")
+	id := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewApplicationGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationGroupName != "applicationGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupValue")
+	if id.ApplicationGroupName != "applicationGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupName")
 	}
 }
 
 func TestFormatApplicationGroupID(t *testing.T) {
-	actual := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue"
+	actual := NewApplicationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseApplicationGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ApplicationGroupName: "applicationGroupValue",
+				ApplicationGroupName: "applicationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseApplicationGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ApplicationGroupName: "applicationGroupValue",
+				ApplicationGroupName: "applicationGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE",
 			Expected: &ApplicationGroupId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationGroupName: "aPpLiCaTiOnGrOuPvAlUe",
+				ApplicationGroupName: "aPpLiCaTiOnGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

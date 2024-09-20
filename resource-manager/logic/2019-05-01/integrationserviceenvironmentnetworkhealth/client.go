@@ -15,7 +15,7 @@ type IntegrationServiceEnvironmentNetworkHealthClient struct {
 }
 
 func NewIntegrationServiceEnvironmentNetworkHealthClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentNetworkHealthClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationserviceenvironmentnetworkhealth", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationserviceenvironmentnetworkhealth", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentNetworkHealthClient: %+v", err)
 	}

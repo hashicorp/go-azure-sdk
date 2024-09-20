@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/flux` Documentation
 
-The `flux` SDK allows for interaction with the Azure Resource Manager Service `kubernetesconfiguration` (API Version `2023-05-01`).
+The `flux` SDK allows for interaction with Azure Resource Manager `kubernetesconfiguration` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue")
+id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName")
 
 payload := flux.FluxConfiguration{
 	// ...
@@ -42,7 +42,7 @@ if err := client.ConfigurationsCreateOrUpdateThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue")
+id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName")
 
 if err := client.ConfigurationsDeleteThenPoll(ctx, id, flux.DefaultConfigurationsDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.ConfigurationsDeleteThenPoll(ctx, id, flux.DefaultConfiguration
 
 ```go
 ctx := context.TODO()
-id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue")
+id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName")
 
 read, err := client.ConfigurationsGet(ctx, id)
 if err != nil {
@@ -87,7 +87,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationValue")
+id := flux.NewScopedFluxConfigurationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "fluxConfigurationName")
 
 payload := flux.FluxConfigurationPatch{
 	// ...

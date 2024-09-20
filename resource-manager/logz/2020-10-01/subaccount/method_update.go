@@ -49,7 +49,6 @@ func (c SubAccountClient) Update(ctx context.Context, id AccountId, input LogzMo
 
 	var model LogzMonitorResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

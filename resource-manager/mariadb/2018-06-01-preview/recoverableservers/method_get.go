@@ -46,7 +46,6 @@ func (c RecoverableServersClient) Get(ctx context.Context, id ServerId) (result 
 
 	var model RecoverableServerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

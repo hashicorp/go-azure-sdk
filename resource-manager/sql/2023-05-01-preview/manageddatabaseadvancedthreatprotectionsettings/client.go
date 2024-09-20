@@ -15,7 +15,7 @@ type ManagedDatabaseAdvancedThreatProtectionSettingsClient struct {
 }
 
 func NewManagedDatabaseAdvancedThreatProtectionSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseAdvancedThreatProtectionSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabaseadvancedthreatprotectionsettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabaseadvancedthreatprotectionsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseAdvancedThreatProtectionSettingsClient: %+v", err)
 	}

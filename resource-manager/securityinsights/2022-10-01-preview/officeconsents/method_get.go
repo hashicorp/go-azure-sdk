@@ -45,7 +45,6 @@ func (c OfficeConsentsClient) Get(ctx context.Context, id OfficeConsentId) (resu
 
 	var model OfficeConsent
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

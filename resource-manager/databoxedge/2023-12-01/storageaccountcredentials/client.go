@@ -15,7 +15,7 @@ type StorageAccountCredentialsClient struct {
 }
 
 func NewStorageAccountCredentialsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageAccountCredentialsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "storageaccountcredentials", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "storageaccountcredentials", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageAccountCredentialsClient: %+v", err)
 	}

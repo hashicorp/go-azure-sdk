@@ -48,7 +48,7 @@ func (s *BotChannel) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalChannelImplementation(v)
+		impl, err := UnmarshalChannelImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'BotChannel': %+v", err)
 		}

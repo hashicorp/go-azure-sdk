@@ -45,7 +45,6 @@ func (c SubscriptionUsagesClient) Get(ctx context.Context, id UsageId) (result G
 
 	var model SubscriptionUsage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

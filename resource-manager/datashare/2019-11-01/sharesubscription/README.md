@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/sharesubscription` Documentation
 
-The `sharesubscription` SDK allows for interaction with the Azure Resource Manager Service `datashare` (API Version `2019-11-01`).
+The `sharesubscription` SDK allows for interaction with Azure Resource Manager `datashare` (API Version `2019-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 payload := sharesubscription.ShareSubscriptionSynchronization{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CancelSynchronizationThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 // alternatively `client.ConsumerSourceDataSetsListByShareSubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ConsumerSourceDataSetsListByShareSubscriptionComplete(ctx, id)
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 payload := sharesubscription.ShareSubscription{
 	// ...
@@ -79,7 +79,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -91,7 +91,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -107,7 +107,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := sharesubscription.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.ListByAccount(ctx, id, sharesubscription.DefaultListByAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAccountComplete(ctx, id, sharesubscription.DefaultListByAccountOperationOptions())
@@ -124,7 +124,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 // alternatively `client.ListSourceShareSynchronizationSettings(ctx, id)` can be used to do batched pagination
 items, err := client.ListSourceShareSynchronizationSettingsComplete(ctx, id)
@@ -141,7 +141,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 payload := sharesubscription.ShareSubscriptionSynchronization{
 	// ...
@@ -163,7 +163,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 // alternatively `client.ListSynchronizations(ctx, id, sharesubscription.DefaultListSynchronizationsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSynchronizationsComplete(ctx, id, sharesubscription.DefaultListSynchronizationsOperationOptions())
@@ -180,7 +180,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := sharesubscription.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 payload := sharesubscription.Synchronize{
 	// ...

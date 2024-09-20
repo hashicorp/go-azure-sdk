@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2023-11-15/d4apicollectionlist` Documentation
 
-The `d4apicollectionlist` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2023-11-15`).
+The `d4apicollectionlist` SDK allows for interaction with Azure Resource Manager `security` (API Version `2023-11-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := d4apicollectionlist.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := d4apicollectionlist.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.APICollectionsListByAzureApiManagementService(ctx, id)` can be used to do batched pagination
 items, err := client.APICollectionsListByAzureApiManagementServiceComplete(ctx, id)

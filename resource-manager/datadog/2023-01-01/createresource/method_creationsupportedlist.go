@@ -35,6 +35,7 @@ func (o CreationSupportedListOperationOptions) ToHeaders() *client.Headers {
 
 func (o CreationSupportedListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 
 	var model CreateResourceSupportedResponseList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

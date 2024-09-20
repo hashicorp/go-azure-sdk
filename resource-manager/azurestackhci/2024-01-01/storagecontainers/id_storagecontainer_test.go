@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageContainerId{}
 
 func TestNewStorageContainerID(t *testing.T) {
-	id := NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageContainerValue")
+	id := NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageContainerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewStorageContainerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageContainerName != "storageContainerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageContainerName'", id.StorageContainerName, "storageContainerValue")
+	if id.StorageContainerName != "storageContainerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageContainerName'", id.StorageContainerName, "storageContainerName")
 	}
 }
 
 func TestFormatStorageContainerID(t *testing.T) {
-	actual := NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageContainerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerValue"
+	actual := NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageContainerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseStorageContainerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerName",
 			Expected: &StorageContainerId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				StorageContainerName: "storageContainerValue",
+				StorageContainerName: "storageContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseStorageContainerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerName",
 			Expected: &StorageContainerId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				StorageContainerName: "storageContainerValue",
+				StorageContainerName: "storageContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/storageContainers/storageContainerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/sToRaGeCoNtAiNeRs/sToRaGeCoNtAiNeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/sToRaGeCoNtAiNeRs/sToRaGeCoNtAiNeRnAmE",
 			Expected: &StorageContainerId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageContainerName: "sToRaGeCoNtAiNeRvAlUe",
+				StorageContainerName: "sToRaGeCoNtAiNeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/sToRaGeCoNtAiNeRs/sToRaGeCoNtAiNeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/sToRaGeCoNtAiNeRs/sToRaGeCoNtAiNeRnAmE/extra",
 			Error: true,
 		},
 	}

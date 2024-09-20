@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ScopedSuppressionId{}
 
 func TestNewScopedSuppressionID(t *testing.T) {
-	id := NewScopedSuppressionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationIdValue", "suppressionValue")
+	id := NewScopedSuppressionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationId", "name")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RecommendationId != "recommendationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationIdValue")
+	if id.RecommendationId != "recommendationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationId")
 	}
 
-	if id.SuppressionName != "suppressionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SuppressionName'", id.SuppressionName, "suppressionValue")
+	if id.SuppressionName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SuppressionName'", id.SuppressionName, "name")
 	}
 }
 
 func TestFormatScopedSuppressionID(t *testing.T) {
-	actual := NewScopedSuppressionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationIdValue", "suppressionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions/suppressionValue"
+	actual := NewScopedSuppressionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationId", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -68,26 +68,26 @@ func TestParseScopedSuppressionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions/suppressionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/name",
 			Expected: &ScopedSuppressionId{
 				ResourceUri:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RecommendationId: "recommendationIdValue",
-				SuppressionName:  "suppressionValue",
+				RecommendationId: "recommendationId",
+				SuppressionName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions/suppressionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/name/extra",
 			Error: true,
 		},
 	}
@@ -174,50 +174,50 @@ func TestParseScopedSuppressionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/sUpPrEsSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/sUpPrEsSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions/suppressionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/name",
 			Expected: &ScopedSuppressionId{
 				ResourceUri:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RecommendationId: "recommendationIdValue",
-				SuppressionName:  "suppressionValue",
+				RecommendationId: "recommendationId",
+				SuppressionName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/suppressions/suppressionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/sUpPrEsSiOnS/sUpPrEsSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/sUpPrEsSiOnS/nAmE",
 			Expected: &ScopedSuppressionId{
 				ResourceUri:      "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RecommendationId: "rEcOmMeNdAtIoNiDvAlUe",
-				SuppressionName:  "sUpPrEsSiOnVaLuE",
+				RecommendationId: "rEcOmMeNdAtIoNiD",
+				SuppressionName:  "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/sUpPrEsSiOnS/sUpPrEsSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/sUpPrEsSiOnS/nAmE/extra",
 			Error: true,
 		},
 	}

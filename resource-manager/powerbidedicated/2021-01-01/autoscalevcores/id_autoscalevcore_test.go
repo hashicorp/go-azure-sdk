@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AutoScaleVCoreId{}
 
 func TestNewAutoScaleVCoreID(t *testing.T) {
-	id := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
+	id := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAutoScaleVCoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutoScaleVCoreName != "autoScaleVCoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleVCoreName'", id.AutoScaleVCoreName, "autoScaleVCoreValue")
+	if id.AutoScaleVCoreName != "vcoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleVCoreName'", id.AutoScaleVCoreName, "vcoreName")
 	}
 }
 
 func TestFormatAutoScaleVCoreID(t *testing.T) {
-	actual := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue"
+	actual := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAutoScaleVCoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreName",
 			Expected: &AutoScaleVCoreId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				AutoScaleVCoreName: "autoScaleVCoreValue",
+				AutoScaleVCoreName: "vcoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAutoScaleVCoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreName",
 			Expected: &AutoScaleVCoreId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				AutoScaleVCoreName: "autoScaleVCoreValue",
+				AutoScaleVCoreName: "vcoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/aUtOsCaLeVcOrEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/vCoReNaMe",
 			Expected: &AutoScaleVCoreId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				AutoScaleVCoreName: "aUtOsCaLeVcOrEvAlUe",
+				AutoScaleVCoreName: "vCoReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/aUtOsCaLeVcOrEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/vCoReNaMe/extra",
 			Error: true,
 		},
 	}

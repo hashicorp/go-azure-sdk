@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualMachineProviders2ConfigurationProfileAssignmentId{}
 
 func TestNewVirtualMachineProviders2ConfigurationProfileAssignmentID(t *testing.T) {
-	id := NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "configurationProfileAssignmentValue")
+	id := NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "configurationProfileAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualMachineProviders2ConfigurationProfileAssignmentID(t *testing.
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualMachineName != "virtualMachineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
+	if id.VirtualMachineName != "virtualMachineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineName")
 	}
 
-	if id.ConfigurationProfileAssignmentName != "configurationProfileAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationProfileAssignmentName'", id.ConfigurationProfileAssignmentName, "configurationProfileAssignmentValue")
+	if id.ConfigurationProfileAssignmentName != "configurationProfileAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationProfileAssignmentName'", id.ConfigurationProfileAssignmentName, "configurationProfileAssignmentName")
 	}
 }
 
 func TestFormatVirtualMachineProviders2ConfigurationProfileAssignmentID(t *testing.T) {
-	actual := NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "configurationProfileAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentValue"
+	actual := NewVirtualMachineProviders2ConfigurationProfileAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "configurationProfileAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,37 +87,37 @@ func TestParseVirtualMachineProviders2ConfigurationProfileAssignmentID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentName",
 			Expected: &VirtualMachineProviders2ConfigurationProfileAssignmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                  "example-resource-group",
-				VirtualMachineName:                 "virtualMachineValue",
-				ConfigurationProfileAssignmentName: "configurationProfileAssignmentValue",
+				VirtualMachineName:                 "virtualMachineName",
+				ConfigurationProfileAssignmentName: "configurationProfileAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -238,72 +238,72 @@ func TestParseVirtualMachineProviders2ConfigurationProfileAssignmentIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentName",
 			Expected: &VirtualMachineProviders2ConfigurationProfileAssignmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                  "example-resource-group",
-				VirtualMachineName:                 "virtualMachineValue",
-				ConfigurationProfileAssignmentName: "configurationProfileAssignmentValue",
+				VirtualMachineName:                 "virtualMachineName",
+				ConfigurationProfileAssignmentName: "configurationProfileAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineName/providers/Microsoft.AutoManage/configurationProfileAssignments/configurationProfileAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTnAmE",
 			Expected: &VirtualMachineProviders2ConfigurationProfileAssignmentId{
 				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                  "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualMachineName:                 "vIrTuAlMaChInEvAlUe",
-				ConfigurationProfileAssignmentName: "cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTvAlUe",
+				VirtualMachineName:                 "vIrTuAlMaChInEnAmE",
+				ConfigurationProfileAssignmentName: "cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTs/cOnFiGuRaTiOnPrOfIlEaSsIgNmEnTnAmE/extra",
 			Error: true,
 		},
 	}

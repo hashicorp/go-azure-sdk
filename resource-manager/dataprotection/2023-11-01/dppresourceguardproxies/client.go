@@ -15,7 +15,7 @@ type DppResourceGuardProxiesClient struct {
 }
 
 func NewDppResourceGuardProxiesClientWithBaseURI(sdkApi sdkEnv.Api) (*DppResourceGuardProxiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dppresourceguardproxies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dppresourceguardproxies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DppResourceGuardProxiesClient: %+v", err)
 	}

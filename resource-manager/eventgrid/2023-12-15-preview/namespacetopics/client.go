@@ -15,7 +15,7 @@ type NamespaceTopicsClient struct {
 }
 
 func NewNamespaceTopicsClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespaceTopicsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "namespacetopics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "namespacetopics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NamespaceTopicsClient: %+v", err)
 	}

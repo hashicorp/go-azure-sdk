@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AuthorizationId{}
 
 func TestNewAuthorizationID(t *testing.T) {
-	id := NewAuthorizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "authorizationProviderIdValue", "authorizationIdValue")
+	id := NewAuthorizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authorizationProviderId", "authorizationId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewAuthorizationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.ServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.AuthorizationProviderId != "authorizationProviderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationProviderId'", id.AuthorizationProviderId, "authorizationProviderIdValue")
+	if id.AuthorizationProviderId != "authorizationProviderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationProviderId'", id.AuthorizationProviderId, "authorizationProviderId")
 	}
 
-	if id.AuthorizationId != "authorizationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationId'", id.AuthorizationId, "authorizationIdValue")
+	if id.AuthorizationId != "authorizationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationId'", id.AuthorizationId, "authorizationId")
 	}
 }
 
 func TestFormatAuthorizationID(t *testing.T) {
-	actual := NewAuthorizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "authorizationProviderIdValue", "authorizationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations/authorizationIdValue"
+	actual := NewAuthorizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authorizationProviderId", "authorizationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations/authorizationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseAuthorizationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations/authorizationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations/authorizationId",
 			Expected: &AuthorizationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ServiceName:             "serviceValue",
-				AuthorizationProviderId: "authorizationProviderIdValue",
-				AuthorizationId:         "authorizationIdValue",
+				ServiceName:             "serviceName",
+				AuthorizationProviderId: "authorizationProviderId",
+				AuthorizationId:         "authorizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations/authorizationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations/authorizationId/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseAuthorizationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/aUtHoRiZaTiOnPrOvIdErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnPrOvIdErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErIdVaLuE/aUtHoRiZaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErId/aUtHoRiZaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations/authorizationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations/authorizationId",
 			Expected: &AuthorizationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ServiceName:             "serviceValue",
-				AuthorizationProviderId: "authorizationProviderIdValue",
-				AuthorizationId:         "authorizationIdValue",
+				ServiceName:             "serviceName",
+				AuthorizationProviderId: "authorizationProviderId",
+				AuthorizationId:         "authorizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/authorizationProviders/authorizationProviderIdValue/authorizations/authorizationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationProviders/authorizationProviderId/authorizations/authorizationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErIdVaLuE/aUtHoRiZaTiOnS/aUtHoRiZaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErId/aUtHoRiZaTiOnS/aUtHoRiZaTiOnId",
 			Expected: &AuthorizationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:             "sErViCeVaLuE",
-				AuthorizationProviderId: "aUtHoRiZaTiOnPrOvIdErIdVaLuE",
-				AuthorizationId:         "aUtHoRiZaTiOnIdVaLuE",
+				ServiceName:             "sErViCeNaMe",
+				AuthorizationProviderId: "aUtHoRiZaTiOnPrOvIdErId",
+				AuthorizationId:         "aUtHoRiZaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErIdVaLuE/aUtHoRiZaTiOnS/aUtHoRiZaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnPrOvIdErS/aUtHoRiZaTiOnPrOvIdErId/aUtHoRiZaTiOnS/aUtHoRiZaTiOnId/extra",
 			Error: true,
 		},
 	}

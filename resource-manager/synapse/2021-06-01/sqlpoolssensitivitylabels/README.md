@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolssensitivitylabels` Documentation
 
-The `sqlpoolssensitivitylabels` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `sqlpoolssensitivitylabels` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue")
+id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
 
 payload := sqlpoolssensitivitylabels.RecommendedSensitivityLabelUpdateList{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "schemaValue", "tableValue", "columnValue")
+id := sqlpoolssensitivitylabels.NewColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "schemaName", "tableName", "columnName")
 
 payload := sqlpoolssensitivitylabels.SensitivityLabel{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "schemaValue", "tableValue", "columnValue")
+id := sqlpoolssensitivitylabels.NewColumnID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "schemaName", "tableName", "columnName")
 
 read, err := client.SqlPoolSensitivityLabelsDelete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "schemaValue", "tableValue", "columnValue", "current")
+id := sqlpoolssensitivitylabels.NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "schemaName", "tableName", "columnName", "current")
 
 read, err := client.SqlPoolSensitivityLabelsGet(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue")
+id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
 
 // alternatively `client.SqlPoolSensitivityLabelsListCurrent(ctx, id, sqlpoolssensitivitylabels.DefaultSqlPoolSensitivityLabelsListCurrentOperationOptions())` can be used to do batched pagination
 items, err := client.SqlPoolSensitivityLabelsListCurrentComplete(ctx, id, sqlpoolssensitivitylabels.DefaultSqlPoolSensitivityLabelsListCurrentOperationOptions())
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue")
+id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
 
 // alternatively `client.SqlPoolSensitivityLabelsListRecommended(ctx, id, sqlpoolssensitivitylabels.DefaultSqlPoolSensitivityLabelsListRecommendedOperationOptions())` can be used to do batched pagination
 items, err := client.SqlPoolSensitivityLabelsListRecommendedComplete(ctx, id, sqlpoolssensitivitylabels.DefaultSqlPoolSensitivityLabelsListRecommendedOperationOptions())
@@ -132,7 +132,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue")
+id := sqlpoolssensitivitylabels.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
 
 payload := sqlpoolssensitivitylabels.SensitivityLabelUpdateList{
 	// ...

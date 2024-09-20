@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkConnectionId{}
 
 func TestNewVirtualNetworkConnectionID(t *testing.T) {
-	id := NewVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "virtualNetworkConnectionValue")
+	id := NewVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "vnetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.VirtualNetworkConnectionName != "virtualNetworkConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkConnectionName'", id.VirtualNetworkConnectionName, "virtualNetworkConnectionValue")
+	if id.VirtualNetworkConnectionName != "vnetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkConnectionName'", id.VirtualNetworkConnectionName, "vnetName")
 	}
 }
 
 func TestFormatVirtualNetworkConnectionID(t *testing.T) {
-	actual := NewVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "virtualNetworkConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections/virtualNetworkConnectionValue"
+	actual := NewVirtualNetworkConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "vnetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections/vnetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections/virtualNetworkConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections/vnetName",
 			Expected: &VirtualNetworkConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				SiteName:                     "siteValue",
-				VirtualNetworkConnectionName: "virtualNetworkConnectionValue",
+				SiteName:                     "name",
+				VirtualNetworkConnectionName: "vnetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections/virtualNetworkConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections/vnetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/vIrTuAlNeTwOrKcOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections/virtualNetworkConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections/vnetName",
 			Expected: &VirtualNetworkConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				SiteName:                     "siteValue",
-				VirtualNetworkConnectionName: "virtualNetworkConnectionValue",
+				SiteName:                     "name",
+				VirtualNetworkConnectionName: "vnetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/virtualNetworkConnections/virtualNetworkConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/virtualNetworkConnections/vnetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE",
 			Expected: &VirtualNetworkConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:                     "sItEvAlUe",
-				VirtualNetworkConnectionName: "vIrTuAlNeTwOrKcOnNeCtIoNvAlUe",
+				SiteName:                     "nAmE",
+				VirtualNetworkConnectionName: "vNeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE/extra",
 			Error: true,
 		},
 	}

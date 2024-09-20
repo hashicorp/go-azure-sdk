@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ClientEncryptionKeyId{}
 
 func TestNewClientEncryptionKeyID(t *testing.T) {
-	id := NewClientEncryptionKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "sqlDatabaseValue", "clientEncryptionKeyValue")
+	id := NewClientEncryptionKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "clientEncryptionKeyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewClientEncryptionKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DatabaseAccountName != "databaseAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
+	if id.DatabaseAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "accountName")
 	}
 
-	if id.SqlDatabaseName != "sqlDatabaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SqlDatabaseName'", id.SqlDatabaseName, "sqlDatabaseValue")
+	if id.SqlDatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SqlDatabaseName'", id.SqlDatabaseName, "databaseName")
 	}
 
-	if id.ClientEncryptionKeyName != "clientEncryptionKeyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClientEncryptionKeyName'", id.ClientEncryptionKeyName, "clientEncryptionKeyValue")
+	if id.ClientEncryptionKeyName != "clientEncryptionKeyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClientEncryptionKeyName'", id.ClientEncryptionKeyName, "clientEncryptionKeyName")
 	}
 }
 
 func TestFormatClientEncryptionKeyID(t *testing.T) {
-	actual := NewClientEncryptionKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "sqlDatabaseValue", "clientEncryptionKeyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys/clientEncryptionKeyValue"
+	actual := NewClientEncryptionKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "clientEncryptionKeyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys/clientEncryptionKeyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseClientEncryptionKeyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys/clientEncryptionKeyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys/clientEncryptionKeyName",
 			Expected: &ClientEncryptionKeyId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				DatabaseAccountName:     "databaseAccountValue",
-				SqlDatabaseName:         "sqlDatabaseValue",
-				ClientEncryptionKeyName: "clientEncryptionKeyValue",
+				DatabaseAccountName:     "accountName",
+				SqlDatabaseName:         "databaseName",
+				ClientEncryptionKeyName: "clientEncryptionKeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys/clientEncryptionKeyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys/clientEncryptionKeyName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseClientEncryptionKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cLiEnTeNcRyPtIoNkEyS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cLiEnTeNcRyPtIoNkEyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys/clientEncryptionKeyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys/clientEncryptionKeyName",
 			Expected: &ClientEncryptionKeyId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				DatabaseAccountName:     "databaseAccountValue",
-				SqlDatabaseName:         "sqlDatabaseValue",
-				ClientEncryptionKeyName: "clientEncryptionKeyValue",
+				DatabaseAccountName:     "accountName",
+				SqlDatabaseName:         "databaseName",
+				ClientEncryptionKeyName: "clientEncryptionKeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/sqlDatabases/sqlDatabaseValue/clientEncryptionKeys/clientEncryptionKeyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountName/sqlDatabases/databaseName/clientEncryptionKeys/clientEncryptionKeyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cLiEnTeNcRyPtIoNkEyS/cLiEnTeNcRyPtIoNkEyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cLiEnTeNcRyPtIoNkEyS/cLiEnTeNcRyPtIoNkEyNaMe",
 			Expected: &ClientEncryptionKeyId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				DatabaseAccountName:     "dAtAbAsEaCcOuNtVaLuE",
-				SqlDatabaseName:         "sQlDaTaBaSeVaLuE",
-				ClientEncryptionKeyName: "cLiEnTeNcRyPtIoNkEyVaLuE",
+				DatabaseAccountName:     "aCcOuNtNaMe",
+				SqlDatabaseName:         "dAtAbAsEnAmE",
+				ClientEncryptionKeyName: "cLiEnTeNcRyPtIoNkEyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/sQlDaTaBaSeS/sQlDaTaBaSeVaLuE/cLiEnTeNcRyPtIoNkEyS/cLiEnTeNcRyPtIoNkEyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtNaMe/sQlDaTaBaSeS/dAtAbAsEnAmE/cLiEnTeNcRyPtIoNkEyS/cLiEnTeNcRyPtIoNkEyNaMe/extra",
 			Error: true,
 		},
 	}

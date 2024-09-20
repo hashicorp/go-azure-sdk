@@ -10,18 +10,41 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Overlay interface {
+	Overlay() BaseOverlayImpl
 }
 
-// RawOverlayImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Overlay = BaseOverlayImpl{}
+
+type BaseOverlayImpl struct {
+	AudioGainLevel  *float64 `json:"audioGainLevel,omitempty"`
+	End             *string  `json:"end,omitempty"`
+	FadeInDuration  *string  `json:"fadeInDuration,omitempty"`
+	FadeOutDuration *string  `json:"fadeOutDuration,omitempty"`
+	InputLabel      string   `json:"inputLabel"`
+	OdataType       string   `json:"@odata.type"`
+	Start           *string  `json:"start,omitempty"`
+}
+
+func (s BaseOverlayImpl) Overlay() BaseOverlayImpl {
+	return s
+}
+
+var _ Overlay = RawOverlayImpl{}
+
+// RawOverlayImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawOverlayImpl struct {
-	Type   string
-	Values map[string]interface{}
+	overlay BaseOverlayImpl
+	Type    string
+	Values  map[string]interface{}
 }
 
-func unmarshalOverlayImplementation(input []byte) (Overlay, error) {
+func (s RawOverlayImpl) Overlay() BaseOverlayImpl {
+	return s.overlay
+}
+
+func UnmarshalOverlayImplementation(input []byte) (Overlay, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +75,15 @@ func unmarshalOverlayImplementation(input []byte) (Overlay, error) {
 		return out, nil
 	}
 
-	out := RawOverlayImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseOverlayImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOverlayImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawOverlayImpl{
+		overlay: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
 
 }

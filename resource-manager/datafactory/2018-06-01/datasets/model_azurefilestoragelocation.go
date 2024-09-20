@@ -13,8 +13,18 @@ var _ DatasetLocation = AzureFileStorageLocation{}
 type AzureFileStorageLocation struct {
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s AzureFileStorageLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureFileStorageLocation{}
@@ -28,9 +38,10 @@ func (s AzureFileStorageLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureFileStorageLocation: %+v", err)
 	}
+
 	decoded["type"] = "AzureFileStorageLocation"
 
 	encoded, err = json.Marshal(decoded)

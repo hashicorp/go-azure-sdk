@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProviderConfigurationAssignmentId{}
 
 func TestNewProviderConfigurationAssignmentID(t *testing.T) {
-	id := NewProviderConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationAssignmentValue")
+	id := NewProviderConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewProviderConfigurationAssignmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConfigurationAssignmentName != "configurationAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentValue")
+	if id.ConfigurationAssignmentName != "configurationAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentName")
 	}
 }
 
 func TestFormatProviderConfigurationAssignmentID(t *testing.T) {
-	actual := NewProviderConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue"
+	actual := NewProviderConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseProviderConfigurationAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ProviderConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseProviderConfigurationAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ProviderConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			Expected: &ProviderConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe/extra",
 			Error: true,
 		},
 	}

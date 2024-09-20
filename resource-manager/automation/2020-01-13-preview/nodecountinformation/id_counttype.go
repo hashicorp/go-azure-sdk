@@ -44,7 +44,7 @@ func ParseCountTypeID(input string) (*CountTypeId, error) {
 	}
 
 	id := CountTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseCountTypeIDInsensitively(input string) (*CountTypeId, error) {
 	}
 
 	id := CountTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -129,7 +129,7 @@ func (id CountTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAutomation", "Microsoft.Automation", "Microsoft.Automation"),
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
-		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
+		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountName"),
 		resourceids.StaticSegment("staticNodeCounts", "nodeCounts", "nodeCounts"),
 		resourceids.ConstantSegment("countType", PossibleValuesForCountType(), "nodeconfiguration"),
 	}

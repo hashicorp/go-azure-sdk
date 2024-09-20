@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedEdgeDeviceId{}
 
 func TestNewScopedEdgeDeviceID(t *testing.T) {
-	id := NewScopedEdgeDeviceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "edgeDeviceValue")
+	id := NewScopedEdgeDeviceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "edgeDeviceName")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.EdgeDeviceName != "edgeDeviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EdgeDeviceName'", id.EdgeDeviceName, "edgeDeviceValue")
+	if id.EdgeDeviceName != "edgeDeviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EdgeDeviceName'", id.EdgeDeviceName, "edgeDeviceName")
 	}
 }
 
 func TestFormatScopedEdgeDeviceID(t *testing.T) {
-	actual := NewScopedEdgeDeviceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "edgeDeviceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceValue"
+	actual := NewScopedEdgeDeviceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "edgeDeviceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedEdgeDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceName",
 			Expected: &ScopedEdgeDeviceId{
 				ResourceUri:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				EdgeDeviceName: "edgeDeviceValue",
+				EdgeDeviceName: "edgeDeviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedEdgeDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceName",
 			Expected: &ScopedEdgeDeviceId{
 				ResourceUri:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				EdgeDeviceName: "edgeDeviceValue",
+				EdgeDeviceName: "edgeDeviceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.AzureStackHCI/edgeDevices/edgeDeviceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/eDgEdEvIcEs/eDgEdEvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/eDgEdEvIcEs/eDgEdEvIcEnAmE",
 			Expected: &ScopedEdgeDeviceId{
 				ResourceUri:    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				EdgeDeviceName: "eDgEdEvIcEvAlUe",
+				EdgeDeviceName: "eDgEdEvIcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/eDgEdEvIcEs/eDgEdEvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/eDgEdEvIcEs/eDgEdEvIcEnAmE/extra",
 			Error: true,
 		},
 	}

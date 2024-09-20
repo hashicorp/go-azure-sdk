@@ -44,7 +44,7 @@ func ParseAnnotationID(input string) (*AnnotationId, error) {
 	}
 
 	id := AnnotationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAnnotationIDInsensitively(input string) (*AnnotationId, error) {
 	}
 
 	id := AnnotationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AnnotationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticComponents", "components", "components"),
-		resourceids.UserSpecifiedSegment("componentName", "componentValue"),
+		resourceids.UserSpecifiedSegment("componentName", "resourceName"),
 		resourceids.StaticSegment("staticAnnotations", "annotations", "annotations"),
-		resourceids.UserSpecifiedSegment("annotationId", "annotationIdValue"),
+		resourceids.UserSpecifiedSegment("annotationId", "annotationId"),
 	}
 }
 

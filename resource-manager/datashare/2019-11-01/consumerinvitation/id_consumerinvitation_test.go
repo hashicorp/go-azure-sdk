@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ConsumerInvitationId{}
 
 func TestNewConsumerInvitationID(t *testing.T) {
-	id := NewConsumerInvitationID("locationValue", "invitationIdValue")
+	id := NewConsumerInvitationID("location", "invitationId")
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.InvitationId != "invitationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InvitationId'", id.InvitationId, "invitationIdValue")
+	if id.InvitationId != "invitationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InvitationId'", id.InvitationId, "invitationId")
 	}
 }
 
 func TestFormatConsumerInvitationID(t *testing.T) {
-	actual := NewConsumerInvitationID("locationValue", "invitationIdValue").ID()
-	expected := "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations/invitationIdValue"
+	actual := NewConsumerInvitationID("location", "invitationId").ID()
+	expected := "/providers/Microsoft.DataShare/locations/location/consumerInvitations/invitationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseConsumerInvitationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue",
+			Input: "/providers/Microsoft.DataShare/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations/invitationIdValue",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations/invitationId",
 			Expected: &ConsumerInvitationId{
-				LocationName: "locationValue",
-				InvitationId: "invitationIdValue",
+				LocationName: "location",
+				InvitationId: "invitationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations/invitationIdValue/extra",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations/invitationId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseConsumerInvitationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue",
+			Input: "/providers/Microsoft.DataShare/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoNvAlUe/cOnSuMeRiNvItAtIoNs",
+			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoN/cOnSuMeRiNvItAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations/invitationIdValue",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations/invitationId",
 			Expected: &ConsumerInvitationId{
-				LocationName: "locationValue",
-				InvitationId: "invitationIdValue",
+				LocationName: "location",
+				InvitationId: "invitationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DataShare/locations/locationValue/consumerInvitations/invitationIdValue/extra",
+			Input: "/providers/Microsoft.DataShare/locations/location/consumerInvitations/invitationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoNvAlUe/cOnSuMeRiNvItAtIoNs/iNvItAtIoNiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoN/cOnSuMeRiNvItAtIoNs/iNvItAtIoNiD",
 			Expected: &ConsumerInvitationId{
-				LocationName: "lOcAtIoNvAlUe",
-				InvitationId: "iNvItAtIoNiDvAlUe",
+				LocationName: "lOcAtIoN",
+				InvitationId: "iNvItAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoNvAlUe/cOnSuMeRiNvItAtIoNs/iNvItAtIoNiDvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/lOcAtIoNs/lOcAtIoN/cOnSuMeRiNvItAtIoNs/iNvItAtIoNiD/extra",
 			Error: true,
 		},
 	}

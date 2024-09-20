@@ -48,7 +48,7 @@ func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error
 	}
 
 	id := ServiceFabricScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseServiceFabricScheduleIDInsensitively(input string) (*ServiceFabricSche
 	}
 
 	id := ServiceFabricScheduleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id ServiceFabricScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
-		resourceids.UserSpecifiedSegment("labName", "labValue"),
+		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticUsers", "users", "users"),
-		resourceids.UserSpecifiedSegment("userName", "userValue"),
+		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
-		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricValue"),
+		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricName"),
 		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
-		resourceids.UserSpecifiedSegment("scheduleName", "scheduleValue"),
+		resourceids.UserSpecifiedSegment("scheduleName", "name"),
 	}
 }
 

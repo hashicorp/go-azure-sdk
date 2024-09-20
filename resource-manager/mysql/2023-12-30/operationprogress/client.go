@@ -15,7 +15,7 @@ type OperationProgressClient struct {
 }
 
 func NewOperationProgressClientWithBaseURI(sdkApi sdkEnv.Api) (*OperationProgressClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "operationprogress", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "operationprogress", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OperationProgressClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ManagementConfigurationId{}
 
 func TestNewManagementConfigurationID(t *testing.T) {
-	id := NewManagementConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managementConfigurationValue")
+	id := NewManagementConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managementConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewManagementConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagementConfigurationName != "managementConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementConfigurationName'", id.ManagementConfigurationName, "managementConfigurationValue")
+	if id.ManagementConfigurationName != "managementConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementConfigurationName'", id.ManagementConfigurationName, "managementConfigurationName")
 	}
 }
 
 func TestFormatManagementConfigurationID(t *testing.T) {
-	actual := NewManagementConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managementConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationValue"
+	actual := NewManagementConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managementConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseManagementConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationName",
 			Expected: &ManagementConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ManagementConfigurationName: "managementConfigurationValue",
+				ManagementConfigurationName: "managementConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseManagementConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationName",
 			Expected: &ManagementConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ManagementConfigurationName: "managementConfigurationValue",
+				ManagementConfigurationName: "managementConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationsManagement/managementConfigurations/managementConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTcOnFiGuRaTiOnS/mAnAgEmEnTcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTcOnFiGuRaTiOnS/mAnAgEmEnTcOnFiGuRaTiOnNaMe",
 			Expected: &ManagementConfigurationId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagementConfigurationName: "mAnAgEmEnTcOnFiGuRaTiOnVaLuE",
+				ManagementConfigurationName: "mAnAgEmEnTcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTcOnFiGuRaTiOnS/mAnAgEmEnTcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTcOnFiGuRaTiOnS/mAnAgEmEnTcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

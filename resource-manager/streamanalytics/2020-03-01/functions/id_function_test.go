@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FunctionId{}
 
 func TestNewFunctionID(t *testing.T) {
-	id := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue", "functionValue")
+	id := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "functionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFunctionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StreamingJobName != "streamingJobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StreamingJobName'", id.StreamingJobName, "streamingJobValue")
+	if id.StreamingJobName != "jobName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StreamingJobName'", id.StreamingJobName, "jobName")
 	}
 
-	if id.FunctionName != "functionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FunctionName'", id.FunctionName, "functionValue")
+	if id.FunctionName != "functionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FunctionName'", id.FunctionName, "functionName")
 	}
 }
 
 func TestFormatFunctionID(t *testing.T) {
-	actual := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue", "functionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions/functionValue"
+	actual := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "functionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions/functionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFunctionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions/functionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions/functionName",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StreamingJobName:  "streamingJobValue",
-				FunctionName:      "functionValue",
+				StreamingJobName:  "jobName",
+				FunctionName:      "functionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions/functionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions/functionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFunctionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/fUnCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/fUnCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions/functionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions/functionName",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StreamingJobName:  "streamingJobValue",
-				FunctionName:      "functionValue",
+				StreamingJobName:  "jobName",
+				FunctionName:      "functionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/functions/functionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/functions/functionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/fUnCtIoNs/fUnCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/fUnCtIoNs/fUnCtIoNnAmE",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StreamingJobName:  "sTrEaMiNgJoBvAlUe",
-				FunctionName:      "fUnCtIoNvAlUe",
+				StreamingJobName:  "jObNaMe",
+				FunctionName:      "fUnCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/fUnCtIoNs/fUnCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/fUnCtIoNs/fUnCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

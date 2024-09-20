@@ -16,6 +16,7 @@ var _ BenefitRecommendationProperties = SharedScopeBenefitRecommendationProperti
 type SharedScopeBenefitRecommendationProperties struct {
 
 	// Fields inherited from BenefitRecommendationProperties
+
 	AllRecommendationDetails *AllSavingsList             `json:"allRecommendationDetails,omitempty"`
 	ArmSkuName               *string                     `json:"armSkuName,omitempty"`
 	CommitmentGranularity    *Grain                      `json:"commitmentGranularity,omitempty"`
@@ -25,9 +26,28 @@ type SharedScopeBenefitRecommendationProperties struct {
 	LastConsumptionDate      *string                     `json:"lastConsumptionDate,omitempty"`
 	LookBackPeriod           *LookBackPeriod             `json:"lookBackPeriod,omitempty"`
 	RecommendationDetails    *AllSavingsBenefitDetails   `json:"recommendationDetails,omitempty"`
+	Scope                    Scope                       `json:"scope"`
 	Term                     *Term                       `json:"term,omitempty"`
 	TotalHours               *int64                      `json:"totalHours,omitempty"`
 	Usage                    *RecommendationUsageDetails `json:"usage,omitempty"`
+}
+
+func (s SharedScopeBenefitRecommendationProperties) BenefitRecommendationProperties() BaseBenefitRecommendationPropertiesImpl {
+	return BaseBenefitRecommendationPropertiesImpl{
+		AllRecommendationDetails: s.AllRecommendationDetails,
+		ArmSkuName:               s.ArmSkuName,
+		CommitmentGranularity:    s.CommitmentGranularity,
+		CostWithoutBenefit:       s.CostWithoutBenefit,
+		CurrencyCode:             s.CurrencyCode,
+		FirstConsumptionDate:     s.FirstConsumptionDate,
+		LastConsumptionDate:      s.LastConsumptionDate,
+		LookBackPeriod:           s.LookBackPeriod,
+		RecommendationDetails:    s.RecommendationDetails,
+		Scope:                    s.Scope,
+		Term:                     s.Term,
+		TotalHours:               s.TotalHours,
+		Usage:                    s.Usage,
+	}
 }
 
 func (o *SharedScopeBenefitRecommendationProperties) GetFirstConsumptionDateAsTime() (*time.Time, error) {
@@ -65,9 +85,10 @@ func (s SharedScopeBenefitRecommendationProperties) MarshalJSON() ([]byte, error
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SharedScopeBenefitRecommendationProperties: %+v", err)
 	}
+
 	decoded["scope"] = "Shared"
 
 	encoded, err = json.Marshal(decoded)

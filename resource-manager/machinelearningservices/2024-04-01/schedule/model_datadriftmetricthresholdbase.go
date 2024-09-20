@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataDriftMetricThresholdBase interface {
+	DataDriftMetricThresholdBase() BaseDataDriftMetricThresholdBaseImpl
 }
 
-// RawDataDriftMetricThresholdBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataDriftMetricThresholdBase = BaseDataDriftMetricThresholdBaseImpl{}
+
+type BaseDataDriftMetricThresholdBaseImpl struct {
+	DataType  MonitoringFeatureDataType `json:"dataType"`
+	Threshold *MonitoringThreshold      `json:"threshold,omitempty"`
+}
+
+func (s BaseDataDriftMetricThresholdBaseImpl) DataDriftMetricThresholdBase() BaseDataDriftMetricThresholdBaseImpl {
+	return s
+}
+
+var _ DataDriftMetricThresholdBase = RawDataDriftMetricThresholdBaseImpl{}
+
+// RawDataDriftMetricThresholdBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataDriftMetricThresholdBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataDriftMetricThresholdBase BaseDataDriftMetricThresholdBaseImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalDataDriftMetricThresholdBaseImplementation(input []byte) (DataDriftMetricThresholdBase, error) {
+func (s RawDataDriftMetricThresholdBaseImpl) DataDriftMetricThresholdBase() BaseDataDriftMetricThresholdBaseImpl {
+	return s.dataDriftMetricThresholdBase
+}
+
+func UnmarshalDataDriftMetricThresholdBaseImplementation(input []byte) (DataDriftMetricThresholdBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalDataDriftMetricThresholdBaseImplementation(input []byte) (DataDrif
 		return out, nil
 	}
 
-	out := RawDataDriftMetricThresholdBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataDriftMetricThresholdBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataDriftMetricThresholdBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataDriftMetricThresholdBaseImpl{
+		dataDriftMetricThresholdBase: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

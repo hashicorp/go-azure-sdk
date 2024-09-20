@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FileSystemId{}
 
 func TestNewFileSystemID(t *testing.T) {
-	id := NewFileSystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fileSystemValue")
+	id := NewFileSystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fileSystemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewFileSystemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FileSystemName != "fileSystemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FileSystemName'", id.FileSystemName, "fileSystemValue")
+	if id.FileSystemName != "fileSystemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FileSystemName'", id.FileSystemName, "fileSystemName")
 	}
 }
 
 func TestFormatFileSystemID(t *testing.T) {
-	actual := NewFileSystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fileSystemValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemValue"
+	actual := NewFileSystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fileSystemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseFileSystemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemName",
 			Expected: &FileSystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FileSystemName:    "fileSystemValue",
+				FileSystemName:    "fileSystemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseFileSystemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemName",
 			Expected: &FileSystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FileSystemName:    "fileSystemValue",
+				FileSystemName:    "fileSystemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Qumulo.Storage/fileSystems/fileSystemName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/qUmUlO.StOrAgE/fIlEsYsTeMs/fIlEsYsTeMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/qUmUlO.StOrAgE/fIlEsYsTeMs/fIlEsYsTeMnAmE",
 			Expected: &FileSystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FileSystemName:    "fIlEsYsTeMvAlUe",
+				FileSystemName:    "fIlEsYsTeMnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/qUmUlO.StOrAgE/fIlEsYsTeMs/fIlEsYsTeMvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/qUmUlO.StOrAgE/fIlEsYsTeMs/fIlEsYsTeMnAmE/extra",
 			Error: true,
 		},
 	}

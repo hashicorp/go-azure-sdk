@@ -46,7 +46,6 @@ func (c ComponentWorkItemConfigsAPIsClient) WorkItemConfigurationsGetDefault(ctx
 
 	var model WorkItemConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

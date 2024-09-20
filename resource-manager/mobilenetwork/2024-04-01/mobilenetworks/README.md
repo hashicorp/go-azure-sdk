@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/mobilenetworks` Documentation
 
-The `mobilenetworks` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2024-04-01`).
+The `mobilenetworks` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -59,7 +59,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := mobilenetworks.NewMobileNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue")
+id := mobilenetworks.NewMobileNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName")
 
 // alternatively `client.ListSimGroups(ctx, id)` can be used to do batched pagination
 items, err := client.ListSimGroupsComplete(ctx, id)

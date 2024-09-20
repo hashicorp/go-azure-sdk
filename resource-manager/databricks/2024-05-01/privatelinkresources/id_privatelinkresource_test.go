@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkResourceId{}
 
 func TestNewPrivateLinkResourceID(t *testing.T) {
-	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "groupIdValue")
+	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "groupId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 }
 
 func TestFormatPrivateLinkResourceID(t *testing.T) {
-	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "groupIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources/groupIdValue"
+	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "groupId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources/groupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources/groupIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources/groupId",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				GroupId:           "groupIdValue",
+				WorkspaceName:     "workspaceName",
+				GroupId:           "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources/groupIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources/groupId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/pRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources/groupIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources/groupId",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				GroupId:           "groupIdValue",
+				WorkspaceName:     "workspaceName",
+				GroupId:           "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/privateLinkResources/groupIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/privateLinkResources/groupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/gRoUpIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/pRiVaTeLiNkReSoUrCeS/gRoUpId",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
-				GroupId:           "gRoUpIdVaLuE",
+				WorkspaceName:     "wOrKsPaCeNaMe",
+				GroupId:           "gRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/gRoUpIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/pRiVaTeLiNkReSoUrCeS/gRoUpId/extra",
 			Error: true,
 		},
 	}

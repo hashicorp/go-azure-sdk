@@ -45,7 +45,6 @@ func (c InvoiceClient) GetByBillingAccount(ctx context.Context, id BillingAccoun
 
 	var model Invoice
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

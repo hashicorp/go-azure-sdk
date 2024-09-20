@@ -46,7 +46,6 @@ func (c ManagedMaintenanceWindowStatusClient) Get(ctx context.Context, id Manage
 
 	var model ManagedMaintenanceWindowStatus
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CustomCertificateId{}
 
 func TestNewCustomCertificateID(t *testing.T) {
-	id := NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue", "customCertificateValue")
+	id := NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewCustomCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WebPubSubName != "webPubSubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "webPubSubValue")
+	if id.WebPubSubName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebPubSubName'", id.WebPubSubName, "resourceName")
 	}
 
-	if id.CustomCertificateName != "customCertificateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomCertificateName'", id.CustomCertificateName, "customCertificateValue")
+	if id.CustomCertificateName != "certificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomCertificateName'", id.CustomCertificateName, "certificateName")
 	}
 }
 
 func TestFormatCustomCertificateID(t *testing.T) {
-	actual := NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubValue", "customCertificateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates/customCertificateValue"
+	actual := NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates/certificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseCustomCertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates/customCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates/certificateName",
 			Expected: &CustomCertificateId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				WebPubSubName:         "webPubSubValue",
-				CustomCertificateName: "customCertificateValue",
+				WebPubSubName:         "resourceName",
+				CustomCertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates/customCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates/certificateName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseCustomCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/cUsToMcErTiFiCaTeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/cUsToMcErTiFiCaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates/customCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates/certificateName",
 			Expected: &CustomCertificateId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				WebPubSubName:         "webPubSubValue",
-				CustomCertificateName: "customCertificateValue",
+				WebPubSubName:         "resourceName",
+				CustomCertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/webPubSubValue/customCertificates/customCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/webPubSub/resourceName/customCertificates/certificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/cUsToMcErTiFiCaTeS/cUsToMcErTiFiCaTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/cUsToMcErTiFiCaTeS/cErTiFiCaTeNaMe",
 			Expected: &CustomCertificateId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				WebPubSubName:         "wEbPuBsUbVaLuE",
-				CustomCertificateName: "cUsToMcErTiFiCaTeVaLuE",
+				WebPubSubName:         "rEsOuRcEnAmE",
+				CustomCertificateName: "cErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/wEbPuBsUbVaLuE/cUsToMcErTiFiCaTeS/cUsToMcErTiFiCaTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/wEbPuBsUb/rEsOuRcEnAmE/cUsToMcErTiFiCaTeS/cErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

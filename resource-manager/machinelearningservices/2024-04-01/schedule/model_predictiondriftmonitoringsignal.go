@@ -17,8 +17,18 @@ type PredictionDriftMonitoringSignal struct {
 	ReferenceData           MonitoringInputDataBase               `json:"referenceData"`
 
 	// Fields inherited from MonitoringSignalBase
+
 	NotificationTypes *[]MonitoringNotificationType `json:"notificationTypes,omitempty"`
 	Properties        *map[string]string            `json:"properties,omitempty"`
+	SignalType        MonitoringSignalType          `json:"signalType"`
+}
+
+func (s PredictionDriftMonitoringSignal) MonitoringSignalBase() BaseMonitoringSignalBaseImpl {
+	return BaseMonitoringSignalBaseImpl{
+		NotificationTypes: s.NotificationTypes,
+		Properties:        s.Properties,
+		SignalType:        s.SignalType,
+	}
 }
 
 var _ json.Marshaler = PredictionDriftMonitoringSignal{}
@@ -32,9 +42,10 @@ func (s PredictionDriftMonitoringSignal) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PredictionDriftMonitoringSignal: %+v", err)
 	}
+
 	decoded["signalType"] = "PredictionDrift"
 
 	encoded, err = json.Marshal(decoded)
@@ -57,6 +68,7 @@ func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	s.FeatureDataTypeOverride = decoded.FeatureDataTypeOverride
 	s.NotificationTypes = decoded.NotificationTypes
 	s.Properties = decoded.Properties
+	s.SignalType = decoded.SignalType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -71,7 +83,7 @@ func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]PredictionDriftMetricThresholdBase, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalPredictionDriftMetricThresholdBaseImplementation(val)
+			impl, err := UnmarshalPredictionDriftMetricThresholdBaseImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'MetricThresholds' for 'PredictionDriftMonitoringSignal': %+v", i, err)
 			}
@@ -81,7 +93,7 @@ func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["productionData"]; ok {
-		impl, err := unmarshalMonitoringInputDataBaseImplementation(v)
+		impl, err := UnmarshalMonitoringInputDataBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProductionData' for 'PredictionDriftMonitoringSignal': %+v", err)
 		}
@@ -89,7 +101,7 @@ func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["referenceData"]; ok {
-		impl, err := unmarshalMonitoringInputDataBaseImplementation(v)
+		impl, err := UnmarshalMonitoringInputDataBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ReferenceData' for 'PredictionDriftMonitoringSignal': %+v", err)
 		}

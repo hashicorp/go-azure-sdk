@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProviderShareSubscriptionId{}
 
 func TestNewProviderShareSubscriptionID(t *testing.T) {
-	id := NewProviderShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue", "providerShareSubscriptionIdValue")
+	id := NewProviderShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName", "providerShareSubscriptionId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewProviderShareSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.ShareName != "shareValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ShareName'", id.ShareName, "shareValue")
+	if id.ShareName != "shareName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ShareName'", id.ShareName, "shareName")
 	}
 
-	if id.ProviderShareSubscriptionId != "providerShareSubscriptionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderShareSubscriptionId'", id.ProviderShareSubscriptionId, "providerShareSubscriptionIdValue")
+	if id.ProviderShareSubscriptionId != "providerShareSubscriptionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderShareSubscriptionId'", id.ProviderShareSubscriptionId, "providerShareSubscriptionId")
 	}
 }
 
 func TestFormatProviderShareSubscriptionID(t *testing.T) {
-	actual := NewProviderShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue", "providerShareSubscriptionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions/providerShareSubscriptionIdValue"
+	actual := NewProviderShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareName", "providerShareSubscriptionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions/providerShareSubscriptionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseProviderShareSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions/providerShareSubscriptionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions/providerShareSubscriptionId",
 			Expected: &ProviderShareSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				AccountName:                 "accountValue",
-				ShareName:                   "shareValue",
-				ProviderShareSubscriptionId: "providerShareSubscriptionIdValue",
+				AccountName:                 "accountName",
+				ShareName:                   "shareName",
+				ProviderShareSubscriptionId: "providerShareSubscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions/providerShareSubscriptionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions/providerShareSubscriptionId/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseProviderShareSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReS/sHaReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReS/sHaReNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReS/sHaReVaLuE/pRoViDeRsHaReSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReS/sHaReNaMe/pRoViDeRsHaReSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions/providerShareSubscriptionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions/providerShareSubscriptionId",
 			Expected: &ProviderShareSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				AccountName:                 "accountValue",
-				ShareName:                   "shareValue",
-				ProviderShareSubscriptionId: "providerShareSubscriptionIdValue",
+				AccountName:                 "accountName",
+				ShareName:                   "shareName",
+				ProviderShareSubscriptionId: "providerShareSubscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shares/shareValue/providerShareSubscriptions/providerShareSubscriptionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName/shares/shareName/providerShareSubscriptions/providerShareSubscriptionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReS/sHaReVaLuE/pRoViDeRsHaReSuBsCrIpTiOnS/pRoViDeRsHaReSuBsCrIpTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReS/sHaReNaMe/pRoViDeRsHaReSuBsCrIpTiOnS/pRoViDeRsHaReSuBsCrIpTiOnId",
 			Expected: &ProviderShareSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:                 "aCcOuNtVaLuE",
-				ShareName:                   "sHaReVaLuE",
-				ProviderShareSubscriptionId: "pRoViDeRsHaReSuBsCrIpTiOnIdVaLuE",
+				AccountName:                 "aCcOuNtNaMe",
+				ShareName:                   "sHaReNaMe",
+				ProviderShareSubscriptionId: "pRoViDeRsHaReSuBsCrIpTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReS/sHaReVaLuE/pRoViDeRsHaReSuBsCrIpTiOnS/pRoViDeRsHaReSuBsCrIpTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtNaMe/sHaReS/sHaReNaMe/pRoViDeRsHaReSuBsCrIpTiOnS/pRoViDeRsHaReSuBsCrIpTiOnId/extra",
 			Error: true,
 		},
 	}

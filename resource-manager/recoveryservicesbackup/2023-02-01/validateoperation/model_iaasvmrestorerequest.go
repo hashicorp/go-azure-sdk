@@ -38,6 +38,14 @@ type IaasVMRestoreRequest struct {
 	Zones                           *zones.Schema                    `json:"zones,omitempty"`
 
 	// Fields inherited from RestoreRequest
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s IaasVMRestoreRequest) RestoreRequest() BaseRestoreRequestImpl {
+	return BaseRestoreRequestImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = IaasVMRestoreRequest{}
@@ -51,9 +59,10 @@ func (s IaasVMRestoreRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling IaasVMRestoreRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "IaasVMRestoreRequest"
 
 	encoded, err = json.Marshal(decoded)

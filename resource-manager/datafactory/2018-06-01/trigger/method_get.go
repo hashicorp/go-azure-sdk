@@ -36,6 +36,7 @@ func (o GetOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c TriggerClient) Get(ctx context.Context, id TriggerId, options GetOperati
 
 	var model TriggerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

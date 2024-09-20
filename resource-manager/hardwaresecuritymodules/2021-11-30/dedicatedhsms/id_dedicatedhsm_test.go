@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DedicatedHSMId{}
 
 func TestNewDedicatedHSMID(t *testing.T) {
-	id := NewDedicatedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dedicatedHSMValue")
+	id := NewDedicatedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDedicatedHSMID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DedicatedHSMName != "dedicatedHSMValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DedicatedHSMName'", id.DedicatedHSMName, "dedicatedHSMValue")
+	if id.DedicatedHSMName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'DedicatedHSMName'", id.DedicatedHSMName, "name")
 	}
 }
 
 func TestFormatDedicatedHSMID(t *testing.T) {
-	actual := NewDedicatedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dedicatedHSMValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/dedicatedHSMValue"
+	actual := NewDedicatedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDedicatedHSMID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/dedicatedHSMValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/name",
 			Expected: &DedicatedHSMId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DedicatedHSMName:  "dedicatedHSMValue",
+				DedicatedHSMName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/dedicatedHSMValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/name/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDedicatedHSMIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/dedicatedHSMValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/name",
 			Expected: &DedicatedHSMId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DedicatedHSMName:  "dedicatedHSMValue",
+				DedicatedHSMName:  "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/dedicatedHSMValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hArDwArEsEcUrItYmOdUlEs/dEdIcAtEdHsMs/dEdIcAtEdHsMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hArDwArEsEcUrItYmOdUlEs/dEdIcAtEdHsMs/nAmE",
 			Expected: &DedicatedHSMId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DedicatedHSMName:  "dEdIcAtEdHsMvAlUe",
+				DedicatedHSMName:  "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hArDwArEsEcUrItYmOdUlEs/dEdIcAtEdHsMs/dEdIcAtEdHsMvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hArDwArEsEcUrItYmOdUlEs/dEdIcAtEdHsMs/nAmE/extra",
 			Error: true,
 		},
 	}

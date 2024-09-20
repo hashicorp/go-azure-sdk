@@ -15,6 +15,14 @@ type AwsOrganizationalDataMaster struct {
 	StacksetName       *string   `json:"stacksetName,omitempty"`
 
 	// Fields inherited from AwsOrganizationalData
+
+	OrganizationMembershipType OrganizationMembershipType `json:"organizationMembershipType"`
+}
+
+func (s AwsOrganizationalDataMaster) AwsOrganizationalData() BaseAwsOrganizationalDataImpl {
+	return BaseAwsOrganizationalDataImpl{
+		OrganizationMembershipType: s.OrganizationMembershipType,
+	}
 }
 
 var _ json.Marshaler = AwsOrganizationalDataMaster{}
@@ -28,9 +36,10 @@ func (s AwsOrganizationalDataMaster) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AwsOrganizationalDataMaster: %+v", err)
 	}
+
 	decoded["organizationMembershipType"] = "Organization"
 
 	encoded, err = json.Marshal(decoded)

@@ -10,18 +10,37 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FetchTieringCostInfoRequest interface {
+	FetchTieringCostInfoRequest() BaseFetchTieringCostInfoRequestImpl
 }
 
-// RawFetchTieringCostInfoRequestImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ FetchTieringCostInfoRequest = BaseFetchTieringCostInfoRequestImpl{}
+
+type BaseFetchTieringCostInfoRequestImpl struct {
+	ObjectType     string                `json:"objectType"`
+	SourceTierType RecoveryPointTierType `json:"sourceTierType"`
+	TargetTierType RecoveryPointTierType `json:"targetTierType"`
+}
+
+func (s BaseFetchTieringCostInfoRequestImpl) FetchTieringCostInfoRequest() BaseFetchTieringCostInfoRequestImpl {
+	return s
+}
+
+var _ FetchTieringCostInfoRequest = RawFetchTieringCostInfoRequestImpl{}
+
+// RawFetchTieringCostInfoRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFetchTieringCostInfoRequestImpl struct {
-	Type   string
-	Values map[string]interface{}
+	fetchTieringCostInfoRequest BaseFetchTieringCostInfoRequestImpl
+	Type                        string
+	Values                      map[string]interface{}
 }
 
-func unmarshalFetchTieringCostInfoRequestImplementation(input []byte) (FetchTieringCostInfoRequest, error) {
+func (s RawFetchTieringCostInfoRequestImpl) FetchTieringCostInfoRequest() BaseFetchTieringCostInfoRequestImpl {
+	return s.fetchTieringCostInfoRequest
+}
+
+func UnmarshalFetchTieringCostInfoRequestImplementation(input []byte) (FetchTieringCostInfoRequest, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +87,15 @@ func unmarshalFetchTieringCostInfoRequestImplementation(input []byte) (FetchTier
 		return out, nil
 	}
 
-	out := RawFetchTieringCostInfoRequestImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseFetchTieringCostInfoRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFetchTieringCostInfoRequestImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawFetchTieringCostInfoRequestImpl{
+		fetchTieringCostInfoRequest: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
 
 }

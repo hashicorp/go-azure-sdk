@@ -44,7 +44,7 @@ func ParseUserID(input string) (*UserId, error) {
 	}
 
 	id := UserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseUserIDInsensitively(input string) (*UserId, error) {
 	}
 
 	id := UserId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id UserId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceValue"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticUsers", "users", "users"),
-		resourceids.UserSpecifiedSegment("userName", "userValue"),
+		resourceids.UserSpecifiedSegment("userName", "name"),
 	}
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/notificationrecipientemail` Documentation
 
-The `notificationrecipientemail` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `notificationrecipientemail` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "email")
 
 read, err := client.CheckEntityExists(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "email")
 
 read, err := client.CreateOrUpdate(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "email")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher")
+id := notificationrecipientemail.NewNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher")
 
 // alternatively `client.ListByNotification(ctx, id)` can be used to do batched pagination
 items, err := client.ListByNotificationComplete(ctx, id)
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "AccountClosedPublisher", "email")
 
 read, err := client.WorkspaceNotificationRecipientEmailCheckEntityExists(ctx, id)
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "AccountClosedPublisher", "email")
 
 read, err := client.WorkspaceNotificationRecipientEmailCreateOrUpdate(ctx, id)
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher", "recipientEmailValue")
+id := notificationrecipientemail.NewNotificationRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "AccountClosedPublisher", "email")
 
 read, err := client.WorkspaceNotificationRecipientEmailDelete(ctx, id)
 if err != nil {
@@ -137,7 +137,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationrecipientemail.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "AccountClosedPublisher")
+id := notificationrecipientemail.NewNotificationNotificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "AccountClosedPublisher")
 
 // alternatively `client.WorkspaceNotificationRecipientEmailListByNotification(ctx, id)` can be used to do batched pagination
 items, err := client.WorkspaceNotificationRecipientEmailListByNotificationComplete(ctx, id)

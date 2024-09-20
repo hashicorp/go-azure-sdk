@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-02-01/privateendpointconnection` Documentation
 
-The `privateendpointconnection` SDK allows for interaction with the Azure Resource Manager Service `batch` (API Version `2024-02-01`).
+The `privateendpointconnection` SDK allows for interaction with Azure Resource Manager `batch` (API Version `2024-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateEndpointConnectionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateEndpointConnectionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -52,7 +52,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue")
+id := privateendpointconnection.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.ListByBatchAccount(ctx, id, privateendpointconnection.DefaultListByBatchAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBatchAccountComplete(ctx, id, privateendpointconnection.DefaultListByBatchAccountOperationOptions())
@@ -69,7 +69,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateEndpointConnectionName")
 
 payload := privateendpointconnection.PrivateEndpointConnection{
 	// ...

@@ -49,7 +49,6 @@ func (c BillingRoleAssignmentsClient) RoleAssignmentsPut(ctx context.Context, id
 
 	var model BillingRoleAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

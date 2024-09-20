@@ -14,6 +14,14 @@ type SparkJobPythonEntry struct {
 	File string `json:"file"`
 
 	// Fields inherited from SparkJobEntry
+
+	SparkJobEntryType SparkJobEntryType `json:"sparkJobEntryType"`
+}
+
+func (s SparkJobPythonEntry) SparkJobEntry() BaseSparkJobEntryImpl {
+	return BaseSparkJobEntryImpl{
+		SparkJobEntryType: s.SparkJobEntryType,
+	}
 }
 
 var _ json.Marshaler = SparkJobPythonEntry{}
@@ -27,9 +35,10 @@ func (s SparkJobPythonEntry) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SparkJobPythonEntry: %+v", err)
 	}
+
 	decoded["sparkJobEntryType"] = "SparkJobPythonEntry"
 
 	encoded, err = json.Marshal(decoded)

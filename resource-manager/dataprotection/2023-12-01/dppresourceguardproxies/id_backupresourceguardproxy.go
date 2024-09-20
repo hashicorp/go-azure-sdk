@@ -44,7 +44,7 @@ func ParseBackupResourceGuardProxyID(input string) (*BackupResourceGuardProxyId,
 	}
 
 	id := BackupResourceGuardProxyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupResourceGuardProxyIDInsensitively(input string) (*BackupResource
 	}
 
 	id := BackupResourceGuardProxyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BackupResourceGuardProxyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataProtection", "Microsoft.DataProtection", "Microsoft.DataProtection"),
 		resourceids.StaticSegment("staticBackupVaults", "backupVaults", "backupVaults"),
-		resourceids.UserSpecifiedSegment("backupVaultName", "backupVaultValue"),
+		resourceids.UserSpecifiedSegment("backupVaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupResourceGuardProxies", "backupResourceGuardProxies", "backupResourceGuardProxies"),
-		resourceids.UserSpecifiedSegment("backupResourceGuardProxyName", "backupResourceGuardProxyValue"),
+		resourceids.UserSpecifiedSegment("backupResourceGuardProxyName", "resourceGuardProxyName"),
 	}
 }
 

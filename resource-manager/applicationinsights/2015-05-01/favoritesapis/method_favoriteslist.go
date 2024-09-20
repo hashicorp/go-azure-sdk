@@ -37,6 +37,7 @@ func (o FavoritesListOperationOptions) ToHeaders() *client.Headers {
 
 func (o FavoritesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -86,7 +87,6 @@ func (c FavoritesAPIsClient) FavoritesList(ctx context.Context, id ComponentId, 
 
 	var model []ApplicationInsightsComponentFavorite
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

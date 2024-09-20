@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DatabaseId{}
 
 func TestNewDatabaseID(t *testing.T) {
-	id := NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "databaseValue")
+	id := NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDatabaseID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FlexibleServerName != "flexibleServerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FlexibleServerName'", id.FlexibleServerName, "flexibleServerValue")
+	if id.FlexibleServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FlexibleServerName'", id.FlexibleServerName, "serverName")
 	}
 
-	if id.DatabaseName != "databaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseValue")
+	if id.DatabaseName != "databaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseName")
 	}
 }
 
 func TestFormatDatabaseID(t *testing.T) {
-	actual := NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "databaseValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases/databaseValue"
+	actual := NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases/databaseName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDatabaseID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases/databaseName",
 			Expected: &DatabaseId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FlexibleServerName: "flexibleServerValue",
-				DatabaseName:       "databaseValue",
+				FlexibleServerName: "serverName",
+				DatabaseName:       "databaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases/databaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases/databaseName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDatabaseIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/dAtAbAsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRnAmE/dAtAbAsEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases/databaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases/databaseName",
 			Expected: &DatabaseId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				FlexibleServerName: "flexibleServerValue",
-				DatabaseName:       "databaseValue",
+				FlexibleServerName: "serverName",
+				DatabaseName:       "databaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/databases/databaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverName/databases/databaseName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE",
 			Expected: &DatabaseId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				FlexibleServerName: "fLeXiBlEsErVeRvAlUe",
-				DatabaseName:       "dAtAbAsEvAlUe",
+				FlexibleServerName: "sErVeRnAmE",
+				DatabaseName:       "dAtAbAsEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/dAtAbAsEs/dAtAbAsEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/extra",
 			Error: true,
 		},
 	}

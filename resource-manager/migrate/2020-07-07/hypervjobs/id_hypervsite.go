@@ -42,7 +42,7 @@ func ParseHyperVSiteID(input string) (*HyperVSiteId, error) {
 	}
 
 	id := HyperVSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseHyperVSiteIDInsensitively(input string) (*HyperVSiteId, error) {
 	}
 
 	id := HyperVSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id HyperVSiteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOffAzure", "Microsoft.OffAzure", "Microsoft.OffAzure"),
 		resourceids.StaticSegment("staticHyperVSites", "hyperVSites", "hyperVSites"),
-		resourceids.UserSpecifiedSegment("hyperVSiteName", "hyperVSiteValue"),
+		resourceids.UserSpecifiedSegment("hyperVSiteName", "siteName"),
 	}
 }
 

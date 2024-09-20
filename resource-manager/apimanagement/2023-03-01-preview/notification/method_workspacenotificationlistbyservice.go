@@ -40,6 +40,7 @@ func (o WorkspaceNotificationListByServiceOperationOptions) ToHeaders() *client.
 
 func (o WorkspaceNotificationListByServiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -15,9 +15,20 @@ type BlobTrigger struct {
 	TypeProperties BlobTriggerTypeProperties   `json:"typeProperties"`
 
 	// Fields inherited from Trigger
+
 	Annotations  *[]interface{}       `json:"annotations,omitempty"`
 	Description  *string              `json:"description,omitempty"`
 	RuntimeState *TriggerRuntimeState `json:"runtimeState,omitempty"`
+	Type         string               `json:"type"`
+}
+
+func (s BlobTrigger) Trigger() BaseTriggerImpl {
+	return BaseTriggerImpl{
+		Annotations:  s.Annotations,
+		Description:  s.Description,
+		RuntimeState: s.RuntimeState,
+		Type:         s.Type,
+	}
 }
 
 var _ json.Marshaler = BlobTrigger{}
@@ -31,9 +42,10 @@ func (s BlobTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BlobTrigger: %+v", err)
 	}
+
 	decoded["type"] = "BlobTrigger"
 
 	encoded, err = json.Marshal(decoded)

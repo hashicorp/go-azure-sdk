@@ -14,7 +14,16 @@ type NumericalDataQualityMetricThreshold struct {
 	Metric NumericalDataQualityMetric `json:"metric"`
 
 	// Fields inherited from DataQualityMetricThresholdBase
-	Threshold *MonitoringThreshold `json:"threshold,omitempty"`
+
+	DataType  MonitoringFeatureDataType `json:"dataType"`
+	Threshold *MonitoringThreshold      `json:"threshold,omitempty"`
+}
+
+func (s NumericalDataQualityMetricThreshold) DataQualityMetricThresholdBase() BaseDataQualityMetricThresholdBaseImpl {
+	return BaseDataQualityMetricThresholdBaseImpl{
+		DataType:  s.DataType,
+		Threshold: s.Threshold,
+	}
 }
 
 var _ json.Marshaler = NumericalDataQualityMetricThreshold{}
@@ -28,9 +37,10 @@ func (s NumericalDataQualityMetricThreshold) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling NumericalDataQualityMetricThreshold: %+v", err)
 	}
+
 	decoded["dataType"] = "Numerical"
 
 	encoded, err = json.Marshal(decoded)

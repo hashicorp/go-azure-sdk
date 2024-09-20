@@ -15,7 +15,7 @@ type EncodingsClient struct {
 }
 
 func NewEncodingsClientWithBaseURI(sdkApi sdkEnv.Api) (*EncodingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "encodings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "encodings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EncodingsClient: %+v", err)
 	}

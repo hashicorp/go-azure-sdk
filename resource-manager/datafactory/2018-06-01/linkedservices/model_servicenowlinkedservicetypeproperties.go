@@ -45,7 +45,7 @@ func (s *ServiceNowLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["clientSecret"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientSecret' for 'ServiceNowLinkedServiceTypeProperties': %+v", err)
 		}
@@ -53,7 +53,7 @@ func (s *ServiceNowLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'ServiceNowLinkedServiceTypeProperties': %+v", err)
 		}

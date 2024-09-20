@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ViewId{}
 
 func TestNewViewID(t *testing.T) {
-	id := NewViewID("viewValue")
+	id := NewViewID("viewName")
 
-	if id.ViewName != "viewValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ViewName'", id.ViewName, "viewValue")
+	if id.ViewName != "viewName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ViewName'", id.ViewName, "viewName")
 	}
 }
 
 func TestFormatViewID(t *testing.T) {
-	actual := NewViewID("viewValue").ID()
-	expected := "/providers/Microsoft.CostManagement/views/viewValue"
+	actual := NewViewID("viewName").ID()
+	expected := "/providers/Microsoft.CostManagement/views/viewName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseViewID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/views/viewValue",
+			Input: "/providers/Microsoft.CostManagement/views/viewName",
 			Expected: &ViewId{
-				ViewName: "viewValue",
+				ViewName: "viewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/views/viewValue/extra",
+			Input: "/providers/Microsoft.CostManagement/views/viewName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseViewIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/views/viewValue",
+			Input: "/providers/Microsoft.CostManagement/views/viewName",
 			Expected: &ViewId{
-				ViewName: "viewValue",
+				ViewName: "viewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/views/viewValue/extra",
+			Input: "/providers/Microsoft.CostManagement/views/viewName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWnAmE",
 			Expected: &ViewId{
-				ViewName: "vIeWvAlUe",
+				ViewName: "vIeWnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWnAmE/extra",
 			Error: true,
 		},
 	}

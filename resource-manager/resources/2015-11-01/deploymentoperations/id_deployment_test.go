@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DeploymentId{}
 
 func TestNewDeploymentID(t *testing.T) {
-	id := NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+	id := NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDeploymentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DeploymentName != "deploymentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentValue")
+	if id.DeploymentName != "deploymentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentName'", id.DeploymentName, "deploymentName")
 	}
 }
 
 func TestFormatDeploymentID(t *testing.T) {
-	actual := NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentValue"
+	actual := NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,16 +73,16 @@ func TestParseDeploymentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentName",
 			Expected: &DeploymentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DeploymentName:    "deploymentValue",
+				DeploymentName:    "deploymentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentName/extra",
 			Error: true,
 		},
 	}
@@ -179,30 +179,30 @@ func TestParseDeploymentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentName",
 			Expected: &DeploymentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DeploymentName:    "deploymentValue",
+				DeploymentName:    "deploymentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/deployments/deploymentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dEpLoYmEnTs/dEpLoYmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dEpLoYmEnTs/dEpLoYmEnTnAmE",
 			Expected: &DeploymentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DeploymentName:    "dEpLoYmEnTvAlUe",
+				DeploymentName:    "dEpLoYmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dEpLoYmEnTs/dEpLoYmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dEpLoYmEnTs/dEpLoYmEnTnAmE/extra",
 			Error: true,
 		},
 	}

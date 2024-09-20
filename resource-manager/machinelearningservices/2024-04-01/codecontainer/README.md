@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codecontainer` Documentation
 
-The `codecontainer` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2024-04-01`).
+The `codecontainer` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "codeValue")
+id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := codecontainer.CodeContainerResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "codeValue")
+id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "codeValue")
+id := codecontainer.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := codecontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, codecontainer.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, codecontainer.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "codeValue")
+id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName")
 
 payload := codecontainer.CodeContainerResource{
 	// ...
@@ -111,7 +111,7 @@ if err := client.RegistryCodeContainersCreateOrUpdateThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "codeValue")
+id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName")
 
 if err := client.RegistryCodeContainersDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -123,7 +123,7 @@ if err := client.RegistryCodeContainersDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "codeValue")
+id := codecontainer.NewRegistryCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName")
 
 read, err := client.RegistryCodeContainersGet(ctx, id)
 if err != nil {
@@ -139,7 +139,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codecontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue")
+id := codecontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName")
 
 // alternatively `client.RegistryCodeContainersList(ctx, id, codecontainer.DefaultRegistryCodeContainersListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryCodeContainersListComplete(ctx, id, codecontainer.DefaultRegistryCodeContainersListOperationOptions())

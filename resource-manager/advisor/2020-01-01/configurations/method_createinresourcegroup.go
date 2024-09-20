@@ -51,7 +51,6 @@ func (c ConfigurationsClient) CreateInResourceGroup(ctx context.Context, id comm
 
 	var model ConfigData
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

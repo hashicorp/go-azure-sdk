@@ -39,6 +39,7 @@ func (o WorkspaceNamedValueCreateOrUpdateOperationOptions) ToHeaders() *client.H
 
 func (o WorkspaceNamedValueCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

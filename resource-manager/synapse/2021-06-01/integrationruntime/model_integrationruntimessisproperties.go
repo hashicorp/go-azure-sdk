@@ -45,7 +45,7 @@ func (s *IntegrationRuntimeSsisProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]CustomSetupBase, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalCustomSetupBaseImplementation(val)
+			impl, err := UnmarshalCustomSetupBaseImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ExpressCustomSetupProperties' for 'IntegrationRuntimeSsisProperties': %+v", i, err)
 			}

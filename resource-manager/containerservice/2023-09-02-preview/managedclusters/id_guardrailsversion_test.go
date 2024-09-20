@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GuardrailsVersionId{}
 
 func TestNewGuardrailsVersionID(t *testing.T) {
-	id := NewGuardrailsVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "guardrailsVersionValue")
+	id := NewGuardrailsVersionID("12345678-1234-9876-4563-123456789012", "location", "version")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.GuardrailsVersionName != "guardrailsVersionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GuardrailsVersionName'", id.GuardrailsVersionName, "guardrailsVersionValue")
+	if id.GuardrailsVersionName != "version" {
+		t.Fatalf("Expected %q but got %q for Segment 'GuardrailsVersionName'", id.GuardrailsVersionName, "version")
 	}
 }
 
 func TestFormatGuardrailsVersionID(t *testing.T) {
-	actual := NewGuardrailsVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "guardrailsVersionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions/guardrailsVersionValue"
+	actual := NewGuardrailsVersionID("12345678-1234-9876-4563-123456789012", "location", "version").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions/version"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseGuardrailsVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions/guardrailsVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions/version",
 			Expected: &GuardrailsVersionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				LocationName:          "locationValue",
-				GuardrailsVersionName: "guardrailsVersionValue",
+				LocationName:          "location",
+				GuardrailsVersionName: "version",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions/guardrailsVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions/version/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseGuardrailsVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNvAlUe/gUaRdRaIlSvErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/gUaRdRaIlSvErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions/guardrailsVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions/version",
 			Expected: &GuardrailsVersionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				LocationName:          "locationValue",
-				GuardrailsVersionName: "guardrailsVersionValue",
+				LocationName:          "location",
+				GuardrailsVersionName: "version",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationValue/guardrailsVersions/guardrailsVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/guardrailsVersions/version/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNvAlUe/gUaRdRaIlSvErSiOnS/gUaRdRaIlSvErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/gUaRdRaIlSvErSiOnS/vErSiOn",
 			Expected: &GuardrailsVersionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				LocationName:          "lOcAtIoNvAlUe",
-				GuardrailsVersionName: "gUaRdRaIlSvErSiOnVaLuE",
+				LocationName:          "lOcAtIoN",
+				GuardrailsVersionName: "vErSiOn",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNvAlUe/gUaRdRaIlSvErSiOnS/gUaRdRaIlSvErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/gUaRdRaIlSvErSiOnS/vErSiOn/extra",
 			Error: true,
 		},
 	}

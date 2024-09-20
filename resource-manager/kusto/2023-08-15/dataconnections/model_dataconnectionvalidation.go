@@ -30,7 +30,7 @@ func (s *DataConnectionValidation) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalDataConnectionImplementation(v)
+		impl, err := UnmarshalDataConnectionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'DataConnectionValidation': %+v", err)
 		}

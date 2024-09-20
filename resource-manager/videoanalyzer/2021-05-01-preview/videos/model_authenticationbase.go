@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AuthenticationBase interface {
+	AuthenticationBase() BaseAuthenticationBaseImpl
 }
 
-// RawAuthenticationBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AuthenticationBase = BaseAuthenticationBaseImpl{}
+
+type BaseAuthenticationBaseImpl struct {
+	Type string `json:"@type"`
+}
+
+func (s BaseAuthenticationBaseImpl) AuthenticationBase() BaseAuthenticationBaseImpl {
+	return s
+}
+
+var _ AuthenticationBase = RawAuthenticationBaseImpl{}
+
+// RawAuthenticationBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAuthenticationBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	authenticationBase BaseAuthenticationBaseImpl
+	Type               string
+	Values             map[string]interface{}
 }
 
-func unmarshalAuthenticationBaseImplementation(input []byte) (AuthenticationBase, error) {
+func (s RawAuthenticationBaseImpl) AuthenticationBase() BaseAuthenticationBaseImpl {
+	return s.authenticationBase
+}
+
+func UnmarshalAuthenticationBaseImplementation(input []byte) (AuthenticationBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalAuthenticationBaseImplementation(input []byte) (AuthenticationBase
 		return out, nil
 	}
 
-	out := RawAuthenticationBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAuthenticationBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAuthenticationBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAuthenticationBaseImpl{
+		authenticationBase: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
 
 }

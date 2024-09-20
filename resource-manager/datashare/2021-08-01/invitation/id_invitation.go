@@ -46,7 +46,7 @@ func ParseInvitationID(input string) (*InvitationId, error) {
 	}
 
 	id := InvitationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseInvitationIDInsensitively(input string) (*InvitationId, error) {
 	}
 
 	id := InvitationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id InvitationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataShare", "Microsoft.DataShare", "Microsoft.DataShare"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticShares", "shares", "shares"),
-		resourceids.UserSpecifiedSegment("shareName", "shareValue"),
+		resourceids.UserSpecifiedSegment("shareName", "shareName"),
 		resourceids.StaticSegment("staticInvitations", "invitations", "invitations"),
-		resourceids.UserSpecifiedSegment("invitationName", "invitationValue"),
+		resourceids.UserSpecifiedSegment("invitationName", "invitationName"),
 	}
 }
 

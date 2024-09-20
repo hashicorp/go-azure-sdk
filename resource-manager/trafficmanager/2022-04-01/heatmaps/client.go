@@ -15,7 +15,7 @@ type HeatMapsClient struct {
 }
 
 func NewHeatMapsClientWithBaseURI(sdkApi sdkEnv.Api) (*HeatMapsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "heatmaps", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "heatmaps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HeatMapsClient: %+v", err)
 	}

@@ -45,7 +45,6 @@ func (c IPv6FirewallRulesClient) Get(ctx context.Context, id IPv6FirewallRuleId)
 
 	var model IPv6FirewallRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

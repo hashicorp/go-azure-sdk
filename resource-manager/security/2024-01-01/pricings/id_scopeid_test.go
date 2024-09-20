@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ScopeIdId{}
 
 func TestNewScopeIdID(t *testing.T) {
-	id := NewScopeIdID("scopeIdValue")
+	id := NewScopeIdID("scopeId")
 
-	if id.ScopeId != "scopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopeId'", id.ScopeId, "scopeIdValue")
+	if id.ScopeId != "scopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopeId'", id.ScopeId, "scopeId")
 	}
 }
 
 func TestFormatScopeIdID(t *testing.T) {
-	actual := NewScopeIdID("scopeIdValue").ID()
-	expected := "/scopeIdValue"
+	actual := NewScopeIdID("scopeId").ID()
+	expected := "/scopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,14 +40,14 @@ func TestParseScopeIdID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/scopeIdValue",
+			Input: "/scopeId",
 			Expected: &ScopeIdId{
-				ScopeId: "scopeIdValue",
+				ScopeId: "scopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/scopeIdValue/extra",
+			Input: "/scopeId/extra",
 			Error: true,
 		},
 	}
@@ -86,26 +86,26 @@ func TestParseScopeIdIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/scopeIdValue",
+			Input: "/scopeId",
 			Expected: &ScopeIdId{
-				ScopeId: "scopeIdValue",
+				ScopeId: "scopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/scopeIdValue/extra",
+			Input: "/scopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE",
+			Input: "/sCoPeId",
 			Expected: &ScopeIdId{
-				ScopeId: "sCoPeIdVaLuE",
+				ScopeId: "sCoPeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/extra",
+			Input: "/sCoPeId/extra",
 			Error: true,
 		},
 	}

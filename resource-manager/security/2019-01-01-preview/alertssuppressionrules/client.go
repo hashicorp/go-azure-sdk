@@ -15,7 +15,7 @@ type AlertsSuppressionRulesClient struct {
 }
 
 func NewAlertsSuppressionRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*AlertsSuppressionRulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "alertssuppressionrules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "alertssuppressionrules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AlertsSuppressionRulesClient: %+v", err)
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleries` Documentation
 
-The `sharedgalleries` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2022-03-03`).
+The `sharedgalleries` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2022-03-03`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sharedgalleries.NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "sharedGalleryValue")
+id := sharedgalleries.NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "location", "galleryUniqueName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sharedgalleries.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := sharedgalleries.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 // alternatively `client.List(ctx, id, sharedgalleries.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, sharedgalleries.DefaultListOperationOptions())

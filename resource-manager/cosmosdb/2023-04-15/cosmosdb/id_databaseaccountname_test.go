@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DatabaseAccountNameId{}
 
 func TestNewDatabaseAccountNameID(t *testing.T) {
-	id := NewDatabaseAccountNameID("databaseAccountValue")
+	id := NewDatabaseAccountNameID("accountName")
 
-	if id.DatabaseAccountName != "databaseAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
+	if id.DatabaseAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "accountName")
 	}
 }
 
 func TestFormatDatabaseAccountNameID(t *testing.T) {
-	actual := NewDatabaseAccountNameID("databaseAccountValue").ID()
-	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue"
+	actual := NewDatabaseAccountNameID("accountName").ID()
+	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/accountName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDatabaseAccountNameID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountName",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountName: "databaseAccountValue",
+				DatabaseAccountName: "accountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDatabaseAccountNameIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountName",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountName: "databaseAccountValue",
+				DatabaseAccountName: "accountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/aCcOuNtNaMe",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountName: "dAtAbAsEaCcOuNtVaLuE",
+				DatabaseAccountName: "aCcOuNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/aCcOuNtNaMe/extra",
 			Error: true,
 		},
 	}

@@ -47,7 +47,6 @@ func (c ManagedDatabaseRestoreDetailsClient) Get(ctx context.Context, id commoni
 
 	var model ManagedDatabaseRestoreDetailsResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

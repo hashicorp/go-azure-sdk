@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2024-03-01/vmhhostlist` Documentation
 
-The `vmhhostlist` SDK allows for interaction with the Azure Resource Manager Service `elastic` (API Version `2024-03-01`).
+The `vmhhostlist` SDK allows for interaction with Azure Resource Manager `elastic` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vmhhostlist.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := vmhhostlist.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 // alternatively `client.VMHostList(ctx, id)` can be used to do batched pagination
 items, err := client.VMHostListComplete(ctx, id)

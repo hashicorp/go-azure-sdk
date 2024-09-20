@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/search/2023-11-01/privateendpointconnections` Documentation
 
-The `privateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `search` (API Version `2023-11-01`).
+The `privateendpointconnections` SDK allows for interaction with Azure Resource Manager `search` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName", "privateEndpointConnectionName")
 
 read, err := client.Delete(ctx, id, privateendpointconnections.DefaultDeleteOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName", "privateEndpointConnectionName")
 
 read, err := client.Get(ctx, id, privateendpointconnections.DefaultGetOperationOptions())
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue")
+id := privateendpointconnections.NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName")
 
 // alternatively `client.ListByService(ctx, id, privateendpointconnections.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, privateendpointconnections.DefaultListByServiceOperationOptions())
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName", "privateEndpointConnectionName")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...

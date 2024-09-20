@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationId{}
 
 func TestNewApplicationID(t *testing.T) {
-	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationValue")
+	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewApplicationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.ApplicationName != "applicationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationValue")
+	if id.ApplicationName != "applicationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationName")
 	}
 }
 
 func TestFormatApplicationID(t *testing.T) {
-	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications/applicationValue"
+	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications/applicationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseApplicationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications/applicationName",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ApplicationName:   "applicationValue",
+				ClusterName:       "clusterName",
+				ApplicationName:   "applicationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications/applicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications/applicationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/aPpLiCaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/aPpLiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications/applicationName",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ApplicationName:   "applicationValue",
+				ClusterName:       "clusterName",
+				ApplicationName:   "applicationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/applications/applicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/applications/applicationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				ApplicationName:   "aPpLiCaTiOnVaLuE",
+				ClusterName:       "cLuStErNaMe",
+				ApplicationName:   "aPpLiCaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/aPpLiCaTiOnS/aPpLiCaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

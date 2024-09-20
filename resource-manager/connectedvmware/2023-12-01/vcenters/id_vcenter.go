@@ -42,7 +42,7 @@ func ParseVCenterID(input string) (*VCenterId, error) {
 	}
 
 	id := VCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseVCenterIDInsensitively(input string) (*VCenterId, error) {
 	}
 
 	id := VCenterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id VCenterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere"),
 		resourceids.StaticSegment("staticVCenters", "vCenters", "vCenters"),
-		resourceids.UserSpecifiedSegment("vCenterName", "vCenterValue"),
+		resourceids.UserSpecifiedSegment("vCenterName", "vcenterName"),
 	}
 }
 

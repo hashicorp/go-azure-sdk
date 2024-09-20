@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dsccompilationjob` Documentation
 
-The `dsccompilationjob` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2020-01-13-preview`).
+The `dsccompilationjob` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2020-01-13-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "compilationJobId")
 
 payload := dsccompilationjob.DscCompilationJobCreateParameters{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "compilationJobId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dsccompilationjob.NewStreamID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue", "jobStreamIdValue")
+id := dsccompilationjob.NewStreamID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId", "jobStreamId")
 
 read, err := client.GetStream(ctx, id)
 if err != nil {
@@ -74,7 +74,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dsccompilationjob.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue")
+id := dsccompilationjob.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName")
 
 // alternatively `client.ListByAutomationAccount(ctx, id, dsccompilationjob.DefaultListByAutomationAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAutomationAccountComplete(ctx, id, dsccompilationjob.DefaultListByAutomationAccountOperationOptions())
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobIdValue")
+id := commonids.NewAutomationCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "compilationJobId")
 
 // alternatively `client.StreamListByJob(ctx, id)` can be used to do batched pagination
 items, err := client.StreamListByJobComplete(ctx, id)

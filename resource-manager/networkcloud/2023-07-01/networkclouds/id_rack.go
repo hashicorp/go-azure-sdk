@@ -42,7 +42,7 @@ func ParseRackID(input string) (*RackId, error) {
 	}
 
 	id := RackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseRackIDInsensitively(input string) (*RackId, error) {
 	}
 
 	id := RackId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id RackId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticRacks", "racks", "racks"),
-		resourceids.UserSpecifiedSegment("rackName", "rackValue"),
+		resourceids.UserSpecifiedSegment("rackName", "rackName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationGatewayPrivateEndpointConnectionId{}
 
 func TestNewApplicationGatewayPrivateEndpointConnectionID(t *testing.T) {
-	id := NewApplicationGatewayPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayValue", "privateEndpointConnectionValue")
+	id := NewApplicationGatewayPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayName", "connectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewApplicationGatewayPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationGatewayName != "applicationGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGatewayName'", id.ApplicationGatewayName, "applicationGatewayValue")
+	if id.ApplicationGatewayName != "applicationGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGatewayName'", id.ApplicationGatewayName, "applicationGatewayName")
 	}
 
-	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionName'", id.PrivateEndpointConnectionName, "privateEndpointConnectionValue")
+	if id.PrivateEndpointConnectionName != "connectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionName'", id.PrivateEndpointConnectionName, "connectionName")
 	}
 }
 
 func TestFormatApplicationGatewayPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewApplicationGatewayPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewApplicationGatewayPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayName", "connectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections/connectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseApplicationGatewayPrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections/connectionName",
 			Expected: &ApplicationGatewayPrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ApplicationGatewayName:        "applicationGatewayValue",
-				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
+				ApplicationGatewayName:        "applicationGatewayName",
+				PrivateEndpointConnectionName: "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections/connectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseApplicationGatewayPrivateEndpointConnectionIDInsensitively(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections/connectionName",
 			Expected: &ApplicationGatewayPrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ApplicationGatewayName:        "applicationGatewayValue",
-				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
+				ApplicationGatewayName:        "applicationGatewayName",
+				PrivateEndpointConnectionName: "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGateways/applicationGatewayName/privateEndpointConnections/connectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS/cOnNeCtIoNnAmE",
 			Expected: &ApplicationGatewayPrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationGatewayName:        "aPpLiCaTiOnGaTeWaYvAlUe",
-				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+				ApplicationGatewayName:        "aPpLiCaTiOnGaTeWaYnAmE",
+				PrivateEndpointConnectionName: "cOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYs/aPpLiCaTiOnGaTeWaYnAmE/pRiVaTeEnDpOiNtCoNnEcTiOnS/cOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

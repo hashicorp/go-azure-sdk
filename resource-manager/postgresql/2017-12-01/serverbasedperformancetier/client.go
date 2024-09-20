@@ -15,7 +15,7 @@ type ServerBasedPerformanceTierClient struct {
 }
 
 func NewServerBasedPerformanceTierClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerBasedPerformanceTierClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverbasedperformancetier", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverbasedperformancetier", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerBasedPerformanceTierClient: %+v", err)
 	}

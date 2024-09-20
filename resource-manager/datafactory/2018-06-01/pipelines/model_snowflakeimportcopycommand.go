@@ -16,6 +16,14 @@ type SnowflakeImportCopyCommand struct {
 	StorageIntegration      *string                 `json:"storageIntegration,omitempty"`
 
 	// Fields inherited from ImportSettings
+
+	Type string `json:"type"`
+}
+
+func (s SnowflakeImportCopyCommand) ImportSettings() BaseImportSettingsImpl {
+	return BaseImportSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = SnowflakeImportCopyCommand{}
@@ -29,9 +37,10 @@ func (s SnowflakeImportCopyCommand) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SnowflakeImportCopyCommand: %+v", err)
 	}
+
 	decoded["type"] = "SnowflakeImportCopyCommand"
 
 	encoded, err = json.Marshal(decoded)

@@ -44,7 +44,7 @@ func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
 	}
 
 	id := IntegrationRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIntegrationRuntimeIDInsensitively(input string) (*IntegrationRuntimeId
 	}
 
 	id := IntegrationRuntimeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id IntegrationRuntimeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticIntegrationRuntimes", "integrationRuntimes", "integrationRuntimes"),
-		resourceids.UserSpecifiedSegment("integrationRuntimeName", "integrationRuntimeValue"),
+		resourceids.UserSpecifiedSegment("integrationRuntimeName", "integrationRuntimeName"),
 	}
 }
 

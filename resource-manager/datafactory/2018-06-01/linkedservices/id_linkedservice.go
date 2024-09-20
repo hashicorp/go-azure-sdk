@@ -44,7 +44,7 @@ func ParseLinkedServiceID(input string) (*LinkedServiceId, error) {
 	}
 
 	id := LinkedServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLinkedServiceIDInsensitively(input string) (*LinkedServiceId, error) {
 	}
 
 	id := LinkedServiceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id LinkedServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataFactory", "Microsoft.DataFactory", "Microsoft.DataFactory"),
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
-		resourceids.UserSpecifiedSegment("factoryName", "factoryValue"),
+		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticLinkedServices", "linkedServices", "linkedServices"),
-		resourceids.UserSpecifiedSegment("linkedServiceName", "linkedServiceValue"),
+		resourceids.UserSpecifiedSegment("linkedServiceName", "linkedServiceName"),
 	}
 }
 

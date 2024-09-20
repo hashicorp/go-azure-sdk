@@ -15,7 +15,7 @@ type EnrichmentClient struct {
 }
 
 func NewEnrichmentClientWithBaseURI(sdkApi sdkEnv.Api) (*EnrichmentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "enrichment", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "enrichment", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EnrichmentClient: %+v", err)
 	}

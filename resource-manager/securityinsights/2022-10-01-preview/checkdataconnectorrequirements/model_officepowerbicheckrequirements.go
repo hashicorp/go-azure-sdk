@@ -14,6 +14,14 @@ type OfficePowerBICheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s OfficePowerBICheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = OfficePowerBICheckRequirements{}
@@ -27,9 +35,10 @@ func (s OfficePowerBICheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OfficePowerBICheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "OfficePowerBI"
 
 	encoded, err = json.Marshal(decoded)

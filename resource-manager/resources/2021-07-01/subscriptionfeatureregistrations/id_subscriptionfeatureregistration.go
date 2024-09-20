@@ -42,7 +42,7 @@ func ParseSubscriptionFeatureRegistrationID(input string) (*SubscriptionFeatureR
 	}
 
 	id := SubscriptionFeatureRegistrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSubscriptionFeatureRegistrationIDInsensitively(input string) (*Subscri
 	}
 
 	id := SubscriptionFeatureRegistrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id SubscriptionFeatureRegistrationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftFeatures", "Microsoft.Features", "Microsoft.Features"),
 		resourceids.StaticSegment("staticFeatureProviders", "featureProviders", "featureProviders"),
-		resourceids.UserSpecifiedSegment("featureProviderName", "featureProviderValue"),
+		resourceids.UserSpecifiedSegment("featureProviderName", "providerNamespace"),
 		resourceids.StaticSegment("staticSubscriptionFeatureRegistrations", "subscriptionFeatureRegistrations", "subscriptionFeatureRegistrations"),
-		resourceids.UserSpecifiedSegment("subscriptionFeatureRegistrationName", "subscriptionFeatureRegistrationValue"),
+		resourceids.UserSpecifiedSegment("subscriptionFeatureRegistrationName", "featureName"),
 	}
 }
 

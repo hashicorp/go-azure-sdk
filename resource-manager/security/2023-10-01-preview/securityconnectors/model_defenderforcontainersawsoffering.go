@@ -25,7 +25,16 @@ type DefenderForContainersAwsOffering struct {
 	ScubaExternalId                        *string                                                               `json:"scubaExternalId,omitempty"`
 
 	// Fields inherited from CloudOffering
-	Description *string `json:"description,omitempty"`
+
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s DefenderForContainersAwsOffering) CloudOffering() BaseCloudOfferingImpl {
+	return BaseCloudOfferingImpl{
+		Description:  s.Description,
+		OfferingType: s.OfferingType,
+	}
 }
 
 var _ json.Marshaler = DefenderForContainersAwsOffering{}
@@ -39,9 +48,10 @@ func (s DefenderForContainersAwsOffering) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DefenderForContainersAwsOffering: %+v", err)
 	}
+
 	decoded["offeringType"] = "DefenderForContainersAws"
 
 	encoded, err = json.Marshal(decoded)

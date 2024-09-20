@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UpdateProtectionPolicyRequestId{}
 
 func TestNewUpdateProtectionPolicyRequestID(t *testing.T) {
-	id := NewUpdateProtectionPolicyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "updateProtectionPolicyRequestValue")
+	id := NewUpdateProtectionPolicyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsName", "requestName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewUpdateProtectionPolicyRequestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceGuardName != "resourceGuardValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardValue")
+	if id.ResourceGuardName != "resourceGuardsName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardsName")
 	}
 
-	if id.UpdateProtectionPolicyRequestName != "updateProtectionPolicyRequestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UpdateProtectionPolicyRequestName'", id.UpdateProtectionPolicyRequestName, "updateProtectionPolicyRequestValue")
+	if id.UpdateProtectionPolicyRequestName != "requestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'UpdateProtectionPolicyRequestName'", id.UpdateProtectionPolicyRequestName, "requestName")
 	}
 }
 
 func TestFormatUpdateProtectionPolicyRequestID(t *testing.T) {
-	actual := NewUpdateProtectionPolicyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "updateProtectionPolicyRequestValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests/updateProtectionPolicyRequestValue"
+	actual := NewUpdateProtectionPolicyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsName", "requestName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests/requestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseUpdateProtectionPolicyRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests/updateProtectionPolicyRequestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests/requestName",
 			Expected: &UpdateProtectionPolicyRequestId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
-				ResourceGuardName:                 "resourceGuardValue",
-				UpdateProtectionPolicyRequestName: "updateProtectionPolicyRequestValue",
+				ResourceGuardName:                 "resourceGuardsName",
+				UpdateProtectionPolicyRequestName: "requestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests/updateProtectionPolicyRequestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests/requestName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseUpdateProtectionPolicyRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests/updateProtectionPolicyRequestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests/requestName",
 			Expected: &UpdateProtectionPolicyRequestId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
-				ResourceGuardName:                 "resourceGuardValue",
-				UpdateProtectionPolicyRequestName: "updateProtectionPolicyRequestValue",
+				ResourceGuardName:                 "resourceGuardsName",
+				UpdateProtectionPolicyRequestName: "requestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/updateProtectionPolicyRequests/updateProtectionPolicyRequestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/updateProtectionPolicyRequests/requestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS/uPdAtEpRoTeCtIoNpOlIcYrEqUeStVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS/rEqUeStNaMe",
 			Expected: &UpdateProtectionPolicyRequestId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceGuardName:                 "rEsOuRcEgUaRdVaLuE",
-				UpdateProtectionPolicyRequestName: "uPdAtEpRoTeCtIoNpOlIcYrEqUeStVaLuE",
+				ResourceGuardName:                 "rEsOuRcEgUaRdSnAmE",
+				UpdateProtectionPolicyRequestName: "rEqUeStNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS/uPdAtEpRoTeCtIoNpOlIcYrEqUeStVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/uPdAtEpRoTeCtIoNpOlIcYrEqUeStS/rEqUeStNaMe/extra",
 			Error: true,
 		},
 	}

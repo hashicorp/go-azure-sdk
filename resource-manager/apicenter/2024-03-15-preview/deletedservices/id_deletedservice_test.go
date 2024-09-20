@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DeletedServiceId{}
 
 func TestNewDeletedServiceID(t *testing.T) {
-	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceValue")
+	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDeletedServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DeletedServiceName != "deletedServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedServiceName'", id.DeletedServiceName, "deletedServiceValue")
+	if id.DeletedServiceName != "deletedServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedServiceName'", id.DeletedServiceName, "deletedServiceName")
 	}
 }
 
 func TestFormatDeletedServiceID(t *testing.T) {
-	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceValue"
+	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deletedServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDeletedServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceName",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				DeletedServiceName: "deletedServiceValue",
+				DeletedServiceName: "deletedServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDeletedServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceName",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				DeletedServiceName: "deletedServiceValue",
+				DeletedServiceName: "deletedServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/deletedServices/deletedServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/dElEtEdSeRvIcEs/dElEtEdSeRvIcEnAmE",
 			Expected: &DeletedServiceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				DeletedServiceName: "dElEtEdSeRvIcEvAlUe",
+				DeletedServiceName: "dElEtEdSeRvIcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/dElEtEdSeRvIcEs/dElEtEdSeRvIcEnAmE/extra",
 			Error: true,
 		},
 	}

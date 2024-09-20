@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DistributedAvailabilityGroupId{}
 
 func TestNewDistributedAvailabilityGroupID(t *testing.T) {
-	id := NewDistributedAvailabilityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "distributedAvailabilityGroupValue")
+	id := NewDistributedAvailabilityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "distributedAvailabilityGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDistributedAvailabilityGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedInstanceName != "managedInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceValue")
+	if id.ManagedInstanceName != "managedInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.DistributedAvailabilityGroupName != "distributedAvailabilityGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DistributedAvailabilityGroupName'", id.DistributedAvailabilityGroupName, "distributedAvailabilityGroupValue")
+	if id.DistributedAvailabilityGroupName != "distributedAvailabilityGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DistributedAvailabilityGroupName'", id.DistributedAvailabilityGroupName, "distributedAvailabilityGroupName")
 	}
 }
 
 func TestFormatDistributedAvailabilityGroupID(t *testing.T) {
-	actual := NewDistributedAvailabilityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "distributedAvailabilityGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups/distributedAvailabilityGroupValue"
+	actual := NewDistributedAvailabilityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "distributedAvailabilityGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups/distributedAvailabilityGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDistributedAvailabilityGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups/distributedAvailabilityGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups/distributedAvailabilityGroupName",
 			Expected: &DistributedAvailabilityGroupId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				ManagedInstanceName:              "managedInstanceValue",
-				DistributedAvailabilityGroupName: "distributedAvailabilityGroupValue",
+				ManagedInstanceName:              "managedInstanceName",
+				DistributedAvailabilityGroupName: "distributedAvailabilityGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups/distributedAvailabilityGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups/distributedAvailabilityGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDistributedAvailabilityGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups/distributedAvailabilityGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups/distributedAvailabilityGroupName",
 			Expected: &DistributedAvailabilityGroupId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				ManagedInstanceName:              "managedInstanceValue",
-				DistributedAvailabilityGroupName: "distributedAvailabilityGroupValue",
+				ManagedInstanceName:              "managedInstanceName",
+				DistributedAvailabilityGroupName: "distributedAvailabilityGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/distributedAvailabilityGroups/distributedAvailabilityGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/distributedAvailabilityGroups/distributedAvailabilityGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs/dIsTrIbUtEdAvAiLaBiLiTyGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs/dIsTrIbUtEdAvAiLaBiLiTyGrOuPnAmE",
 			Expected: &DistributedAvailabilityGroupId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedInstanceName:              "mAnAgEdInStAnCeVaLuE",
-				DistributedAvailabilityGroupName: "dIsTrIbUtEdAvAiLaBiLiTyGrOuPvAlUe",
+				ManagedInstanceName:              "mAnAgEdInStAnCeNaMe",
+				DistributedAvailabilityGroupName: "dIsTrIbUtEdAvAiLaBiLiTyGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs/dIsTrIbUtEdAvAiLaBiLiTyGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dIsTrIbUtEdAvAiLaBiLiTyGrOuPs/dIsTrIbUtEdAvAiLaBiLiTyGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c NetworkcloudsClient) BareMetalMachinesGet(ctx context.Context, id BareMe
 
 	var model BareMetalMachine
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

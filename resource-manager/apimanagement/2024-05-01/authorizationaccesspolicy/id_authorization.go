@@ -46,7 +46,7 @@ func ParseAuthorizationID(input string) (*AuthorizationId, error) {
 	}
 
 	id := AuthorizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAuthorizationIDInsensitively(input string) (*AuthorizationId, error) {
 	}
 
 	id := AuthorizationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id AuthorizationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticAuthorizationProviders", "authorizationProviders", "authorizationProviders"),
-		resourceids.UserSpecifiedSegment("authorizationProviderId", "authorizationProviderIdValue"),
+		resourceids.UserSpecifiedSegment("authorizationProviderId", "authorizationProviderId"),
 		resourceids.StaticSegment("staticAuthorizations", "authorizations", "authorizations"),
-		resourceids.UserSpecifiedSegment("authorizationId", "authorizationIdValue"),
+		resourceids.UserSpecifiedSegment("authorizationId", "authorizationId"),
 	}
 }
 

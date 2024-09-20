@@ -96,7 +96,7 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["input"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
+		impl, err := UnmarshalJobInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Input' for 'JobProperties': %+v", err)
 		}
@@ -111,7 +111,7 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]JobOutput, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Outputs' for 'JobProperties': %+v", i, err)
 			}

@@ -50,7 +50,6 @@ func (c IncidentTeamClient) IncidentsCreateTeam(ctx context.Context, id Incident
 
 	var model TeamInformation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,40 +12,40 @@ import (
 var _ resourceids.ResourceId = &OfferSkuVersionId{}
 
 func TestNewOfferSkuVersionID(t *testing.T) {
-	id := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue", "versionValue")
+	id := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "location", "edgeZone", "publisherName", "offer", "skus", "version")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.EdgeZoneName != "edgeZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EdgeZoneName'", id.EdgeZoneName, "edgeZoneValue")
+	if id.EdgeZoneName != "edgeZone" {
+		t.Fatalf("Expected %q but got %q for Segment 'EdgeZoneName'", id.EdgeZoneName, "edgeZone")
 	}
 
-	if id.PublisherName != "publisherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherValue")
+	if id.PublisherName != "publisherName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherName")
 	}
 
-	if id.OfferName != "offerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OfferName'", id.OfferName, "offerValue")
+	if id.OfferName != "offer" {
+		t.Fatalf("Expected %q but got %q for Segment 'OfferName'", id.OfferName, "offer")
 	}
 
-	if id.SkuName != "skuValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SkuName'", id.SkuName, "skuValue")
+	if id.SkuName != "skus" {
+		t.Fatalf("Expected %q but got %q for Segment 'SkuName'", id.SkuName, "skus")
 	}
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.VersionName != "version" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "version")
 	}
 }
 
 func TestFormatOfferSkuVersionID(t *testing.T) {
-	actual := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue"
+	actual := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "location", "edgeZone", "publisherName", "offer", "skus", "version").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions/version"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -89,80 +89,80 @@ func TestParseOfferSkuVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions/version",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				EdgeZoneName:   "edgeZoneValue",
-				PublisherName:  "publisherValue",
-				OfferName:      "offerValue",
-				SkuName:        "skuValue",
-				VersionName:    "versionValue",
+				LocationName:   "location",
+				EdgeZoneName:   "edgeZone",
+				PublisherName:  "publisherName",
+				OfferName:      "offer",
+				SkuName:        "skus",
+				VersionName:    "version",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions/version/extra",
 			Error: true,
 		},
 	}
@@ -275,158 +275,158 @@ func TestParseOfferSkuVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr/sKuS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr/sKuS/sKuS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr/sKuS/sKuS/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions/version",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				EdgeZoneName:   "edgeZoneValue",
-				PublisherName:  "publisherValue",
-				OfferName:      "offerValue",
-				SkuName:        "skuValue",
-				VersionName:    "versionValue",
+				LocationName:   "location",
+				EdgeZoneName:   "edgeZone",
+				PublisherName:  "publisherName",
+				OfferName:      "offer",
+				SkuName:        "skus",
+				VersionName:    "version",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/edgeZones/edgeZone/publishers/publisherName/artifactTypes/vmImage/offers/offer/skus/skus/versions/version/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr/sKuS/sKuS/vErSiOnS/vErSiOn",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				EdgeZoneName:   "eDgEzOnEvAlUe",
-				PublisherName:  "pUbLiShErVaLuE",
-				OfferName:      "oFfErVaLuE",
-				SkuName:        "sKuVaLuE",
-				VersionName:    "vErSiOnVaLuE",
+				LocationName:   "lOcAtIoN",
+				EdgeZoneName:   "eDgEzOnE",
+				PublisherName:  "pUbLiShErNaMe",
+				OfferName:      "oFfEr",
+				SkuName:        "sKuS",
+				VersionName:    "vErSiOn",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/eDgEzOnEs/eDgEzOnE/pUbLiShErS/pUbLiShErNaMe/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfEr/sKuS/sKuS/vErSiOnS/vErSiOn/extra",
 			Error: true,
 		},
 	}

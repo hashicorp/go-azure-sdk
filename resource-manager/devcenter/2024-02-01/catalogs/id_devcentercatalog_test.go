@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DevCenterCatalogId{}
 
 func TestNewDevCenterCatalogID(t *testing.T) {
-	id := NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+	id := NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDevCenterCatalogID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DevCenterName != "devCenterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DevCenterName'", id.DevCenterName, "devCenterValue")
+	if id.DevCenterName != "devCenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DevCenterName'", id.DevCenterName, "devCenterName")
 	}
 
-	if id.CatalogName != "catalogValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CatalogName'", id.CatalogName, "catalogValue")
+	if id.CatalogName != "catalogName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CatalogName'", id.CatalogName, "catalogName")
 	}
 }
 
 func TestFormatDevCenterCatalogID(t *testing.T) {
-	actual := NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue"
+	actual := NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDevCenterCatalogID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName",
 			Expected: &DevCenterCatalogId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DevCenterName:     "devCenterValue",
-				CatalogName:       "catalogValue",
+				DevCenterName:     "devCenterName",
+				CatalogName:       "catalogName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDevCenterCatalogIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName",
 			Expected: &DevCenterCatalogId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DevCenterName:     "devCenterValue",
-				CatalogName:       "catalogValue",
+				DevCenterName:     "devCenterName",
+				CatalogName:       "catalogName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe",
 			Expected: &DevCenterCatalogId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DevCenterName:     "dEvCeNtErVaLuE",
-				CatalogName:       "cAtAlOgVaLuE",
+				DevCenterName:     "dEvCeNtErNaMe",
+				CatalogName:       "cAtAlOgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe/extra",
 			Error: true,
 		},
 	}

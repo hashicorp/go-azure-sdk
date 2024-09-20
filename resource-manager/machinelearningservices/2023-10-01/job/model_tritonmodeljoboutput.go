@@ -15,7 +15,16 @@ type TritonModelJobOutput struct {
 	Uri  *string             `json:"uri,omitempty"`
 
 	// Fields inherited from JobOutput
-	Description *string `json:"description,omitempty"`
+
+	Description   *string       `json:"description,omitempty"`
+	JobOutputType JobOutputType `json:"jobOutputType"`
+}
+
+func (s TritonModelJobOutput) JobOutput() BaseJobOutputImpl {
+	return BaseJobOutputImpl{
+		Description:   s.Description,
+		JobOutputType: s.JobOutputType,
+	}
 }
 
 var _ json.Marshaler = TritonModelJobOutput{}
@@ -29,9 +38,10 @@ func (s TritonModelJobOutput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TritonModelJobOutput: %+v", err)
 	}
+
 	decoded["jobOutputType"] = "triton_model"
 
 	encoded, err = json.Marshal(decoded)

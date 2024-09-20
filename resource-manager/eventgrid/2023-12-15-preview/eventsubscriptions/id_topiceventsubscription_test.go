@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TopicEventSubscriptionId{}
 
 func TestNewTopicEventSubscriptionID(t *testing.T) {
-	id := NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue")
+	id := NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewTopicEventSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DomainName != "domainValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainValue")
+	if id.DomainName != "domainName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainName")
 	}
 
-	if id.TopicName != "topicValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "topicValue")
+	if id.TopicName != "topicName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "topicName")
 	}
 
-	if id.EventSubscriptionName != "eventSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionValue")
+	if id.EventSubscriptionName != "eventSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionName")
 	}
 }
 
 func TestFormatTopicEventSubscriptionID(t *testing.T) {
-	actual := NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue", "topicValue", "eventSubscriptionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue"
+	actual := NewTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName", "eventSubscriptionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions/eventSubscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseTopicEventSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &TopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DomainName:            "domainValue",
-				TopicName:             "topicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				DomainName:            "domainName",
+				TopicName:             "topicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseTopicEventSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe/tOpIcS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe/tOpIcS/tOpIcVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &TopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DomainName:            "domainValue",
-				TopicName:             "topicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				DomainName:            "domainName",
+				TopicName:             "topicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe",
 			Expected: &TopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				DomainName:            "dOmAiNvAlUe",
-				TopicName:             "tOpIcVaLuE",
-				EventSubscriptionName: "eVeNtSuBsCrIpTiOnVaLuE",
+				DomainName:            "dOmAiNnAmE",
+				TopicName:             "tOpIcNaMe",
+				EventSubscriptionName: "eVeNtSuBsCrIpTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNvAlUe/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe/extra",
 			Error: true,
 		},
 	}

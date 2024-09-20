@@ -46,7 +46,7 @@ func ParseOnlineEndpointDeploymentID(input string) (*OnlineEndpointDeploymentId,
 	}
 
 	id := OnlineEndpointDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseOnlineEndpointDeploymentIDInsensitively(input string) (*OnlineEndpoint
 	}
 
 	id := OnlineEndpointDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id OnlineEndpointDeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticOnlineEndpoints", "onlineEndpoints", "onlineEndpoints"),
-		resourceids.UserSpecifiedSegment("onlineEndpointName", "onlineEndpointValue"),
+		resourceids.UserSpecifiedSegment("onlineEndpointName", "endpointName"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
-		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
+		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
 	}
 }
 

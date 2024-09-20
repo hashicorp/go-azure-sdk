@@ -15,7 +15,7 @@ type TrustedIdProvidersClient struct {
 }
 
 func NewTrustedIdProvidersClientWithBaseURI(sdkApi sdkEnv.Api) (*TrustedIdProvidersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "trustedidproviders", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "trustedidproviders", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TrustedIdProvidersClient: %+v", err)
 	}

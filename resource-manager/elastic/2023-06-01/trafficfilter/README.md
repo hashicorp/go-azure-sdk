@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/trafficfilter` Documentation
 
-The `trafficfilter` SDK allows for interaction with the Azure Resource Manager Service `elastic` (API Version `2023-06-01`).
+The `trafficfilter` SDK allows for interaction with Azure Resource Manager `elastic` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 read, err := client.AllTrafficFilterslist(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 if err := client.AssociateTrafficFilterAssociateThenPoll(ctx, id, trafficfilter.DefaultAssociateTrafficFilterAssociateOperationOptions()); err != nil {
 	// handle the error
@@ -52,7 +52,7 @@ if err := client.AssociateTrafficFilterAssociateThenPoll(ctx, id, trafficfilter.
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 if err := client.CreateAndAssociateIPFilterCreateThenPoll(ctx, id, trafficfilter.DefaultCreateAndAssociateIPFilterCreateOperationOptions()); err != nil {
 	// handle the error
@@ -64,7 +64,7 @@ if err := client.CreateAndAssociateIPFilterCreateThenPoll(ctx, id, trafficfilter
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 if err := client.CreateAndAssociatePLFilterCreateThenPoll(ctx, id, trafficfilter.DefaultCreateAndAssociatePLFilterCreateOperationOptions()); err != nil {
 	// handle the error
@@ -76,7 +76,7 @@ if err := client.CreateAndAssociatePLFilterCreateThenPoll(ctx, id, trafficfilter
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 read, err := client.Delete(ctx, id, trafficfilter.DefaultDeleteOperationOptions())
 if err != nil {
@@ -92,7 +92,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 read, err := client.DetachAndDeleteTrafficFilterDelete(ctx, id, trafficfilter.DefaultDetachAndDeleteTrafficFilterDeleteOperationOptions())
 if err != nil {
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 if err := client.DetachTrafficFilterUpdateThenPoll(ctx, id, trafficfilter.DefaultDetachTrafficFilterUpdateOperationOptions()); err != nil {
 	// handle the error
@@ -120,7 +120,7 @@ if err := client.DetachTrafficFilterUpdateThenPoll(ctx, id, trafficfilter.Defaul
 
 ```go
 ctx := context.TODO()
-id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := trafficfilter.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 read, err := client.ListAssociatedTrafficFilterslist(ctx, id)
 if err != nil {

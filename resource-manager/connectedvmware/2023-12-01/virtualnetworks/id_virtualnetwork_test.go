@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkId{}
 
 func TestNewVirtualNetworkID(t *testing.T) {
-	id := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkValue")
+	id := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualNetworkName != "virtualNetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "virtualNetworkValue")
+	if id.VirtualNetworkName != "virtualNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "virtualNetworkName")
 	}
 }
 
 func TestFormatVirtualNetworkID(t *testing.T) {
-	actual := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkValue"
+	actual := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualNetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkName",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualNetworkName: "virtualNetworkValue",
+				VirtualNetworkName: "virtualNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkName",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualNetworkName: "virtualNetworkValue",
+				VirtualNetworkName: "virtualNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks/virtualNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualNetworkName: "vIrTuAlNeTwOrKvAlUe",
+				VirtualNetworkName: "vIrTuAlNeTwOrKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE/extra",
 			Error: true,
 		},
 	}

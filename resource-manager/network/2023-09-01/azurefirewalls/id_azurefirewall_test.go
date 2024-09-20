@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AzureFirewallId{}
 
 func TestNewAzureFirewallID(t *testing.T) {
-	id := NewAzureFirewallID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureFirewallValue")
+	id := NewAzureFirewallID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureFirewallName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAzureFirewallID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AzureFirewallName != "azureFirewallValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureFirewallName'", id.AzureFirewallName, "azureFirewallValue")
+	if id.AzureFirewallName != "azureFirewallName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureFirewallName'", id.AzureFirewallName, "azureFirewallName")
 	}
 }
 
 func TestFormatAzureFirewallID(t *testing.T) {
-	actual := NewAzureFirewallID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureFirewallValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallValue"
+	actual := NewAzureFirewallID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureFirewallName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAzureFirewallID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallName",
 			Expected: &AzureFirewallId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AzureFirewallName: "azureFirewallValue",
+				AzureFirewallName: "azureFirewallName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAzureFirewallIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallName",
 			Expected: &AzureFirewallId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AzureFirewallName: "azureFirewallValue",
+				AzureFirewallName: "azureFirewallName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/azureFirewalls/azureFirewallName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReFiReWaLlS/aZuReFiReWaLlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReFiReWaLlS/aZuReFiReWaLlNaMe",
 			Expected: &AzureFirewallId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AzureFirewallName: "aZuReFiReWaLlVaLuE",
+				AzureFirewallName: "aZuReFiReWaLlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReFiReWaLlS/aZuReFiReWaLlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReFiReWaLlS/aZuReFiReWaLlNaMe/extra",
 			Error: true,
 		},
 	}

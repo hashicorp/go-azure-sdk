@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AdvisorId{}
 
 func TestNewAdvisorID(t *testing.T) {
-	id := NewAdvisorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "advisorValue")
+	id := NewAdvisorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "advisorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAdvisorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.AdvisorName != "advisorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdvisorName'", id.AdvisorName, "advisorValue")
+	if id.AdvisorName != "advisorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdvisorName'", id.AdvisorName, "advisorName")
 	}
 }
 
 func TestFormatAdvisorID(t *testing.T) {
-	actual := NewAdvisorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "advisorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors/advisorValue"
+	actual := NewAdvisorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "advisorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors/advisorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAdvisorID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors/advisorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors/advisorName",
 			Expected: &AdvisorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				AdvisorName:       "advisorValue",
+				ServerName:        "serverName",
+				AdvisorName:       "advisorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors/advisorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors/advisorName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAdvisorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/aDvIsOrS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/aDvIsOrS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors/advisorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors/advisorName",
 			Expected: &AdvisorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				AdvisorName:       "advisorValue",
+				ServerName:        "serverName",
+				AdvisorName:       "advisorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/advisors/advisorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/advisors/advisorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/aDvIsOrS/aDvIsOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/aDvIsOrS/aDvIsOrNaMe",
 			Expected: &AdvisorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				AdvisorName:       "aDvIsOrVaLuE",
+				ServerName:        "sErVeRnAmE",
+				AdvisorName:       "aDvIsOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/aDvIsOrS/aDvIsOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/aDvIsOrS/aDvIsOrNaMe/extra",
 			Error: true,
 		},
 	}

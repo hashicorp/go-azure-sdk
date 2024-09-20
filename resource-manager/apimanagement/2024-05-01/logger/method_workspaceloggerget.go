@@ -45,7 +45,6 @@ func (c LoggerClient) WorkspaceLoggerGet(ctx context.Context, id WorkspaceLogger
 
 	var model LoggerContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

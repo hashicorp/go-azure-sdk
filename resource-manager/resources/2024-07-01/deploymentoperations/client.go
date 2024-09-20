@@ -15,7 +15,7 @@ type DeploymentOperationsClient struct {
 }
 
 func NewDeploymentOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*DeploymentOperationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "deploymentoperations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "deploymentoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeploymentOperationsClient: %+v", err)
 	}

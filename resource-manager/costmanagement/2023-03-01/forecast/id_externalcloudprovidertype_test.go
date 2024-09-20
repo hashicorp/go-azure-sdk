@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ExternalCloudProviderTypeId{}
 
 func TestNewExternalCloudProviderTypeID(t *testing.T) {
-	id := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+	id := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderId")
 
 	if id.ExternalCloudProviderType != "externalBillingAccounts" {
 		t.Fatalf("Expected %q but got %q for Segment 'ExternalCloudProviderType'", id.ExternalCloudProviderType, "externalBillingAccounts")
 	}
 
-	if id.ExternalCloudProviderId != "externalCloudProviderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExternalCloudProviderId'", id.ExternalCloudProviderId, "externalCloudProviderIdValue")
+	if id.ExternalCloudProviderId != "externalCloudProviderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExternalCloudProviderId'", id.ExternalCloudProviderId, "externalCloudProviderId")
 	}
 }
 
 func TestFormatExternalCloudProviderTypeID(t *testing.T) {
-	actual := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue").ID()
-	expected := "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue"
+	actual := NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderId").ID()
+	expected := "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,15 +59,15 @@ func TestParseExternalCloudProviderTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue",
+			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderId",
 			Expected: &ExternalCloudProviderTypeId{
 				ExternalCloudProviderType: "externalBillingAccounts",
-				ExternalCloudProviderId:   "externalCloudProviderIdValue",
+				ExternalCloudProviderId:   "externalCloudProviderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue/extra",
+			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderId/extra",
 			Error: true,
 		},
 	}
@@ -140,28 +140,28 @@ func TestParseExternalCloudProviderTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue",
+			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderId",
 			Expected: &ExternalCloudProviderTypeId{
 				ExternalCloudProviderType: "externalBillingAccounts",
-				ExternalCloudProviderId:   "externalCloudProviderIdValue",
+				ExternalCloudProviderId:   "externalCloudProviderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderIdValue/extra",
+			Input: "/providers/Microsoft.CostManagement/externalBillingAccounts/externalCloudProviderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErId",
 			Expected: &ExternalCloudProviderTypeId{
 				ExternalCloudProviderType: "externalBillingAccounts",
-				ExternalCloudProviderId:   "eXtErNaLcLoUdPrOvIdErIdVaLuE",
+				ExternalCloudProviderId:   "eXtErNaLcLoUdPrOvIdErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/eXtErNaLbIlLiNgAcCoUnTs/eXtErNaLcLoUdPrOvIdErId/extra",
 			Error: true,
 		},
 	}

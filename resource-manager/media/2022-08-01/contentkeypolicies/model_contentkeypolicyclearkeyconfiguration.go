@@ -13,6 +13,14 @@ var _ ContentKeyPolicyConfiguration = ContentKeyPolicyClearKeyConfiguration{}
 type ContentKeyPolicyClearKeyConfiguration struct {
 
 	// Fields inherited from ContentKeyPolicyConfiguration
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s ContentKeyPolicyClearKeyConfiguration) ContentKeyPolicyConfiguration() BaseContentKeyPolicyConfigurationImpl {
+	return BaseContentKeyPolicyConfigurationImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = ContentKeyPolicyClearKeyConfiguration{}
@@ -26,9 +34,10 @@ func (s ContentKeyPolicyClearKeyConfiguration) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ContentKeyPolicyClearKeyConfiguration: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.ContentKeyPolicyClearKeyConfiguration"
 
 	encoded, err = json.Marshal(decoded)

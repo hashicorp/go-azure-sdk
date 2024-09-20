@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PacketCaptureId{}
 
 func TestNewPacketCaptureID(t *testing.T) {
-	id := NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "packetCaptureValue")
+	id := NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "packetCaptureName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPacketCaptureID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkWatcherName != "networkWatcherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherValue")
+	if id.NetworkWatcherName != "networkWatcherName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkWatcherName'", id.NetworkWatcherName, "networkWatcherName")
 	}
 
-	if id.PacketCaptureName != "packetCaptureValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PacketCaptureName'", id.PacketCaptureName, "packetCaptureValue")
+	if id.PacketCaptureName != "packetCaptureName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCaptureName'", id.PacketCaptureName, "packetCaptureName")
 	}
 }
 
 func TestFormatPacketCaptureID(t *testing.T) {
-	actual := NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherValue", "packetCaptureValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures/packetCaptureValue"
+	actual := NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName", "packetCaptureName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures/packetCaptureName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePacketCaptureID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures/packetCaptureValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures/packetCaptureName",
 			Expected: &PacketCaptureId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkWatcherName: "networkWatcherValue",
-				PacketCaptureName:  "packetCaptureValue",
+				NetworkWatcherName: "networkWatcherName",
+				PacketCaptureName:  "packetCaptureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures/packetCaptureValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures/packetCaptureName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePacketCaptureIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/pAcKeTcApTuReS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/pAcKeTcApTuReS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures/packetCaptureValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures/packetCaptureName",
 			Expected: &PacketCaptureId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkWatcherName: "networkWatcherValue",
-				PacketCaptureName:  "packetCaptureValue",
+				NetworkWatcherName: "networkWatcherName",
+				PacketCaptureName:  "packetCaptureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherValue/packetCaptures/packetCaptureValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkWatchers/networkWatcherName/packetCaptures/packetCaptureName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/pAcKeTcApTuReS/pAcKeTcApTuReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/pAcKeTcApTuReS/pAcKeTcApTuReNaMe",
 			Expected: &PacketCaptureId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkWatcherName: "nEtWoRkWaTcHeRvAlUe",
-				PacketCaptureName:  "pAcKeTcApTuReVaLuE",
+				NetworkWatcherName: "nEtWoRkWaTcHeRnAmE",
+				PacketCaptureName:  "pAcKeTcApTuReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRvAlUe/pAcKeTcApTuReS/pAcKeTcApTuReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkWaTcHeRs/nEtWoRkWaTcHeRnAmE/pAcKeTcApTuReS/pAcKeTcApTuReNaMe/extra",
 			Error: true,
 		},
 	}

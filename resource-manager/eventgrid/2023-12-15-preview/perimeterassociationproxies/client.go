@@ -15,7 +15,7 @@ type PerimeterAssociationProxiesClient struct {
 }
 
 func NewPerimeterAssociationProxiesClientWithBaseURI(sdkApi sdkEnv.Api) (*PerimeterAssociationProxiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "perimeterassociationproxies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "perimeterassociationproxies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PerimeterAssociationProxiesClient: %+v", err)
 	}

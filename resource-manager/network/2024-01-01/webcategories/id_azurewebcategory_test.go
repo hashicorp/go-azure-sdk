@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AzureWebCategoryId{}
 
 func TestNewAzureWebCategoryID(t *testing.T) {
-	id := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "azureWebCategoryValue")
+	id := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AzureWebCategoryName != "azureWebCategoryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureWebCategoryName'", id.AzureWebCategoryName, "azureWebCategoryValue")
+	if id.AzureWebCategoryName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureWebCategoryName'", id.AzureWebCategoryName, "name")
 	}
 }
 
 func TestFormatAzureWebCategoryID(t *testing.T) {
-	actual := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "azureWebCategoryValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryValue"
+	actual := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAzureWebCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "azureWebCategoryValue",
+				AzureWebCategoryName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAzureWebCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "azureWebCategoryValue",
+				AzureWebCategoryName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/aZuReWeBcAtEgOrYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/nAmE",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "aZuReWeBcAtEgOrYvAlUe",
+				AzureWebCategoryName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/aZuReWeBcAtEgOrYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/nAmE/extra",
 			Error: true,
 		},
 	}

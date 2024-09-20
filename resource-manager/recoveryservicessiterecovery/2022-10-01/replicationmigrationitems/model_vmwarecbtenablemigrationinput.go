@@ -36,6 +36,14 @@ type VMwareCbtEnableMigrationInput struct {
 	VMwareMachineId                       string                `json:"vmwareMachineId"`
 
 	// Fields inherited from EnableMigrationProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtEnableMigrationInput) EnableMigrationProviderSpecificInput() BaseEnableMigrationProviderSpecificInputImpl {
+	return BaseEnableMigrationProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtEnableMigrationInput{}
@@ -49,9 +57,10 @@ func (s VMwareCbtEnableMigrationInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtEnableMigrationInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

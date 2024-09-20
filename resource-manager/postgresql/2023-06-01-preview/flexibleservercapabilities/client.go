@@ -15,7 +15,7 @@ type FlexibleServerCapabilitiesClient struct {
 }
 
 func NewFlexibleServerCapabilitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*FlexibleServerCapabilitiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "flexibleservercapabilities", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "flexibleservercapabilities", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FlexibleServerCapabilitiesClient: %+v", err)
 	}

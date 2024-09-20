@@ -15,7 +15,7 @@ import (
 type DeleteOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Artifact
+	Model        Artifact
 }
 
 // Delete ...
@@ -49,11 +49,11 @@ func (c ArtifactClient) Delete(ctx context.Context, id ArtifactScopedId) (result
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalArtifactImplementation(respObj)
+	model, err := UnmarshalArtifactImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

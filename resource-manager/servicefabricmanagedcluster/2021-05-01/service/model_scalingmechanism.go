@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScalingMechanism interface {
+	ScalingMechanism() BaseScalingMechanismImpl
 }
 
-// RawScalingMechanismImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ScalingMechanism = BaseScalingMechanismImpl{}
+
+type BaseScalingMechanismImpl struct {
+	Kind ServiceScalingMechanismKind `json:"kind"`
+}
+
+func (s BaseScalingMechanismImpl) ScalingMechanism() BaseScalingMechanismImpl {
+	return s
+}
+
+var _ ScalingMechanism = RawScalingMechanismImpl{}
+
+// RawScalingMechanismImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawScalingMechanismImpl struct {
-	Type   string
-	Values map[string]interface{}
+	scalingMechanism BaseScalingMechanismImpl
+	Type             string
+	Values           map[string]interface{}
 }
 
-func unmarshalScalingMechanismImplementation(input []byte) (ScalingMechanism, error) {
+func (s RawScalingMechanismImpl) ScalingMechanism() BaseScalingMechanismImpl {
+	return s.scalingMechanism
+}
+
+func UnmarshalScalingMechanismImplementation(input []byte) (ScalingMechanism, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalScalingMechanismImplementation(input []byte) (ScalingMechanism, er
 		return out, nil
 	}
 
-	out := RawScalingMechanismImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseScalingMechanismImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScalingMechanismImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawScalingMechanismImpl{
+		scalingMechanism: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
 
 }

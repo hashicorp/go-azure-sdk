@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SshPublicKeyId{}
 
 func TestNewSshPublicKeyID(t *testing.T) {
-	id := NewSshPublicKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sshPublicKeyValue")
+	id := NewSshPublicKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sshPublicKeyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSshPublicKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SshPublicKeyName != "sshPublicKeyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SshPublicKeyName'", id.SshPublicKeyName, "sshPublicKeyValue")
+	if id.SshPublicKeyName != "sshPublicKeyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SshPublicKeyName'", id.SshPublicKeyName, "sshPublicKeyName")
 	}
 }
 
 func TestFormatSshPublicKeyID(t *testing.T) {
-	actual := NewSshPublicKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sshPublicKeyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyValue"
+	actual := NewSshPublicKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sshPublicKeyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSshPublicKeyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyName",
 			Expected: &SshPublicKeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SshPublicKeyName:  "sshPublicKeyValue",
+				SshPublicKeyName:  "sshPublicKeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSshPublicKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyName",
 			Expected: &SshPublicKeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SshPublicKeyName:  "sshPublicKeyValue",
+				SshPublicKeyName:  "sshPublicKeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/sshPublicKeys/sshPublicKeyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sShPuBlIcKeYs/sShPuBlIcKeYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sShPuBlIcKeYs/sShPuBlIcKeYnAmE",
 			Expected: &SshPublicKeyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SshPublicKeyName:  "sShPuBlIcKeYvAlUe",
+				SshPublicKeyName:  "sShPuBlIcKeYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sShPuBlIcKeYs/sShPuBlIcKeYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/sShPuBlIcKeYs/sShPuBlIcKeYnAmE/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/privateendpointconnections` Documentation
 
-The `privateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `privateendpointconnections` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "privateEndpointConnectionName")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "privateEndpointConnectionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "privateEndpointConnectionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := privateendpointconnections.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateLinkHubPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateLinkHubPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubName", "privateEndpointConnectionName")
 
 read, err := client.PrivateLinkHubGet(ctx, id)
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubValue")
+id := privateendpointconnections.NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubName")
 
 // alternatively `client.PrivateLinkHubList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateLinkHubListComplete(ctx, id)

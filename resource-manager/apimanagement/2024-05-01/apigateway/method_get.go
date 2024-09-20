@@ -45,7 +45,6 @@ func (c ApiGatewayClient) Get(ctx context.Context, id GatewayId) (result GetOper
 
 	var model ApiManagementGatewayResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

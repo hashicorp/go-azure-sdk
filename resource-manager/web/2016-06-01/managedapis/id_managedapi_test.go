@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ManagedApiId{}
 
 func TestNewManagedApiID(t *testing.T) {
-	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "managedApiValue")
+	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "location", "apiName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.ManagedApiName != "managedApiValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedApiName'", id.ManagedApiName, "managedApiValue")
+	if id.ManagedApiName != "apiName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedApiName'", id.ManagedApiName, "apiName")
 	}
 }
 
 func TestFormatManagedApiID(t *testing.T) {
-	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "managedApiValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue"
+	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "location", "apiName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis/apiName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseManagedApiID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis/apiName",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				ManagedApiName: "managedApiValue",
+				LocationName:   "location",
+				ManagedApiName: "apiName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis/apiName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseManagedApiIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoN/mAnAgEdApIs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis/apiName",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				ManagedApiName: "managedApiValue",
+				LocationName:   "location",
+				ManagedApiName: "apiName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/location/managedApis/apiName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/mAnAgEdApIvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoN/mAnAgEdApIs/aPiNaMe",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				ManagedApiName: "mAnAgEdApIvAlUe",
+				LocationName:   "lOcAtIoN",
+				ManagedApiName: "aPiNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/mAnAgEdApIvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoN/mAnAgEdApIs/aPiNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingPeriodId{}
 
 func TestNewBillingPeriodID(t *testing.T) {
-	id := NewBillingPeriodID("billingAccountIdValue", "billingPeriodValue")
+	id := NewBillingPeriodID("billingAccountId", "billingPeriodName")
 
-	if id.BillingAccountId != "billingAccountIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountIdValue")
+	if id.BillingAccountId != "billingAccountId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountId")
 	}
 
-	if id.BillingPeriodName != "billingPeriodValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodValue")
+	if id.BillingPeriodName != "billingPeriodName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingPeriodName'", id.BillingPeriodName, "billingPeriodName")
 	}
 }
 
 func TestFormatBillingPeriodID(t *testing.T) {
-	actual := NewBillingPeriodID("billingAccountIdValue", "billingPeriodValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods/billingPeriodValue"
+	actual := NewBillingPeriodID("billingAccountId", "billingPeriodName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods/billingPeriodName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseBillingPeriodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods/billingPeriodValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods/billingPeriodName",
 			Expected: &BillingPeriodId{
-				BillingAccountId:  "billingAccountIdValue",
-				BillingPeriodName: "billingPeriodValue",
+				BillingAccountId:  "billingAccountId",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods/billingPeriodValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseBillingPeriodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/bIlLiNgPeRiOdS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPeRiOdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods/billingPeriodValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods/billingPeriodName",
 			Expected: &BillingPeriodId{
-				BillingAccountId:  "billingAccountIdValue",
-				BillingPeriodName: "billingPeriodValue",
+				BillingAccountId:  "billingAccountId",
+				BillingPeriodName: "billingPeriodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/billingPeriods/billingPeriodValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingPeriods/billingPeriodName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe",
 			Expected: &BillingPeriodId{
-				BillingAccountId:  "bIlLiNgAcCoUnTiDvAlUe",
-				BillingPeriodName: "bIlLiNgPeRiOdVaLuE",
+				BillingAccountId:  "bIlLiNgAcCoUnTiD",
+				BillingPeriodName: "bIlLiNgPeRiOdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/bIlLiNgPeRiOdS/bIlLiNgPeRiOdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPeRiOdS/bIlLiNgPeRiOdNaMe/extra",
 			Error: true,
 		},
 	}

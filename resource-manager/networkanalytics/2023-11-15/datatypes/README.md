@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/networkanalytics/2023-11-15/datatypes` Documentation
 
-The `datatypes` SDK allows for interaction with the Azure Resource Manager Service `networkanalytics` (API Version `2023-11-15`).
+The `datatypes` SDK allows for interaction with Azure Resource Manager `networkanalytics` (API Version `2023-11-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 payload := datatypes.DataType{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 var payload interface{}
 
 if err := client.DeleteDataThenPoll(ctx, id, payload); err != nil {
@@ -66,7 +66,7 @@ if err := client.DeleteDataThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 payload := datatypes.ContainerSaS{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue")
+id := datatypes.NewDataProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName")
 
 // alternatively `client.ListByDataProduct(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDataProductComplete(ctx, id)
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+id := datatypes.NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 payload := datatypes.DataTypeUpdate{
 	// ...

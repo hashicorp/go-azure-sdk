@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TransformationId{}
 
 func TestNewTransformationID(t *testing.T) {
-	id := NewTransformationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue", "transformationValue")
+	id := NewTransformationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "transformationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTransformationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StreamingJobName != "streamingJobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StreamingJobName'", id.StreamingJobName, "streamingJobValue")
+	if id.StreamingJobName != "jobName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StreamingJobName'", id.StreamingJobName, "jobName")
 	}
 
-	if id.TransformationName != "transformationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TransformationName'", id.TransformationName, "transformationValue")
+	if id.TransformationName != "transformationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TransformationName'", id.TransformationName, "transformationName")
 	}
 }
 
 func TestFormatTransformationID(t *testing.T) {
-	actual := NewTransformationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue", "transformationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations/transformationValue"
+	actual := NewTransformationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "transformationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations/transformationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTransformationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations/transformationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations/transformationName",
 			Expected: &TransformationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				StreamingJobName:   "streamingJobValue",
-				TransformationName: "transformationValue",
+				StreamingJobName:   "jobName",
+				TransformationName: "transformationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations/transformationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations/transformationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTransformationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/tRaNsFoRmAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/tRaNsFoRmAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations/transformationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations/transformationName",
 			Expected: &TransformationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				StreamingJobName:   "streamingJobValue",
-				TransformationName: "transformationValue",
+				StreamingJobName:   "jobName",
+				TransformationName: "transformationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/transformations/transformationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobName/transformations/transformationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/tRaNsFoRmAtIoNs/tRaNsFoRmAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/tRaNsFoRmAtIoNs/tRaNsFoRmAtIoNnAmE",
 			Expected: &TransformationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				StreamingJobName:   "sTrEaMiNgJoBvAlUe",
-				TransformationName: "tRaNsFoRmAtIoNvAlUe",
+				StreamingJobName:   "jObNaMe",
+				TransformationName: "tRaNsFoRmAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/tRaNsFoRmAtIoNs/tRaNsFoRmAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObNaMe/tRaNsFoRmAtIoNs/tRaNsFoRmAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

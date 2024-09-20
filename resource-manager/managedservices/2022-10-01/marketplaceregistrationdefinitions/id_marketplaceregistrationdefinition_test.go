@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MarketplaceRegistrationDefinitionId{}
 
 func TestNewMarketplaceRegistrationDefinitionID(t *testing.T) {
-	id := NewMarketplaceRegistrationDefinitionID("marketplaceIdentifierValue")
+	id := NewMarketplaceRegistrationDefinitionID("marketplaceIdentifier")
 
-	if id.MarketplaceIdentifier != "marketplaceIdentifierValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceIdentifier'", id.MarketplaceIdentifier, "marketplaceIdentifierValue")
+	if id.MarketplaceIdentifier != "marketplaceIdentifier" {
+		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceIdentifier'", id.MarketplaceIdentifier, "marketplaceIdentifier")
 	}
 }
 
 func TestFormatMarketplaceRegistrationDefinitionID(t *testing.T) {
-	actual := NewMarketplaceRegistrationDefinitionID("marketplaceIdentifierValue").ID()
-	expected := "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifierValue"
+	actual := NewMarketplaceRegistrationDefinitionID("marketplaceIdentifier").ID()
+	expected := "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifier"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMarketplaceRegistrationDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifierValue",
+			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifier",
 			Expected: &MarketplaceRegistrationDefinitionId{
-				MarketplaceIdentifier: "marketplaceIdentifierValue",
+				MarketplaceIdentifier: "marketplaceIdentifier",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifierValue/extra",
+			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifier/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMarketplaceRegistrationDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifierValue",
+			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifier",
 			Expected: &MarketplaceRegistrationDefinitionId{
-				MarketplaceIdentifier: "marketplaceIdentifierValue",
+				MarketplaceIdentifier: "marketplaceIdentifier",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifierValue/extra",
+			Input: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions/marketplaceIdentifier/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/mArKeTpLaCeReGiStRaTiOnDeFiNiTiOnS/mArKeTpLaCeIdEnTiFiErVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/mArKeTpLaCeReGiStRaTiOnDeFiNiTiOnS/mArKeTpLaCeIdEnTiFiEr",
 			Expected: &MarketplaceRegistrationDefinitionId{
-				MarketplaceIdentifier: "mArKeTpLaCeIdEnTiFiErVaLuE",
+				MarketplaceIdentifier: "mArKeTpLaCeIdEnTiFiEr",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/mArKeTpLaCeReGiStRaTiOnDeFiNiTiOnS/mArKeTpLaCeIdEnTiFiErVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEdSeRvIcEs/mArKeTpLaCeReGiStRaTiOnDeFiNiTiOnS/mArKeTpLaCeIdEnTiFiEr/extra",
 			Error: true,
 		},
 	}

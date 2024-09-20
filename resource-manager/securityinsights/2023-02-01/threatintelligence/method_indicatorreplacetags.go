@@ -16,7 +16,7 @@ import (
 type IndicatorReplaceTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ThreatIntelligenceInformation
+	Model        ThreatIntelligenceInformation
 }
 
 // IndicatorReplaceTags ...
@@ -53,11 +53,11 @@ func (c ThreatIntelligenceClient) IndicatorReplaceTags(ctx context.Context, id I
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalThreatIntelligenceInformationImplementation(respObj)
+	model, err := UnmarshalThreatIntelligenceInformationImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

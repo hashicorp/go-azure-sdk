@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReservationOrderId{}
 
 func TestNewReservationOrderID(t *testing.T) {
-	id := NewReservationOrderID("reservationOrderIdValue")
+	id := NewReservationOrderID("reservationOrderId")
 
-	if id.ReservationOrderId != "reservationOrderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReservationOrderId'", id.ReservationOrderId, "reservationOrderIdValue")
+	if id.ReservationOrderId != "reservationOrderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReservationOrderId'", id.ReservationOrderId, "reservationOrderId")
 	}
 }
 
 func TestFormatReservationOrderID(t *testing.T) {
-	actual := NewReservationOrderID("reservationOrderIdValue").ID()
-	expected := "/providers/Microsoft.Capacity/reservationOrders/reservationOrderIdValue"
+	actual := NewReservationOrderID("reservationOrderId").ID()
+	expected := "/providers/Microsoft.Capacity/reservationOrders/reservationOrderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseReservationOrderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderIdValue",
+			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderId",
 			Expected: &ReservationOrderId{
-				ReservationOrderId: "reservationOrderIdValue",
+				ReservationOrderId: "reservationOrderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderIdValue/extra",
+			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseReservationOrderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderIdValue",
+			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderId",
 			Expected: &ReservationOrderId{
-				ReservationOrderId: "reservationOrderIdValue",
+				ReservationOrderId: "reservationOrderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderIdValue/extra",
+			Input: "/providers/Microsoft.Capacity/reservationOrders/reservationOrderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cApAcItY/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.cApAcItY/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiD",
 			Expected: &ReservationOrderId{
-				ReservationOrderId: "rEsErVaTiOnOrDeRiDvAlUe",
+				ReservationOrderId: "rEsErVaTiOnOrDeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cApAcItY/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiDvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cApAcItY/rEsErVaTiOnOrDeRs/rEsErVaTiOnOrDeRiD/extra",
 			Error: true,
 		},
 	}

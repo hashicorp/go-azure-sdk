@@ -15,7 +15,7 @@ type BlueprintAssignmentsClient struct {
 }
 
 func NewBlueprintAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*BlueprintAssignmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "blueprintassignments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "blueprintassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BlueprintAssignmentsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type PaymentMethodsClient struct {
 }
 
 func NewPaymentMethodsClientWithBaseURI(sdkApi sdkEnv.Api) (*PaymentMethodsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "paymentmethods", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "paymentmethods", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PaymentMethodsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type MigrationsClient struct {
 }
 
 func NewMigrationsClientWithBaseURI(sdkApi sdkEnv.Api) (*MigrationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "migrations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "migrations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MigrationsClient: %+v", err)
 	}

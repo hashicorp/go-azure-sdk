@@ -14,6 +14,14 @@ type Mpi struct {
 	ProcessCountPerInstance *int64 `json:"processCountPerInstance,omitempty"`
 
 	// Fields inherited from DistributionConfiguration
+
+	DistributionType DistributionType `json:"distributionType"`
+}
+
+func (s Mpi) DistributionConfiguration() BaseDistributionConfigurationImpl {
+	return BaseDistributionConfigurationImpl{
+		DistributionType: s.DistributionType,
+	}
 }
 
 var _ json.Marshaler = Mpi{}
@@ -27,9 +35,10 @@ func (s Mpi) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Mpi: %+v", err)
 	}
+
 	decoded["distributionType"] = "Mpi"
 
 	encoded, err = json.Marshal(decoded)

@@ -45,7 +45,6 @@ func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupGet(ctx context.Contex
 
 	var model WorkloadGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

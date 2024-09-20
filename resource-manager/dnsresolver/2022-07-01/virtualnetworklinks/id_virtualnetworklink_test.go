@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkLinkId{}
 
 func TestNewVirtualNetworkLinkID(t *testing.T) {
-	id := NewVirtualNetworkLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetValue", "virtualNetworkLinkValue")
+	id := NewVirtualNetworkLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetName", "virtualNetworkLinkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkLinkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DnsForwardingRulesetName != "dnsForwardingRulesetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsForwardingRulesetName'", id.DnsForwardingRulesetName, "dnsForwardingRulesetValue")
+	if id.DnsForwardingRulesetName != "dnsForwardingRulesetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsForwardingRulesetName'", id.DnsForwardingRulesetName, "dnsForwardingRulesetName")
 	}
 
-	if id.VirtualNetworkLinkName != "virtualNetworkLinkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkLinkName'", id.VirtualNetworkLinkName, "virtualNetworkLinkValue")
+	if id.VirtualNetworkLinkName != "virtualNetworkLinkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkLinkName'", id.VirtualNetworkLinkName, "virtualNetworkLinkName")
 	}
 }
 
 func TestFormatVirtualNetworkLinkID(t *testing.T) {
-	actual := NewVirtualNetworkLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetValue", "virtualNetworkLinkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks/virtualNetworkLinkValue"
+	actual := NewVirtualNetworkLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetName", "virtualNetworkLinkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks/virtualNetworkLinkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkLinkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks/virtualNetworkLinkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks/virtualNetworkLinkName",
 			Expected: &VirtualNetworkLinkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DnsForwardingRulesetName: "dnsForwardingRulesetValue",
-				VirtualNetworkLinkName:   "virtualNetworkLinkValue",
+				DnsForwardingRulesetName: "dnsForwardingRulesetName",
+				VirtualNetworkLinkName:   "virtualNetworkLinkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks/virtualNetworkLinkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks/virtualNetworkLinkName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkLinkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe/vIrTuAlNeTwOrKlInKs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE/vIrTuAlNeTwOrKlInKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks/virtualNetworkLinkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks/virtualNetworkLinkName",
 			Expected: &VirtualNetworkLinkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DnsForwardingRulesetName: "dnsForwardingRulesetValue",
-				VirtualNetworkLinkName:   "virtualNetworkLinkValue",
+				DnsForwardingRulesetName: "dnsForwardingRulesetName",
+				VirtualNetworkLinkName:   "virtualNetworkLinkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/virtualNetworkLinks/virtualNetworkLinkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/virtualNetworkLinks/virtualNetworkLinkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe/vIrTuAlNeTwOrKlInKs/vIrTuAlNeTwOrKlInKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE/vIrTuAlNeTwOrKlInKs/vIrTuAlNeTwOrKlInKnAmE",
 			Expected: &VirtualNetworkLinkId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				DnsForwardingRulesetName: "dNsFoRwArDiNgRuLeSeTvAlUe",
-				VirtualNetworkLinkName:   "vIrTuAlNeTwOrKlInKvAlUe",
+				DnsForwardingRulesetName: "dNsFoRwArDiNgRuLeSeTnAmE",
+				VirtualNetworkLinkName:   "vIrTuAlNeTwOrKlInKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe/vIrTuAlNeTwOrKlInKs/vIrTuAlNeTwOrKlInKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE/vIrTuAlNeTwOrKlInKs/vIrTuAlNeTwOrKlInKnAmE/extra",
 			Error: true,
 		},
 	}

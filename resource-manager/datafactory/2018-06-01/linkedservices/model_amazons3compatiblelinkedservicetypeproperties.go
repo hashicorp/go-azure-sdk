@@ -36,7 +36,7 @@ func (s *AmazonS3CompatibleLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 	}
 
 	if v, ok := temp["secretAccessKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecretAccessKey' for 'AmazonS3CompatibleLinkedServiceTypeProperties': %+v", err)
 		}

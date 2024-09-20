@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &QueryTextId{}
 
 func TestNewQueryTextID(t *testing.T) {
-	id := NewQueryTextID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "queryIdValue")
+	id := NewQueryTextID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "queryId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewQueryTextID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.QueryId != "queryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'QueryId'", id.QueryId, "queryIdValue")
+	if id.QueryId != "queryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'QueryId'", id.QueryId, "queryId")
 	}
 }
 
 func TestFormatQueryTextID(t *testing.T) {
-	actual := NewQueryTextID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "queryIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts/queryIdValue"
+	actual := NewQueryTextID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "queryId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts/queryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseQueryTextID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts/queryIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts/queryId",
 			Expected: &QueryTextId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				QueryId:           "queryIdValue",
+				ServerName:        "serverName",
+				QueryId:           "queryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts/queryIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts/queryId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseQueryTextIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/qUeRyTeXtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/qUeRyTeXtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts/queryIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts/queryId",
 			Expected: &QueryTextId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				QueryId:           "queryIdValue",
+				ServerName:        "serverName",
+				QueryId:           "queryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverValue/queryTexts/queryIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMariaDB/servers/serverName/queryTexts/queryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/qUeRyTeXtS/qUeRyIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/qUeRyTeXtS/qUeRyId",
 			Expected: &QueryTextId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				QueryId:           "qUeRyIdVaLuE",
+				ServerName:        "sErVeRnAmE",
+				QueryId:           "qUeRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRvAlUe/qUeRyTeXtS/qUeRyIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMaRiAdB/sErVeRs/sErVeRnAmE/qUeRyTeXtS/qUeRyId/extra",
 			Error: true,
 		},
 	}

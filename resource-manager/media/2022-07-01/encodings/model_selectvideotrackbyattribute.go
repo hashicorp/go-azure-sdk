@@ -16,6 +16,14 @@ type SelectVideoTrackByAttribute struct {
 	FilterValue *string         `json:"filterValue,omitempty"`
 
 	// Fields inherited from TrackDescriptor
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s SelectVideoTrackByAttribute) TrackDescriptor() BaseTrackDescriptorImpl {
+	return BaseTrackDescriptorImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = SelectVideoTrackByAttribute{}
@@ -29,9 +37,10 @@ func (s SelectVideoTrackByAttribute) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SelectVideoTrackByAttribute: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.SelectVideoTrackByAttribute"
 
 	encoded, err = json.Marshal(decoded)

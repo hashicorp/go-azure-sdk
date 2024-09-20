@@ -44,7 +44,7 @@ func ParseIncidentID(input string) (*IncidentId, error) {
 	}
 
 	id := IncidentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseIncidentIDInsensitively(input string) (*IncidentId, error) {
 	}
 
 	id := IncidentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id IncidentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticAlertRules", "alertRules", "alertRules"),
-		resourceids.UserSpecifiedSegment("alertRuleName", "alertRuleValue"),
+		resourceids.UserSpecifiedSegment("alertRuleName", "ruleName"),
 		resourceids.StaticSegment("staticIncidents", "incidents", "incidents"),
-		resourceids.UserSpecifiedSegment("incidentName", "incidentValue"),
+		resourceids.UserSpecifiedSegment("incidentName", "incidentName"),
 	}
 }
 

@@ -45,7 +45,6 @@ func (c ServiceRunnersClient) Get(ctx context.Context, id ServiceRunnerId) (resu
 
 	var model ServiceRunner
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

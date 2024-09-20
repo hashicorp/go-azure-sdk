@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedAssociationId{}
 
 func TestNewScopedAssociationID(t *testing.T) {
-	id := NewScopedAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationValue")
+	id := NewScopedAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.AssociationName != "associationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssociationName'", id.AssociationName, "associationValue")
+	if id.AssociationName != "associationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssociationName'", id.AssociationName, "associationName")
 	}
 }
 
 func TestFormatScopedAssociationID(t *testing.T) {
-	actual := NewScopedAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationValue"
+	actual := NewScopedAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedAssociationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationName",
 			Expected: &ScopedAssociationId{
 				Scope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AssociationName: "associationValue",
+				AssociationName: "associationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationName",
 			Expected: &ScopedAssociationId{
 				Scope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AssociationName: "associationValue",
+				AssociationName: "associationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CustomProviders/associations/associationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/aSsOcIaTiOnS/aSsOcIaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/aSsOcIaTiOnS/aSsOcIaTiOnNaMe",
 			Expected: &ScopedAssociationId{
 				Scope:           "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				AssociationName: "aSsOcIaTiOnVaLuE",
+				AssociationName: "aSsOcIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/aSsOcIaTiOnS/aSsOcIaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cUsToMpRoViDeRs/aSsOcIaTiOnS/aSsOcIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

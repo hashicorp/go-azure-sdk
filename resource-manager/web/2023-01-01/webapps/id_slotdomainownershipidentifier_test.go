@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SlotDomainOwnershipIdentifierId{}
 
 func TestNewSlotDomainOwnershipIdentifierID(t *testing.T) {
-	id := NewSlotDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "slotValue", "domainOwnershipIdentifierValue")
+	id := NewSlotDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "slot", "domainOwnershipIdentifierName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewSlotDomainOwnershipIdentifierID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.SlotName != "slotValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SlotName'", id.SlotName, "slotValue")
+	if id.SlotName != "slot" {
+		t.Fatalf("Expected %q but got %q for Segment 'SlotName'", id.SlotName, "slot")
 	}
 
-	if id.DomainOwnershipIdentifierName != "domainOwnershipIdentifierValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainOwnershipIdentifierName'", id.DomainOwnershipIdentifierName, "domainOwnershipIdentifierValue")
+	if id.DomainOwnershipIdentifierName != "domainOwnershipIdentifierName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainOwnershipIdentifierName'", id.DomainOwnershipIdentifierName, "domainOwnershipIdentifierName")
 	}
 }
 
 func TestFormatSlotDomainOwnershipIdentifierID(t *testing.T) {
-	actual := NewSlotDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "slotValue", "domainOwnershipIdentifierValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue"
+	actual := NewSlotDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "slot", "domainOwnershipIdentifierName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers/domainOwnershipIdentifierName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseSlotDomainOwnershipIdentifierID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers/domainOwnershipIdentifierName",
 			Expected: &SlotDomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SiteName:                      "siteValue",
-				SlotName:                      "slotValue",
-				DomainOwnershipIdentifierName: "domainOwnershipIdentifierValue",
+				SiteName:                      "name",
+				SlotName:                      "slot",
+				DomainOwnershipIdentifierName: "domainOwnershipIdentifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers/domainOwnershipIdentifierName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseSlotDomainOwnershipIdentifierIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sLoTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sLoTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sLoTs/sLoTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sLoTs/sLoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sLoTs/sLoTvAlUe/dOmAiNoWnErShIpIdEnTiFiErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sLoTs/sLoT/dOmAiNoWnErShIpIdEnTiFiErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers/domainOwnershipIdentifierName",
 			Expected: &SlotDomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SiteName:                      "siteValue",
-				SlotName:                      "slotValue",
-				DomainOwnershipIdentifierName: "domainOwnershipIdentifierValue",
+				SiteName:                      "name",
+				SlotName:                      "slot",
+				DomainOwnershipIdentifierName: "domainOwnershipIdentifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/slots/slotValue/domainOwnershipIdentifiers/domainOwnershipIdentifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/slots/slot/domainOwnershipIdentifiers/domainOwnershipIdentifierName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sLoTs/sLoTvAlUe/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sLoTs/sLoT/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErNaMe",
 			Expected: &SlotDomainOwnershipIdentifierId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:                      "sItEvAlUe",
-				SlotName:                      "sLoTvAlUe",
-				DomainOwnershipIdentifierName: "dOmAiNoWnErShIpIdEnTiFiErVaLuE",
+				SiteName:                      "nAmE",
+				SlotName:                      "sLoT",
+				DomainOwnershipIdentifierName: "dOmAiNoWnErShIpIdEnTiFiErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/sLoTs/sLoTvAlUe/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/sLoTs/sLoT/dOmAiNoWnErShIpIdEnTiFiErS/dOmAiNoWnErShIpIdEnTiFiErNaMe/extra",
 			Error: true,
 		},
 	}

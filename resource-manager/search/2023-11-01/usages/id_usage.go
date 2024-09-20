@@ -42,7 +42,7 @@ func ParseUsageID(input string) (*UsageId, error) {
 	}
 
 	id := UsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseUsageIDInsensitively(input string) (*UsageId, error) {
 	}
 
 	id := UsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id UsageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSearch", "Microsoft.Search", "Microsoft.Search"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticUsages", "usages", "usages"),
-		resourceids.UserSpecifiedSegment("usageName", "usageValue"),
+		resourceids.UserSpecifiedSegment("usageName", "skuName"),
 	}
 }
 

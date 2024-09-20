@@ -33,6 +33,7 @@ func (o SqlPoolMaintenanceWindowsCreateOrUpdateOperationOptions) ToHeaders() *cl
 
 func (o SqlPoolMaintenanceWindowsCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

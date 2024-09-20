@@ -44,7 +44,7 @@ func ParseApiCollectionID(input string) (*ApiCollectionId, error) {
 	}
 
 	id := ApiCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseApiCollectionIDInsensitively(input string) (*ApiCollectionId, error) {
 	}
 
 	id := ApiCollectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id ApiCollectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticApiCollections", "apiCollections", "apiCollections"),
-		resourceids.UserSpecifiedSegment("apiId", "apiIdValue"),
+		resourceids.UserSpecifiedSegment("apiId", "apiId"),
 	}
 }
 

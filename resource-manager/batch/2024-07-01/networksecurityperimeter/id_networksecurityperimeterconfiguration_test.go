@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NetworkSecurityPerimeterConfigurationId{}
 
 func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "networkSecurityPerimeterConfigurationValue")
+	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BatchAccountName != "batchAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BatchAccountName'", id.BatchAccountName, "batchAccountValue")
+	if id.BatchAccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BatchAccountName'", id.BatchAccountName, "accountName")
 	}
 
-	if id.NetworkSecurityPerimeterConfigurationName != "networkSecurityPerimeterConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "networkSecurityPerimeterConfigurationValue")
+	if id.NetworkSecurityPerimeterConfigurationName != "networkSecurityPerimeterConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "networkSecurityPerimeterConfigurationName")
 	}
 }
 
 func TestFormatNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "networkSecurityPerimeterConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue"
+	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BatchAccountName:  "batchAccountValue",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				BatchAccountName:  "accountName",
+				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNetworkSecurityPerimeterConfigurationIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BatchAccountName:  "batchAccountValue",
-				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationValue",
+				BatchAccountName:  "accountName",
+				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				BatchAccountName:  "bAtChAcCoUnTvAlUe",
-				NetworkSecurityPerimeterConfigurationName: "nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE",
+				BatchAccountName:  "aCcOuNtNaMe",
+				NetworkSecurityPerimeterConfigurationName: "nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtNaMe/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

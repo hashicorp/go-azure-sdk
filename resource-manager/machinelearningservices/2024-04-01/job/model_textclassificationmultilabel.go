@@ -17,9 +17,20 @@ type TextClassificationMultilabel struct {
 	ValidationData        *MLTableJobInput                        `json:"validationData,omitempty"`
 
 	// Fields inherited from AutoMLVertical
+
 	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
 	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TaskType         TaskType        `json:"taskType"`
 	TrainingData     MLTableJobInput `json:"trainingData"`
+}
+
+func (s TextClassificationMultilabel) AutoMLVertical() BaseAutoMLVerticalImpl {
+	return BaseAutoMLVerticalImpl{
+		LogVerbosity:     s.LogVerbosity,
+		TargetColumnName: s.TargetColumnName,
+		TaskType:         s.TaskType,
+		TrainingData:     s.TrainingData,
+	}
 }
 
 var _ json.Marshaler = TextClassificationMultilabel{}
@@ -33,9 +44,10 @@ func (s TextClassificationMultilabel) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TextClassificationMultilabel: %+v", err)
 	}
+
 	decoded["taskType"] = "TextClassificationMultilabel"
 
 	encoded, err = json.Marshal(decoded)

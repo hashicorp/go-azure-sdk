@@ -15,6 +15,14 @@ type MarkdownPartMetadata struct {
 	Settings *MarkdownPartMetadataSettings `json:"settings,omitempty"`
 
 	// Fields inherited from DashboardPartMetadata
+
+	Type DashboardPartMetadataType `json:"type"`
+}
+
+func (s MarkdownPartMetadata) DashboardPartMetadata() BaseDashboardPartMetadataImpl {
+	return BaseDashboardPartMetadataImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = MarkdownPartMetadata{}
@@ -28,9 +36,10 @@ func (s MarkdownPartMetadata) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MarkdownPartMetadata: %+v", err)
 	}
+
 	decoded["type"] = "Extension/HubsExtension/PartType/MarkdownPart"
 
 	encoded, err = json.Marshal(decoded)

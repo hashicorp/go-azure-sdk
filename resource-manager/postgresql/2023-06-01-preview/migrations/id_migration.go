@@ -44,7 +44,7 @@ func ParseMigrationID(input string) (*MigrationId, error) {
 	}
 
 	id := MigrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMigrationIDInsensitively(input string) (*MigrationId, error) {
 	}
 
 	id := MigrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MigrationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerValue"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "targetDbServerName"),
 		resourceids.StaticSegment("staticMigrations", "migrations", "migrations"),
-		resourceids.UserSpecifiedSegment("migrationName", "migrationValue"),
+		resourceids.UserSpecifiedSegment("migrationName", "migrationName"),
 	}
 }
 

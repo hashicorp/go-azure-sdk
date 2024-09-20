@@ -40,7 +40,7 @@ func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeI
 	}
 
 	id := ExternalCloudProviderTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseExternalCloudProviderTypeIDInsensitively(input string) (*ExternalCloud
 	}
 
 	id := ExternalCloudProviderTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,7 +113,7 @@ func (id ExternalCloudProviderTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCostManagement", "Microsoft.CostManagement", "Microsoft.CostManagement"),
 		resourceids.ConstantSegment("externalCloudProviderType", PossibleValuesForExternalCloudProviderType(), "externalBillingAccounts"),
-		resourceids.UserSpecifiedSegment("externalCloudProviderId", "externalCloudProviderIdValue"),
+		resourceids.UserSpecifiedSegment("externalCloudProviderId", "externalCloudProviderId"),
 	}
 }
 

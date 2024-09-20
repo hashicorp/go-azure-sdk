@@ -42,7 +42,7 @@ func ParseLongTermRetentionManagedInstanceID(input string) (*LongTermRetentionMa
 	}
 
 	id := LongTermRetentionManagedInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLongTermRetentionManagedInstanceIDInsensitively(input string) (*LongTe
 	}
 
 	id := LongTermRetentionManagedInstanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id LongTermRetentionManagedInstanceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstances", "longTermRetentionManagedInstances", "longTermRetentionManagedInstances"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "longTermRetentionManagedInstanceValue"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "managedInstanceName"),
 	}
 }
 

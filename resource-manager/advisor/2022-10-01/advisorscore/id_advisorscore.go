@@ -40,7 +40,7 @@ func ParseAdvisorScoreID(input string) (*AdvisorScoreId, error) {
 	}
 
 	id := AdvisorScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAdvisorScoreIDInsensitively(input string) (*AdvisorScoreId, error) {
 	}
 
 	id := AdvisorScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id AdvisorScoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAdvisor", "Microsoft.Advisor", "Microsoft.Advisor"),
 		resourceids.StaticSegment("staticAdvisorScore", "advisorScore", "advisorScore"),
-		resourceids.UserSpecifiedSegment("advisorScoreName", "advisorScoreValue"),
+		resourceids.UserSpecifiedSegment("advisorScoreName", "name"),
 	}
 }
 

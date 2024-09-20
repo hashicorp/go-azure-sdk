@@ -45,7 +45,6 @@ func (c JobStepsClient) Get(ctx context.Context, id StepId) (result GetOperation
 
 	var model JobStep
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -49,7 +49,7 @@ func (s *OnlineDeploymentTrackedResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalOnlineDeploymentImplementation(v)
+		impl, err := UnmarshalOnlineDeploymentImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'OnlineDeploymentTrackedResource': %+v", err)
 		}

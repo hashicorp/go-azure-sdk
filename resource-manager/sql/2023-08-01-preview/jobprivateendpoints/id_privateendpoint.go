@@ -46,7 +46,7 @@ func ParsePrivateEndpointID(input string) (*PrivateEndpointId, error) {
 	}
 
 	id := PrivateEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParsePrivateEndpointIDInsensitively(input string) (*PrivateEndpointId, erro
 	}
 
 	id := PrivateEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id PrivateEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticJobAgents", "jobAgents", "jobAgents"),
-		resourceids.UserSpecifiedSegment("jobAgentName", "jobAgentValue"),
+		resourceids.UserSpecifiedSegment("jobAgentName", "jobAgentName"),
 		resourceids.StaticSegment("staticPrivateEndpoints", "privateEndpoints", "privateEndpoints"),
-		resourceids.UserSpecifiedSegment("privateEndpointName", "privateEndpointValue"),
+		resourceids.UserSpecifiedSegment("privateEndpointName", "privateEndpointName"),
 	}
 }
 

@@ -45,7 +45,6 @@ func (c CatalogsClient) Get(ctx context.Context, id DevCenterCatalogId) (result 
 
 	var model Catalog
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

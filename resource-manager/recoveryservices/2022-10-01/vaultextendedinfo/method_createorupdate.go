@@ -50,7 +50,6 @@ func (c VaultExtendedInfoClient) CreateOrUpdate(ctx context.Context, id VaultId,
 
 	var model VaultExtendedInfoResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/dataconnectors` Documentation
 
-The `dataconnectors` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2023-02-01`).
+The `dataconnectors` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2023-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataConnectorIdValue")
+id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataConnectorId")
 
 payload := dataconnectors.DataConnector{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataConnectorIdValue")
+id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataConnectorId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataConnectorIdValue")
+id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataConnectorId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataconnectors.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := dataconnectors.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

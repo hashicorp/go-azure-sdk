@@ -14,6 +14,14 @@ type CmdkeySetup struct {
 	TypeProperties CmdkeySetupTypeProperties `json:"typeProperties"`
 
 	// Fields inherited from CustomSetupBase
+
+	Type string `json:"type"`
+}
+
+func (s CmdkeySetup) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return BaseCustomSetupBaseImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = CmdkeySetup{}
@@ -27,9 +35,10 @@ func (s CmdkeySetup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CmdkeySetup: %+v", err)
 	}
+
 	decoded["type"] = "CmdkeySetup"
 
 	encoded, err = json.Marshal(decoded)

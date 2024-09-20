@@ -14,13 +14,28 @@ type LegacyReservationRecommendation struct {
 	Properties LegacyReservationRecommendationProperties `json:"properties"`
 
 	// Fields inherited from ReservationRecommendation
-	ETag     *string            `json:"eTag,omitempty"`
-	Id       *string            `json:"id,omitempty"`
-	Location *string            `json:"location,omitempty"`
-	Name     *string            `json:"name,omitempty"`
-	Sku      *string            `json:"sku,omitempty"`
-	Tags     *map[string]string `json:"tags,omitempty"`
-	Type     *string            `json:"type,omitempty"`
+
+	ETag     *string                       `json:"eTag,omitempty"`
+	Id       *string                       `json:"id,omitempty"`
+	Kind     ReservationRecommendationKind `json:"kind"`
+	Location *string                       `json:"location,omitempty"`
+	Name     *string                       `json:"name,omitempty"`
+	Sku      *string                       `json:"sku,omitempty"`
+	Tags     *map[string]string            `json:"tags,omitempty"`
+	Type     *string                       `json:"type,omitempty"`
+}
+
+func (s LegacyReservationRecommendation) ReservationRecommendation() BaseReservationRecommendationImpl {
+	return BaseReservationRecommendationImpl{
+		ETag:     s.ETag,
+		Id:       s.Id,
+		Kind:     s.Kind,
+		Location: s.Location,
+		Name:     s.Name,
+		Sku:      s.Sku,
+		Tags:     s.Tags,
+		Type:     s.Type,
+	}
 }
 
 var _ json.Marshaler = LegacyReservationRecommendation{}
@@ -34,9 +49,10 @@ func (s LegacyReservationRecommendation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LegacyReservationRecommendation: %+v", err)
 	}
+
 	decoded["kind"] = "legacy"
 
 	encoded, err = json.Marshal(decoded)

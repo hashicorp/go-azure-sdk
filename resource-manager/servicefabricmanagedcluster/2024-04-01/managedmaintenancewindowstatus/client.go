@@ -15,7 +15,7 @@ type ManagedMaintenanceWindowStatusClient struct {
 }
 
 func NewManagedMaintenanceWindowStatusClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedMaintenanceWindowStatusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedmaintenancewindowstatus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "managedmaintenancewindowstatus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedMaintenanceWindowStatusClient: %+v", err)
 	}

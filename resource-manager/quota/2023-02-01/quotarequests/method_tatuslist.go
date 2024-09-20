@@ -41,6 +41,7 @@ func (o TatusListOperationOptions) ToHeaders() *client.Headers {
 
 func (o TatusListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

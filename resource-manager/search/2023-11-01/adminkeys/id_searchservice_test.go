@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SearchServiceId{}
 
 func TestNewSearchServiceID(t *testing.T) {
-	id := NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue")
+	id := NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSearchServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SearchServiceName != "searchServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceValue")
+	if id.SearchServiceName != "searchServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceName")
 	}
 }
 
 func TestFormatSearchServiceID(t *testing.T) {
-	actual := NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue"
+	actual := NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSearchServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName",
 			Expected: &SearchServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
+				SearchServiceName: "searchServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSearchServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName",
 			Expected: &SearchServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
+				SearchServiceName: "searchServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe",
 			Expected: &SearchServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SearchServiceName: "sEaRcHsErViCeVaLuE",
+				SearchServiceName: "sEaRcHsErViCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe/extra",
 			Error: true,
 		},
 	}

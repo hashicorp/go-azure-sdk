@@ -47,7 +47,6 @@ func (c DataProductsCatalogsClient) Get(ctx context.Context, id commonids.Resour
 
 	var model DataProductsCatalog
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

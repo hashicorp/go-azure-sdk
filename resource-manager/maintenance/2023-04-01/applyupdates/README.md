@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdates` Documentation
 
-The `applyupdates` SDK allows for interaction with the Azure Resource Manager Service `maintenance` (API Version `2023-04-01`).
+The `applyupdates` SDK allows for interaction with Azure Resource Manager `maintenance` (API Version `2023-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue")
+id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue")
+id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateName")
 
 read, err := client.GetParent(ctx, id)
 if err != nil {

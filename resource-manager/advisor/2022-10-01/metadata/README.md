@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2022-10-01/metadata` Documentation
 
-The `metadata` SDK allows for interaction with the Azure Resource Manager Service `advisor` (API Version `2022-10-01`).
+The `metadata` SDK allows for interaction with Azure Resource Manager `advisor` (API Version `2022-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := metadata.NewMetadataID("metadataValue")
+id := metadata.NewMetadataID("name")
 
 read, err := client.RecommendationMetadataGet(ctx, id)
 if err != nil {

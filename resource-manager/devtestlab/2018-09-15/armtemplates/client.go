@@ -15,7 +15,7 @@ type ArmTemplatesClient struct {
 }
 
 func NewArmTemplatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ArmTemplatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "armtemplates", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "armtemplates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ArmTemplatesClient: %+v", err)
 	}

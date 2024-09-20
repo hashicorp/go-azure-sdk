@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/tagoperationlink` Documentation
 
-The `tagoperationlink` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `tagoperationlink` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "tagId", "operationLinkId")
 
 payload := tagoperationlink.TagOperationLinkContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "tagId", "operationLinkId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "tagId", "operationLinkId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := tagoperationlink.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "tagId")
 
 // alternatively `client.ListByProduct(ctx, id, tagoperationlink.DefaultListByProductOperationOptions())` can be used to do batched pagination
 items, err := client.ListByProductComplete(ctx, id, tagoperationlink.DefaultListByProductOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "tagId", "operationLinkId")
 
 payload := tagoperationlink.TagOperationLinkContract{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "tagId", "operationLinkId")
 
 read, err := client.WorkspaceTagOperationLinkDelete(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "tagIdValue", "operationLinkIdValue")
+id := tagoperationlink.NewTagOperationLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "tagId", "operationLinkId")
 
 read, err := client.WorkspaceTagOperationLinkGet(ctx, id)
 if err != nil {
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagoperationlink.NewWorkspaceTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "tagIdValue")
+id := tagoperationlink.NewWorkspaceTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "tagId")
 
 // alternatively `client.WorkspaceTagOperationLinkListByProduct(ctx, id, tagoperationlink.DefaultWorkspaceTagOperationLinkListByProductOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceTagOperationLinkListByProductComplete(ctx, id, tagoperationlink.DefaultWorkspaceTagOperationLinkListByProductOperationOptions())

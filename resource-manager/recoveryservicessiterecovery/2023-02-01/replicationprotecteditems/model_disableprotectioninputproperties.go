@@ -30,7 +30,7 @@ func (s *DisableProtectionInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["replicationProviderInput"]; ok {
-		impl, err := unmarshalDisableProtectionProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalDisableProtectionProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ReplicationProviderInput' for 'DisableProtectionInputProperties': %+v", err)
 		}

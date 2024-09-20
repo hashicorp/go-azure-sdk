@@ -15,7 +15,16 @@ type LocationThresholdRuleCondition struct {
 	WindowSize          *string `json:"windowSize,omitempty"`
 
 	// Fields inherited from RuleCondition
+
 	DataSource RuleDataSource `json:"dataSource"`
+	OdataType  string         `json:"odata.type"`
+}
+
+func (s LocationThresholdRuleCondition) RuleCondition() BaseRuleConditionImpl {
+	return BaseRuleConditionImpl{
+		DataSource: s.DataSource,
+		OdataType:  s.OdataType,
+	}
 }
 
 var _ json.Marshaler = LocationThresholdRuleCondition{}
@@ -29,9 +38,10 @@ func (s LocationThresholdRuleCondition) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LocationThresholdRuleCondition: %+v", err)
 	}
+
 	decoded["odata.type"] = "Microsoft.Azure.Management.Insights.Models.LocationThresholdRuleCondition"
 
 	encoded, err = json.Marshal(decoded)
@@ -52,6 +62,7 @@ func (s *LocationThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.FailedLocationCount = decoded.FailedLocationCount
+	s.OdataType = decoded.OdataType
 	s.WindowSize = decoded.WindowSize
 
 	var temp map[string]json.RawMessage
@@ -60,7 +71,7 @@ func (s *LocationThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["dataSource"]; ok {
-		impl, err := unmarshalRuleDataSourceImplementation(v)
+		impl, err := UnmarshalRuleDataSourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DataSource' for 'LocationThresholdRuleCondition': %+v", err)
 		}

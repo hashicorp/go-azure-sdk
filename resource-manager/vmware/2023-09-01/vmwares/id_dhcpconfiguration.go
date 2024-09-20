@@ -44,7 +44,7 @@ func ParseDhcpConfigurationID(input string) (*DhcpConfigurationId, error) {
 	}
 
 	id := DhcpConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDhcpConfigurationIDInsensitively(input string) (*DhcpConfigurationId, 
 	}
 
 	id := DhcpConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,11 +121,11 @@ func (id DhcpConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticWorkloadNetworks", "workloadNetworks", "workloadNetworks"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticDhcpConfigurations", "dhcpConfigurations", "dhcpConfigurations"),
-		resourceids.UserSpecifiedSegment("dhcpId", "dhcpIdValue"),
+		resourceids.UserSpecifiedSegment("dhcpId", "dhcpId"),
 	}
 }
 

@@ -13,10 +13,22 @@ var _ ProtectableContainer = AzureVMAppContainerProtectableContainer{}
 type AzureVMAppContainerProtectableContainer struct {
 
 	// Fields inherited from ProtectableContainer
-	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
-	ContainerId          *string               `json:"containerId,omitempty"`
-	FriendlyName         *string               `json:"friendlyName,omitempty"`
-	HealthStatus         *string               `json:"healthStatus,omitempty"`
+
+	BackupManagementType     *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ContainerId              *string                  `json:"containerId,omitempty"`
+	FriendlyName             *string                  `json:"friendlyName,omitempty"`
+	HealthStatus             *string                  `json:"healthStatus,omitempty"`
+	ProtectableContainerType ProtectableContainerType `json:"protectableContainerType"`
+}
+
+func (s AzureVMAppContainerProtectableContainer) ProtectableContainer() BaseProtectableContainerImpl {
+	return BaseProtectableContainerImpl{
+		BackupManagementType:     s.BackupManagementType,
+		ContainerId:              s.ContainerId,
+		FriendlyName:             s.FriendlyName,
+		HealthStatus:             s.HealthStatus,
+		ProtectableContainerType: s.ProtectableContainerType,
+	}
 }
 
 var _ json.Marshaler = AzureVMAppContainerProtectableContainer{}
@@ -30,9 +42,10 @@ func (s AzureVMAppContainerProtectableContainer) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureVMAppContainerProtectableContainer: %+v", err)
 	}
+
 	decoded["protectableContainerType"] = "VMAppContainer"
 
 	encoded, err = json.Marshal(decoded)

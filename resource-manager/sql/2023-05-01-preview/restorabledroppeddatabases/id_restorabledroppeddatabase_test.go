@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RestorableDroppedDatabaseId{}
 
 func TestNewRestorableDroppedDatabaseID(t *testing.T) {
-	id := NewRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "restorableDroppedDatabaseIdValue")
+	id := NewRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "restorableDroppedDatabaseId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRestorableDroppedDatabaseID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.ServerName != "serverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.RestorableDroppedDatabaseId != "restorableDroppedDatabaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedDatabaseId'", id.RestorableDroppedDatabaseId, "restorableDroppedDatabaseIdValue")
+	if id.RestorableDroppedDatabaseId != "restorableDroppedDatabaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestorableDroppedDatabaseId'", id.RestorableDroppedDatabaseId, "restorableDroppedDatabaseId")
 	}
 }
 
 func TestFormatRestorableDroppedDatabaseID(t *testing.T) {
-	actual := NewRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "restorableDroppedDatabaseIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue"
+	actual := NewRestorableDroppedDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "restorableDroppedDatabaseId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases/restorableDroppedDatabaseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRestorableDroppedDatabaseID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases/restorableDroppedDatabaseId",
 			Expected: &RestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ServerName:                  "serverValue",
-				RestorableDroppedDatabaseId: "restorableDroppedDatabaseIdValue",
+				ServerName:                  "serverName",
+				RestorableDroppedDatabaseId: "restorableDroppedDatabaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases/restorableDroppedDatabaseId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRestorableDroppedDatabaseIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/rEsToRaBlEdRoPpEdDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEsToRaBlEdRoPpEdDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases/restorableDroppedDatabaseId",
 			Expected: &RestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				ServerName:                  "serverValue",
-				RestorableDroppedDatabaseId: "restorableDroppedDatabaseIdValue",
+				ServerName:                  "serverName",
+				RestorableDroppedDatabaseId: "restorableDroppedDatabaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverValue/restorableDroppedDatabases/restorableDroppedDatabaseIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/restorableDroppedDatabases/restorableDroppedDatabaseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeId",
 			Expected: &RestorableDroppedDatabaseId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:                  "sErVeRvAlUe",
-				RestorableDroppedDatabaseId: "rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE",
+				ServerName:                  "sErVeRnAmE",
+				RestorableDroppedDatabaseId: "rEsToRaBlEdRoPpEdDaTaBaSeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRvAlUe/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEsToRaBlEdRoPpEdDaTaBaSeS/rEsToRaBlEdRoPpEdDaTaBaSeId/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitutilizationsummariesasync` Documentation
 
-The `benefitutilizationsummariesasync` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2023-08-01`).
+The `benefitutilizationsummariesasync` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewBillingAccountID("billingAccountIdValue")
+id := benefitutilizationsummariesasync.NewBillingAccountID("billingAccountId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateByBillingAccou
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := benefitutilizationsummariesasync.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...
@@ -58,7 +58,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateByBillingProfi
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewReservationID("reservationOrderIdValue", "reservationIdValue")
+id := benefitutilizationsummariesasync.NewReservationID("reservationOrderId", "reservationId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...
@@ -75,7 +75,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateByReservationI
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewReservationOrderID("reservationOrderIdValue")
+id := benefitutilizationsummariesasync.NewReservationOrderID("reservationOrderId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...
@@ -92,7 +92,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateByReservationO
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue")
+id := benefitutilizationsummariesasync.NewSavingsPlanID("savingsPlanOrderId", "savingsPlanId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...
@@ -109,7 +109,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanI
 
 ```go
 ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewSavingsPlanOrderID("savingsPlanOrderIdValue")
+id := benefitutilizationsummariesasync.NewSavingsPlanOrderID("savingsPlanOrderId")
 
 payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 	// ...

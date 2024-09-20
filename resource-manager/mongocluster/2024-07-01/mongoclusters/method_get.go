@@ -45,7 +45,6 @@ func (c MongoClustersClient) Get(ctx context.Context, id MongoClusterId) (result
 
 	var model MongoCluster
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

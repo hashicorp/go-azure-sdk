@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2024-03-01/workspaceprivatelinkresources` Documentation
 
-The `workspaceprivatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `healthcareapis` (API Version `2024-03-01`).
+The `workspaceprivatelinkresources` SDK allows for interaction with Azure Resource Manager `healthcareapis` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workspaceprivatelinkresources.NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateLinkResourceValue")
+id := workspaceprivatelinkresources.NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "groupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaceprivatelinkresources.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaceprivatelinkresources.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.ListByWorkspace(ctx, id)
 if err != nil {

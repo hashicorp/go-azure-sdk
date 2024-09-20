@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Reference interface {
+	Reference() BaseReferenceImpl
 }
 
-// RawReferenceImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Reference = BaseReferenceImpl{}
+
+type BaseReferenceImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseReferenceImpl) Reference() BaseReferenceImpl {
+	return s
+}
+
+var _ Reference = RawReferenceImpl{}
+
+// RawReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawReferenceImpl struct {
-	Type   string
-	Values map[string]interface{}
+	reference BaseReferenceImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalReferenceImplementation(input []byte) (Reference, error) {
+func (s RawReferenceImpl) Reference() BaseReferenceImpl {
+	return s.reference
+}
+
+func UnmarshalReferenceImplementation(input []byte) (Reference, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalReferenceImplementation(input []byte) (Reference, error) {
 		return out, nil
 	}
 
-	out := RawReferenceImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseReferenceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseReferenceImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawReferenceImpl{
+		reference: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

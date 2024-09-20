@@ -50,7 +50,6 @@ func (c TrustedAccessClient) RoleBindingsCreateOrUpdate(ctx context.Context, id 
 
 	var model TrustedAccessRoleBinding
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -46,7 +46,6 @@ func (c MonitorUpgradableVersionsClient) UpgradableVersionsDetails(ctx context.C
 
 	var model UpgradableVersionsList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

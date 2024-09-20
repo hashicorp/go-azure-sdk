@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &Providers2RemediationId{}
 
 func TestNewProviders2RemediationID(t *testing.T) {
-	id := NewProviders2RemediationID("managementGroupIdValue", "remediationValue")
+	id := NewProviders2RemediationID("managementGroupId", "remediationName")
 
-	if id.ManagementGroupId != "managementGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
+	if id.ManagementGroupId != "managementGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupId")
 	}
 
-	if id.RemediationName != "remediationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RemediationName'", id.RemediationName, "remediationValue")
+	if id.RemediationName != "remediationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RemediationName'", id.RemediationName, "remediationName")
 	}
 }
 
 func TestFormatProviders2RemediationID(t *testing.T) {
-	actual := NewProviders2RemediationID("managementGroupIdValue", "remediationValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue"
+	actual := NewProviders2RemediationID("managementGroupId", "remediationName").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations/remediationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParseProviders2RemediationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations/remediationName",
 			Expected: &Providers2RemediationId{
-				ManagementGroupId: "managementGroupIdValue",
-				RemediationName:   "remediationValue",
+				ManagementGroupId: "managementGroupId",
+				RemediationName:   "remediationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations/remediationName/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParseProviders2RemediationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations/remediationName",
 			Expected: &Providers2RemediationId{
-				ManagementGroupId: "managementGroupIdValue",
-				RemediationName:   "remediationValue",
+				ManagementGroupId: "managementGroupId",
+				RemediationName:   "remediationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/providers/Microsoft.PolicyInsights/remediations/remediationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnNaMe",
 			Expected: &Providers2RemediationId{
-				ManagementGroupId: "mAnAgEmEnTgRoUpIdVaLuE",
-				RemediationName:   "rEmEdIaTiOnVaLuE",
+				ManagementGroupId: "mAnAgEmEnTgRoUpId",
+				RemediationName:   "rEmEdIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

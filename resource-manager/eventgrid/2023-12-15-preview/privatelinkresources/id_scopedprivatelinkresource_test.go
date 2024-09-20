@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedPrivateLinkResourceId{}
 
 func TestNewScopedPrivateLinkResourceID(t *testing.T) {
-	id := NewScopedPrivateLinkResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "privateLinkResourceValue")
+	id := NewScopedPrivateLinkResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "privateLinkResourceName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.PrivateLinkResourceName != "privateLinkResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "privateLinkResourceValue")
+	if id.PrivateLinkResourceName != "privateLinkResourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "privateLinkResourceName")
 	}
 }
 
 func TestFormatScopedPrivateLinkResourceID(t *testing.T) {
-	actual := NewScopedPrivateLinkResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "privateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceValue"
+	actual := NewScopedPrivateLinkResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "privateLinkResourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,15 +54,15 @@ func TestParseScopedPrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceName",
 			Expected: &ScopedPrivateLinkResourceId{
 				Scope:                   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				PrivateLinkResourceName: "privateLinkResourceValue",
+				PrivateLinkResourceName: "privateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceName/extra",
 			Error: true,
 		},
 	}
@@ -125,28 +125,28 @@ func TestParseScopedPrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceName",
 			Expected: &ScopedPrivateLinkResourceId{
 				Scope:                   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				PrivateLinkResourceName: "privateLinkResourceValue",
+				PrivateLinkResourceName: "privateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/privateLinkResources/privateLinkResourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeNaMe",
 			Expected: &ScopedPrivateLinkResourceId{
 				Scope:                   "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				PrivateLinkResourceName: "pRiVaTeLiNkReSoUrCeVaLuE",
+				PrivateLinkResourceName: "pRiVaTeLiNkReSoUrCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeNaMe/extra",
 			Error: true,
 		},
 	}

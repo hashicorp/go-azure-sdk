@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageMoverId{}
 
 func TestNewStorageMoverID(t *testing.T) {
-	id := NewStorageMoverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue")
+	id := NewStorageMoverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewStorageMoverID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageMoverName != "storageMoverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverValue")
+	if id.StorageMoverName != "storageMoverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageMoverName'", id.StorageMoverName, "storageMoverName")
 	}
 }
 
 func TestFormatStorageMoverID(t *testing.T) {
-	actual := NewStorageMoverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue"
+	actual := NewStorageMoverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageMoverName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseStorageMoverID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Expected: &StorageMoverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
+				StorageMoverName:  "storageMoverName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseStorageMoverIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName",
 			Expected: &StorageMoverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StorageMoverName:  "storageMoverValue",
+				StorageMoverName:  "storageMoverName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageMover/storageMovers/storageMoverName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE",
 			Expected: &StorageMoverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageMoverName:  "sToRaGeMoVeRvAlUe",
+				StorageMoverName:  "sToRaGeMoVeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeMoVeR/sToRaGeMoVeRs/sToRaGeMoVeRnAmE/extra",
 			Error: true,
 		},
 	}

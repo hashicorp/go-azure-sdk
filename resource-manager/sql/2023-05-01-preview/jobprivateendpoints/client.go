@@ -15,7 +15,7 @@ type JobPrivateEndpointsClient struct {
 }
 
 func NewJobPrivateEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobPrivateEndpointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jobprivateendpoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jobprivateendpoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobPrivateEndpointsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type LogAnalyticsClient struct {
 }
 
 func NewLogAnalyticsClientWithBaseURI(sdkApi sdkEnv.Api) (*LogAnalyticsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "loganalytics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "loganalytics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LogAnalyticsClient: %+v", err)
 	}

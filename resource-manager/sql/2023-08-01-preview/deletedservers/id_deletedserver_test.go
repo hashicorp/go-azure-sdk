@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeletedServerId{}
 
 func TestNewDeletedServerID(t *testing.T) {
-	id := NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServerValue")
+	id := NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationName", "deletedServerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.DeletedServerName != "deletedServerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedServerName'", id.DeletedServerName, "deletedServerValue")
+	if id.DeletedServerName != "deletedServerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedServerName'", id.DeletedServerName, "deletedServerName")
 	}
 }
 
 func TestFormatDeletedServerID(t *testing.T) {
-	actual := NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers/deletedServerValue"
+	actual := NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationName", "deletedServerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers/deletedServerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDeletedServerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers/deletedServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers/deletedServerName",
 			Expected: &DeletedServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				DeletedServerName: "deletedServerValue",
+				LocationName:      "locationName",
+				DeletedServerName: "deletedServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers/deletedServerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers/deletedServerName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDeletedServerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/dElEtEdSeRvErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers/deletedServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers/deletedServerName",
 			Expected: &DeletedServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "locationValue",
-				DeletedServerName: "deletedServerValue",
+				LocationName:      "locationName",
+				DeletedServerName: "deletedServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationValue/deletedServers/deletedServerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Sql/locations/locationName/deletedServers/deletedServerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvErS/dElEtEdSeRvErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/dElEtEdSeRvErS/dElEtEdSeRvErNaMe",
 			Expected: &DeletedServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "lOcAtIoNvAlUe",
-				DeletedServerName: "dElEtEdSeRvErVaLuE",
+				LocationName:      "lOcAtIoNnAmE",
+				DeletedServerName: "dElEtEdSeRvErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvErS/dElEtEdSeRvErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/dElEtEdSeRvErS/dElEtEdSeRvErNaMe/extra",
 			Error: true,
 		},
 	}

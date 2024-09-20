@@ -46,7 +46,6 @@ func (c DeploymentsClient) ExportTemplateAtScope(ctx context.Context, id ScopedD
 
 	var model DeploymentExportResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -24,6 +24,14 @@ type AzureBackupDiscreteRecoveryPoint struct {
 	RetentionTagVersion            *string                          `json:"retentionTagVersion,omitempty"`
 
 	// Fields inherited from AzureBackupRecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureBackupDiscreteRecoveryPoint) AzureBackupRecoveryPoint() BaseAzureBackupRecoveryPointImpl {
+	return BaseAzureBackupRecoveryPointImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureBackupDiscreteRecoveryPoint{}
@@ -37,9 +45,10 @@ func (s AzureBackupDiscreteRecoveryPoint) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBackupDiscreteRecoveryPoint: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureBackupDiscreteRecoveryPoint"
 
 	encoded, err = json.Marshal(decoded)

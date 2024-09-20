@@ -42,7 +42,7 @@ func ParseScopedAssignmentOperationID(input string) (*ScopedAssignmentOperationI
 	}
 
 	id := ScopedAssignmentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseScopedAssignmentOperationIDInsensitively(input string) (*ScopedAssignm
 	}
 
 	id := ScopedAssignmentOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -112,9 +112,9 @@ func (id ScopedAssignmentOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBlueprint", "Microsoft.Blueprint", "Microsoft.Blueprint"),
 		resourceids.StaticSegment("staticBlueprintAssignments", "blueprintAssignments", "blueprintAssignments"),
-		resourceids.UserSpecifiedSegment("blueprintAssignmentName", "blueprintAssignmentValue"),
+		resourceids.UserSpecifiedSegment("blueprintAssignmentName", "assignmentName"),
 		resourceids.StaticSegment("staticAssignmentOperations", "assignmentOperations", "assignmentOperations"),
-		resourceids.UserSpecifiedSegment("assignmentOperationName", "assignmentOperationValue"),
+		resourceids.UserSpecifiedSegment("assignmentOperationName", "assignmentOperationName"),
 	}
 }
 

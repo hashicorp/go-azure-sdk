@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryResourceGroupCustomDetails interface {
+	RecoveryResourceGroupCustomDetails() BaseRecoveryResourceGroupCustomDetailsImpl
 }
 
-// RawRecoveryResourceGroupCustomDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ RecoveryResourceGroupCustomDetails = BaseRecoveryResourceGroupCustomDetailsImpl{}
+
+type BaseRecoveryResourceGroupCustomDetailsImpl struct {
+	ResourceType string `json:"resourceType"`
+}
+
+func (s BaseRecoveryResourceGroupCustomDetailsImpl) RecoveryResourceGroupCustomDetails() BaseRecoveryResourceGroupCustomDetailsImpl {
+	return s
+}
+
+var _ RecoveryResourceGroupCustomDetails = RawRecoveryResourceGroupCustomDetailsImpl{}
+
+// RawRecoveryResourceGroupCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawRecoveryResourceGroupCustomDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	recoveryResourceGroupCustomDetails BaseRecoveryResourceGroupCustomDetailsImpl
+	Type                               string
+	Values                             map[string]interface{}
 }
 
-func unmarshalRecoveryResourceGroupCustomDetailsImplementation(input []byte) (RecoveryResourceGroupCustomDetails, error) {
+func (s RawRecoveryResourceGroupCustomDetailsImpl) RecoveryResourceGroupCustomDetails() BaseRecoveryResourceGroupCustomDetailsImpl {
+	return s.recoveryResourceGroupCustomDetails
+}
+
+func UnmarshalRecoveryResourceGroupCustomDetailsImplementation(input []byte) (RecoveryResourceGroupCustomDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalRecoveryResourceGroupCustomDetailsImplementation(input []byte) (Re
 		return out, nil
 	}
 
-	out := RawRecoveryResourceGroupCustomDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseRecoveryResourceGroupCustomDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryResourceGroupCustomDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawRecoveryResourceGroupCustomDetailsImpl{
+		recoveryResourceGroupCustomDetails: parent,
+		Type:                               value,
+		Values:                             temp,
+	}, nil
 
 }

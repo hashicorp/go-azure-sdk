@@ -15,7 +15,7 @@ type JobStepExecutionsClient struct {
 }
 
 func NewJobStepExecutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobStepExecutionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "jobstepexecutions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "jobstepexecutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobStepExecutionsClient: %+v", err)
 	}

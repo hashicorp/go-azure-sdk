@@ -15,7 +15,7 @@ type VCenterClient struct {
 }
 
 func NewVCenterClientWithBaseURI(sdkApi sdkEnv.Api) (*VCenterClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vcenter", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vcenter", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VCenterClient: %+v", err)
 	}

@@ -41,6 +41,7 @@ func (o WorkspaceSubscriptionListOperationOptions) ToHeaders() *client.Headers {
 
 func (o WorkspaceSubscriptionListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

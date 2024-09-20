@@ -46,7 +46,6 @@ func (c UsersClient) UserGenerateSsoUrl(ctx context.Context, id UserId) (result 
 
 	var model GenerateSsoUrlResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

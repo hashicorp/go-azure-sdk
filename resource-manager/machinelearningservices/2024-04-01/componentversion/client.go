@@ -15,7 +15,7 @@ type ComponentVersionClient struct {
 }
 
 func NewComponentVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "componentversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "componentversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComponentVersionClient: %+v", err)
 	}

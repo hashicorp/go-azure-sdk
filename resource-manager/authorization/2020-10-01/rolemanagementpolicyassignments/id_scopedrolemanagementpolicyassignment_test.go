@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedRoleManagementPolicyAssignmentId{}
 
 func TestNewScopedRoleManagementPolicyAssignmentID(t *testing.T) {
-	id := NewScopedRoleManagementPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyAssignmentValue")
+	id := NewScopedRoleManagementPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyAssignmentName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RoleManagementPolicyAssignmentName != "roleManagementPolicyAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleManagementPolicyAssignmentName'", id.RoleManagementPolicyAssignmentName, "roleManagementPolicyAssignmentValue")
+	if id.RoleManagementPolicyAssignmentName != "roleManagementPolicyAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleManagementPolicyAssignmentName'", id.RoleManagementPolicyAssignmentName, "roleManagementPolicyAssignmentName")
 	}
 }
 
 func TestFormatScopedRoleManagementPolicyAssignmentID(t *testing.T) {
-	actual := NewScopedRoleManagementPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentValue"
+	actual := NewScopedRoleManagementPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleManagementPolicyAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedRoleManagementPolicyAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentName",
 			Expected: &ScopedRoleManagementPolicyAssignmentId{
 				Scope:                              "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleManagementPolicyAssignmentName: "roleManagementPolicyAssignmentValue",
+				RoleManagementPolicyAssignmentName: "roleManagementPolicyAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedRoleManagementPolicyAssignmentIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentName",
 			Expected: &ScopedRoleManagementPolicyAssignmentId{
 				Scope:                              "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RoleManagementPolicyAssignmentName: "roleManagementPolicyAssignmentValue",
+				RoleManagementPolicyAssignmentName: "roleManagementPolicyAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleManagementPolicyAssignments/roleManagementPolicyAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTnAmE",
 			Expected: &ScopedRoleManagementPolicyAssignmentId{
 				Scope:                              "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RoleManagementPolicyAssignmentName: "rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTvAlUe",
+				RoleManagementPolicyAssignmentName: "rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTnAmE/extra",
 			Error: true,
 		},
 	}

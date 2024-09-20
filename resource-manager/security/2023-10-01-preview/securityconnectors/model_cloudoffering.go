@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CloudOffering interface {
+	CloudOffering() BaseCloudOfferingImpl
 }
 
-// RawCloudOfferingImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ CloudOffering = BaseCloudOfferingImpl{}
+
+type BaseCloudOfferingImpl struct {
+	Description  *string      `json:"description,omitempty"`
+	OfferingType OfferingType `json:"offeringType"`
+}
+
+func (s BaseCloudOfferingImpl) CloudOffering() BaseCloudOfferingImpl {
+	return s
+}
+
+var _ CloudOffering = RawCloudOfferingImpl{}
+
+// RawCloudOfferingImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCloudOfferingImpl struct {
-	Type   string
-	Values map[string]interface{}
+	cloudOffering BaseCloudOfferingImpl
+	Type          string
+	Values        map[string]interface{}
 }
 
-func unmarshalCloudOfferingImplementation(input []byte) (CloudOffering, error) {
+func (s RawCloudOfferingImpl) CloudOffering() BaseCloudOfferingImpl {
+	return s.cloudOffering
+}
+
+func UnmarshalCloudOfferingImplementation(input []byte) (CloudOffering, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -172,10 +190,15 @@ func unmarshalCloudOfferingImplementation(input []byte) (CloudOffering, error) {
 		return out, nil
 	}
 
-	out := RawCloudOfferingImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCloudOfferingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCloudOfferingImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCloudOfferingImpl{
+		cloudOffering: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
 
 }

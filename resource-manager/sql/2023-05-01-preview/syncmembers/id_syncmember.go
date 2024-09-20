@@ -48,7 +48,7 @@ func ParseSyncMemberID(input string) (*SyncMemberId, error) {
 	}
 
 	id := SyncMemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseSyncMemberIDInsensitively(input string) (*SyncMemberId, error) {
 	}
 
 	id := SyncMemberId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id SyncMemberId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
-		resourceids.UserSpecifiedSegment("databaseName", "databaseValue"),
+		resourceids.UserSpecifiedSegment("databaseName", "databaseName"),
 		resourceids.StaticSegment("staticSyncGroups", "syncGroups", "syncGroups"),
-		resourceids.UserSpecifiedSegment("syncGroupName", "syncGroupValue"),
+		resourceids.UserSpecifiedSegment("syncGroupName", "syncGroupName"),
 		resourceids.StaticSegment("staticSyncMembers", "syncMembers", "syncMembers"),
-		resourceids.UserSpecifiedSegment("syncMemberName", "syncMemberValue"),
+		resourceids.UserSpecifiedSegment("syncMemberName", "syncMemberName"),
 	}
 }
 

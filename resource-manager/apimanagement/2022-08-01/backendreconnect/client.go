@@ -15,7 +15,7 @@ type BackendReconnectClient struct {
 }
 
 func NewBackendReconnectClientWithBaseURI(sdkApi sdkEnv.Api) (*BackendReconnectClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "backendreconnect", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "backendreconnect", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BackendReconnectClient: %+v", err)
 	}

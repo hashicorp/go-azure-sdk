@@ -13,6 +13,14 @@ var _ IdentityConfiguration = UserIdentity{}
 type UserIdentity struct {
 
 	// Fields inherited from IdentityConfiguration
+
+	IdentityType IdentityConfigurationType `json:"identityType"`
+}
+
+func (s UserIdentity) IdentityConfiguration() BaseIdentityConfigurationImpl {
+	return BaseIdentityConfigurationImpl{
+		IdentityType: s.IdentityType,
+	}
 }
 
 var _ json.Marshaler = UserIdentity{}
@@ -26,9 +34,10 @@ func (s UserIdentity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UserIdentity: %+v", err)
 	}
+
 	decoded["identityType"] = "UserIdentity"
 
 	encoded, err = json.Marshal(decoded)

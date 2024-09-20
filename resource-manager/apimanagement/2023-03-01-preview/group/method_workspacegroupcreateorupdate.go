@@ -36,6 +36,7 @@ func (o WorkspaceGroupCreateOrUpdateOperationOptions) ToHeaders() *client.Header
 
 func (o WorkspaceGroupCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c GroupClient) WorkspaceGroupCreateOrUpdate(ctx context.Context, id Worksp
 
 	var model GroupContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

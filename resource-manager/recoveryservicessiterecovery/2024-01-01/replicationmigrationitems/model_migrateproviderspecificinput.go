@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MigrateProviderSpecificInput interface {
+	MigrateProviderSpecificInput() BaseMigrateProviderSpecificInputImpl
 }
 
-// RawMigrateProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ MigrateProviderSpecificInput = BaseMigrateProviderSpecificInputImpl{}
+
+type BaseMigrateProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseMigrateProviderSpecificInputImpl) MigrateProviderSpecificInput() BaseMigrateProviderSpecificInputImpl {
+	return s
+}
+
+var _ MigrateProviderSpecificInput = RawMigrateProviderSpecificInputImpl{}
+
+// RawMigrateProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawMigrateProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	migrateProviderSpecificInput BaseMigrateProviderSpecificInputImpl
+	Type                         string
+	Values                       map[string]interface{}
 }
 
-func unmarshalMigrateProviderSpecificInputImplementation(input []byte) (MigrateProviderSpecificInput, error) {
+func (s RawMigrateProviderSpecificInputImpl) MigrateProviderSpecificInput() BaseMigrateProviderSpecificInputImpl {
+	return s.migrateProviderSpecificInput
+}
+
+func UnmarshalMigrateProviderSpecificInputImplementation(input []byte) (MigrateProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalMigrateProviderSpecificInputImplementation(input []byte) (MigrateP
 		return out, nil
 	}
 
-	out := RawMigrateProviderSpecificInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseMigrateProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMigrateProviderSpecificInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawMigrateProviderSpecificInputImpl{
+		migrateProviderSpecificInput: parent,
+		Type:                         value,
+		Values:                       temp,
+	}, nil
 
 }

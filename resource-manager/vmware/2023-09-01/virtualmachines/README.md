@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2023-09-01/virtualmachines` Documentation
 
-The `virtualmachines` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2023-09-01`).
+The `virtualmachines` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachines.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "virtualMachineIdValue")
+id := virtualmachines.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName", "virtualMachineId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachines.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue")
+id := virtualmachines.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachines.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "virtualMachineIdValue")
+id := virtualmachines.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "clusterName", "virtualMachineId")
 
 payload := virtualmachines.VirtualMachineRestrictMovement{
 	// ...

@@ -45,7 +45,6 @@ func (c WorkloadNetworksClient) GetPortMirroring(ctx context.Context, id PortMir
 
 	var model WorkloadNetworkPortMirroring
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

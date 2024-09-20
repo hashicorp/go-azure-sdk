@@ -40,7 +40,7 @@ func ParseBillingAccountBillingPeriodID(input string) (*BillingAccountBillingPer
 	}
 
 	id := BillingAccountBillingPeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseBillingAccountBillingPeriodIDInsensitively(input string) (*BillingAcco
 	}
 
 	id := BillingAccountBillingPeriodId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id BillingAccountBillingPeriodId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountIdValue"),
+		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountId"),
 		resourceids.StaticSegment("staticBillingPeriods", "billingPeriods", "billingPeriods"),
-		resourceids.UserSpecifiedSegment("billingPeriodName", "billingPeriodValue"),
+		resourceids.UserSpecifiedSegment("billingPeriodName", "billingPeriodName"),
 	}
 }
 

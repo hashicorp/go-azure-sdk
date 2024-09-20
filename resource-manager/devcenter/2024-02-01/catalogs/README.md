@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2024-02-01/catalogs` Documentation
 
-The `catalogs` SDK allows for interaction with the Azure Resource Manager Service `devcenter` (API Version `2024-02-01`).
+The `catalogs` SDK allows for interaction with Azure Resource Manager `devcenter` (API Version `2024-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 if err := client.ConnectThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.ConnectThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 payload := catalogs.Catalog{
 	// ...
@@ -53,7 +53,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -65,7 +65,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 read, err := client.GetSyncErrorDetails(ctx, id)
 if err != nil {
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue")
+id := catalogs.NewDevCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName")
 
 // alternatively `client.ListByDevCenter(ctx, id, catalogs.DefaultListByDevCenterOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDevCenterComplete(ctx, id, catalogs.DefaultListByDevCenterOperationOptions())
@@ -114,7 +114,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 if err := client.SyncThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -126,7 +126,7 @@ if err := client.SyncThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue")
+id := catalogs.NewDevCenterCatalogID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName")
 
 payload := catalogs.CatalogUpdate{
 	// ...

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingpermission` Documentation
 
-The `billingpermission` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `billingpermission` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingAccountID("billingAccountValue")
+id := billingpermission.NewBillingAccountID("billingAccountName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingpermission.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingpermission.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewDepartmentID("billingAccountValue", "departmentValue")
+id := billingpermission.NewDepartmentID("billingAccountName", "departmentName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := billingpermission.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -129,7 +129,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingpermission.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 payload := billingpermission.CheckAccessRequest{
 	// ...
@@ -150,7 +150,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingAccountID("billingAccountValue")
+id := billingpermission.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id)
@@ -167,7 +167,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingProfileID("billingAccountValue", "billingProfileValue")
+id := billingpermission.NewBillingProfileID("billingAccountName", "billingProfileName")
 
 // alternatively `client.ListByBillingProfile(ctx, id)` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id)
@@ -184,7 +184,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewBillingProfileCustomerID("billingAccountValue", "billingProfileValue", "customerValue")
+id := billingpermission.NewBillingProfileCustomerID("billingAccountName", "billingProfileName", "customerName")
 
 // alternatively `client.ListByCustomer(ctx, id)` can be used to do batched pagination
 items, err := client.ListByCustomerComplete(ctx, id)
@@ -201,7 +201,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewCustomerID("billingAccountValue", "customerValue")
+id := billingpermission.NewCustomerID("billingAccountName", "customerName")
 
 // alternatively `client.ListByCustomerAtBillingAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByCustomerAtBillingAccountComplete(ctx, id)
@@ -218,7 +218,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewDepartmentID("billingAccountValue", "departmentValue")
+id := billingpermission.NewDepartmentID("billingAccountName", "departmentName")
 
 // alternatively `client.ListByDepartment(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDepartmentComplete(ctx, id)
@@ -235,7 +235,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := billingpermission.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 // alternatively `client.ListByEnrollmentAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByEnrollmentAccountComplete(ctx, id)
@@ -252,7 +252,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingpermission.NewInvoiceSectionID("billingAccountValue", "billingProfileValue", "invoiceSectionValue")
+id := billingpermission.NewInvoiceSectionID("billingAccountName", "billingProfileName", "invoiceSectionName")
 
 // alternatively `client.ListByInvoiceSection(ctx, id)` can be used to do batched pagination
 items, err := client.ListByInvoiceSectionComplete(ctx, id)

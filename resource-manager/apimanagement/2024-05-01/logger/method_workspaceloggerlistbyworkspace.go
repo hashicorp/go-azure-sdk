@@ -41,6 +41,7 @@ func (o WorkspaceLoggerListByWorkspaceOperationOptions) ToHeaders() *client.Head
 
 func (o WorkspaceLoggerListByWorkspaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

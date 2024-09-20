@@ -35,6 +35,7 @@ func (o HeatMapGetOperationOptions) ToHeaders() *client.Headers {
 
 func (o HeatMapGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c HeatMapsClient) HeatMapGet(ctx context.Context, id TrafficManagerProfile
 
 	var model HeatMapModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationLiveViewId{}
 
 func TestNewApplicationLiveViewID(t *testing.T) {
-	id := NewApplicationLiveViewID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "applicationLiveViewValue")
+	id := NewApplicationLiveViewID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "applicationLiveViewName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewApplicationLiveViewID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SpringName != "springValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "springValue")
+	if id.SpringName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "serviceName")
 	}
 
-	if id.ApplicationLiveViewName != "applicationLiveViewValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationLiveViewName'", id.ApplicationLiveViewName, "applicationLiveViewValue")
+	if id.ApplicationLiveViewName != "applicationLiveViewName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationLiveViewName'", id.ApplicationLiveViewName, "applicationLiveViewName")
 	}
 }
 
 func TestFormatApplicationLiveViewID(t *testing.T) {
-	actual := NewApplicationLiveViewID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "applicationLiveViewValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews/applicationLiveViewValue"
+	actual := NewApplicationLiveViewID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "applicationLiveViewName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews/applicationLiveViewName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseApplicationLiveViewID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews/applicationLiveViewValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews/applicationLiveViewName",
 			Expected: &ApplicationLiveViewId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				SpringName:              "springValue",
-				ApplicationLiveViewName: "applicationLiveViewValue",
+				SpringName:              "serviceName",
+				ApplicationLiveViewName: "applicationLiveViewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews/applicationLiveViewValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews/applicationLiveViewName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseApplicationLiveViewIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnLiVeViEwS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnLiVeViEwS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews/applicationLiveViewValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews/applicationLiveViewName",
 			Expected: &ApplicationLiveViewId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				SpringName:              "springValue",
-				ApplicationLiveViewName: "applicationLiveViewValue",
+				SpringName:              "serviceName",
+				ApplicationLiveViewName: "applicationLiveViewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/applicationLiveViews/applicationLiveViewValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/applicationLiveViews/applicationLiveViewName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnLiVeViEwS/aPpLiCaTiOnLiVeViEwVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnLiVeViEwS/aPpLiCaTiOnLiVeViEwNaMe",
 			Expected: &ApplicationLiveViewId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				SpringName:              "sPrInGvAlUe",
-				ApplicationLiveViewName: "aPpLiCaTiOnLiVeViEwVaLuE",
+				SpringName:              "sErViCeNaMe",
+				ApplicationLiveViewName: "aPpLiCaTiOnLiVeViEwNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPpLiCaTiOnLiVeViEwS/aPpLiCaTiOnLiVeViEwVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/aPpLiCaTiOnLiVeViEwS/aPpLiCaTiOnLiVeViEwNaMe/extra",
 			Error: true,
 		},
 	}

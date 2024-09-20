@@ -46,7 +46,6 @@ func (c ServerlessRuntimesClient) CheckDependencies(ctx context.Context, id Serv
 
 	var model CheckDependenciesResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

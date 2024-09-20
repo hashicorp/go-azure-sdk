@@ -50,7 +50,6 @@ func (c TransfersClient) PartnerTransfersInitiate(ctx context.Context, id Custom
 
 	var model PartnerTransferDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

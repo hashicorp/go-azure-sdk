@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CopyTranslator interface {
+	CopyTranslator() BaseCopyTranslatorImpl
 }
 
-// RawCopyTranslatorImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ CopyTranslator = BaseCopyTranslatorImpl{}
+
+type BaseCopyTranslatorImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseCopyTranslatorImpl) CopyTranslator() BaseCopyTranslatorImpl {
+	return s
+}
+
+var _ CopyTranslator = RawCopyTranslatorImpl{}
+
+// RawCopyTranslatorImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCopyTranslatorImpl struct {
-	Type   string
-	Values map[string]interface{}
+	copyTranslator BaseCopyTranslatorImpl
+	Type           string
+	Values         map[string]interface{}
 }
 
-func unmarshalCopyTranslatorImplementation(input []byte) (CopyTranslator, error) {
+func (s RawCopyTranslatorImpl) CopyTranslator() BaseCopyTranslatorImpl {
+	return s.copyTranslator
+}
+
+func UnmarshalCopyTranslatorImplementation(input []byte) (CopyTranslator, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalCopyTranslatorImplementation(input []byte) (CopyTranslator, error)
 		return out, nil
 	}
 
-	out := RawCopyTranslatorImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCopyTranslatorImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCopyTranslatorImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCopyTranslatorImpl{
+		copyTranslator: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
 
 }

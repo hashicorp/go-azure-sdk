@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-03-01-preview/product` Documentation
 
-The `product` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-03-01-preview`).
+The `product` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-03-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 payload := product.ProductContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 read, err := client.Delete(ctx, id, product.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := product.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id, product.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, product.DefaultListByServiceOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
+id := product.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "productId")
 
 payload := product.ProductUpdateParameters{
 	// ...
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 payload := product.ProductContract{
 	// ...
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 read, err := client.WorkspaceProductDelete(ctx, id, product.DefaultWorkspaceProductDeleteOperationOptions())
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 read, err := client.WorkspaceProductGet(ctx, id)
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 read, err := client.WorkspaceProductGetEntityTag(ctx, id)
 if err != nil {
@@ -200,7 +200,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := product.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceProductListByService(ctx, id, product.DefaultWorkspaceProductListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceProductListByServiceComplete(ctx, id, product.DefaultWorkspaceProductListByServiceOperationOptions())
@@ -217,7 +217,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "productIdValue")
+id := product.NewWorkspaceProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "productId")
 
 payload := product.ProductUpdateParameters{
 	// ...

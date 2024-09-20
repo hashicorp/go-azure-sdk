@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RouteTableId{}
 
 func TestNewRouteTableID(t *testing.T) {
-	id := NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue")
+	id := NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewRouteTableID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RouteTableName != "routeTableValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteTableName'", id.RouteTableName, "routeTableValue")
+	if id.RouteTableName != "routeTableName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteTableName'", id.RouteTableName, "routeTableName")
 	}
 }
 
 func TestFormatRouteTableID(t *testing.T) {
-	actual := NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue"
+	actual := NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseRouteTableID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName",
 			Expected: &RouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteTableName:    "routeTableValue",
+				RouteTableName:    "routeTableName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseRouteTableIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName",
 			Expected: &RouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteTableName:    "routeTableValue",
+				RouteTableName:    "routeTableName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE",
 			Expected: &RouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RouteTableName:    "rOuTeTaBlEvAlUe",
+				RouteTableName:    "rOuTeTaBlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE/extra",
 			Error: true,
 		},
 	}

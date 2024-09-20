@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/logicapps` Documentation
 
-The `logicapps` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `logicapps` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 payload := logicapps.LogicApp{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 payload := logicapps.WorkflowArtifacts{
 	// ...
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue", "workflowValue")
+id := logicapps.NewWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName", "workflowName")
 
 read, err := client.GetWorkflow(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 read, err := client.Invoke(ctx, id, logicapps.DefaultInvokeOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 // alternatively `client.ListWorkflows(ctx, id)` can be used to do batched pagination
 items, err := client.ListWorkflowsComplete(ctx, id)
@@ -147,7 +147,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "logicAppValue")
+id := logicapps.NewLogicAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "logicAppName")
 
 read, err := client.ListWorkflowsConnections(ctx, id)
 if err != nil {

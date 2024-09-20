@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PartnerRegistrationId{}
 
 func TestNewPartnerRegistrationID(t *testing.T) {
-	id := NewPartnerRegistrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerRegistrationValue")
+	id := NewPartnerRegistrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerRegistrationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPartnerRegistrationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PartnerRegistrationName != "partnerRegistrationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PartnerRegistrationName'", id.PartnerRegistrationName, "partnerRegistrationValue")
+	if id.PartnerRegistrationName != "partnerRegistrationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PartnerRegistrationName'", id.PartnerRegistrationName, "partnerRegistrationName")
 	}
 }
 
 func TestFormatPartnerRegistrationID(t *testing.T) {
-	actual := NewPartnerRegistrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerRegistrationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationValue"
+	actual := NewPartnerRegistrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerRegistrationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePartnerRegistrationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationName",
 			Expected: &PartnerRegistrationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				PartnerRegistrationName: "partnerRegistrationValue",
+				PartnerRegistrationName: "partnerRegistrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParsePartnerRegistrationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationName",
 			Expected: &PartnerRegistrationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				PartnerRegistrationName: "partnerRegistrationValue",
+				PartnerRegistrationName: "partnerRegistrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerRegistrations/partnerRegistrationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErReGiStRaTiOnS/pArTnErReGiStRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErReGiStRaTiOnS/pArTnErReGiStRaTiOnNaMe",
 			Expected: &PartnerRegistrationId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				PartnerRegistrationName: "pArTnErReGiStRaTiOnVaLuE",
+				PartnerRegistrationName: "pArTnErReGiStRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErReGiStRaTiOnS/pArTnErReGiStRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErReGiStRaTiOnS/pArTnErReGiStRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ManagedInstanceDnsAliasId{}
 
 func TestNewManagedInstanceDnsAliasID(t *testing.T) {
-	id := NewManagedInstanceDnsAliasID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "dnsAliasValue")
+	id := NewManagedInstanceDnsAliasID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "dnsAliasName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewManagedInstanceDnsAliasID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedInstanceName != "managedInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceValue")
+	if id.ManagedInstanceName != "managedInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.DnsAliasName != "dnsAliasValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsAliasName'", id.DnsAliasName, "dnsAliasValue")
+	if id.DnsAliasName != "dnsAliasName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsAliasName'", id.DnsAliasName, "dnsAliasName")
 	}
 }
 
 func TestFormatManagedInstanceDnsAliasID(t *testing.T) {
-	actual := NewManagedInstanceDnsAliasID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "dnsAliasValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases/dnsAliasValue"
+	actual := NewManagedInstanceDnsAliasID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "dnsAliasName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases/dnsAliasName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseManagedInstanceDnsAliasID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases/dnsAliasValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases/dnsAliasName",
 			Expected: &ManagedInstanceDnsAliasId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ManagedInstanceName: "managedInstanceValue",
-				DnsAliasName:        "dnsAliasValue",
+				ManagedInstanceName: "managedInstanceName",
+				DnsAliasName:        "dnsAliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases/dnsAliasValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases/dnsAliasName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseManagedInstanceDnsAliasIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dNsAlIaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dNsAlIaSeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases/dnsAliasValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases/dnsAliasName",
 			Expected: &ManagedInstanceDnsAliasId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ManagedInstanceName: "managedInstanceValue",
-				DnsAliasName:        "dnsAliasValue",
+				ManagedInstanceName: "managedInstanceName",
+				DnsAliasName:        "dnsAliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/dnsAliases/dnsAliasValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/dnsAliases/dnsAliasName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dNsAlIaSeS/dNsAlIaSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dNsAlIaSeS/dNsAlIaSnAmE",
 			Expected: &ManagedInstanceDnsAliasId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedInstanceName: "mAnAgEdInStAnCeVaLuE",
-				DnsAliasName:        "dNsAlIaSvAlUe",
+				ManagedInstanceName: "mAnAgEdInStAnCeNaMe",
+				DnsAliasName:        "dNsAlIaSnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dNsAlIaSeS/dNsAlIaSvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/dNsAlIaSeS/dNsAlIaSnAmE/extra",
 			Error: true,
 		},
 	}

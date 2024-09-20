@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StaticSiteId{}
 
 func TestNewStaticSiteID(t *testing.T) {
-	id := NewStaticSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue")
+	id := NewStaticSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewStaticSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StaticSiteName != "staticSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "staticSiteValue")
+	if id.StaticSiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "name")
 	}
 }
 
 func TestFormatStaticSiteID(t *testing.T) {
-	actual := NewStaticSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue"
+	actual := NewStaticSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseStaticSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Expected: &StaticSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StaticSiteName:    "staticSiteValue",
+				StaticSiteName:    "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseStaticSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Expected: &StaticSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				StaticSiteName:    "staticSiteValue",
+				StaticSiteName:    "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE",
 			Expected: &StaticSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				StaticSiteName:    "sTaTiCsItEvAlUe",
+				StaticSiteName:    "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/extra",
 			Error: true,
 		},
 	}

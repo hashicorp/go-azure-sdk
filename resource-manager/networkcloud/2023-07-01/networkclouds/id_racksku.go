@@ -40,7 +40,7 @@ func ParseRackSkuID(input string) (*RackSkuId, error) {
 	}
 
 	id := RackSkuId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseRackSkuIDInsensitively(input string) (*RackSkuId, error) {
 	}
 
 	id := RackSkuId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id RackSkuId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticRackSkus", "rackSkus", "rackSkus"),
-		resourceids.UserSpecifiedSegment("rackSkuName", "rackSkuValue"),
+		resourceids.UserSpecifiedSegment("rackSkuName", "rackSkuName"),
 	}
 }
 

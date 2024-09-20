@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BackupResourceGuardProxyId{}
 
 func TestNewBackupResourceGuardProxyID(t *testing.T) {
-	id := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
+	id := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewBackupResourceGuardProxyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VaultName != "vaultValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
+	if id.VaultName != "vaultName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultName")
 	}
 
-	if id.BackupResourceGuardProxyName != "backupResourceGuardProxyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BackupResourceGuardProxyName'", id.BackupResourceGuardProxyName, "backupResourceGuardProxyValue")
+	if id.BackupResourceGuardProxyName != "resourceGuardProxyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupResourceGuardProxyName'", id.BackupResourceGuardProxyName, "resourceGuardProxyName")
 	}
 }
 
 func TestFormatBackupResourceGuardProxyID(t *testing.T) {
-	actual := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue"
+	actual := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies/resourceGuardProxyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseBackupResourceGuardProxyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies/resourceGuardProxyName",
 			Expected: &BackupResourceGuardProxyId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				VaultName:                    "vaultValue",
-				BackupResourceGuardProxyName: "backupResourceGuardProxyValue",
+				VaultName:                    "vaultName",
+				BackupResourceGuardProxyName: "resourceGuardProxyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies/resourceGuardProxyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseBackupResourceGuardProxyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPrEsOuRcEgUaRdPrOxIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies/resourceGuardProxyName",
 			Expected: &BackupResourceGuardProxyId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				VaultName:                    "vaultValue",
-				BackupResourceGuardProxyName: "backupResourceGuardProxyValue",
+				VaultName:                    "vaultName",
+				BackupResourceGuardProxyName: "resourceGuardProxyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupResourceGuardProxies/resourceGuardProxyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/bAcKuPrEsOuRcEgUaRdPrOxYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPrEsOuRcEgUaRdPrOxIeS/rEsOuRcEgUaRdPrOxYnAmE",
 			Expected: &BackupResourceGuardProxyId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				VaultName:                    "vAuLtVaLuE",
-				BackupResourceGuardProxyName: "bAcKuPrEsOuRcEgUaRdPrOxYvAlUe",
+				VaultName:                    "vAuLtNaMe",
+				BackupResourceGuardProxyName: "rEsOuRcEgUaRdPrOxYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/bAcKuPrEsOuRcEgUaRdPrOxYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPrEsOuRcEgUaRdPrOxIeS/rEsOuRcEgUaRdPrOxYnAmE/extra",
 			Error: true,
 		},
 	}

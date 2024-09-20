@@ -46,7 +46,6 @@ func (c SitesClient) GetSiteUsage(ctx context.Context, id VMwareSiteId) (result 
 
 	var model VMwareSiteUsage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/backupandexport` Documentation
 
-The `backupandexport` SDK allows for interaction with the Azure Resource Manager Service `mysql` (API Version `2023-12-30`).
+The `backupandexport` SDK allows for interaction with Azure Resource Manager `mysql` (API Version `2023-12-30`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue")
+id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 payload := backupandexport.BackupAndExportRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue")
+id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 read, err := client.ValidateBackup(ctx, id)
 if err != nil {

@@ -15,7 +15,7 @@ type FormulasClient struct {
 }
 
 func NewFormulasClientWithBaseURI(sdkApi sdkEnv.Api) (*FormulasClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "formulas", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "formulas", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FormulasClient: %+v", err)
 	}

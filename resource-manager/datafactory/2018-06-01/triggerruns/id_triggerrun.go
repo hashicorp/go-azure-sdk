@@ -46,7 +46,7 @@ func ParseTriggerRunID(input string) (*TriggerRunId, error) {
 	}
 
 	id := TriggerRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTriggerRunIDInsensitively(input string) (*TriggerRunId, error) {
 	}
 
 	id := TriggerRunId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id TriggerRunId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataFactory", "Microsoft.DataFactory", "Microsoft.DataFactory"),
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
-		resourceids.UserSpecifiedSegment("factoryName", "factoryValue"),
+		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticTriggers", "triggers", "triggers"),
-		resourceids.UserSpecifiedSegment("triggerName", "triggerValue"),
+		resourceids.UserSpecifiedSegment("triggerName", "triggerName"),
 		resourceids.StaticSegment("staticTriggerRuns", "triggerRuns", "triggerRuns"),
-		resourceids.UserSpecifiedSegment("runId", "runIdValue"),
+		resourceids.UserSpecifiedSegment("runId", "runId"),
 	}
 }
 

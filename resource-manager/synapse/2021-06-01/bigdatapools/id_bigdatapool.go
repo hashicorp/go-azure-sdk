@@ -44,7 +44,7 @@ func ParseBigDataPoolID(input string) (*BigDataPoolId, error) {
 	}
 
 	id := BigDataPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBigDataPoolIDInsensitively(input string) (*BigDataPoolId, error) {
 	}
 
 	id := BigDataPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BigDataPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticBigDataPools", "bigDataPools", "bigDataPools"),
-		resourceids.UserSpecifiedSegment("bigDataPoolName", "bigDataPoolValue"),
+		resourceids.UserSpecifiedSegment("bigDataPoolName", "bigDataPoolName"),
 	}
 }
 

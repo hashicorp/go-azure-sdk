@@ -4,24 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityQueryTemplate interface {
+	EntityQueryTemplate() BaseEntityQueryTemplateImpl
 }
 
-// RawEntityQueryTemplateImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EntityQueryTemplate = BaseEntityQueryTemplateImpl{}
+
+type BaseEntityQueryTemplateImpl struct {
+	Id         *string                 `json:"id,omitempty"`
+	Kind       EntityQueryTemplateKind `json:"kind"`
+	Name       *string                 `json:"name,omitempty"`
+	SystemData *systemdata.SystemData  `json:"systemData,omitempty"`
+	Type       *string                 `json:"type,omitempty"`
+}
+
+func (s BaseEntityQueryTemplateImpl) EntityQueryTemplate() BaseEntityQueryTemplateImpl {
+	return s
+}
+
+var _ EntityQueryTemplate = RawEntityQueryTemplateImpl{}
+
+// RawEntityQueryTemplateImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEntityQueryTemplateImpl struct {
-	Type   string
-	Values map[string]interface{}
+	entityQueryTemplate BaseEntityQueryTemplateImpl
+	Type                string
+	Values              map[string]interface{}
 }
 
-func unmarshalEntityQueryTemplateImplementation(input []byte) (EntityQueryTemplate, error) {
+func (s RawEntityQueryTemplateImpl) EntityQueryTemplate() BaseEntityQueryTemplateImpl {
+	return s.entityQueryTemplate
+}
+
+func UnmarshalEntityQueryTemplateImplementation(input []byte) (EntityQueryTemplate, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +67,15 @@ func unmarshalEntityQueryTemplateImplementation(input []byte) (EntityQueryTempla
 		return out, nil
 	}
 
-	out := RawEntityQueryTemplateImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEntityQueryTemplateImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEntityQueryTemplateImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEntityQueryTemplateImpl{
+		entityQueryTemplate: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
 
 }

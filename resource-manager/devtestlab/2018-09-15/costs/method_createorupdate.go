@@ -50,7 +50,6 @@ func (c CostsClient) CreateOrUpdate(ctx context.Context, id CostId, input LabCos
 
 	var model LabCost
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

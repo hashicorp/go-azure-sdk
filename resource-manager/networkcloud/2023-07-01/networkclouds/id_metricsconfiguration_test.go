@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MetricsConfigurationId{}
 
 func TestNewMetricsConfigurationID(t *testing.T) {
-	id := NewMetricsConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "metricsConfigurationValue")
+	id := NewMetricsConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "metricsConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewMetricsConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.MetricsConfigurationName != "metricsConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MetricsConfigurationName'", id.MetricsConfigurationName, "metricsConfigurationValue")
+	if id.MetricsConfigurationName != "metricsConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MetricsConfigurationName'", id.MetricsConfigurationName, "metricsConfigurationName")
 	}
 }
 
 func TestFormatMetricsConfigurationID(t *testing.T) {
-	actual := NewMetricsConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "metricsConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations/metricsConfigurationValue"
+	actual := NewMetricsConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "metricsConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations/metricsConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseMetricsConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations/metricsConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations/metricsConfigurationName",
 			Expected: &MetricsConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ClusterName:              "clusterValue",
-				MetricsConfigurationName: "metricsConfigurationValue",
+				ClusterName:              "clusterName",
+				MetricsConfigurationName: "metricsConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations/metricsConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations/metricsConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseMetricsConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/mEtRiCsCoNfIgUrAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/mEtRiCsCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations/metricsConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations/metricsConfigurationName",
 			Expected: &MetricsConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ClusterName:              "clusterValue",
-				MetricsConfigurationName: "metricsConfigurationValue",
+				ClusterName:              "clusterName",
+				MetricsConfigurationName: "metricsConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/metricsConfigurations/metricsConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/metricsConfigurations/metricsConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/mEtRiCsCoNfIgUrAtIoNs/mEtRiCsCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/mEtRiCsCoNfIgUrAtIoNs/mEtRiCsCoNfIgUrAtIoNnAmE",
 			Expected: &MetricsConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:              "cLuStErVaLuE",
-				MetricsConfigurationName: "mEtRiCsCoNfIgUrAtIoNvAlUe",
+				ClusterName:              "cLuStErNaMe",
+				MetricsConfigurationName: "mEtRiCsCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/mEtRiCsCoNfIgUrAtIoNs/mEtRiCsCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/mEtRiCsCoNfIgUrAtIoNs/mEtRiCsCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

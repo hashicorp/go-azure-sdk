@@ -15,7 +15,7 @@ type AgreementClient struct {
 }
 
 func NewAgreementClientWithBaseURI(sdkApi sdkEnv.Api) (*AgreementClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "agreement", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "agreement", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AgreementClient: %+v", err)
 	}

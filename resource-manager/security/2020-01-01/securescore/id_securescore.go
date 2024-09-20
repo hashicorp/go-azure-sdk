@@ -40,7 +40,7 @@ func ParseSecureScoreID(input string) (*SecureScoreId, error) {
 	}
 
 	id := SecureScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseSecureScoreIDInsensitively(input string) (*SecureScoreId, error) {
 	}
 
 	id := SecureScoreId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id SecureScoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticSecureScores", "secureScores", "secureScores"),
-		resourceids.UserSpecifiedSegment("secureScoreName", "secureScoreValue"),
+		resourceids.UserSpecifiedSegment("secureScoreName", "secureScoreName"),
 	}
 }
 

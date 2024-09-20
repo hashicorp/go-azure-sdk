@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &PaymentMethodLinkId{}
 
 func TestNewPaymentMethodLinkID(t *testing.T) {
-	id := NewPaymentMethodLinkID("billingAccountValue", "billingProfileValue", "paymentMethodLinkValue")
+	id := NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.BillingProfileName != "billingProfileValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingProfileName'", id.BillingProfileName, "billingProfileValue")
+	if id.BillingProfileName != "billingProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingProfileName'", id.BillingProfileName, "billingProfileName")
 	}
 
-	if id.PaymentMethodLinkName != "paymentMethodLinkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PaymentMethodLinkName'", id.PaymentMethodLinkName, "paymentMethodLinkValue")
+	if id.PaymentMethodLinkName != "paymentMethodName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PaymentMethodLinkName'", id.PaymentMethodLinkName, "paymentMethodName")
 	}
 }
 
 func TestFormatPaymentMethodLinkID(t *testing.T) {
-	actual := NewPaymentMethodLinkID("billingAccountValue", "billingProfileValue", "paymentMethodLinkValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks/paymentMethodLinkValue"
+	actual := NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks/paymentMethodName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,36 +63,36 @@ func TestParsePaymentMethodLinkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks/paymentMethodLinkValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks/paymentMethodName",
 			Expected: &PaymentMethodLinkId{
-				BillingAccountName:    "billingAccountValue",
-				BillingProfileName:    "billingProfileValue",
-				PaymentMethodLinkName: "paymentMethodLinkValue",
+				BillingAccountName:    "billingAccountName",
+				BillingProfileName:    "billingProfileName",
+				PaymentMethodLinkName: "paymentMethodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks/paymentMethodLinkValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks/paymentMethodName/extra",
 			Error: true,
 		},
 	}
@@ -169,70 +169,70 @@ func TestParsePaymentMethodLinkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgPrOfIlEs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEvAlUe/pAyMeNtMeThOdLiNkS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/pAyMeNtMeThOdLiNkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks/paymentMethodLinkValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks/paymentMethodName",
 			Expected: &PaymentMethodLinkId{
-				BillingAccountName:    "billingAccountValue",
-				BillingProfileName:    "billingProfileValue",
-				PaymentMethodLinkName: "paymentMethodLinkValue",
+				BillingAccountName:    "billingAccountName",
+				BillingProfileName:    "billingProfileName",
+				PaymentMethodLinkName: "paymentMethodName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/billingProfiles/billingProfileValue/paymentMethodLinks/paymentMethodLinkValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/paymentMethodLinks/paymentMethodName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEvAlUe/pAyMeNtMeThOdLiNkS/pAyMeNtMeThOdLiNkVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/pAyMeNtMeThOdLiNkS/pAyMeNtMeThOdNaMe",
 			Expected: &PaymentMethodLinkId{
-				BillingAccountName:    "bIlLiNgAcCoUnTvAlUe",
-				BillingProfileName:    "bIlLiNgPrOfIlEvAlUe",
-				PaymentMethodLinkName: "pAyMeNtMeThOdLiNkVaLuE",
+				BillingAccountName:    "bIlLiNgAcCoUnTnAmE",
+				BillingProfileName:    "bIlLiNgPrOfIlEnAmE",
+				PaymentMethodLinkName: "pAyMeNtMeThOdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEvAlUe/pAyMeNtMeThOdLiNkS/pAyMeNtMeThOdLiNkVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/pAyMeNtMeThOdLiNkS/pAyMeNtMeThOdNaMe/extra",
 			Error: true,
 		},
 	}

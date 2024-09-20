@@ -38,7 +38,7 @@ func ParseScopeIdID(input string) (*ScopeIdId, error) {
 	}
 
 	id := ScopeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseScopeIdIDInsensitively(input string) (*ScopeIdId, error) {
 	}
 
 	id := ScopeIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -96,7 +96,7 @@ func (id ScopeIdId) ID() string {
 // Segments returns a slice of Resource ID Segments which comprise this Scope Id ID
 func (id ScopeIdId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.UserSpecifiedSegment("scopeId", "scopeIdValue"),
+		resourceids.UserSpecifiedSegment("scopeId", "scopeId"),
 	}
 }
 

@@ -15,7 +15,7 @@ type QuotaRequestsClient struct {
 }
 
 func NewQuotaRequestsClientWithBaseURI(sdkApi sdkEnv.Api) (*QuotaRequestsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "quotarequests", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "quotarequests", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QuotaRequestsClient: %+v", err)
 	}

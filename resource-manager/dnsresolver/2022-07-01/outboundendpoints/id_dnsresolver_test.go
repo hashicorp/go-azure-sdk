@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DnsResolverId{}
 
 func TestNewDnsResolverID(t *testing.T) {
-	id := NewDnsResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverValue")
+	id := NewDnsResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDnsResolverID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DnsResolverName != "dnsResolverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsResolverName'", id.DnsResolverName, "dnsResolverValue")
+	if id.DnsResolverName != "dnsResolverName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsResolverName'", id.DnsResolverName, "dnsResolverName")
 	}
 }
 
 func TestFormatDnsResolverID(t *testing.T) {
-	actual := NewDnsResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue"
+	actual := NewDnsResolverID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsResolverName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDnsResolverID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName",
 			Expected: &DnsResolverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DnsResolverName:   "dnsResolverValue",
+				DnsResolverName:   "dnsResolverName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDnsResolverIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName",
 			Expected: &DnsResolverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DnsResolverName:   "dnsResolverValue",
+				DnsResolverName:   "dnsResolverName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsResolvers/dnsResolverName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe",
 			Expected: &DnsResolverId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DnsResolverName:   "dNsReSoLvErVaLuE",
+				DnsResolverName:   "dNsReSoLvErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsReSoLvErS/dNsReSoLvErNaMe/extra",
 			Error: true,
 		},
 	}

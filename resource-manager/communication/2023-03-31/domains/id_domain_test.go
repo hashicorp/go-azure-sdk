@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DomainId{}
 
 func TestNewDomainID(t *testing.T) {
-	id := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "emailServiceValue", "domainValue")
+	id := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "emailServiceName", "domainName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDomainID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.EmailServiceName != "emailServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmailServiceName'", id.EmailServiceName, "emailServiceValue")
+	if id.EmailServiceName != "emailServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmailServiceName'", id.EmailServiceName, "emailServiceName")
 	}
 
-	if id.DomainName != "domainValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainValue")
+	if id.DomainName != "domainName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainName")
 	}
 }
 
 func TestFormatDomainID(t *testing.T) {
-	actual := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "emailServiceValue", "domainValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains/domainValue"
+	actual := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "emailServiceName", "domainName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains/domainName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDomainID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains/domainName",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EmailServiceName:  "emailServiceValue",
-				DomainName:        "domainValue",
+				EmailServiceName:  "emailServiceName",
+				DomainName:        "domainName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains/domainValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains/domainName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDomainIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEvAlUe/dOmAiNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEnAmE/dOmAiNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains/domainName",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				EmailServiceName:  "emailServiceValue",
-				DomainName:        "domainValue",
+				EmailServiceName:  "emailServiceName",
+				DomainName:        "domainName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceValue/domains/domainValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Communication/emailServices/emailServiceName/domains/domainName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEvAlUe/dOmAiNs/dOmAiNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEnAmE/dOmAiNs/dOmAiNnAmE",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				EmailServiceName:  "eMaIlSeRvIcEvAlUe",
-				DomainName:        "dOmAiNvAlUe",
+				EmailServiceName:  "eMaIlSeRvIcEnAmE",
+				DomainName:        "dOmAiNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEvAlUe/dOmAiNs/dOmAiNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmMuNiCaTiOn/eMaIlSeRvIcEs/eMaIlSeRvIcEnAmE/dOmAiNs/dOmAiNnAmE/extra",
 			Error: true,
 		},
 	}

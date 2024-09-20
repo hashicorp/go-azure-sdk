@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspaces` Documentation
 
-The `workspaces` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `workspaces` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := workspaces.Workspace{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := workspaces.WorkspaceAadAdminInfo{
 	// ...
@@ -121,7 +121,7 @@ if err := client.QlAadAdminsCreateOrUpdateThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 if err := client.QlAadAdminsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -133,7 +133,7 @@ if err := client.QlAadAdminsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.QlAadAdminsGet(ctx, id)
 if err != nil {
@@ -149,7 +149,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := workspaces.WorkspacePatchInfo{
 	// ...
@@ -166,7 +166,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := workspaces.WorkspaceAadAdminInfo{
 	// ...
@@ -183,7 +183,7 @@ if err := client.WorkspaceAadAdminsCreateOrUpdateThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 if err := client.WorkspaceAadAdminsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -195,7 +195,7 @@ if err := client.WorkspaceAadAdminsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.WorkspaceAadAdminsGet(ctx, id)
 if err != nil {
@@ -211,7 +211,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := workspaces.ManagedIdentitySqlControlSettingsModel{
 	// ...
@@ -228,7 +228,7 @@ if err := client.WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateThenPol
 
 ```go
 ctx := context.TODO()
-id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.WorkspaceManagedIdentitySqlControlSettingsGet(ctx, id)
 if err != nil {

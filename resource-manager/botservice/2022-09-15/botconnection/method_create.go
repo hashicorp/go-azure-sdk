@@ -50,7 +50,6 @@ func (c BotConnectionClient) Create(ctx context.Context, id ConnectionId, input 
 
 	var model ConnectionSetting
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

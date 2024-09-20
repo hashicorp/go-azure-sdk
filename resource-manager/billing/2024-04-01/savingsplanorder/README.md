@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplanorder` Documentation
 
-The `savingsplanorder` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `savingsplanorder` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := savingsplanorder.NewSavingsPlanOrderID("billingAccountValue", "savingsPlanOrderIdValue")
+id := savingsplanorder.NewSavingsPlanOrderID("billingAccountName", "savingsPlanOrderId")
 
 read, err := client.GetByBillingAccount(ctx, id, savingsplanorder.DefaultGetByBillingAccountOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := savingsplanorder.NewBillingAccountID("billingAccountValue")
+id := savingsplanorder.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, savingsplanorder.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, savingsplanorder.DefaultListByBillingAccountOperationOptions())

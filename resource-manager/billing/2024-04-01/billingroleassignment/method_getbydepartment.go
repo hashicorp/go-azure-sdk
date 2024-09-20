@@ -45,7 +45,6 @@ func (c BillingRoleAssignmentClient) GetByDepartment(ctx context.Context, id Dep
 
 	var model BillingRoleAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

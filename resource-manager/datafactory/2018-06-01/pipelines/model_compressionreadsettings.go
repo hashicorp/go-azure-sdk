@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CompressionReadSettings interface {
+	CompressionReadSettings() BaseCompressionReadSettingsImpl
 }
 
-// RawCompressionReadSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ CompressionReadSettings = BaseCompressionReadSettingsImpl{}
+
+type BaseCompressionReadSettingsImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseCompressionReadSettingsImpl) CompressionReadSettings() BaseCompressionReadSettingsImpl {
+	return s
+}
+
+var _ CompressionReadSettings = RawCompressionReadSettingsImpl{}
+
+// RawCompressionReadSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCompressionReadSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	compressionReadSettings BaseCompressionReadSettingsImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalCompressionReadSettingsImplementation(input []byte) (CompressionReadSettings, error) {
+func (s RawCompressionReadSettingsImpl) CompressionReadSettings() BaseCompressionReadSettingsImpl {
+	return s.compressionReadSettings
+}
+
+func UnmarshalCompressionReadSettingsImplementation(input []byte) (CompressionReadSettings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalCompressionReadSettingsImplementation(input []byte) (CompressionRe
 		return out, nil
 	}
 
-	out := RawCompressionReadSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCompressionReadSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCompressionReadSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCompressionReadSettingsImpl{
+		compressionReadSettings: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

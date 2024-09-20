@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProactiveDetectionConfigId{}
 
 func TestNewProactiveDetectionConfigID(t *testing.T) {
-	id := NewProactiveDetectionConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "configurationIdValue")
+	id := NewProactiveDetectionConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "configurationId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewProactiveDetectionConfigID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ComponentName != "componentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "componentValue")
+	if id.ComponentName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "resourceName")
 	}
 
-	if id.ConfigurationId != "configurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationId'", id.ConfigurationId, "configurationIdValue")
+	if id.ConfigurationId != "configurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationId'", id.ConfigurationId, "configurationId")
 	}
 }
 
 func TestFormatProactiveDetectionConfigID(t *testing.T) {
-	actual := NewProactiveDetectionConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "configurationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs/configurationIdValue"
+	actual := NewProactiveDetectionConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "configurationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs/configurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseProactiveDetectionConfigID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs/configurationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs/configurationId",
 			Expected: &ProactiveDetectionConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				ConfigurationId:   "configurationIdValue",
+				ComponentName:     "resourceName",
+				ConfigurationId:   "configurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs/configurationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs/configurationId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseProactiveDetectionConfigIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/pRoAcTiVeDeTeCtIoNcOnFiGs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/pRoAcTiVeDeTeCtIoNcOnFiGs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs/configurationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs/configurationId",
 			Expected: &ProactiveDetectionConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				ConfigurationId:   "configurationIdValue",
+				ComponentName:     "resourceName",
+				ConfigurationId:   "configurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/proactiveDetectionConfigs/configurationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/proactiveDetectionConfigs/configurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/pRoAcTiVeDeTeCtIoNcOnFiGs/cOnFiGuRaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/pRoAcTiVeDeTeCtIoNcOnFiGs/cOnFiGuRaTiOnId",
 			Expected: &ProactiveDetectionConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ComponentName:     "cOmPoNeNtVaLuE",
-				ConfigurationId:   "cOnFiGuRaTiOnIdVaLuE",
+				ComponentName:     "rEsOuRcEnAmE",
+				ConfigurationId:   "cOnFiGuRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/pRoAcTiVeDeTeCtIoNcOnFiGs/cOnFiGuRaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/pRoAcTiVeDeTeCtIoNcOnFiGs/cOnFiGuRaTiOnId/extra",
 			Error: true,
 		},
 	}

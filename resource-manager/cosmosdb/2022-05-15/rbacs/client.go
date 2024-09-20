@@ -15,7 +15,7 @@ type RbacsClient struct {
 }
 
 func NewRbacsClientWithBaseURI(sdkApi sdkEnv.Api) (*RbacsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "rbacs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "rbacs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RbacsClient: %+v", err)
 	}

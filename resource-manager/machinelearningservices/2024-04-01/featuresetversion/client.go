@@ -15,7 +15,7 @@ type FeaturesetVersionClient struct {
 }
 
 func NewFeaturesetVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*FeaturesetVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "featuresetversion", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "featuresetversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FeaturesetVersionClient: %+v", err)
 	}

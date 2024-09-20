@@ -15,6 +15,14 @@ type AzureVMResourceFeatureSupportRequest struct {
 	VMSku  *string `json:"vmSku,omitempty"`
 
 	// Fields inherited from FeatureSupportRequest
+
+	FeatureType string `json:"featureType"`
+}
+
+func (s AzureVMResourceFeatureSupportRequest) FeatureSupportRequest() BaseFeatureSupportRequestImpl {
+	return BaseFeatureSupportRequestImpl{
+		FeatureType: s.FeatureType,
+	}
 }
 
 var _ json.Marshaler = AzureVMResourceFeatureSupportRequest{}
@@ -28,9 +36,10 @@ func (s AzureVMResourceFeatureSupportRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureVMResourceFeatureSupportRequest: %+v", err)
 	}
+
 	decoded["featureType"] = "AzureVMResourceBackup"
 
 	encoded, err = json.Marshal(decoded)

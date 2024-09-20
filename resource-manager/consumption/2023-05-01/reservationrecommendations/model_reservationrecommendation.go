@@ -10,18 +10,42 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReservationRecommendation interface {
+	ReservationRecommendation() BaseReservationRecommendationImpl
 }
 
-// RawReservationRecommendationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ReservationRecommendation = BaseReservationRecommendationImpl{}
+
+type BaseReservationRecommendationImpl struct {
+	Etag     *string                       `json:"etag,omitempty"`
+	Id       *string                       `json:"id,omitempty"`
+	Kind     ReservationRecommendationKind `json:"kind"`
+	Location *string                       `json:"location,omitempty"`
+	Name     *string                       `json:"name,omitempty"`
+	Sku      *string                       `json:"sku,omitempty"`
+	Tags     *map[string]string            `json:"tags,omitempty"`
+	Type     *string                       `json:"type,omitempty"`
+}
+
+func (s BaseReservationRecommendationImpl) ReservationRecommendation() BaseReservationRecommendationImpl {
+	return s
+}
+
+var _ ReservationRecommendation = RawReservationRecommendationImpl{}
+
+// RawReservationRecommendationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawReservationRecommendationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	reservationRecommendation BaseReservationRecommendationImpl
+	Type                      string
+	Values                    map[string]interface{}
 }
 
-func unmarshalReservationRecommendationImplementation(input []byte) (ReservationRecommendation, error) {
+func (s RawReservationRecommendationImpl) ReservationRecommendation() BaseReservationRecommendationImpl {
+	return s.reservationRecommendation
+}
+
+func UnmarshalReservationRecommendationImplementation(input []byte) (ReservationRecommendation, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +76,15 @@ func unmarshalReservationRecommendationImplementation(input []byte) (Reservation
 		return out, nil
 	}
 
-	out := RawReservationRecommendationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseReservationRecommendationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseReservationRecommendationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawReservationRecommendationImpl{
+		reservationRecommendation: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
 
 }

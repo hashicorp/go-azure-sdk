@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectedEnvironmentStorageId{}
 
 func TestNewConnectedEnvironmentStorageID(t *testing.T) {
-	id := NewConnectedEnvironmentStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentValue", "storageValue")
+	id := NewConnectedEnvironmentStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "storageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConnectedEnvironmentStorageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConnectedEnvironmentName != "connectedEnvironmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectedEnvironmentName'", id.ConnectedEnvironmentName, "connectedEnvironmentValue")
+	if id.ConnectedEnvironmentName != "connectedEnvironmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectedEnvironmentName'", id.ConnectedEnvironmentName, "connectedEnvironmentName")
 	}
 
-	if id.StorageName != "storageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageName'", id.StorageName, "storageValue")
+	if id.StorageName != "storageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageName'", id.StorageName, "storageName")
 	}
 }
 
 func TestFormatConnectedEnvironmentStorageID(t *testing.T) {
-	actual := NewConnectedEnvironmentStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentValue", "storageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages/storageValue"
+	actual := NewConnectedEnvironmentStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "storageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages/storageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConnectedEnvironmentStorageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages/storageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages/storageName",
 			Expected: &ConnectedEnvironmentStorageId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ConnectedEnvironmentName: "connectedEnvironmentValue",
-				StorageName:              "storageValue",
+				ConnectedEnvironmentName: "connectedEnvironmentName",
+				StorageName:              "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages/storageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages/storageName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConnectedEnvironmentStorageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTvAlUe/sToRaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/sToRaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages/storageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages/storageName",
 			Expected: &ConnectedEnvironmentStorageId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				ConnectedEnvironmentName: "connectedEnvironmentValue",
-				StorageName:              "storageValue",
+				ConnectedEnvironmentName: "connectedEnvironmentName",
+				StorageName:              "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentValue/storages/storageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/storages/storageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTvAlUe/sToRaGeS/sToRaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/sToRaGeS/sToRaGeNaMe",
 			Expected: &ConnectedEnvironmentStorageId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				ConnectedEnvironmentName: "cOnNeCtEdEnViRoNmEnTvAlUe",
-				StorageName:              "sToRaGeVaLuE",
+				ConnectedEnvironmentName: "cOnNeCtEdEnViRoNmEnTnAmE",
+				StorageName:              "sToRaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTvAlUe/sToRaGeS/sToRaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/sToRaGeS/sToRaGeNaMe/extra",
 			Error: true,
 		},
 	}

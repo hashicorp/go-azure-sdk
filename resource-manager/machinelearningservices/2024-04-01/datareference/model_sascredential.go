@@ -14,6 +14,14 @@ type SASCredential struct {
 	SasUri *string `json:"sasUri,omitempty"`
 
 	// Fields inherited from DataReferenceCredential
+
+	CredentialType DataReferenceCredentialType `json:"credentialType"`
+}
+
+func (s SASCredential) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return BaseDataReferenceCredentialImpl{
+		CredentialType: s.CredentialType,
+	}
 }
 
 var _ json.Marshaler = SASCredential{}
@@ -27,9 +35,10 @@ func (s SASCredential) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SASCredential: %+v", err)
 	}
+
 	decoded["credentialType"] = "SAS"
 
 	encoded, err = json.Marshal(decoded)

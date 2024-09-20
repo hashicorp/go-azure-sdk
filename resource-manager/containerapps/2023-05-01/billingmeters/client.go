@@ -15,7 +15,7 @@ type BillingMetersClient struct {
 }
 
 func NewBillingMetersClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingMetersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "billingmeters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "billingmeters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BillingMetersClient: %+v", err)
 	}

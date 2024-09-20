@@ -45,7 +45,6 @@ func (c DataTypesClient) Get(ctx context.Context, id DataTypeId) (result GetOper
 
 	var model DataType
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

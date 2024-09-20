@@ -34,6 +34,7 @@ func (o QueriesOperationOptions) ToHeaders() *client.Headers {
 
 func (o QueriesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c EntitiesClient) Queries(ctx context.Context, id EntityId, options Querie
 
 	var model GetQueriesResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c JobTargetGroupsClient) Get(ctx context.Context, id TargetGroupId) (resul
 
 	var model JobTargetGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

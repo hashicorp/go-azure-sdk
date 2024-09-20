@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/enrollmentaccount` Documentation
 
-The `enrollmentaccount` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `enrollmentaccount` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccount.NewEnrollmentAccountID("billingAccountValue", "enrollmentAccountValue")
+id := enrollmentaccount.NewEnrollmentAccountID("billingAccountName", "enrollmentAccountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccount.NewDepartmentEnrollmentAccountID("billingAccountValue", "departmentValue", "enrollmentAccountValue")
+id := enrollmentaccount.NewDepartmentEnrollmentAccountID("billingAccountName", "departmentName", "enrollmentAccountName")
 
 read, err := client.GetByDepartment(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccount.NewBillingAccountID("billingAccountValue")
+id := enrollmentaccount.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListByBillingAccount(ctx, id, enrollmentaccount.DefaultListByBillingAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingAccountComplete(ctx, id, enrollmentaccount.DefaultListByBillingAccountOperationOptions())
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := enrollmentaccount.NewDepartmentID("billingAccountValue", "departmentValue")
+id := enrollmentaccount.NewDepartmentID("billingAccountName", "departmentName")
 
 // alternatively `client.ListByDepartment(ctx, id, enrollmentaccount.DefaultListByDepartmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDepartmentComplete(ctx, id, enrollmentaccount.DefaultListByDepartmentOperationOptions())

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TriggerId{}
 
 func TestNewTriggerID(t *testing.T) {
-	id := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "triggerValue")
+	id := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "triggerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewTriggerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkflowName != "workflowValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowName'", id.WorkflowName, "workflowValue")
+	if id.WorkflowName != "workflowName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowName'", id.WorkflowName, "workflowName")
 	}
 
-	if id.TriggerName != "triggerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TriggerName'", id.TriggerName, "triggerValue")
+	if id.TriggerName != "triggerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TriggerName'", id.TriggerName, "triggerName")
 	}
 }
 
 func TestFormatTriggerID(t *testing.T) {
-	actual := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "triggerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers/triggerValue"
+	actual := NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "triggerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers/triggerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseTriggerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers/triggerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers/triggerName",
 			Expected: &TriggerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkflowName:      "workflowValue",
-				TriggerName:       "triggerValue",
+				WorkflowName:      "workflowName",
+				TriggerName:       "triggerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers/triggerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers/triggerName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseTriggerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/tRiGgErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/tRiGgErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers/triggerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers/triggerName",
 			Expected: &TriggerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkflowName:      "workflowValue",
-				TriggerName:       "triggerValue",
+				WorkflowName:      "workflowName",
+				TriggerName:       "triggerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/triggers/triggerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/triggers/triggerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/tRiGgErS/tRiGgErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/tRiGgErS/tRiGgErNaMe",
 			Expected: &TriggerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkflowName:      "wOrKfLoWvAlUe",
-				TriggerName:       "tRiGgErVaLuE",
+				WorkflowName:      "wOrKfLoWnAmE",
+				TriggerName:       "tRiGgErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/tRiGgErS/tRiGgErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/tRiGgErS/tRiGgErNaMe/extra",
 			Error: true,
 		},
 	}

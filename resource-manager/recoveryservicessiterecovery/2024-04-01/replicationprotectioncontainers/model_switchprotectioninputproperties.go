@@ -30,7 +30,7 @@ func (s *SwitchProtectionInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalSwitchProtectionProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalSwitchProtectionProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'SwitchProtectionInputProperties': %+v", err)
 		}

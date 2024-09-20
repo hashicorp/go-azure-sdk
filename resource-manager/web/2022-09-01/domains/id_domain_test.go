@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DomainId{}
 
 func TestNewDomainID(t *testing.T) {
-	id := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue")
+	id := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDomainID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DomainName != "domainValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainValue")
+	if id.DomainName != "domainName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainName")
 	}
 }
 
 func TestFormatDomainID(t *testing.T) {
-	actual := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainValue"
+	actual := NewDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDomainID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainName",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainName:        "domainValue",
+				DomainName:        "domainName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDomainIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainName",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DomainName:        "domainValue",
+				DomainName:        "domainName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DomainRegistration/domains/domainName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOmAiNrEgIsTrAtIoN/dOmAiNs/dOmAiNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOmAiNrEgIsTrAtIoN/dOmAiNs/dOmAiNnAmE",
 			Expected: &DomainId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DomainName:        "dOmAiNvAlUe",
+				DomainName:        "dOmAiNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOmAiNrEgIsTrAtIoN/dOmAiNs/dOmAiNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOmAiNrEgIsTrAtIoN/dOmAiNs/dOmAiNnAmE/extra",
 			Error: true,
 		},
 	}

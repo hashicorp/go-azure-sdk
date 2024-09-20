@@ -36,7 +36,7 @@ func (s *BenefitRecommendationModel) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalBenefitRecommendationPropertiesImplementation(v)
+		impl, err := UnmarshalBenefitRecommendationPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'BenefitRecommendationModel': %+v", err)
 		}

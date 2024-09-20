@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProviderRemediationId{}
 
 func TestNewProviderRemediationID(t *testing.T) {
-	id := NewProviderRemediationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remediationValue")
+	id := NewProviderRemediationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remediationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewProviderRemediationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RemediationName != "remediationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RemediationName'", id.RemediationName, "remediationValue")
+	if id.RemediationName != "remediationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RemediationName'", id.RemediationName, "remediationName")
 	}
 }
 
 func TestFormatProviderRemediationID(t *testing.T) {
-	actual := NewProviderRemediationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remediationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationValue"
+	actual := NewProviderRemediationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remediationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseProviderRemediationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationName",
 			Expected: &ProviderRemediationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RemediationName:   "remediationValue",
+				RemediationName:   "remediationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseProviderRemediationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationName",
 			Expected: &ProviderRemediationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RemediationName:   "remediationValue",
+				RemediationName:   "remediationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/remediations/remediationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnNaMe",
 			Expected: &ProviderRemediationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RemediationName:   "rEmEdIaTiOnVaLuE",
+				RemediationName:   "rEmEdIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

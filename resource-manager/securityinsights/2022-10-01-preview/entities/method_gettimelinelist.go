@@ -50,7 +50,6 @@ func (c EntitiesClient) GetTimelinelist(ctx context.Context, id EntityId, input 
 
 	var model EntityTimelineResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

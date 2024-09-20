@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DesktopId{}
 
 func TestNewDesktopID(t *testing.T) {
-	id := NewDesktopID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupValue", "desktopValue")
+	id := NewDesktopID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupName", "desktopName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDesktopID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationGroupName != "applicationGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupValue")
+	if id.ApplicationGroupName != "applicationGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGroupName'", id.ApplicationGroupName, "applicationGroupName")
 	}
 
-	if id.DesktopName != "desktopValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DesktopName'", id.DesktopName, "desktopValue")
+	if id.DesktopName != "desktopName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DesktopName'", id.DesktopName, "desktopName")
 	}
 }
 
 func TestFormatDesktopID(t *testing.T) {
-	actual := NewDesktopID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupValue", "desktopValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops/desktopValue"
+	actual := NewDesktopID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGroupName", "desktopName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops/desktopName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDesktopID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops/desktopValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops/desktopName",
 			Expected: &DesktopId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ApplicationGroupName: "applicationGroupValue",
-				DesktopName:          "desktopValue",
+				ApplicationGroupName: "applicationGroupName",
+				DesktopName:          "desktopName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops/desktopValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops/desktopName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDesktopIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe/dEsKtOpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE/dEsKtOpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops/desktopValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops/desktopName",
 			Expected: &DesktopId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ApplicationGroupName: "applicationGroupValue",
-				DesktopName:          "desktopValue",
+				ApplicationGroupName: "applicationGroupName",
+				DesktopName:          "desktopName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupValue/desktops/desktopValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/applicationGroups/applicationGroupName/desktops/desktopName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe/dEsKtOpS/dEsKtOpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE/dEsKtOpS/dEsKtOpNaMe",
 			Expected: &DesktopId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationGroupName: "aPpLiCaTiOnGrOuPvAlUe",
-				DesktopName:          "dEsKtOpVaLuE",
+				ApplicationGroupName: "aPpLiCaTiOnGrOuPnAmE",
+				DesktopName:          "dEsKtOpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPvAlUe/dEsKtOpS/dEsKtOpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/aPpLiCaTiOnGrOuPs/aPpLiCaTiOnGrOuPnAmE/dEsKtOpS/dEsKtOpNaMe/extra",
 			Error: true,
 		},
 	}

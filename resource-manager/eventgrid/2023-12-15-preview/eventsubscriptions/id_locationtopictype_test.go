@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &LocationTopicTypeId{}
 
 func TestNewLocationTopicTypeID(t *testing.T) {
-	id := NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "topicTypeValue")
+	id := NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "location", "topicTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.TopicTypeName != "topicTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TopicTypeName'", id.TopicTypeName, "topicTypeValue")
+	if id.TopicTypeName != "topicTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TopicTypeName'", id.TopicTypeName, "topicTypeName")
 	}
 }
 
 func TestFormatLocationTopicTypeID(t *testing.T) {
-	actual := NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "topicTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes/topicTypeValue"
+	actual := NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "location", "topicTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes/topicTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseLocationTopicTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes/topicTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes/topicTypeName",
 			Expected: &LocationTopicTypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				TopicTypeName:  "topicTypeValue",
+				LocationName:   "location",
+				TopicTypeName:  "topicTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes/topicTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes/topicTypeName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseLocationTopicTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoNvAlUe/tOpIcTyPeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoN/tOpIcTyPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes/topicTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes/topicTypeName",
 			Expected: &LocationTopicTypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
-				TopicTypeName:  "topicTypeValue",
+				LocationName:   "location",
+				TopicTypeName:  "topicTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/locationValue/topicTypes/topicTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.EventGrid/locations/location/topicTypes/topicTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoNvAlUe/tOpIcTyPeS/tOpIcTyPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoN/tOpIcTyPeS/tOpIcTyPeNaMe",
 			Expected: &LocationTopicTypeId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
-				TopicTypeName:  "tOpIcTyPeVaLuE",
+				LocationName:   "lOcAtIoN",
+				TopicTypeName:  "tOpIcTyPeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoNvAlUe/tOpIcTyPeS/tOpIcTyPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.eVeNtGrId/lOcAtIoNs/lOcAtIoN/tOpIcTyPeS/tOpIcTyPeNaMe/extra",
 			Error: true,
 		},
 	}

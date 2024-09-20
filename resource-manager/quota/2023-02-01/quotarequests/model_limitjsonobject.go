@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LimitJsonObject interface {
+	LimitJsonObject() BaseLimitJsonObjectImpl
 }
 
-// RawLimitJsonObjectImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ LimitJsonObject = BaseLimitJsonObjectImpl{}
+
+type BaseLimitJsonObjectImpl struct {
+	LimitObjectType LimitType `json:"limitObjectType"`
+}
+
+func (s BaseLimitJsonObjectImpl) LimitJsonObject() BaseLimitJsonObjectImpl {
+	return s
+}
+
+var _ LimitJsonObject = RawLimitJsonObjectImpl{}
+
+// RawLimitJsonObjectImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawLimitJsonObjectImpl struct {
-	Type   string
-	Values map[string]interface{}
+	limitJsonObject BaseLimitJsonObjectImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalLimitJsonObjectImplementation(input []byte) (LimitJsonObject, error) {
+func (s RawLimitJsonObjectImpl) LimitJsonObject() BaseLimitJsonObjectImpl {
+	return s.limitJsonObject
+}
+
+func UnmarshalLimitJsonObjectImplementation(input []byte) (LimitJsonObject, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalLimitJsonObjectImplementation(input []byte) (LimitJsonObject, erro
 		return out, nil
 	}
 
-	out := RawLimitJsonObjectImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseLimitJsonObjectImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLimitJsonObjectImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawLimitJsonObjectImpl{
+		limitJsonObject: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/jobs` Documentation
 
-The `jobs` SDK allows for interaction with the Azure Resource Manager Service `migrate` (API Version `2020-01-01`).
+The `jobs` SDK allows for interaction with Azure Resource Manager `migrate` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobs.NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue")
+id := jobs.NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.GetAllJobsInSite(ctx, id)` can be used to do batched pagination
 items, err := client.GetAllJobsInSiteComplete(ctx, id)
@@ -42,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewVMwareSiteJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue", "jobValue")
+id := commonids.NewVMwareSiteJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteName", "jobName")
 
 read, err := client.GetJob(ctx, id)
 if err != nil {

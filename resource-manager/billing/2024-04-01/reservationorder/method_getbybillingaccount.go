@@ -34,6 +34,7 @@ func (o GetByBillingAccountOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByBillingAccountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c ReservationOrderClient) GetByBillingAccount(ctx context.Context, id Rese
 
 	var model ReservationOrder
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

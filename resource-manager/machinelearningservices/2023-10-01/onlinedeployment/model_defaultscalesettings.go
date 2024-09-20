@@ -13,6 +13,14 @@ var _ OnlineScaleSettings = DefaultScaleSettings{}
 type DefaultScaleSettings struct {
 
 	// Fields inherited from OnlineScaleSettings
+
+	ScaleType ScaleType `json:"scaleType"`
+}
+
+func (s DefaultScaleSettings) OnlineScaleSettings() BaseOnlineScaleSettingsImpl {
+	return BaseOnlineScaleSettingsImpl{
+		ScaleType: s.ScaleType,
+	}
 }
 
 var _ json.Marshaler = DefaultScaleSettings{}
@@ -26,9 +34,10 @@ func (s DefaultScaleSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling DefaultScaleSettings: %+v", err)
 	}
+
 	decoded["scaleType"] = "Default"
 
 	encoded, err = json.Marshal(decoded)

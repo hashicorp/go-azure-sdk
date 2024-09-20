@@ -49,7 +49,6 @@ func (c HybridIdentityMetadataClient) Create(ctx context.Context, id HybridIdent
 
 	var model HybridIdentityMetadata
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

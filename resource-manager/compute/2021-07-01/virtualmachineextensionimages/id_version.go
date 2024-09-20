@@ -46,7 +46,7 @@ func ParseVersionID(input string) (*VersionId, error) {
 	}
 
 	id := VersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 	}
 
 	id := VersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -125,15 +125,15 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
-		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
+		resourceids.UserSpecifiedSegment("publisherName", "publisherName"),
 		resourceids.StaticSegment("staticArtifactTypes", "artifactTypes", "artifactTypes"),
 		resourceids.StaticSegment("staticVmExtension", "vmExtension", "vmExtension"),
 		resourceids.StaticSegment("staticTypes", "types", "types"),
-		resourceids.UserSpecifiedSegment("typeName", "typeValue"),
+		resourceids.UserSpecifiedSegment("typeName", "typeName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "version"),
 	}
 }
 

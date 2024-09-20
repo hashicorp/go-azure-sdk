@@ -36,7 +36,7 @@ func (s *DataFlowResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalDataFlowImplementation(v)
+		impl, err := UnmarshalDataFlowImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'DataFlowResource': %+v", err)
 		}

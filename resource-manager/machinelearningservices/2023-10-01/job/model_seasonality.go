@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Seasonality interface {
+	Seasonality() BaseSeasonalityImpl
 }
 
-// RawSeasonalityImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Seasonality = BaseSeasonalityImpl{}
+
+type BaseSeasonalityImpl struct {
+	Mode SeasonalityMode `json:"mode"`
+}
+
+func (s BaseSeasonalityImpl) Seasonality() BaseSeasonalityImpl {
+	return s
+}
+
+var _ Seasonality = RawSeasonalityImpl{}
+
+// RawSeasonalityImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawSeasonalityImpl struct {
-	Type   string
-	Values map[string]interface{}
+	seasonality BaseSeasonalityImpl
+	Type        string
+	Values      map[string]interface{}
 }
 
-func unmarshalSeasonalityImplementation(input []byte) (Seasonality, error) {
+func (s RawSeasonalityImpl) Seasonality() BaseSeasonalityImpl {
+	return s.seasonality
+}
+
+func UnmarshalSeasonalityImplementation(input []byte) (Seasonality, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalSeasonalityImplementation(input []byte) (Seasonality, error) {
 		return out, nil
 	}
 
-	out := RawSeasonalityImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseSeasonalityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSeasonalityImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawSeasonalityImpl{
+		seasonality: parent,
+		Type:        value,
+		Values:      temp,
+	}, nil
 
 }

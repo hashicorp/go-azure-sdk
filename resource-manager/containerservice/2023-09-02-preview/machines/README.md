@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2023-09-02-preview/machines` Documentation
 
-The `machines` SDK allows for interaction with the Azure Resource Manager Service `containerservice` (API Version `2023-09-02-preview`).
+The `machines` SDK allows for interaction with Azure Resource Manager `containerservice` (API Version `2023-09-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := machines.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "agentPoolValue", "machineValue")
+id := machines.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName", "machineName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := machines.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "agentPoolValue")
+id := machines.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

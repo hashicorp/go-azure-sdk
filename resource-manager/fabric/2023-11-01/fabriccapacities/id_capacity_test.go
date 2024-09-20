@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CapacityId{}
 
 func TestNewCapacityID(t *testing.T) {
-	id := NewCapacityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityValue")
+	id := NewCapacityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCapacityID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CapacityName != "capacityValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CapacityName'", id.CapacityName, "capacityValue")
+	if id.CapacityName != "capacityName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CapacityName'", id.CapacityName, "capacityName")
 	}
 }
 
 func TestFormatCapacityID(t *testing.T) {
-	actual := NewCapacityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityValue"
+	actual := NewCapacityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCapacityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityName",
 			Expected: &CapacityId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CapacityName:      "capacityValue",
+				CapacityName:      "capacityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCapacityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityName",
 			Expected: &CapacityId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CapacityName:      "capacityValue",
+				CapacityName:      "capacityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Fabric/capacities/capacityName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fAbRiC/cApAcItIeS/cApAcItYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fAbRiC/cApAcItIeS/cApAcItYnAmE",
 			Expected: &CapacityId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				CapacityName:      "cApAcItYvAlUe",
+				CapacityName:      "cApAcItYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fAbRiC/cApAcItIeS/cApAcItYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fAbRiC/cApAcItIeS/cApAcItYnAmE/extra",
 			Error: true,
 		},
 	}

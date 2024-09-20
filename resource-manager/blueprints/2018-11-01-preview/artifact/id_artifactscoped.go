@@ -42,7 +42,7 @@ func ParseArtifactScopedID(input string) (*ArtifactScopedId, error) {
 	}
 
 	id := ArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseArtifactScopedIDInsensitively(input string) (*ArtifactScopedId, error)
 	}
 
 	id := ArtifactScopedId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -112,9 +112,9 @@ func (id ArtifactScopedId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBlueprint", "Microsoft.Blueprint", "Microsoft.Blueprint"),
 		resourceids.StaticSegment("staticBlueprints", "blueprints", "blueprints"),
-		resourceids.UserSpecifiedSegment("blueprintName", "blueprintValue"),
+		resourceids.UserSpecifiedSegment("blueprintName", "blueprintName"),
 		resourceids.StaticSegment("staticArtifacts", "artifacts", "artifacts"),
-		resourceids.UserSpecifiedSegment("artifactName", "artifactValue"),
+		resourceids.UserSpecifiedSegment("artifactName", "artifactName"),
 	}
 }
 

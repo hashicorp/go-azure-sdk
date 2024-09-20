@@ -15,7 +15,7 @@ type ScriptExecutionsClient struct {
 }
 
 func NewScriptExecutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ScriptExecutionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "scriptexecutions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "scriptexecutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ScriptExecutionsClient: %+v", err)
 	}

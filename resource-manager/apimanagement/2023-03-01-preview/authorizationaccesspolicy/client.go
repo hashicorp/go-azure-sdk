@@ -15,7 +15,7 @@ type AuthorizationAccessPolicyClient struct {
 }
 
 func NewAuthorizationAccessPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationAccessPolicyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "authorizationaccesspolicy", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationaccesspolicy", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AuthorizationAccessPolicyClient: %+v", err)
 	}

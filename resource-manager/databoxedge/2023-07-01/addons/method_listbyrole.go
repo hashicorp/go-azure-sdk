@@ -73,7 +73,7 @@ func (c AddonsClient) ListByRole(ctx context.Context, id RoleId) (result ListByR
 	temp := make([]Addon, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalAddonImplementation(v)
+			val, err := UnmarshalAddonImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for Addon (%q): %+v", i, v, err)
 				return result, err

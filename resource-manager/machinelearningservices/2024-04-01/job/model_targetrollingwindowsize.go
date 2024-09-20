@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TargetRollingWindowSize interface {
+	TargetRollingWindowSize() BaseTargetRollingWindowSizeImpl
 }
 
-// RawTargetRollingWindowSizeImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TargetRollingWindowSize = BaseTargetRollingWindowSizeImpl{}
+
+type BaseTargetRollingWindowSizeImpl struct {
+	Mode TargetRollingWindowSizeMode `json:"mode"`
+}
+
+func (s BaseTargetRollingWindowSizeImpl) TargetRollingWindowSize() BaseTargetRollingWindowSizeImpl {
+	return s
+}
+
+var _ TargetRollingWindowSize = RawTargetRollingWindowSizeImpl{}
+
+// RawTargetRollingWindowSizeImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTargetRollingWindowSizeImpl struct {
-	Type   string
-	Values map[string]interface{}
+	targetRollingWindowSize BaseTargetRollingWindowSizeImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalTargetRollingWindowSizeImplementation(input []byte) (TargetRollingWindowSize, error) {
+func (s RawTargetRollingWindowSizeImpl) TargetRollingWindowSize() BaseTargetRollingWindowSizeImpl {
+	return s.targetRollingWindowSize
+}
+
+func UnmarshalTargetRollingWindowSizeImplementation(input []byte) (TargetRollingWindowSize, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalTargetRollingWindowSizeImplementation(input []byte) (TargetRolling
 		return out, nil
 	}
 
-	out := RawTargetRollingWindowSizeImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTargetRollingWindowSizeImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTargetRollingWindowSizeImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTargetRollingWindowSizeImpl{
+		targetRollingWindowSize: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

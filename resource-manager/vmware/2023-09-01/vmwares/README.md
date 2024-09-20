@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2023-09-01/vmwares` Documentation
 
-The `vmwares` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2023-09-01`).
+The `vmwares` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dhcpIdValue")
+id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dhcpId")
 
 payload := vmwares.WorkloadNetworkDhcp{
 	// ...
@@ -41,7 +41,7 @@ if err := client.WorkloadNetworksCreateDhcpThenPoll(ctx, id, payload); err != ni
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsServiceIdValue")
+id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsServiceId")
 
 payload := vmwares.WorkloadNetworkDnsService{
 	// ...
@@ -58,7 +58,7 @@ if err := client.WorkloadNetworksCreateDnsServiceThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsZoneIdValue")
+id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsZoneId")
 
 payload := vmwares.WorkloadNetworkDnsZone{
 	// ...
@@ -75,7 +75,7 @@ if err := client.WorkloadNetworksCreateDnsZoneThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "portMirroringIdValue")
+id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "portMirroringId")
 
 payload := vmwares.WorkloadNetworkPortMirroring{
 	// ...
@@ -92,7 +92,7 @@ if err := client.WorkloadNetworksCreatePortMirroringThenPoll(ctx, id, payload); 
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "publicIPIdValue")
+id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "publicIPId")
 
 payload := vmwares.WorkloadNetworkPublicIP{
 	// ...
@@ -109,7 +109,7 @@ if err := client.WorkloadNetworksCreatePublicIPThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "vmGroupId")
 
 payload := vmwares.WorkloadNetworkVMGroup{
 	// ...
@@ -126,7 +126,7 @@ if err := client.WorkloadNetworksCreateVMGroupThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dhcpIdValue")
+id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dhcpId")
 
 if err := client.WorkloadNetworksDeleteDhcpThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -138,7 +138,7 @@ if err := client.WorkloadNetworksDeleteDhcpThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsServiceIdValue")
+id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsServiceId")
 
 if err := client.WorkloadNetworksDeleteDnsServiceThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -150,7 +150,7 @@ if err := client.WorkloadNetworksDeleteDnsServiceThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsZoneIdValue")
+id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsZoneId")
 
 if err := client.WorkloadNetworksDeleteDnsZoneThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -162,7 +162,7 @@ if err := client.WorkloadNetworksDeleteDnsZoneThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "portMirroringIdValue")
+id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "portMirroringId")
 
 if err := client.WorkloadNetworksDeletePortMirroringThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -174,7 +174,7 @@ if err := client.WorkloadNetworksDeletePortMirroringThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "publicIPIdValue")
+id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "publicIPId")
 
 if err := client.WorkloadNetworksDeletePublicIPThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -186,7 +186,7 @@ if err := client.WorkloadNetworksDeletePublicIPThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "vmGroupId")
 
 if err := client.WorkloadNetworksDeleteVMGroupThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -198,7 +198,7 @@ if err := client.WorkloadNetworksDeleteVMGroupThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dhcpIdValue")
+id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dhcpId")
 
 read, err := client.WorkloadNetworksGetDhcp(ctx, id)
 if err != nil {
@@ -214,7 +214,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsServiceIdValue")
+id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsServiceId")
 
 read, err := client.WorkloadNetworksGetDnsService(ctx, id)
 if err != nil {
@@ -230,7 +230,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsZoneIdValue")
+id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsZoneId")
 
 read, err := client.WorkloadNetworksGetDnsZone(ctx, id)
 if err != nil {
@@ -246,7 +246,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "portMirroringIdValue")
+id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "portMirroringId")
 
 read, err := client.WorkloadNetworksGetPortMirroring(ctx, id)
 if err != nil {
@@ -262,7 +262,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "publicIPIdValue")
+id := vmwares.NewPublicIPID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "publicIPId")
 
 read, err := client.WorkloadNetworksGetPublicIP(ctx, id)
 if err != nil {
@@ -278,7 +278,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "vmGroupId")
 
 read, err := client.WorkloadNetworksGetVMGroup(ctx, id)
 if err != nil {
@@ -294,7 +294,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListDhcp(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListDhcpComplete(ctx, id)
@@ -311,7 +311,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListDnsServices(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListDnsServicesComplete(ctx, id)
@@ -328,7 +328,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListDnsZones(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListDnsZonesComplete(ctx, id)
@@ -345,7 +345,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListPortMirroring(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListPortMirroringComplete(ctx, id)
@@ -362,7 +362,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListPublicIPs(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListPublicIPsComplete(ctx, id)
@@ -379,7 +379,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := vmwares.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListVMGroups(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListVMGroupsComplete(ctx, id)
@@ -396,7 +396,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dhcpIdValue")
+id := vmwares.NewDhcpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dhcpId")
 
 payload := vmwares.WorkloadNetworkDhcp{
 	// ...
@@ -413,7 +413,7 @@ if err := client.WorkloadNetworksUpdateDhcpThenPoll(ctx, id, payload); err != ni
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsServiceIdValue")
+id := vmwares.NewDnsServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsServiceId")
 
 payload := vmwares.WorkloadNetworkDnsService{
 	// ...
@@ -430,7 +430,7 @@ if err := client.WorkloadNetworksUpdateDnsServiceThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "dnsZoneIdValue")
+id := vmwares.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "dnsZoneId")
 
 payload := vmwares.WorkloadNetworkDnsZone{
 	// ...
@@ -447,7 +447,7 @@ if err := client.WorkloadNetworksUpdateDnsZoneThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "portMirroringIdValue")
+id := vmwares.NewPortMirroringProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "portMirroringId")
 
 payload := vmwares.WorkloadNetworkPortMirroring{
 	// ...
@@ -464,7 +464,7 @@ if err := client.WorkloadNetworksUpdatePortMirroringThenPoll(ctx, id, payload); 
 
 ```go
 ctx := context.TODO()
-id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := vmwares.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "vmGroupId")
 
 payload := vmwares.WorkloadNetworkVMGroup{
 	// ...

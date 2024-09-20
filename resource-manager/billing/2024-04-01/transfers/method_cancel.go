@@ -46,7 +46,6 @@ func (c TransfersClient) Cancel(ctx context.Context, id InvoiceSectionTransferId
 
 	var model TransferDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

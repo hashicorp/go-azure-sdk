@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MetadataSchemaId{}
 
 func TestNewMetadataSchemaID(t *testing.T) {
-	id := NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue")
+	id := NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewMetadataSchemaID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.ServiceName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.MetadataSchemaName != "metadataSchemaValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MetadataSchemaName'", id.MetadataSchemaName, "metadataSchemaValue")
+	if id.MetadataSchemaName != "metadataSchemaName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MetadataSchemaName'", id.MetadataSchemaName, "metadataSchemaName")
 	}
 }
 
 func TestFormatMetadataSchemaID(t *testing.T) {
-	actual := NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "metadataSchemaValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas/metadataSchemaValue"
+	actual := NewMetadataSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "metadataSchemaName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas/metadataSchemaName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseMetadataSchemaID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas/metadataSchemaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas/metadataSchemaName",
 			Expected: &MetadataSchemaId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ServiceName:        "serviceValue",
-				MetadataSchemaName: "metadataSchemaValue",
+				ServiceName:        "serviceName",
+				MetadataSchemaName: "metadataSchemaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas/metadataSchemaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas/metadataSchemaName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseMetadataSchemaIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/mEtAdAtAsChEmAs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/mEtAdAtAsChEmAs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas/metadataSchemaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas/metadataSchemaName",
 			Expected: &MetadataSchemaId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ServiceName:        "serviceValue",
-				MetadataSchemaName: "metadataSchemaValue",
+				ServiceName:        "serviceName",
+				MetadataSchemaName: "metadataSchemaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceValue/metadataSchemas/metadataSchemaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiCenter/services/serviceName/metadataSchemas/metadataSchemaName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/mEtAdAtAsChEmAs/mEtAdAtAsChEmAvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/mEtAdAtAsChEmAs/mEtAdAtAsChEmAnAmE",
 			Expected: &MetadataSchemaId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:        "sErViCeVaLuE",
-				MetadataSchemaName: "mEtAdAtAsChEmAvAlUe",
+				ServiceName:        "sErViCeNaMe",
+				MetadataSchemaName: "mEtAdAtAsChEmAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeVaLuE/mEtAdAtAsChEmAs/mEtAdAtAsChEmAvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiCeNtEr/sErViCeS/sErViCeNaMe/mEtAdAtAsChEmAs/mEtAdAtAsChEmAnAmE/extra",
 			Error: true,
 		},
 	}

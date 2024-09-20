@@ -46,7 +46,7 @@ func ParseVirtualMachineScaleSetVirtualMachineRunCommandID(input string) (*Virtu
 	}
 
 	id := VirtualMachineScaleSetVirtualMachineRunCommandId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVirtualMachineScaleSetVirtualMachineRunCommandIDInsensitively(input st
 	}
 
 	id := VirtualMachineScaleSetVirtualMachineRunCommandId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id VirtualMachineScaleSetVirtualMachineRunCommandId) Segments() []resource
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticVirtualMachineScaleSets", "virtualMachineScaleSets", "virtualMachineScaleSets"),
-		resourceids.UserSpecifiedSegment("virtualMachineScaleSetName", "virtualMachineScaleSetValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineScaleSetName", "virtualMachineScaleSetName"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("instanceId", "instanceIdValue"),
+		resourceids.UserSpecifiedSegment("instanceId", "instanceId"),
 		resourceids.StaticSegment("staticRunCommands", "runCommands", "runCommands"),
-		resourceids.UserSpecifiedSegment("runCommandName", "runCommandValue"),
+		resourceids.UserSpecifiedSegment("runCommandName", "runCommandName"),
 	}
 }
 

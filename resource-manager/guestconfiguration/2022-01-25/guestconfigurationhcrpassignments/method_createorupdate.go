@@ -50,7 +50,6 @@ func (c GuestConfigurationHCRPAssignmentsClient) CreateOrUpdate(ctx context.Cont
 
 	var model GuestConfigurationAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -49,7 +49,6 @@ func (c FirewallRulesClient) Update(ctx context.Context, id FirewallRuleId, inpu
 
 	var model FirewallRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

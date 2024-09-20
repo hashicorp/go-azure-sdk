@@ -17,8 +17,18 @@ type CustomMonitoringSignal struct {
 	MetricThresholds []CustomMetricThreshold             `json:"metricThresholds"`
 
 	// Fields inherited from MonitoringSignalBase
+
 	NotificationTypes *[]MonitoringNotificationType `json:"notificationTypes,omitempty"`
 	Properties        *map[string]string            `json:"properties,omitempty"`
+	SignalType        MonitoringSignalType          `json:"signalType"`
+}
+
+func (s CustomMonitoringSignal) MonitoringSignalBase() BaseMonitoringSignalBaseImpl {
+	return BaseMonitoringSignalBaseImpl{
+		NotificationTypes: s.NotificationTypes,
+		Properties:        s.Properties,
+		SignalType:        s.SignalType,
+	}
 }
 
 var _ json.Marshaler = CustomMonitoringSignal{}
@@ -32,9 +42,10 @@ func (s CustomMonitoringSignal) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomMonitoringSignal: %+v", err)
 	}
+
 	decoded["signalType"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)
@@ -58,6 +69,7 @@ func (s *CustomMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 	s.MetricThresholds = decoded.MetricThresholds
 	s.NotificationTypes = decoded.NotificationTypes
 	s.Properties = decoded.Properties
+	s.SignalType = decoded.SignalType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -72,7 +84,7 @@ func (s *CustomMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]MonitoringInputDataBase)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalMonitoringInputDataBaseImplementation(val)
+			impl, err := UnmarshalMonitoringInputDataBaseImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'InputAssets' for 'CustomMonitoringSignal': %+v", key, err)
 			}
@@ -89,7 +101,7 @@ func (s *CustomMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobInput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Inputs' for 'CustomMonitoringSignal': %+v", key, err)
 			}

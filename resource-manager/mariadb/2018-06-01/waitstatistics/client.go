@@ -15,7 +15,7 @@ type WaitStatisticsClient struct {
 }
 
 func NewWaitStatisticsClientWithBaseURI(sdkApi sdkEnv.Api) (*WaitStatisticsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "waitstatistics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "waitstatistics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WaitStatisticsClient: %+v", err)
 	}

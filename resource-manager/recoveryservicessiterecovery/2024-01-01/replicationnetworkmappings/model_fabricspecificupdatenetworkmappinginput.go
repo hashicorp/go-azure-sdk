@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FabricSpecificUpdateNetworkMappingInput interface {
+	FabricSpecificUpdateNetworkMappingInput() BaseFabricSpecificUpdateNetworkMappingInputImpl
 }
 
-// RawFabricSpecificUpdateNetworkMappingInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ FabricSpecificUpdateNetworkMappingInput = BaseFabricSpecificUpdateNetworkMappingInputImpl{}
+
+type BaseFabricSpecificUpdateNetworkMappingInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseFabricSpecificUpdateNetworkMappingInputImpl) FabricSpecificUpdateNetworkMappingInput() BaseFabricSpecificUpdateNetworkMappingInputImpl {
+	return s
+}
+
+var _ FabricSpecificUpdateNetworkMappingInput = RawFabricSpecificUpdateNetworkMappingInputImpl{}
+
+// RawFabricSpecificUpdateNetworkMappingInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFabricSpecificUpdateNetworkMappingInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	fabricSpecificUpdateNetworkMappingInput BaseFabricSpecificUpdateNetworkMappingInputImpl
+	Type                                    string
+	Values                                  map[string]interface{}
 }
 
-func unmarshalFabricSpecificUpdateNetworkMappingInputImplementation(input []byte) (FabricSpecificUpdateNetworkMappingInput, error) {
+func (s RawFabricSpecificUpdateNetworkMappingInputImpl) FabricSpecificUpdateNetworkMappingInput() BaseFabricSpecificUpdateNetworkMappingInputImpl {
+	return s.fabricSpecificUpdateNetworkMappingInput
+}
+
+func UnmarshalFabricSpecificUpdateNetworkMappingInputImplementation(input []byte) (FabricSpecificUpdateNetworkMappingInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalFabricSpecificUpdateNetworkMappingInputImplementation(input []byte
 		return out, nil
 	}
 
-	out := RawFabricSpecificUpdateNetworkMappingInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseFabricSpecificUpdateNetworkMappingInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFabricSpecificUpdateNetworkMappingInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawFabricSpecificUpdateNetworkMappingInputImpl{
+		fabricSpecificUpdateNetworkMappingInput: parent,
+		Type:                                    value,
+		Values:                                  temp,
+	}, nil
 
 }

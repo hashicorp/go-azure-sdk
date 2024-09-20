@@ -45,7 +45,6 @@ func (c WaitStatisticsClient) Get(ctx context.Context, id WaitStatisticId) (resu
 
 	var model WaitStatistic
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

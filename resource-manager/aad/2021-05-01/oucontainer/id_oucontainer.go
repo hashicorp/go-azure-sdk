@@ -44,7 +44,7 @@ func ParseOuContainerID(input string) (*OuContainerId, error) {
 	}
 
 	id := OuContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOuContainerIDInsensitively(input string) (*OuContainerId, error) {
 	}
 
 	id := OuContainerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id OuContainerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAAD", "Microsoft.AAD", "Microsoft.AAD"),
 		resourceids.StaticSegment("staticDomainServices", "domainServices", "domainServices"),
-		resourceids.UserSpecifiedSegment("domainServiceName", "domainServiceValue"),
+		resourceids.UserSpecifiedSegment("domainServiceName", "domainServiceName"),
 		resourceids.StaticSegment("staticOuContainer", "ouContainer", "ouContainer"),
-		resourceids.UserSpecifiedSegment("ouContainerName", "ouContainerValue"),
+		resourceids.UserSpecifiedSegment("ouContainerName", "ouContainerName"),
 	}
 }
 

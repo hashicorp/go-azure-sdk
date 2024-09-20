@@ -44,7 +44,7 @@ func ParseTrustedIdProviderID(input string) (*TrustedIdProviderId, error) {
 	}
 
 	id := TrustedIdProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseTrustedIdProviderIDInsensitively(input string) (*TrustedIdProviderId, 
 	}
 
 	id := TrustedIdProviderId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id TrustedIdProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataLakeStore", "Microsoft.DataLakeStore", "Microsoft.DataLakeStore"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticTrustedIdProviders", "trustedIdProviders", "trustedIdProviders"),
-		resourceids.UserSpecifiedSegment("trustedIdProviderName", "trustedIdProviderValue"),
+		resourceids.UserSpecifiedSegment("trustedIdProviderName", "trustedIdProviderName"),
 	}
 }
 

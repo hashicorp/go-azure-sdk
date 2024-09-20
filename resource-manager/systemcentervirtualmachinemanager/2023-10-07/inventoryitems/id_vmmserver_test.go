@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VMmServerId{}
 
 func TestNewVMmServerID(t *testing.T) {
-	id := NewVMmServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerValue")
+	id := NewVMmServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVMmServerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VmmServerName != "vmmServerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmmServerName'", id.VmmServerName, "vmmServerValue")
+	if id.VmmServerName != "vmmServerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VmmServerName'", id.VmmServerName, "vmmServerName")
 	}
 }
 
 func TestFormatVMmServerID(t *testing.T) {
-	actual := NewVMmServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerValue"
+	actual := NewVMmServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVMmServerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName",
 			Expected: &VMmServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmmServerName:     "vmmServerValue",
+				VmmServerName:     "vmmServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVMmServerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName",
 			Expected: &VMmServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmmServerName:     "vmmServerValue",
+				VmmServerName:     "vmmServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe",
 			Expected: &VMmServerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VmmServerName:     "vMmSeRvErVaLuE",
+				VmmServerName:     "vMmSeRvErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe/extra",
 			Error: true,
 		},
 	}

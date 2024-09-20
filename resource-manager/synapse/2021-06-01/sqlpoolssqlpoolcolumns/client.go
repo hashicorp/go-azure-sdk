@@ -15,7 +15,7 @@ type SqlPoolsSqlPoolColumnsClient struct {
 }
 
 func NewSqlPoolsSqlPoolColumnsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSqlPoolColumnsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolssqlpoolcolumns", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolssqlpoolcolumns", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsSqlPoolColumnsClient: %+v", err)
 	}

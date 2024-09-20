@@ -18,6 +18,14 @@ type AverageServiceLoadScalingTrigger struct {
 	UseOnlyPrimaryLoad bool    `json:"useOnlyPrimaryLoad"`
 
 	// Fields inherited from ScalingTrigger
+
+	Kind ServiceScalingTriggerKind `json:"kind"`
+}
+
+func (s AverageServiceLoadScalingTrigger) ScalingTrigger() BaseScalingTriggerImpl {
+	return BaseScalingTriggerImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AverageServiceLoadScalingTrigger{}
@@ -31,9 +39,10 @@ func (s AverageServiceLoadScalingTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AverageServiceLoadScalingTrigger: %+v", err)
 	}
+
 	decoded["kind"] = "AverageServiceLoadTrigger"
 
 	encoded, err = json.Marshal(decoded)

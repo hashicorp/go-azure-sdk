@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/threatintelligence` Documentation
 
-The `threatintelligence` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2023-11-01`).
+The `threatintelligence` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := threatintelligence.ThreatIntelligenceAppendTags{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := threatintelligence.ThreatIntelligenceIndicatorModel{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := threatintelligence.ThreatIntelligenceIndicatorModel{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.IndicatorDelete(ctx, id)
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.IndicatorGet(ctx, id)
 if err != nil {
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 read, err := client.IndicatorMetricsList(ctx, id)
 if err != nil {
@@ -135,7 +135,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 payload := threatintelligence.ThreatIntelligenceFilteringCriteria{
 	// ...
@@ -157,7 +157,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := threatintelligence.ThreatIntelligenceIndicatorModel{
 	// ...
@@ -178,7 +178,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := threatintelligence.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.IndicatorsList(ctx, id, threatintelligence.DefaultIndicatorsListOperationOptions())` can be used to do batched pagination
 items, err := client.IndicatorsListComplete(ctx, id, threatintelligence.DefaultIndicatorsListOperationOptions())

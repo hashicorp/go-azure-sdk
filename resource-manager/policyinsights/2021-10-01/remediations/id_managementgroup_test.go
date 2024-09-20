@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ManagementGroupId{}
 
 func TestNewManagementGroupID(t *testing.T) {
-	id := NewManagementGroupID("managementGroupIdValue")
+	id := NewManagementGroupID("managementGroupId")
 
-	if id.ManagementGroupId != "managementGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
+	if id.ManagementGroupId != "managementGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupId")
 	}
 }
 
 func TestFormatManagementGroupID(t *testing.T) {
-	actual := NewManagementGroupID("managementGroupIdValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue"
+	actual := NewManagementGroupID("managementGroupId").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/managementGroupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseManagementGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "managementGroupIdValue",
+				ManagementGroupId: "managementGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "managementGroupIdValue",
+				ManagementGroupId: "managementGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "mAnAgEmEnTgRoUpIdVaLuE",
+				ManagementGroupId: "mAnAgEmEnTgRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/extra",
 			Error: true,
 		},
 	}

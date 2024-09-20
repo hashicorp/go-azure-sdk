@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SessionHostId{}
 
 func TestNewSessionHostID(t *testing.T) {
-	id := NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue")
+	id := NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSessionHostID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.HostPoolName != "hostPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HostPoolName'", id.HostPoolName, "hostPoolValue")
+	if id.HostPoolName != "hostPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HostPoolName'", id.HostPoolName, "hostPoolName")
 	}
 
-	if id.SessionHostName != "sessionHostValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SessionHostName'", id.SessionHostName, "sessionHostValue")
+	if id.SessionHostName != "sessionHostName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SessionHostName'", id.SessionHostName, "sessionHostName")
 	}
 }
 
 func TestFormatSessionHostID(t *testing.T) {
-	actual := NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "sessionHostValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts/sessionHostValue"
+	actual := NewSessionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName", "sessionHostName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts/sessionHostName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSessionHostID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts/sessionHostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts/sessionHostName",
 			Expected: &SessionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HostPoolName:      "hostPoolValue",
-				SessionHostName:   "sessionHostValue",
+				HostPoolName:      "hostPoolName",
+				SessionHostName:   "sessionHostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts/sessionHostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts/sessionHostName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSessionHostIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/sEsSiOnHoStS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/sEsSiOnHoStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts/sessionHostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts/sessionHostName",
 			Expected: &SessionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HostPoolName:      "hostPoolValue",
-				SessionHostName:   "sessionHostValue",
+				HostPoolName:      "hostPoolName",
+				SessionHostName:   "sessionHostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/sessionHosts/sessionHostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolName/sessionHosts/sessionHostName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/sEsSiOnHoStS/sEsSiOnHoStVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/sEsSiOnHoStS/sEsSiOnHoStNaMe",
 			Expected: &SessionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				HostPoolName:      "hOsTpOoLvAlUe",
-				SessionHostName:   "sEsSiOnHoStVaLuE",
+				HostPoolName:      "hOsTpOoLnAmE",
+				SessionHostName:   "sEsSiOnHoStNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/sEsSiOnHoStS/sEsSiOnHoStVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLnAmE/sEsSiOnHoStS/sEsSiOnHoStNaMe/extra",
 			Error: true,
 		},
 	}

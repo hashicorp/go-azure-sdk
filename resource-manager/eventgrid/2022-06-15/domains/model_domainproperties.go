@@ -50,7 +50,7 @@ func (s *DomainProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["inputSchemaMapping"]; ok {
-		impl, err := unmarshalInputSchemaMappingImplementation(v)
+		impl, err := UnmarshalInputSchemaMappingImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'InputSchemaMapping' for 'DomainProperties': %+v", err)
 		}

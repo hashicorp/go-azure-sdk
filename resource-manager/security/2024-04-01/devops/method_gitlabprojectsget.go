@@ -45,7 +45,6 @@ func (c DevOpsClient) GitLabProjectsGet(ctx context.Context, id GitLabGroupProje
 
 	var model GitLabProject
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

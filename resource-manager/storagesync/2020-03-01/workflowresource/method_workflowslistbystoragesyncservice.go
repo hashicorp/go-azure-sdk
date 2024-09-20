@@ -46,7 +46,6 @@ func (c WorkflowResourceClient) WorkflowsListByStorageSyncService(ctx context.Co
 
 	var model WorkflowArray
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

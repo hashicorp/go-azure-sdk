@@ -14,8 +14,18 @@ type HTTPServerLocation struct {
 	RelativeUrl *string `json:"relativeUrl,omitempty"`
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s HTTPServerLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = HTTPServerLocation{}
@@ -29,9 +39,10 @@ func (s HTTPServerLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling HTTPServerLocation: %+v", err)
 	}
+
 	decoded["type"] = "HttpServerLocation"
 
 	encoded, err = json.Marshal(decoded)

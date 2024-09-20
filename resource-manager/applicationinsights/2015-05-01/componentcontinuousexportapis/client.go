@@ -15,7 +15,7 @@ type ComponentContinuousExportAPIsClient struct {
 }
 
 func NewComponentContinuousExportAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentContinuousExportAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "componentcontinuousexportapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "componentcontinuousexportapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComponentContinuousExportAPIsClient: %+v", err)
 	}

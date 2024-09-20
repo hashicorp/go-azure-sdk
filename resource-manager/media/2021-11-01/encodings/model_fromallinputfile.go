@@ -13,7 +13,16 @@ var _ InputDefinition = FromAllInputFile{}
 type FromAllInputFile struct {
 
 	// Fields inherited from InputDefinition
+
 	IncludedTracks *[]TrackDescriptor `json:"includedTracks,omitempty"`
+	OdataType      string             `json:"@odata.type"`
+}
+
+func (s FromAllInputFile) InputDefinition() BaseInputDefinitionImpl {
+	return BaseInputDefinitionImpl{
+		IncludedTracks: s.IncludedTracks,
+		OdataType:      s.OdataType,
+	}
 }
 
 var _ json.Marshaler = FromAllInputFile{}
@@ -27,9 +36,10 @@ func (s FromAllInputFile) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FromAllInputFile: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.FromAllInputFile"
 
 	encoded, err = json.Marshal(decoded)
@@ -43,6 +53,13 @@ func (s FromAllInputFile) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &FromAllInputFile{}
 
 func (s *FromAllInputFile) UnmarshalJSON(bytes []byte) error {
+	type alias FromAllInputFile
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into FromAllInputFile: %+v", err)
+	}
+
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -57,7 +74,7 @@ func (s *FromAllInputFile) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]TrackDescriptor, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalTrackDescriptorImplementation(val)
+			impl, err := UnmarshalTrackDescriptorImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'IncludedTracks' for 'FromAllInputFile': %+v", i, err)
 			}

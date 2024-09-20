@@ -50,7 +50,6 @@ func (c ResourceGroupsClient) Patch(ctx context.Context, id commonids.ResourceGr
 
 	var model ResourceGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

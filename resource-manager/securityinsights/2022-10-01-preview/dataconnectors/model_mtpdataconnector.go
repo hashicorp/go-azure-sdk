@@ -16,11 +16,24 @@ type MTPDataConnector struct {
 	Properties *MTPDataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
+
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
+	Kind       DataConnectorKind      `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s MTPDataConnector) DataConnector() BaseDataConnectorImpl {
+	return BaseDataConnectorImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = MTPDataConnector{}
@@ -34,9 +47,10 @@ func (s MTPDataConnector) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MTPDataConnector: %+v", err)
 	}
+
 	decoded["kind"] = "MicrosoftThreatProtection"
 
 	encoded, err = json.Marshal(decoded)

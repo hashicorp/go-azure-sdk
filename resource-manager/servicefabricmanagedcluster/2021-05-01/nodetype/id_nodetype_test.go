@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NodeTypeId{}
 
 func TestNewNodeTypeID(t *testing.T) {
-	id := NewNodeTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "nodeTypeValue")
+	id := NewNodeTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "nodeTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNodeTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedClusterName != "managedClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterName'", id.ManagedClusterName, "managedClusterValue")
+	if id.ManagedClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterName'", id.ManagedClusterName, "clusterName")
 	}
 
-	if id.NodeTypeName != "nodeTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NodeTypeName'", id.NodeTypeName, "nodeTypeValue")
+	if id.NodeTypeName != "nodeTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NodeTypeName'", id.NodeTypeName, "nodeTypeName")
 	}
 }
 
 func TestFormatNodeTypeID(t *testing.T) {
-	actual := NewNodeTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "nodeTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes/nodeTypeValue"
+	actual := NewNodeTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "nodeTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes/nodeTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNodeTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes/nodeTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes/nodeTypeName",
 			Expected: &NodeTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ManagedClusterName: "managedClusterValue",
-				NodeTypeName:       "nodeTypeValue",
+				ManagedClusterName: "clusterName",
+				NodeTypeName:       "nodeTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes/nodeTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes/nodeTypeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNodeTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/nOdEtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErNaMe/nOdEtYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes/nodeTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes/nodeTypeName",
 			Expected: &NodeTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ManagedClusterName: "managedClusterValue",
-				NodeTypeName:       "nodeTypeValue",
+				ManagedClusterName: "clusterName",
+				NodeTypeName:       "nodeTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/nodeTypes/nodeTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterName/nodeTypes/nodeTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/nOdEtYpEs/nOdEtYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErNaMe/nOdEtYpEs/nOdEtYpEnAmE",
 			Expected: &NodeTypeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedClusterName: "mAnAgEdClUsTeRvAlUe",
-				NodeTypeName:       "nOdEtYpEvAlUe",
+				ManagedClusterName: "cLuStErNaMe",
+				NodeTypeName:       "nOdEtYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/nOdEtYpEs/nOdEtYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErNaMe/nOdEtYpEs/nOdEtYpEnAmE/extra",
 			Error: true,
 		},
 	}

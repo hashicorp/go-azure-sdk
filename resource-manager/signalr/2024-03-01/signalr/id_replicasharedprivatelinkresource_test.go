@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReplicaSharedPrivateLinkResourceId{}
 
 func TestNewReplicaSharedPrivateLinkResourceID(t *testing.T) {
-	id := NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue", "replicaValue", "sharedPrivateLinkResourceValue")
+	id := NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewReplicaSharedPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SignalRName != "signalRValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SignalRName'", id.SignalRName, "signalRValue")
+	if id.SignalRName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SignalRName'", id.SignalRName, "resourceName")
 	}
 
-	if id.ReplicaName != "replicaValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReplicaName'", id.ReplicaName, "replicaValue")
+	if id.ReplicaName != "replicaName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicaName'", id.ReplicaName, "replicaName")
 	}
 
-	if id.SharedPrivateLinkResourceName != "sharedPrivateLinkResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedPrivateLinkResourceName'", id.SharedPrivateLinkResourceName, "sharedPrivateLinkResourceValue")
+	if id.SharedPrivateLinkResourceName != "sharedPrivateLinkResourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedPrivateLinkResourceName'", id.SharedPrivateLinkResourceName, "sharedPrivateLinkResourceName")
 	}
 }
 
 func TestFormatReplicaSharedPrivateLinkResourceID(t *testing.T) {
-	actual := NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue", "replicaValue", "sharedPrivateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue"
+	actual := NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources/sharedPrivateLinkResourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseReplicaSharedPrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources/sharedPrivateLinkResourceName",
 			Expected: &ReplicaSharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SignalRName:                   "signalRValue",
-				ReplicaName:                   "replicaValue",
-				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
+				SignalRName:                   "resourceName",
+				ReplicaName:                   "replicaName",
+				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources/sharedPrivateLinkResourceName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseReplicaSharedPrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/rEpLiCaS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE/rEpLiCaS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/rEpLiCaS/rEpLiCaVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE/rEpLiCaS/rEpLiCaNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/rEpLiCaS/rEpLiCaVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE/rEpLiCaS/rEpLiCaNaMe/sHaReDpRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources/sharedPrivateLinkResourceName",
 			Expected: &ReplicaSharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SignalRName:                   "signalRValue",
-				ReplicaName:                   "replicaValue",
-				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
+				SignalRName:                   "resourceName",
+				ReplicaName:                   "replicaName",
+				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/replicas/replicaValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceName/replicas/replicaName/sharedPrivateLinkResources/sharedPrivateLinkResourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/rEpLiCaS/rEpLiCaVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE/rEpLiCaS/rEpLiCaNaMe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeNaMe",
 			Expected: &ReplicaSharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				SignalRName:                   "sIgNaLrVaLuE",
-				ReplicaName:                   "rEpLiCaVaLuE",
-				SharedPrivateLinkResourceName: "sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
+				SignalRName:                   "rEsOuRcEnAmE",
+				ReplicaName:                   "rEpLiCaNaMe",
+				SharedPrivateLinkResourceName: "sHaReDpRiVaTeLiNkReSoUrCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/rEpLiCaS/rEpLiCaVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEnAmE/rEpLiCaS/rEpLiCaNaMe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeNaMe/extra",
 			Error: true,
 		},
 	}

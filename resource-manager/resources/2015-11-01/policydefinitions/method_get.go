@@ -45,7 +45,6 @@ func (c PolicyDefinitionsClient) Get(ctx context.Context, id PolicydefinitionId)
 
 	var model PolicyDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

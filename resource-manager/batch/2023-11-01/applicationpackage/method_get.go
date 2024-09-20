@@ -45,7 +45,6 @@ func (c ApplicationPackageClient) Get(ctx context.Context, id VersionId) (result
 
 	var model ApplicationPackage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -73,7 +73,7 @@ func (c ExternalSecuritySolutionsClient) ListByHomeRegion(ctx context.Context, i
 	temp := make([]ExternalSecuritySolution, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalExternalSecuritySolutionImplementation(v)
+			val, err := UnmarshalExternalSecuritySolutionImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for ExternalSecuritySolution (%q): %+v", i, v, err)
 				return result, err

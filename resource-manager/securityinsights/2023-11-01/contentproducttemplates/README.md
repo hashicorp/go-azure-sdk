@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/contentproducttemplates` Documentation
 
-The `contentproducttemplates` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2023-11-01`).
+The `contentproducttemplates` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := contentproducttemplates.NewContentProductTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
+id := contentproducttemplates.NewContentProductTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "templateId")
 
 read, err := client.ProductTemplateGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contentproducttemplates.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := contentproducttemplates.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.ProductTemplatesList(ctx, id, contentproducttemplates.DefaultProductTemplatesListOperationOptions())` can be used to do batched pagination
 items, err := client.ProductTemplatesListComplete(ctx, id, contentproducttemplates.DefaultProductTemplatesListOperationOptions())

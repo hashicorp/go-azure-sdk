@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/privateendpointconnections` Documentation
 
-The `privateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `privateendpointconnections` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateEndpointConnectionName")
 
 payload := privateendpointconnections.PrivateEndpointConnectionRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.PrivateEndpointConnectionCreateOrUpdateThenPoll(ctx, id, payloa
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateEndpointConnectionName")
 
 if err := client.PrivateEndpointConnectionDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.PrivateEndpointConnectionDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateEndpointConnectionName")
 
 read, err := client.PrivateEndpointConnectionGetByName(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "privateLinkResourceValue")
+id := privateendpointconnections.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateLinkSubResourceName")
 
 read, err := client.PrivateEndpointConnectionGetPrivateLinkResource(ctx, id)
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := privateendpointconnections.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 read, err := client.PrivateEndpointConnectionListByService(ctx, id)
 if err != nil {
@@ -101,7 +101,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := privateendpointconnections.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 read, err := client.PrivateEndpointConnectionListPrivateLinkResources(ctx, id)
 if err != nil {

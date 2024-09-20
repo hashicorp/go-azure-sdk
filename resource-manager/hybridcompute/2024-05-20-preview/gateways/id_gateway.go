@@ -42,7 +42,7 @@ func ParseGatewayID(input string) (*GatewayId, error) {
 	}
 
 	id := GatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseGatewayIDInsensitively(input string) (*GatewayId, error) {
 	}
 
 	id := GatewayId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id GatewayId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticGateways", "gateways", "gateways"),
-		resourceids.UserSpecifiedSegment("gatewayName", "gatewayValue"),
+		resourceids.UserSpecifiedSegment("gatewayName", "gatewayName"),
 	}
 }
 

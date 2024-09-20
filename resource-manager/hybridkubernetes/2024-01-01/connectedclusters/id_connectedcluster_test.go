@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectedClusterId{}
 
 func TestNewConnectedClusterID(t *testing.T) {
-	id := NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedClusterValue")
+	id := NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewConnectedClusterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConnectedClusterName != "connectedClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectedClusterName'", id.ConnectedClusterName, "connectedClusterValue")
+	if id.ConnectedClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectedClusterName'", id.ConnectedClusterName, "clusterName")
 	}
 }
 
 func TestFormatConnectedClusterID(t *testing.T) {
-	actual := NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedClusterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/connectedClusterValue"
+	actual := NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/clusterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseConnectedClusterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/connectedClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/clusterName",
 			Expected: &ConnectedClusterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ConnectedClusterName: "connectedClusterValue",
+				ConnectedClusterName: "clusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/connectedClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/clusterName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseConnectedClusterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/connectedClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/clusterName",
 			Expected: &ConnectedClusterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ConnectedClusterName: "connectedClusterValue",
+				ConnectedClusterName: "clusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/connectedClusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kubernetes/connectedClusters/clusterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUbErNeTeS/cOnNeCtEdClUsTeRs/cOnNeCtEdClUsTeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUbErNeTeS/cOnNeCtEdClUsTeRs/cLuStErNaMe",
 			Expected: &ConnectedClusterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ConnectedClusterName: "cOnNeCtEdClUsTeRvAlUe",
+				ConnectedClusterName: "cLuStErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUbErNeTeS/cOnNeCtEdClUsTeRs/cOnNeCtEdClUsTeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUbErNeTeS/cOnNeCtEdClUsTeRs/cLuStErNaMe/extra",
 			Error: true,
 		},
 	}

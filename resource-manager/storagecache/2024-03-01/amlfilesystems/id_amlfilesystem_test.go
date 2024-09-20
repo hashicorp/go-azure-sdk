@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AmlFilesystemId{}
 
 func TestNewAmlFilesystemID(t *testing.T) {
-	id := NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue")
+	id := NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAmlFilesystemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AmlFilesystemName != "amlFilesystemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AmlFilesystemName'", id.AmlFilesystemName, "amlFilesystemValue")
+	if id.AmlFilesystemName != "amlFilesystemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AmlFilesystemName'", id.AmlFilesystemName, "amlFilesystemName")
 	}
 }
 
 func TestFormatAmlFilesystemID(t *testing.T) {
-	actual := NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue"
+	actual := NewAmlFilesystemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "amlFilesystemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAmlFilesystemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName",
 			Expected: &AmlFilesystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AmlFilesystemName: "amlFilesystemValue",
+				AmlFilesystemName: "amlFilesystemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAmlFilesystemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName",
 			Expected: &AmlFilesystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AmlFilesystemName: "amlFilesystemValue",
+				AmlFilesystemName: "amlFilesystemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/amlFilesystems/amlFilesystemName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe",
 			Expected: &AmlFilesystemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AmlFilesystemName: "aMlFiLeSyStEmVaLuE",
+				AmlFilesystemName: "aMlFiLeSyStEmNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/aMlFiLeSyStEmS/aMlFiLeSyStEmNaMe/extra",
 			Error: true,
 		},
 	}

@@ -17,9 +17,20 @@ type SsisProject struct {
 	Version         *int64                      `json:"version,omitempty"`
 
 	// Fields inherited from SsisObjectMetadata
-	Description *string `json:"description,omitempty"`
-	Id          *int64  `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
+
+	Description *string                `json:"description,omitempty"`
+	Id          *int64                 `json:"id,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Type        SsisObjectMetadataType `json:"type"`
+}
+
+func (s SsisProject) SsisObjectMetadata() BaseSsisObjectMetadataImpl {
+	return BaseSsisObjectMetadataImpl{
+		Description: s.Description,
+		Id:          s.Id,
+		Name:        s.Name,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = SsisProject{}
@@ -33,9 +44,10 @@ func (s SsisProject) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SsisProject: %+v", err)
 	}
+
 	decoded["type"] = "Project"
 
 	encoded, err = json.Marshal(decoded)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &LocationId{}
 
 func TestNewLocationID(t *testing.T) {
-	id := NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+	id := NewLocationID("12345678-1234-9876-4563-123456789012", "azureRegion")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "azureRegion" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "azureRegion")
 	}
 }
 
 func TestFormatLocationID(t *testing.T) {
-	actual := NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/locationValue"
+	actual := NewLocationID("12345678-1234-9876-4563-123456789012", "azureRegion").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/azureRegion"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseLocationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/azureRegion",
 			Expected: &LocationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
+				LocationName:   "azureRegion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/locationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/azureRegion/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/azureRegion",
 			Expected: &LocationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "locationValue",
+				LocationName:   "azureRegion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/locationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.RecoveryServices/locations/azureRegion/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/lOcAtIoNs/aZuReReGiOn",
 			Expected: &LocationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "lOcAtIoNvAlUe",
+				LocationName:   "aZuReReGiOn",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/lOcAtIoNs/lOcAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/lOcAtIoNs/aZuReReGiOn/extra",
 			Error: true,
 		},
 	}

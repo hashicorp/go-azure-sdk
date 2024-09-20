@@ -15,7 +15,7 @@ type IncidentEntitiesClient struct {
 }
 
 func NewIncidentEntitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentEntitiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "incidententities", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "incidententities", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IncidentEntitiesClient: %+v", err)
 	}

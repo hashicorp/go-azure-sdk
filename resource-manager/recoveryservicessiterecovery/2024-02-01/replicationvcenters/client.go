@@ -15,7 +15,7 @@ type ReplicationvCentersClient struct {
 }
 
 func NewReplicationvCentersClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationvCentersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationvcenters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationvcenters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationvCentersClient: %+v", err)
 	}

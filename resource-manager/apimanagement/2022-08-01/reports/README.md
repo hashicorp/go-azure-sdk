@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/reports` Documentation
 
-The `reports` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2022-08-01`).
+The `reports` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2022-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByApi(ctx, id, reports.DefaultListByApiOperationOptions())` can be used to do batched pagination
 items, err := client.ListByApiComplete(ctx, id, reports.DefaultListByApiOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByGeo(ctx, id, reports.DefaultListByGeoOperationOptions())` can be used to do batched pagination
 items, err := client.ListByGeoComplete(ctx, id, reports.DefaultListByGeoOperationOptions())
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByOperation(ctx, id, reports.DefaultListByOperationOperationOptions())` can be used to do batched pagination
 items, err := client.ListByOperationComplete(ctx, id, reports.DefaultListByOperationOperationOptions())
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByProduct(ctx, id, reports.DefaultListByProductOperationOptions())` can be used to do batched pagination
 items, err := client.ListByProductComplete(ctx, id, reports.DefaultListByProductOperationOptions())
@@ -92,7 +92,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 read, err := client.ListByRequest(ctx, id, reports.DefaultListByRequestOperationOptions())
 if err != nil {
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListBySubscription(ctx, id, reports.DefaultListBySubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id, reports.DefaultListBySubscriptionOperationOptions())
@@ -125,7 +125,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByTime(ctx, id, reports.DefaultListByTimeOperationOptions())` can be used to do batched pagination
 items, err := client.ListByTimeComplete(ctx, id, reports.DefaultListByTimeOperationOptions())
@@ -142,7 +142,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := reports.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByUser(ctx, id, reports.DefaultListByUserOperationOptions())` can be used to do batched pagination
 items, err := client.ListByUserComplete(ctx, id, reports.DefaultListByUserOperationOptions())

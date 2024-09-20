@@ -49,7 +49,6 @@ func (c DscNodeClient) Update(ctx context.Context, id NodeId, input DscNodeUpdat
 
 	var model DscNode
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccountAssociationId{}
 
 func TestNewAccountAssociationID(t *testing.T) {
-	id := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
+	id := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName", "commitmentPlanAssociationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAccountAssociationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CommitmentPlanName != "commitmentPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanName'", id.CommitmentPlanName, "commitmentPlanValue")
+	if id.CommitmentPlanName != "commitmentPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanName'", id.CommitmentPlanName, "commitmentPlanName")
 	}
 
-	if id.AccountAssociationName != "accountAssociationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountAssociationName'", id.AccountAssociationName, "accountAssociationValue")
+	if id.AccountAssociationName != "commitmentPlanAssociationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountAssociationName'", id.AccountAssociationName, "commitmentPlanAssociationName")
 	}
 }
 
 func TestFormatAccountAssociationID(t *testing.T) {
-	actual := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue"
+	actual := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName", "commitmentPlanAssociationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations/commitmentPlanAssociationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAccountAssociationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations/commitmentPlanAssociationName",
 			Expected: &AccountAssociationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				CommitmentPlanName:     "commitmentPlanValue",
-				AccountAssociationName: "accountAssociationValue",
+				CommitmentPlanName:     "commitmentPlanName",
+				AccountAssociationName: "commitmentPlanAssociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations/commitmentPlanAssociationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAccountAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE/aCcOuNtAsSoCiAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations/commitmentPlanAssociationName",
 			Expected: &AccountAssociationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				CommitmentPlanName:     "commitmentPlanValue",
-				AccountAssociationName: "accountAssociationValue",
+				CommitmentPlanName:     "commitmentPlanName",
+				AccountAssociationName: "commitmentPlanAssociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/accountAssociations/commitmentPlanAssociationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/aCcOuNtAsSoCiAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE/aCcOuNtAsSoCiAtIoNs/cOmMiTmEnTpLaNaSsOcIaTiOnNaMe",
 			Expected: &AccountAssociationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				CommitmentPlanName:     "cOmMiTmEnTpLaNvAlUe",
-				AccountAssociationName: "aCcOuNtAsSoCiAtIoNvAlUe",
+				CommitmentPlanName:     "cOmMiTmEnTpLaNnAmE",
+				AccountAssociationName: "cOmMiTmEnTpLaNaSsOcIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/aCcOuNtAsSoCiAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE/aCcOuNtAsSoCiAtIoNs/cOmMiTmEnTpLaNaSsOcIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

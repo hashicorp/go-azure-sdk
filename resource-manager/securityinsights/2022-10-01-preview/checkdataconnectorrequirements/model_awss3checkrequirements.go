@@ -13,6 +13,14 @@ var _ DataConnectorsCheckRequirements = AwsS3CheckRequirements{}
 type AwsS3CheckRequirements struct {
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s AwsS3CheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AwsS3CheckRequirements{}
@@ -26,9 +34,10 @@ func (s AwsS3CheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AwsS3CheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "AmazonWebServicesS3"
 
 	encoded, err = json.Marshal(decoded)

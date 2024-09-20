@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/privatelinkresources` Documentation
 
-The `privatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `postgresqlhsc` (API Version `2022-11-08`).
+The `privatelinkresources` SDK allows for interaction with Azure Resource Manager `postgresqlhsc` (API Version `2022-11-08`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "privateLinkResourceValue")
+id := privatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "privateLinkResourceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privatelinkresources.NewServerGroupsv2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value")
+id := privatelinkresources.NewServerGroupsv2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
 
 read, err := client.ListByCluster(ctx, id)
 if err != nil {

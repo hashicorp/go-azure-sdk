@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2022-01-01-preview/namespacesnetworksecurityperimeterconfigurations` Documentation
 
-The `namespacesnetworksecurityperimeterconfigurations` SDK allows for interaction with the Azure Resource Manager Service `eventhub` (API Version `2022-01-01-preview`).
+The `namespacesnetworksecurityperimeterconfigurations` SDK allows for interaction with Azure Resource Manager `eventhub` (API Version `2022-01-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := namespacesnetworksecurityperimeterconfigurations.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+id := namespacesnetworksecurityperimeterconfigurations.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
 
 read, err := client.NetworkSecurityPerimeterConfigurationList(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "networkSecurityPerimeterConfigurationValue")
+id := namespacesnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "resourceAssociationName")
 
 if err := client.NetworkSecurityPerimeterConfigurationsCreateOrUpdateThenPoll(ctx, id); err != nil {
 	// handle the error

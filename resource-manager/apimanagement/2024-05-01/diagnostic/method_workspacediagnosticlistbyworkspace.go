@@ -41,6 +41,7 @@ func (o WorkspaceDiagnosticListByWorkspaceOperationOptions) ToHeaders() *client.
 
 func (o WorkspaceDiagnosticListByWorkspaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

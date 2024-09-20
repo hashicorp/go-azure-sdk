@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplianceSpecificDetails interface {
+	ApplianceSpecificDetails() BaseApplianceSpecificDetailsImpl
 }
 
-// RawApplianceSpecificDetailsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ApplianceSpecificDetails = BaseApplianceSpecificDetailsImpl{}
+
+type BaseApplianceSpecificDetailsImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseApplianceSpecificDetailsImpl) ApplianceSpecificDetails() BaseApplianceSpecificDetailsImpl {
+	return s
+}
+
+var _ ApplianceSpecificDetails = RawApplianceSpecificDetailsImpl{}
+
+// RawApplianceSpecificDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawApplianceSpecificDetailsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	applianceSpecificDetails BaseApplianceSpecificDetailsImpl
+	Type                     string
+	Values                   map[string]interface{}
 }
 
-func unmarshalApplianceSpecificDetailsImplementation(input []byte) (ApplianceSpecificDetails, error) {
+func (s RawApplianceSpecificDetailsImpl) ApplianceSpecificDetails() BaseApplianceSpecificDetailsImpl {
+	return s.applianceSpecificDetails
+}
+
+func UnmarshalApplianceSpecificDetailsImplementation(input []byte) (ApplianceSpecificDetails, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalApplianceSpecificDetailsImplementation(input []byte) (ApplianceSpe
 		return out, nil
 	}
 
-	out := RawApplianceSpecificDetailsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseApplianceSpecificDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseApplianceSpecificDetailsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawApplianceSpecificDetailsImpl{
+		applianceSpecificDetails: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
 
 }

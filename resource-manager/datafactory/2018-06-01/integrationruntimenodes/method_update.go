@@ -49,7 +49,6 @@ func (c IntegrationRuntimeNodesClient) Update(ctx context.Context, id NodeId, in
 
 	var model SelfHostedIntegrationRuntimeNode
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

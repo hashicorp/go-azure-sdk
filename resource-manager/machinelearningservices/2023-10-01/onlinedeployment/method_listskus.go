@@ -40,6 +40,7 @@ func (o ListSkusOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListSkusOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

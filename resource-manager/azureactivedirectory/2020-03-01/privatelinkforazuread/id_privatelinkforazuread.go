@@ -42,7 +42,7 @@ func ParsePrivateLinkForAzureAdID(input string) (*PrivateLinkForAzureAdId, error
 	}
 
 	id := PrivateLinkForAzureAdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParsePrivateLinkForAzureAdIDInsensitively(input string) (*PrivateLinkForAzu
 	}
 
 	id := PrivateLinkForAzureAdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id PrivateLinkForAzureAdId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAADIAM", "Microsoft.AADIAM", "Microsoft.AADIAM"),
 		resourceids.StaticSegment("staticPrivateLinkForAzureAd", "privateLinkForAzureAd", "privateLinkForAzureAd"),
-		resourceids.UserSpecifiedSegment("privateLinkForAzureAdName", "privateLinkForAzureAdValue"),
+		resourceids.UserSpecifiedSegment("privateLinkForAzureAdName", "policyName"),
 	}
 }
 

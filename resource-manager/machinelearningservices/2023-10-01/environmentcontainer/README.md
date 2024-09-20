@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2023-10-01/environmentcontainer` Documentation
 
-The `environmentcontainer` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2023-10-01`).
+The `environmentcontainer` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue")
+id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := environmentcontainer.EnvironmentContainerResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue")
+id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue")
+id := environmentcontainer.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := environmentcontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, environmentcontainer.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, environmentcontainer.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "environmentValue")
+id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName")
 
 payload := environmentcontainer.EnvironmentContainerResource{
 	// ...
@@ -111,7 +111,7 @@ if err := client.RegistryEnvironmentContainersCreateOrUpdateThenPoll(ctx, id, pa
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "environmentValue")
+id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName")
 
 if err := client.RegistryEnvironmentContainersDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -123,7 +123,7 @@ if err := client.RegistryEnvironmentContainersDeleteThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "environmentValue")
+id := environmentcontainer.NewRegistryEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName")
 
 read, err := client.RegistryEnvironmentContainersGet(ctx, id)
 if err != nil {
@@ -139,7 +139,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentcontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue")
+id := environmentcontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName")
 
 // alternatively `client.RegistryEnvironmentContainersList(ctx, id, environmentcontainer.DefaultRegistryEnvironmentContainersListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryEnvironmentContainersListComplete(ctx, id, environmentcontainer.DefaultRegistryEnvironmentContainersListOperationOptions())

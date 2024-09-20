@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConfigConnectionId{}
 
 func TestNewConfigConnectionID(t *testing.T) {
-	id := NewConfigConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayValue", "configConnectionValue")
+	id := NewConfigConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayName", "configConnectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConfigConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.GatewayName != "gatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GatewayName'", id.GatewayName, "gatewayValue")
+	if id.GatewayName != "gatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GatewayName'", id.GatewayName, "gatewayName")
 	}
 
-	if id.ConfigConnectionName != "configConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigConnectionName'", id.ConfigConnectionName, "configConnectionValue")
+	if id.ConfigConnectionName != "configConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigConnectionName'", id.ConfigConnectionName, "configConnectionName")
 	}
 }
 
 func TestFormatConfigConnectionID(t *testing.T) {
-	actual := NewConfigConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayValue", "configConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections/configConnectionValue"
+	actual := NewConfigConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "gatewayName", "configConnectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections/configConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConfigConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections/configConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections/configConnectionName",
 			Expected: &ConfigConnectionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				GatewayName:          "gatewayValue",
-				ConfigConnectionName: "configConnectionValue",
+				GatewayName:          "gatewayName",
+				ConfigConnectionName: "configConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections/configConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections/configConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConfigConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyVaLuE/cOnFiGcOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyNaMe/cOnFiGcOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections/configConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections/configConnectionName",
 			Expected: &ConfigConnectionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				GatewayName:          "gatewayValue",
-				ConfigConnectionName: "configConnectionValue",
+				GatewayName:          "gatewayName",
+				ConfigConnectionName: "configConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayValue/configConnections/configConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/gateways/gatewayName/configConnections/configConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyVaLuE/cOnFiGcOnNeCtIoNs/cOnFiGcOnNeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyNaMe/cOnFiGcOnNeCtIoNs/cOnFiGcOnNeCtIoNnAmE",
 			Expected: &ConfigConnectionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				GatewayName:          "gAtEwAyVaLuE",
-				ConfigConnectionName: "cOnFiGcOnNeCtIoNvAlUe",
+				GatewayName:          "gAtEwAyNaMe",
+				ConfigConnectionName: "cOnFiGcOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyVaLuE/cOnFiGcOnNeCtIoNs/cOnFiGcOnNeCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/gAtEwAyS/gAtEwAyNaMe/cOnFiGcOnNeCtIoNs/cOnFiGcOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

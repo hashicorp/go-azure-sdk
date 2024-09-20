@@ -15,7 +15,7 @@ type MetadataSchemasClient struct {
 }
 
 func NewMetadataSchemasClientWithBaseURI(sdkApi sdkEnv.Api) (*MetadataSchemasClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "metadataschemas", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "metadataschemas", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MetadataSchemasClient: %+v", err)
 	}

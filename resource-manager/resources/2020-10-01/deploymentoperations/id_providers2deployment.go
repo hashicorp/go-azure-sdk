@@ -40,7 +40,7 @@ func ParseProviders2DeploymentID(input string) (*Providers2DeploymentId, error) 
 	}
 
 	id := Providers2DeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseProviders2DeploymentIDInsensitively(input string) (*Providers2Deployme
 	}
 
 	id := Providers2DeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,11 +105,11 @@ func (id Providers2DeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftManagement", "Microsoft.Management", "Microsoft.Management"),
 		resourceids.StaticSegment("staticManagementGroups", "managementGroups", "managementGroups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResources", "Microsoft.Resources", "Microsoft.Resources"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
-		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
+		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
 	}
 }
 

@@ -40,7 +40,7 @@ func ParseCustomerID(input string) (*CustomerId, error) {
 	}
 
 	id := CustomerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseCustomerIDInsensitively(input string) (*CustomerId, error) {
 	}
 
 	id := CustomerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id CustomerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticCustomers", "customers", "customers"),
-		resourceids.UserSpecifiedSegment("customerName", "customerValue"),
+		resourceids.UserSpecifiedSegment("customerName", "customerName"),
 	}
 }
 

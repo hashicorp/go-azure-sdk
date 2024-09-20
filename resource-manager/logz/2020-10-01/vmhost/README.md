@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/logz/2020-10-01/vmhost` Documentation
 
-The `vmhost` SDK allows for interaction with the Azure Resource Manager Service `logz` (API Version `2020-10-01`).
+The `vmhost` SDK allows for interaction with Azure Resource Manager `logz` (API Version `2020-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 payload := vmhost.VMHostUpdateRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 // alternatively `client.MonitorListVMHosts(ctx, id)` can be used to do batched pagination
 items, err := client.MonitorListVMHostsComplete(ctx, id)
@@ -63,7 +63,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+id := vmhost.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName")
 
 read, err := client.MonitorVMHostPayload(ctx, id)
 if err != nil {
@@ -79,7 +79,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 payload := vmhost.VMHostUpdateRequest{
 	// ...
@@ -101,7 +101,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 // alternatively `client.SubAccountListVMHosts(ctx, id)` can be used to do batched pagination
 items, err := client.SubAccountListVMHostsComplete(ctx, id)
@@ -118,7 +118,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "accountValue")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
 
 read, err := client.SubAccountVMHostPayload(ctx, id)
 if err != nil {

@@ -45,7 +45,6 @@ func (c MarketplaceRegistrationDefinitionsClient) WithoutScopeGet(ctx context.Co
 
 	var model MarketplaceRegistrationDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

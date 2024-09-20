@@ -15,7 +15,7 @@ type MobileNetworksClient struct {
 }
 
 func NewMobileNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*MobileNetworksClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mobilenetworks", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "mobilenetworks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MobileNetworksClient: %+v", err)
 	}

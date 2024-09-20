@@ -15,7 +15,7 @@ type HyperVJobsClient struct {
 }
 
 func NewHyperVJobsClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVJobsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hypervjobs", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hypervjobs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVJobsClient: %+v", err)
 	}

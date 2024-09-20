@@ -15,7 +15,7 @@ type AddressClient struct {
 }
 
 func NewAddressClientWithBaseURI(sdkApi sdkEnv.Api) (*AddressClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "address", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "address", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AddressClient: %+v", err)
 	}

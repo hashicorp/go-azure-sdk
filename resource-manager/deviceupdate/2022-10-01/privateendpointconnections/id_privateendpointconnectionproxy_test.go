@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateEndpointConnectionProxyId{}
 
 func TestNewPrivateEndpointConnectionProxyID(t *testing.T) {
-	id := NewPrivateEndpointConnectionProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionProxyIdValue")
+	id := NewPrivateEndpointConnectionProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateEndpointConnectionProxyId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPrivateEndpointConnectionProxyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.PrivateEndpointConnectionProxyId != "privateEndpointConnectionProxyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionProxyId'", id.PrivateEndpointConnectionProxyId, "privateEndpointConnectionProxyIdValue")
+	if id.PrivateEndpointConnectionProxyId != "privateEndpointConnectionProxyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateEndpointConnectionProxyId'", id.PrivateEndpointConnectionProxyId, "privateEndpointConnectionProxyId")
 	}
 }
 
 func TestFormatPrivateEndpointConnectionProxyID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionProxyIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies/privateEndpointConnectionProxyIdValue"
+	actual := NewPrivateEndpointConnectionProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateEndpointConnectionProxyId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies/privateEndpointConnectionProxyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePrivateEndpointConnectionProxyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies/privateEndpointConnectionProxyIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies/privateEndpointConnectionProxyId",
 			Expected: &PrivateEndpointConnectionProxyId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				AccountName:                      "accountValue",
-				PrivateEndpointConnectionProxyId: "privateEndpointConnectionProxyIdValue",
+				AccountName:                      "accountName",
+				PrivateEndpointConnectionProxyId: "privateEndpointConnectionProxyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies/privateEndpointConnectionProxyIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies/privateEndpointConnectionProxyId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePrivateEndpointConnectionProxyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtNaMe/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies/privateEndpointConnectionProxyIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies/privateEndpointConnectionProxyId",
 			Expected: &PrivateEndpointConnectionProxyId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				AccountName:                      "accountValue",
-				PrivateEndpointConnectionProxyId: "privateEndpointConnectionProxyIdValue",
+				AccountName:                      "accountName",
+				PrivateEndpointConnectionProxyId: "privateEndpointConnectionProxyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountValue/privateEndpointConnectionProxies/privateEndpointConnectionProxyIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DeviceUpdate/accounts/accountName/privateEndpointConnectionProxies/privateEndpointConnectionProxyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtNaMe/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiD",
 			Expected: &PrivateEndpointConnectionProxyId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:                      "aCcOuNtVaLuE",
-				PrivateEndpointConnectionProxyId: "pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiDvAlUe",
+				AccountName:                      "aCcOuNtNaMe",
+				PrivateEndpointConnectionProxyId: "pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEuPdAtE/aCcOuNtS/aCcOuNtNaMe/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxIeS/pRiVaTeEnDpOiNtCoNnEcTiOnPrOxYiD/extra",
 			Error: true,
 		},
 	}

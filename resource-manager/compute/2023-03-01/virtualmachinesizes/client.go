@@ -15,7 +15,7 @@ type VirtualMachineSizesClient struct {
 }
 
 func NewVirtualMachineSizesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineSizesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachinesizes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachinesizes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineSizesClient: %+v", err)
 	}

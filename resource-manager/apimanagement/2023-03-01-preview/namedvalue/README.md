@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-03-01-preview/namedvalue` Documentation
 
-The `namedvalue` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-03-01-preview`).
+The `namedvalue` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-03-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 payload := namedvalue.NamedValueCreateContract{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload, namedvalue.DefaultCrea
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 read, err := client.Delete(ctx, id, namedvalue.DefaultDeleteOperationOptions())
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := namedvalue.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id, namedvalue.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, namedvalue.DefaultListByServiceOperationOptions())
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 read, err := client.ListValue(ctx, id)
 if err != nil {
@@ -122,7 +122,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 if err := client.RefreshSecretThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -134,7 +134,7 @@ if err := client.RefreshSecretThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "namedValueIdValue")
+id := namedvalue.NewNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "namedValueId")
 
 payload := namedvalue.NamedValueUpdateParameters{
 	// ...
@@ -151,7 +151,7 @@ if err := client.UpdateThenPoll(ctx, id, payload, namedvalue.DefaultUpdateOperat
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 payload := namedvalue.NamedValueCreateContract{
 	// ...
@@ -168,7 +168,7 @@ if err := client.WorkspaceNamedValueCreateOrUpdateThenPoll(ctx, id, payload, nam
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 read, err := client.WorkspaceNamedValueDelete(ctx, id, namedvalue.DefaultWorkspaceNamedValueDeleteOperationOptions())
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 read, err := client.WorkspaceNamedValueGet(ctx, id)
 if err != nil {
@@ -200,7 +200,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 read, err := client.WorkspaceNamedValueGetEntityTag(ctx, id)
 if err != nil {
@@ -216,7 +216,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := namedvalue.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceNamedValueListByService(ctx, id, namedvalue.DefaultWorkspaceNamedValueListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceNamedValueListByServiceComplete(ctx, id, namedvalue.DefaultWorkspaceNamedValueListByServiceOperationOptions())
@@ -233,7 +233,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 read, err := client.WorkspaceNamedValueListValue(ctx, id)
 if err != nil {
@@ -249,7 +249,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 if err := client.WorkspaceNamedValueRefreshSecretThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -261,7 +261,7 @@ if err := client.WorkspaceNamedValueRefreshSecretThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "namedValueIdValue")
+id := namedvalue.NewWorkspaceNamedValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "namedValueId")
 
 payload := namedvalue.NamedValueUpdateParameters{
 	// ...

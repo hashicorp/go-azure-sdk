@@ -42,7 +42,7 @@ func ParseJitRequestID(input string) (*JitRequestId, error) {
 	}
 
 	id := JitRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseJitRequestIDInsensitively(input string) (*JitRequestId, error) {
 	}
 
 	id := JitRequestId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id JitRequestId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSolutions", "Microsoft.Solutions", "Microsoft.Solutions"),
 		resourceids.StaticSegment("staticJitRequests", "jitRequests", "jitRequests"),
-		resourceids.UserSpecifiedSegment("jitRequestName", "jitRequestValue"),
+		resourceids.UserSpecifiedSegment("jitRequestName", "jitRequestName"),
 	}
 }
 

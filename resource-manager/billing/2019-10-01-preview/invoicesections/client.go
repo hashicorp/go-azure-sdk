@@ -15,7 +15,7 @@ type InvoiceSectionsClient struct {
 }
 
 func NewInvoiceSectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*InvoiceSectionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "invoicesections", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "invoicesections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating InvoiceSectionsClient: %+v", err)
 	}

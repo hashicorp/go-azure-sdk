@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2023-10-01/operationalizationclusters` Documentation
 
-The `operationalizationclusters` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2023-10-01`).
+The `operationalizationclusters` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 payload := operationalizationclusters.ComputeResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ComputeCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 if err := client.ComputeDeleteThenPoll(ctx, id, operationalizationclusters.DefaultComputeDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.ComputeDeleteThenPoll(ctx, id, operationalizationclusters.Defau
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 read, err := client.ComputeGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := operationalizationclusters.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.ComputeList(ctx, id, operationalizationclusters.DefaultComputeListOperationOptions())` can be used to do batched pagination
 items, err := client.ComputeListComplete(ctx, id, operationalizationclusters.DefaultComputeListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 read, err := client.ComputeListKeys(ctx, id)
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 if err := client.ComputeRestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -114,7 +114,7 @@ if err := client.ComputeRestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 if err := client.ComputeStartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -126,7 +126,7 @@ if err := client.ComputeStartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 if err := client.ComputeStopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -138,7 +138,7 @@ if err := client.ComputeStopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "computeName")
 
 payload := operationalizationclusters.ClusterUpdateParameters{
 	// ...

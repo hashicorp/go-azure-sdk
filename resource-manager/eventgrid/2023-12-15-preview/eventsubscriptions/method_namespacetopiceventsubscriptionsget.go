@@ -45,7 +45,6 @@ func (c EventSubscriptionsClient) NamespaceTopicEventSubscriptionsGet(ctx contex
 
 	var model Subscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseEdgeModuleID(input string) (*EdgeModuleId, error) {
 	}
 
 	id := EdgeModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseEdgeModuleIDInsensitively(input string) (*EdgeModuleId, error) {
 	}
 
 	id := EdgeModuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id EdgeModuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticVideoAnalyzers", "videoAnalyzers", "videoAnalyzers"),
-		resourceids.UserSpecifiedSegment("videoAnalyzerName", "videoAnalyzerValue"),
+		resourceids.UserSpecifiedSegment("videoAnalyzerName", "accountName"),
 		resourceids.StaticSegment("staticEdgeModules", "edgeModules", "edgeModules"),
-		resourceids.UserSpecifiedSegment("edgeModuleName", "edgeModuleValue"),
+		resourceids.UserSpecifiedSegment("edgeModuleName", "edgeModuleName"),
 	}
 }
 

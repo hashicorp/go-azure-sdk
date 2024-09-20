@@ -42,7 +42,7 @@ func ParseCustomApiID(input string) (*CustomApiId, error) {
 	}
 
 	id := CustomApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseCustomApiIDInsensitively(input string) (*CustomApiId, error) {
 	}
 
 	id := CustomApiId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id CustomApiId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticCustomApis", "customApis", "customApis"),
-		resourceids.UserSpecifiedSegment("customApiName", "customApiValue"),
+		resourceids.UserSpecifiedSegment("customApiName", "apiName"),
 	}
 }
 

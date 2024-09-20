@@ -18,6 +18,14 @@ type AzureFileShareRecoveryPoint struct {
 	RecoveryPointType       *string                  `json:"recoveryPointType,omitempty"`
 
 	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}
+
+func (s AzureFileShareRecoveryPoint) RecoveryPoint() BaseRecoveryPointImpl {
+	return BaseRecoveryPointImpl{
+		ObjectType: s.ObjectType,
+	}
 }
 
 var _ json.Marshaler = AzureFileShareRecoveryPoint{}
@@ -31,9 +39,10 @@ func (s AzureFileShareRecoveryPoint) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureFileShareRecoveryPoint: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureFileShareRecoveryPoint"
 
 	encoded, err = json.Marshal(decoded)

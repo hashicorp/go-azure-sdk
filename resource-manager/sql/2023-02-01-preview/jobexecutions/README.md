@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-02-01-preview/jobexecutions` Documentation
 
-The `jobexecutions` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-02-01-preview`).
+The `jobexecutions` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-02-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "jobExecutionIdValue")
+id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobExecutionId")
 
 read, err := client.Cancel(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue")
+id := jobexecutions.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName")
 
 if err := client.CreateThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -52,7 +52,7 @@ if err := client.CreateThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "jobExecutionIdValue")
+id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobExecutionId")
 
 if err := client.CreateOrUpdateThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -64,7 +64,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue", "jobExecutionIdValue")
+id := jobexecutions.NewExecutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobExecutionId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewJobAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue")
+id := jobexecutions.NewJobAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName")
 
 // alternatively `client.ListByAgent(ctx, id, jobexecutions.DefaultListByAgentOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAgentComplete(ctx, id, jobexecutions.DefaultListByAgentOperationOptions())
@@ -97,7 +97,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jobexecutions.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "jobAgentValue", "jobValue")
+id := jobexecutions.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName")
 
 // alternatively `client.ListByJob(ctx, id, jobexecutions.DefaultListByJobOperationOptions())` can be used to do batched pagination
 items, err := client.ListByJobComplete(ctx, id, jobexecutions.DefaultListByJobOperationOptions())

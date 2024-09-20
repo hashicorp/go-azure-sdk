@@ -15,7 +15,7 @@ type ResetCifsPasswordClient struct {
 }
 
 func NewResetCifsPasswordClientWithBaseURI(sdkApi sdkEnv.Api) (*ResetCifsPasswordClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "resetcifspassword", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "resetcifspassword", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ResetCifsPasswordClient: %+v", err)
 	}

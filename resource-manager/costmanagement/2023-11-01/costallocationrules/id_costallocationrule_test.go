@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &CostAllocationRuleId{}
 
 func TestNewCostAllocationRuleID(t *testing.T) {
-	id := NewCostAllocationRuleID("billingAccountIdValue", "costAllocationRuleValue")
+	id := NewCostAllocationRuleID("billingAccountId", "ruleName")
 
-	if id.BillingAccountId != "billingAccountIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountIdValue")
+	if id.BillingAccountId != "billingAccountId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountId")
 	}
 
-	if id.CostAllocationRuleName != "costAllocationRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CostAllocationRuleName'", id.CostAllocationRuleName, "costAllocationRuleValue")
+	if id.CostAllocationRuleName != "ruleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CostAllocationRuleName'", id.CostAllocationRuleName, "ruleName")
 	}
 }
 
 func TestFormatCostAllocationRuleID(t *testing.T) {
-	actual := NewCostAllocationRuleID("billingAccountIdValue", "costAllocationRuleValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleValue"
+	actual := NewCostAllocationRuleID("billingAccountId", "ruleName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParseCostAllocationRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName",
 			Expected: &CostAllocationRuleId{
-				BillingAccountId:       "billingAccountIdValue",
-				CostAllocationRuleName: "costAllocationRuleValue",
+				BillingAccountId:       "billingAccountId",
+				CostAllocationRuleName: "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParseCostAllocationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/pRoViDeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName",
 			Expected: &CostAllocationRuleId{
-				BillingAccountId:       "billingAccountIdValue",
-				CostAllocationRuleName: "costAllocationRuleValue",
+				BillingAccountId:       "billingAccountId",
+				CostAllocationRuleName: "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountIdValue/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/cOsTaLlOcAtIoNrUlEvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/rUlEnAmE",
 			Expected: &CostAllocationRuleId{
-				BillingAccountId:       "bIlLiNgAcCoUnTiDvAlUe",
-				CostAllocationRuleName: "cOsTaLlOcAtIoNrUlEvAlUe",
+				BillingAccountId:       "bIlLiNgAcCoUnTiD",
+				CostAllocationRuleName: "rUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiDvAlUe/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/cOsTaLlOcAtIoNrUlEvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/rUlEnAmE/extra",
 			Error: true,
 		},
 	}

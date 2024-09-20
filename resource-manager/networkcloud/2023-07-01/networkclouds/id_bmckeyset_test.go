@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BmcKeySetId{}
 
 func TestNewBmcKeySetID(t *testing.T) {
-	id := NewBmcKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "bmcKeySetValue")
+	id := NewBmcKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "bmcKeySetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewBmcKeySetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.BmcKeySetName != "bmcKeySetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BmcKeySetName'", id.BmcKeySetName, "bmcKeySetValue")
+	if id.BmcKeySetName != "bmcKeySetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BmcKeySetName'", id.BmcKeySetName, "bmcKeySetName")
 	}
 }
 
 func TestFormatBmcKeySetID(t *testing.T) {
-	actual := NewBmcKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "bmcKeySetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets/bmcKeySetValue"
+	actual := NewBmcKeySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "bmcKeySetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets/bmcKeySetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseBmcKeySetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets/bmcKeySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets/bmcKeySetName",
 			Expected: &BmcKeySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				BmcKeySetName:     "bmcKeySetValue",
+				ClusterName:       "clusterName",
+				BmcKeySetName:     "bmcKeySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets/bmcKeySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets/bmcKeySetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseBmcKeySetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bMcKeYsEtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bMcKeYsEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets/bmcKeySetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets/bmcKeySetName",
 			Expected: &BmcKeySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				BmcKeySetName:     "bmcKeySetValue",
+				ClusterName:       "clusterName",
+				BmcKeySetName:     "bmcKeySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterValue/bmcKeySets/bmcKeySetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/clusters/clusterName/bmcKeySets/bmcKeySetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bMcKeYsEtS/bMcKeYsEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bMcKeYsEtS/bMcKeYsEtNaMe",
 			Expected: &BmcKeySetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				BmcKeySetName:     "bMcKeYsEtVaLuE",
+				ClusterName:       "cLuStErNaMe",
+				BmcKeySetName:     "bMcKeYsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErVaLuE/bMcKeYsEtS/bMcKeYsEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/cLuStErS/cLuStErNaMe/bMcKeYsEtS/bMcKeYsEtNaMe/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c FabricCapacitiesClient) Get(ctx context.Context, id CapacityId) (result 
 
 	var model FabricCapacity
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

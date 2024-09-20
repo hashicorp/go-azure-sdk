@@ -15,7 +15,7 @@ type KubeEnvironmentsClient struct {
 }
 
 func NewKubeEnvironmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*KubeEnvironmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "kubeenvironments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "kubeenvironments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KubeEnvironmentsClient: %+v", err)
 	}

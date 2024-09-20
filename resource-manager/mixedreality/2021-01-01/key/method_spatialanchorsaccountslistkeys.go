@@ -46,7 +46,6 @@ func (c KeyClient) SpatialAnchorsAccountsListKeys(ctx context.Context, id Spatia
 
 	var model AccountKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

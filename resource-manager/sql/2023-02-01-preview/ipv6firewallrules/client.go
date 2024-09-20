@@ -15,7 +15,7 @@ type IPv6FirewallRulesClient struct {
 }
 
 func NewIPv6FirewallRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*IPv6FirewallRulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "ipv6firewallrules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "ipv6firewallrules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IPv6FirewallRulesClient: %+v", err)
 	}

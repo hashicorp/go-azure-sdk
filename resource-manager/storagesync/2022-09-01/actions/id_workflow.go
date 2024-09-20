@@ -44,7 +44,7 @@ func ParseWorkflowID(input string) (*WorkflowId, error) {
 	}
 
 	id := WorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkflowIDInsensitively(input string) (*WorkflowId, error) {
 	}
 
 	id := WorkflowId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id WorkflowId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStorageSync", "Microsoft.StorageSync", "Microsoft.StorageSync"),
 		resourceids.StaticSegment("staticStorageSyncServices", "storageSyncServices", "storageSyncServices"),
-		resourceids.UserSpecifiedSegment("storageSyncServiceName", "storageSyncServiceValue"),
+		resourceids.UserSpecifiedSegment("storageSyncServiceName", "storageSyncServiceName"),
 		resourceids.StaticSegment("staticWorkflows", "workflows", "workflows"),
-		resourceids.UserSpecifiedSegment("workflowId", "workflowIdValue"),
+		resourceids.UserSpecifiedSegment("workflowId", "workflowId"),
 	}
 }
 

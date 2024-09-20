@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type JobLimits interface {
+	JobLimits() BaseJobLimitsImpl
 }
 
-// RawJobLimitsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ JobLimits = BaseJobLimitsImpl{}
+
+type BaseJobLimitsImpl struct {
+	JobLimitsType JobLimitsType `json:"jobLimitsType"`
+	Timeout       *string       `json:"timeout,omitempty"`
+}
+
+func (s BaseJobLimitsImpl) JobLimits() BaseJobLimitsImpl {
+	return s
+}
+
+var _ JobLimits = RawJobLimitsImpl{}
+
+// RawJobLimitsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawJobLimitsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	jobLimits BaseJobLimitsImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalJobLimitsImplementation(input []byte) (JobLimits, error) {
+func (s RawJobLimitsImpl) JobLimits() BaseJobLimitsImpl {
+	return s.jobLimits
+}
+
+func UnmarshalJobLimitsImplementation(input []byte) (JobLimits, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalJobLimitsImplementation(input []byte) (JobLimits, error) {
 		return out, nil
 	}
 
-	out := RawJobLimitsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseJobLimitsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobLimitsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawJobLimitsImpl{
+		jobLimits: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

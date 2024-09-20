@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/migrates` Documentation
 
-The `migrates` SDK allows for interaction with the Azure Resource Manager Service `migrate` (API Version `2020-07-07`).
+The `migrates` SDK allows for interaction with Azure Resource Manager `migrate` (API Version `2020-07-07`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AgentPoolId{}
 
 func TestNewAgentPoolID(t *testing.T) {
-	id := NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterValue", "agentPoolValue")
+	id := NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterName", "agentPoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAgentPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.KubernetesClusterName != "kubernetesClusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KubernetesClusterName'", id.KubernetesClusterName, "kubernetesClusterValue")
+	if id.KubernetesClusterName != "kubernetesClusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'KubernetesClusterName'", id.KubernetesClusterName, "kubernetesClusterName")
 	}
 
-	if id.AgentPoolName != "agentPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgentPoolName'", id.AgentPoolName, "agentPoolValue")
+	if id.AgentPoolName != "agentPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgentPoolName'", id.AgentPoolName, "agentPoolName")
 	}
 }
 
 func TestFormatAgentPoolID(t *testing.T) {
-	actual := NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterValue", "agentPoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools/agentPoolValue"
+	actual := NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "kubernetesClusterName", "agentPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools/agentPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAgentPoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools/agentPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools/agentPoolName",
 			Expected: &AgentPoolId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				KubernetesClusterName: "kubernetesClusterValue",
-				AgentPoolName:         "agentPoolValue",
+				KubernetesClusterName: "kubernetesClusterName",
+				AgentPoolName:         "agentPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools/agentPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools/agentPoolName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAgentPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE/aGeNtPoOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe/aGeNtPoOlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools/agentPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools/agentPoolName",
 			Expected: &AgentPoolId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				KubernetesClusterName: "kubernetesClusterValue",
-				AgentPoolName:         "agentPoolValue",
+				KubernetesClusterName: "kubernetesClusterName",
+				AgentPoolName:         "agentPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterValue/agentPools/agentPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/kubernetesClusters/kubernetesClusterName/agentPools/agentPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE/aGeNtPoOlS/aGeNtPoOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe/aGeNtPoOlS/aGeNtPoOlNaMe",
 			Expected: &AgentPoolId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				KubernetesClusterName: "kUbErNeTeScLuStErVaLuE",
-				AgentPoolName:         "aGeNtPoOlVaLuE",
+				KubernetesClusterName: "kUbErNeTeScLuStErNaMe",
+				AgentPoolName:         "aGeNtPoOlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErVaLuE/aGeNtPoOlS/aGeNtPoOlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/kUbErNeTeScLuStErS/kUbErNeTeScLuStErNaMe/aGeNtPoOlS/aGeNtPoOlNaMe/extra",
 			Error: true,
 		},
 	}

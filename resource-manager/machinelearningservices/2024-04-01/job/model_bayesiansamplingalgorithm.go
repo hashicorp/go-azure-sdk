@@ -13,6 +13,14 @@ var _ SamplingAlgorithm = BayesianSamplingAlgorithm{}
 type BayesianSamplingAlgorithm struct {
 
 	// Fields inherited from SamplingAlgorithm
+
+	SamplingAlgorithmType SamplingAlgorithmType `json:"samplingAlgorithmType"`
+}
+
+func (s BayesianSamplingAlgorithm) SamplingAlgorithm() BaseSamplingAlgorithmImpl {
+	return BaseSamplingAlgorithmImpl{
+		SamplingAlgorithmType: s.SamplingAlgorithmType,
+	}
 }
 
 var _ json.Marshaler = BayesianSamplingAlgorithm{}
@@ -26,9 +34,10 @@ func (s BayesianSamplingAlgorithm) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BayesianSamplingAlgorithm: %+v", err)
 	}
+
 	decoded["samplingAlgorithmType"] = "Bayesian"
 
 	encoded, err = json.Marshal(decoded)

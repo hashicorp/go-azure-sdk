@@ -46,7 +46,7 @@ func ParseDatabaseSchemaID(input string) (*DatabaseSchemaId, error) {
 	}
 
 	id := DatabaseSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDatabaseSchemaIDInsensitively(input string) (*DatabaseSchemaId, error)
 	}
 
 	id := DatabaseSchemaId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id DatabaseSchemaId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
-		resourceids.UserSpecifiedSegment("databaseName", "databaseValue"),
+		resourceids.UserSpecifiedSegment("databaseName", "databaseName"),
 		resourceids.StaticSegment("staticSchemas", "schemas", "schemas"),
-		resourceids.UserSpecifiedSegment("schemaName", "schemaValue"),
+		resourceids.UserSpecifiedSegment("schemaName", "schemaName"),
 	}
 }
 

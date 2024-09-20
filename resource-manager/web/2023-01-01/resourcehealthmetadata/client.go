@@ -15,7 +15,7 @@ type ResourceHealthMetadataClient struct {
 }
 
 func NewResourceHealthMetadataClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceHealthMetadataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "resourcehealthmetadata", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "resourcehealthmetadata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ResourceHealthMetadataClient: %+v", err)
 	}

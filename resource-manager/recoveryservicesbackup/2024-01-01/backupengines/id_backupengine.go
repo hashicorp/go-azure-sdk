@@ -44,7 +44,7 @@ func ParseBackupEngineID(input string) (*BackupEngineId, error) {
 	}
 
 	id := BackupEngineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBackupEngineIDInsensitively(input string) (*BackupEngineId, error) {
 	}
 
 	id := BackupEngineId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BackupEngineId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupEngines", "backupEngines", "backupEngines"),
-		resourceids.UserSpecifiedSegment("backupEngineName", "backupEngineValue"),
+		resourceids.UserSpecifiedSegment("backupEngineName", "backupEngineName"),
 	}
 }
 

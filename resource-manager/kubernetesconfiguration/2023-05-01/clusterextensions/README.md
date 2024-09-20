@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/clusterextensions` Documentation
 
-The `clusterextensions` SDK allows for interaction with the Azure Resource Manager Service `kubernetesconfiguration` (API Version `2023-05-01`).
+The `clusterextensions` SDK allows for interaction with Azure Resource Manager `kubernetesconfiguration` (API Version `2023-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName")
 
 payload := clusterextensions.Extension{
 	// ...
@@ -42,7 +42,7 @@ if err := client.ExtensionsCreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName")
 
 if err := client.ExtensionsDeleteThenPoll(ctx, id, clusterextensions.DefaultExtensionsDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.ExtensionsDeleteThenPoll(ctx, id, clusterextensions.DefaultExte
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName")
 
 read, err := client.ExtensionsGet(ctx, id)
 if err != nil {
@@ -87,7 +87,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName")
 
 payload := clusterextensions.PatchExtension{
 	// ...

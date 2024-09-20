@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2023-06-01-preview/checknameavailability` Documentation
 
-The `checknameavailability` SDK allows for interaction with the Azure Resource Manager Service `postgresql` (API Version `2023-06-01-preview`).
+The `checknameavailability` SDK allows for interaction with Azure Resource Manager `postgresql` (API Version `2023-06-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := checknameavailability.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := checknameavailability.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := checknameavailability.CheckNameAvailabilityRequest{
 	// ...

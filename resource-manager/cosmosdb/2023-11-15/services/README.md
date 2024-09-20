@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-11-15/services` Documentation
 
-The `services` SDK allows for interaction with the Azure Resource Manager Service `cosmosdb` (API Version `2023-11-15`).
+The `services` SDK allows for interaction with Azure Resource Manager `cosmosdb` (API Version `2023-11-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := services.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
+id := services.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.ServiceList(ctx, id)
 if err != nil {

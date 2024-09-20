@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PendingUploadCredentialDto interface {
+	PendingUploadCredentialDto() BasePendingUploadCredentialDtoImpl
 }
 
-// RawPendingUploadCredentialDtoImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ PendingUploadCredentialDto = BasePendingUploadCredentialDtoImpl{}
+
+type BasePendingUploadCredentialDtoImpl struct {
+	CredentialType PendingUploadCredentialType `json:"credentialType"`
+}
+
+func (s BasePendingUploadCredentialDtoImpl) PendingUploadCredentialDto() BasePendingUploadCredentialDtoImpl {
+	return s
+}
+
+var _ PendingUploadCredentialDto = RawPendingUploadCredentialDtoImpl{}
+
+// RawPendingUploadCredentialDtoImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawPendingUploadCredentialDtoImpl struct {
-	Type   string
-	Values map[string]interface{}
+	pendingUploadCredentialDto BasePendingUploadCredentialDtoImpl
+	Type                       string
+	Values                     map[string]interface{}
 }
 
-func unmarshalPendingUploadCredentialDtoImplementation(input []byte) (PendingUploadCredentialDto, error) {
+func (s RawPendingUploadCredentialDtoImpl) PendingUploadCredentialDto() BasePendingUploadCredentialDtoImpl {
+	return s.pendingUploadCredentialDto
+}
+
+func UnmarshalPendingUploadCredentialDtoImplementation(input []byte) (PendingUploadCredentialDto, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalPendingUploadCredentialDtoImplementation(input []byte) (PendingUpl
 		return out, nil
 	}
 
-	out := RawPendingUploadCredentialDtoImpl{
-		Type:   value,
-		Values: temp,
+	var parent BasePendingUploadCredentialDtoImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePendingUploadCredentialDtoImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawPendingUploadCredentialDtoImpl{
+		pendingUploadCredentialDto: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
 
 }

@@ -15,7 +15,7 @@ type ApiManagementGatewaySkusClient struct {
 }
 
 func NewApiManagementGatewaySkusClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiManagementGatewaySkusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "apimanagementgatewayskus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "apimanagementgatewayskus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApiManagementGatewaySkusClient: %+v", err)
 	}

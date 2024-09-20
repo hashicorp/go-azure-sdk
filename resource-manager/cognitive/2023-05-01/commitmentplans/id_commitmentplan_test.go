@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CommitmentPlanId{}
 
 func TestNewCommitmentPlanID(t *testing.T) {
-	id := NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+	id := NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCommitmentPlanID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CommitmentPlanName != "commitmentPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanName'", id.CommitmentPlanName, "commitmentPlanValue")
+	if id.CommitmentPlanName != "commitmentPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanName'", id.CommitmentPlanName, "commitmentPlanName")
 	}
 }
 
 func TestFormatCommitmentPlanID(t *testing.T) {
-	actual := NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue"
+	actual := NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCommitmentPlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName",
 			Expected: &CommitmentPlanId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CommitmentPlanName: "commitmentPlanValue",
+				CommitmentPlanName: "commitmentPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCommitmentPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName",
 			Expected: &CommitmentPlanId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CommitmentPlanName: "commitmentPlanValue",
+				CommitmentPlanName: "commitmentPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE",
 			Expected: &CommitmentPlanId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				CommitmentPlanName: "cOmMiTmEnTpLaNvAlUe",
+				CommitmentPlanName: "cOmMiTmEnTpLaNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNnAmE/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c VirtualMachinesClient) Get(ctx context.Context, id VirtualMachineId) (re
 
 	var model VirtualMachine
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

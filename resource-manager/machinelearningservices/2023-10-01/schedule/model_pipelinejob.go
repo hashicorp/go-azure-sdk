@@ -18,6 +18,7 @@ type PipelineJob struct {
 	SourceJobId *string                 `json:"sourceJobId,omitempty"`
 
 	// Fields inherited from JobBase
+
 	ComponentId    *string                `json:"componentId,omitempty"`
 	ComputeId      *string                `json:"computeId,omitempty"`
 	Description    *string                `json:"description,omitempty"`
@@ -25,10 +26,28 @@ type PipelineJob struct {
 	ExperimentName *string                `json:"experimentName,omitempty"`
 	Identity       IdentityConfiguration  `json:"identity"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
+	JobType        JobType                `json:"jobType"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
 	Status         *JobStatus             `json:"status,omitempty"`
 	Tags           *map[string]string     `json:"tags,omitempty"`
+}
+
+func (s PipelineJob) JobBase() BaseJobBaseImpl {
+	return BaseJobBaseImpl{
+		ComponentId:    s.ComponentId,
+		ComputeId:      s.ComputeId,
+		Description:    s.Description,
+		DisplayName:    s.DisplayName,
+		ExperimentName: s.ExperimentName,
+		Identity:       s.Identity,
+		IsArchived:     s.IsArchived,
+		JobType:        s.JobType,
+		Properties:     s.Properties,
+		Services:       s.Services,
+		Status:         s.Status,
+		Tags:           s.Tags,
+	}
 }
 
 var _ json.Marshaler = PipelineJob{}
@@ -42,9 +61,10 @@ func (s PipelineJob) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PipelineJob: %+v", err)
 	}
+
 	decoded["jobType"] = "Pipeline"
 
 	encoded, err = json.Marshal(decoded)
@@ -70,6 +90,7 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
+	s.JobType = decoded.JobType
 	s.Jobs = decoded.Jobs
 	s.Properties = decoded.Properties
 	s.Services = decoded.Services
@@ -84,7 +105,7 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["identity"]; ok {
-		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		impl, err := UnmarshalIdentityConfigurationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'PipelineJob': %+v", err)
 		}
@@ -99,7 +120,7 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobInput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobInputImplementation(val)
+			impl, err := UnmarshalJobInputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Inputs' for 'PipelineJob': %+v", key, err)
 			}
@@ -116,7 +137,7 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]JobOutput)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalJobOutputImplementation(val)
+			impl, err := UnmarshalJobOutputImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'Outputs' for 'PipelineJob': %+v", key, err)
 			}

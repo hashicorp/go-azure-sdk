@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2023-09-01/packetcorecontrolplanecollectdiagnosticspackage` Documentation
 
-The `packetcorecontrolplanecollectdiagnosticspackage` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2023-09-01`).
+The `packetcorecontrolplanecollectdiagnosticspackage` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := packetcorecontrolplanecollectdiagnosticspackage.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue")
+id := packetcorecontrolplanecollectdiagnosticspackage.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName")
 
 payload := packetcorecontrolplanecollectdiagnosticspackage.PacketCoreControlPlaneCollectDiagnosticsPackage{
 	// ...

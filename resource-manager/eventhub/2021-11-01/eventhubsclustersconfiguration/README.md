@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/eventhubsclustersconfiguration` Documentation
 
-The `eventhubsclustersconfiguration` SDK allows for interaction with the Azure Resource Manager Service `eventhub` (API Version `2021-11-01`).
+The `eventhubsclustersconfiguration` SDK allows for interaction with Azure Resource Manager `eventhub` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
 
 read, err := client.ConfigurationGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
 
 payload := eventhubsclustersconfiguration.ClusterQuotaConfigurationProperties{
 	// ...

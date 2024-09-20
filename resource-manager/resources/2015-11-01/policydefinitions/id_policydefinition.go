@@ -40,7 +40,7 @@ func ParsePolicydefinitionID(input string) (*PolicydefinitionId, error) {
 	}
 
 	id := PolicydefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParsePolicydefinitionIDInsensitively(input string) (*PolicydefinitionId, er
 	}
 
 	id := PolicydefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id PolicydefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
 		resourceids.StaticSegment("staticPolicydefinitions", "policydefinitions", "policydefinitions"),
-		resourceids.UserSpecifiedSegment("policydefinitionName", "policydefinitionValue"),
+		resourceids.UserSpecifiedSegment("policydefinitionName", "policyDefinitionName"),
 	}
 }
 

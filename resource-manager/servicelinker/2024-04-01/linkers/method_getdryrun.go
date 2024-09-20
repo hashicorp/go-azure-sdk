@@ -45,7 +45,6 @@ func (c LinkersClient) GetDryrun(ctx context.Context, id ScopedDryrunId) (result
 
 	var model DryrunResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c HyperVClusterClient) GetCluster(ctx context.Context, id ClusterId) (resu
 
 	var model HyperVCluster
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

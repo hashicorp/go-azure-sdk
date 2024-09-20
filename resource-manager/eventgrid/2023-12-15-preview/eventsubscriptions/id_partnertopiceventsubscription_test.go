@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PartnerTopicEventSubscriptionId{}
 
 func TestNewPartnerTopicEventSubscriptionID(t *testing.T) {
-	id := NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue")
+	id := NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPartnerTopicEventSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PartnerTopicName != "partnerTopicValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PartnerTopicName'", id.PartnerTopicName, "partnerTopicValue")
+	if id.PartnerTopicName != "partnerTopicName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PartnerTopicName'", id.PartnerTopicName, "partnerTopicName")
 	}
 
-	if id.EventSubscriptionName != "eventSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionValue")
+	if id.EventSubscriptionName != "eventSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionName")
 	}
 }
 
 func TestFormatPartnerTopicEventSubscriptionID(t *testing.T) {
-	actual := NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicValue", "eventSubscriptionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions/eventSubscriptionValue"
+	actual := NewPartnerTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "partnerTopicName", "eventSubscriptionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions/eventSubscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePartnerTopicEventSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &PartnerTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				PartnerTopicName:      "partnerTopicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				PartnerTopicName:      "partnerTopicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePartnerTopicEventSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCvAlUe/eVeNtSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCnAmE/eVeNtSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &PartnerTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				PartnerTopicName:      "partnerTopicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				PartnerTopicName:      "partnerTopicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/partnerTopics/partnerTopicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCvAlUe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCnAmE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe",
 			Expected: &PartnerTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				PartnerTopicName:      "pArTnErToPiCvAlUe",
-				EventSubscriptionName: "eVeNtSuBsCrIpTiOnVaLuE",
+				PartnerTopicName:      "pArTnErToPiCnAmE",
+				EventSubscriptionName: "eVeNtSuBsCrIpTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCvAlUe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/pArTnErToPiCs/pArTnErToPiCnAmE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe/extra",
 			Error: true,
 		},
 	}

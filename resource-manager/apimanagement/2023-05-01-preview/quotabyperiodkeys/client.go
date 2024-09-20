@@ -15,7 +15,7 @@ type QuotaByPeriodKeysClient struct {
 }
 
 func NewQuotaByPeriodKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*QuotaByPeriodKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "quotabyperiodkeys", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "quotabyperiodkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QuotaByPeriodKeysClient: %+v", err)
 	}

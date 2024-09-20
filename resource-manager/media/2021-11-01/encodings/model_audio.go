@@ -16,7 +16,16 @@ type Audio struct {
 	SamplingRate *int64 `json:"samplingRate,omitempty"`
 
 	// Fields inherited from Codec
-	Label *string `json:"label,omitempty"`
+
+	Label     *string `json:"label,omitempty"`
+	OdataType string  `json:"@odata.type"`
+}
+
+func (s Audio) Codec() BaseCodecImpl {
+	return BaseCodecImpl{
+		Label:     s.Label,
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = Audio{}
@@ -30,9 +39,10 @@ func (s Audio) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Audio: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.Audio"
 
 	encoded, err = json.Marshal(decoded)

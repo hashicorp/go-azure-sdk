@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedManagementAssociationId{}
 
 func TestNewScopedManagementAssociationID(t *testing.T) {
-	id := NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationValue")
+	id := NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ManagementAssociationName != "managementAssociationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementAssociationName'", id.ManagementAssociationName, "managementAssociationValue")
+	if id.ManagementAssociationName != "managementAssociationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementAssociationName'", id.ManagementAssociationName, "managementAssociationName")
 	}
 }
 
 func TestFormatScopedManagementAssociationID(t *testing.T) {
-	actual := NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationValue"
+	actual := NewScopedManagementAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "managementAssociationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedManagementAssociationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationName",
 			Expected: &ScopedManagementAssociationId{
 				Scope:                     "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ManagementAssociationName: "managementAssociationValue",
+				ManagementAssociationName: "managementAssociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedManagementAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationName",
 			Expected: &ScopedManagementAssociationId{
 				Scope:                     "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ManagementAssociationName: "managementAssociationValue",
+				ManagementAssociationName: "managementAssociationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.OperationsManagement/managementAssociations/managementAssociationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTaSsOcIaTiOnS/mAnAgEmEnTaSsOcIaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTaSsOcIaTiOnS/mAnAgEmEnTaSsOcIaTiOnNaMe",
 			Expected: &ScopedManagementAssociationId{
 				Scope:                     "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ManagementAssociationName: "mAnAgEmEnTaSsOcIaTiOnVaLuE",
+				ManagementAssociationName: "mAnAgEmEnTaSsOcIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTaSsOcIaTiOnS/mAnAgEmEnTaSsOcIaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.oPeRaTiOnSmAnAgEmEnT/mAnAgEmEnTaSsOcIaTiOnS/mAnAgEmEnTaSsOcIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

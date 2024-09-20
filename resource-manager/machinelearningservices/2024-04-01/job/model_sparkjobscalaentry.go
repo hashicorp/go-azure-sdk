@@ -14,6 +14,14 @@ type SparkJobScalaEntry struct {
 	ClassName string `json:"className"`
 
 	// Fields inherited from SparkJobEntry
+
+	SparkJobEntryType SparkJobEntryType `json:"sparkJobEntryType"`
+}
+
+func (s SparkJobScalaEntry) SparkJobEntry() BaseSparkJobEntryImpl {
+	return BaseSparkJobEntryImpl{
+		SparkJobEntryType: s.SparkJobEntryType,
+	}
 }
 
 var _ json.Marshaler = SparkJobScalaEntry{}
@@ -27,9 +35,10 @@ func (s SparkJobScalaEntry) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SparkJobScalaEntry: %+v", err)
 	}
+
 	decoded["sparkJobEntryType"] = "SparkJobScalaEntry"
 
 	encoded, err = json.Marshal(decoded)

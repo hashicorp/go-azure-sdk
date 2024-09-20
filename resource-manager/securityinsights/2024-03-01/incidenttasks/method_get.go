@@ -45,7 +45,6 @@ func (c IncidentTasksClient) Get(ctx context.Context, id TaskId) (result GetOper
 
 	var model IncidentTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

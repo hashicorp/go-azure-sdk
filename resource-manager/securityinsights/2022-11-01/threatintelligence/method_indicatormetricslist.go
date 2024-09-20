@@ -46,7 +46,6 @@ func (c ThreatIntelligenceClient) IndicatorMetricsList(ctx context.Context, id W
 
 	var model ThreatIntelligenceMetricsList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

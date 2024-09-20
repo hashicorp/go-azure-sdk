@@ -46,7 +46,7 @@ func ParseTriggerID(input string) (*TriggerId, error) {
 	}
 
 	id := TriggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseTriggerIDInsensitively(input string) (*TriggerId, error) {
 	}
 
 	id := TriggerId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,7 +127,7 @@ func (id TriggerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteName", "siteValue"),
+		resourceids.UserSpecifiedSegment("siteName", "name"),
 		resourceids.StaticSegment("staticHostRuntime", "hostRuntime", "hostRuntime"),
 		resourceids.StaticSegment("staticRuntime", "runtime", "runtime"),
 		resourceids.StaticSegment("staticWebHooks", "webHooks", "webHooks"),
@@ -135,9 +135,9 @@ func (id TriggerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticApi", "api", "api"),
 		resourceids.StaticSegment("staticManagement", "management", "management"),
 		resourceids.StaticSegment("staticWorkflows", "workflows", "workflows"),
-		resourceids.UserSpecifiedSegment("workflowName", "workflowValue"),
+		resourceids.UserSpecifiedSegment("workflowName", "workflowName"),
 		resourceids.StaticSegment("staticTriggers", "triggers", "triggers"),
-		resourceids.UserSpecifiedSegment("triggerName", "triggerValue"),
+		resourceids.UserSpecifiedSegment("triggerName", "triggerName"),
 	}
 }
 

@@ -50,7 +50,6 @@ func (c GraphQueryClient) CreateOrUpdate(ctx context.Context, id QueryId, input 
 
 	var model GraphQueryResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

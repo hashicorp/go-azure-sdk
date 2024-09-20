@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TargetLags interface {
+	TargetLags() BaseTargetLagsImpl
 }
 
-// RawTargetLagsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TargetLags = BaseTargetLagsImpl{}
+
+type BaseTargetLagsImpl struct {
+	Mode TargetLagsMode `json:"mode"`
+}
+
+func (s BaseTargetLagsImpl) TargetLags() BaseTargetLagsImpl {
+	return s
+}
+
+var _ TargetLags = RawTargetLagsImpl{}
+
+// RawTargetLagsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTargetLagsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	targetLags BaseTargetLagsImpl
+	Type       string
+	Values     map[string]interface{}
 }
 
-func unmarshalTargetLagsImplementation(input []byte) (TargetLags, error) {
+func (s RawTargetLagsImpl) TargetLags() BaseTargetLagsImpl {
+	return s.targetLags
+}
+
+func UnmarshalTargetLagsImplementation(input []byte) (TargetLags, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalTargetLagsImplementation(input []byte) (TargetLags, error) {
 		return out, nil
 	}
 
-	out := RawTargetLagsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTargetLagsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTargetLagsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTargetLagsImpl{
+		targetLags: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
 
 }

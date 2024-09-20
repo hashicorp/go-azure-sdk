@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IdentityConfiguration interface {
+	IdentityConfiguration() BaseIdentityConfigurationImpl
 }
 
-// RawIdentityConfigurationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ IdentityConfiguration = BaseIdentityConfigurationImpl{}
+
+type BaseIdentityConfigurationImpl struct {
+	IdentityType IdentityConfigurationType `json:"identityType"`
+}
+
+func (s BaseIdentityConfigurationImpl) IdentityConfiguration() BaseIdentityConfigurationImpl {
+	return s
+}
+
+var _ IdentityConfiguration = RawIdentityConfigurationImpl{}
+
+// RawIdentityConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawIdentityConfigurationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	identityConfiguration BaseIdentityConfigurationImpl
+	Type                  string
+	Values                map[string]interface{}
 }
 
-func unmarshalIdentityConfigurationImplementation(input []byte) (IdentityConfiguration, error) {
+func (s RawIdentityConfigurationImpl) IdentityConfiguration() BaseIdentityConfigurationImpl {
+	return s.identityConfiguration
+}
+
+func UnmarshalIdentityConfigurationImplementation(input []byte) (IdentityConfiguration, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalIdentityConfigurationImplementation(input []byte) (IdentityConfigu
 		return out, nil
 	}
 
-	out := RawIdentityConfigurationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseIdentityConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIdentityConfigurationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawIdentityConfigurationImpl{
+		identityConfiguration: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
 
 }

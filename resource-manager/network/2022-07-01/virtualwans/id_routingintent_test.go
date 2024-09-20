@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RoutingIntentId{}
 
 func TestNewRoutingIntentID(t *testing.T) {
-	id := NewRoutingIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "routingIntentValue")
+	id := NewRoutingIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "routingIntentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRoutingIntentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualHubName != "virtualHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualHubName'", id.VirtualHubName, "virtualHubValue")
+	if id.VirtualHubName != "virtualHubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualHubName'", id.VirtualHubName, "virtualHubName")
 	}
 
-	if id.RoutingIntentName != "routingIntentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoutingIntentName'", id.RoutingIntentName, "routingIntentValue")
+	if id.RoutingIntentName != "routingIntentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoutingIntentName'", id.RoutingIntentName, "routingIntentName")
 	}
 }
 
 func TestFormatRoutingIntentID(t *testing.T) {
-	actual := NewRoutingIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "routingIntentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent/routingIntentValue"
+	actual := NewRoutingIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "routingIntentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent/routingIntentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRoutingIntentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent/routingIntentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent/routingIntentName",
 			Expected: &RoutingIntentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualHubName:    "virtualHubValue",
-				RoutingIntentName: "routingIntentValue",
+				VirtualHubName:    "virtualHubName",
+				RoutingIntentName: "routingIntentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent/routingIntentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent/routingIntentName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRoutingIntentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/rOuTiNgInTeNt",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/rOuTiNgInTeNt",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent/routingIntentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent/routingIntentName",
 			Expected: &RoutingIntentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualHubName:    "virtualHubValue",
-				RoutingIntentName: "routingIntentValue",
+				VirtualHubName:    "virtualHubName",
+				RoutingIntentName: "routingIntentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubValue/routingIntent/routingIntentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/routingIntent/routingIntentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/rOuTiNgInTeNt/rOuTiNgInTeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/rOuTiNgInTeNt/rOuTiNgInTeNtNaMe",
 			Expected: &RoutingIntentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualHubName:    "vIrTuAlHuBvAlUe",
-				RoutingIntentName: "rOuTiNgInTeNtVaLuE",
+				VirtualHubName:    "vIrTuAlHuBnAmE",
+				RoutingIntentName: "rOuTiNgInTeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBvAlUe/rOuTiNgInTeNt/rOuTiNgInTeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/rOuTiNgInTeNt/rOuTiNgInTeNtNaMe/extra",
 			Error: true,
 		},
 	}

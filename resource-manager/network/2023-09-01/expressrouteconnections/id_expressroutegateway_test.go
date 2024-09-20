@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExpressRouteGatewayId{}
 
 func TestNewExpressRouteGatewayID(t *testing.T) {
-	id := NewExpressRouteGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteGatewayValue")
+	id := NewExpressRouteGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewExpressRouteGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ExpressRouteGatewayName != "expressRouteGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteGatewayName'", id.ExpressRouteGatewayName, "expressRouteGatewayValue")
+	if id.ExpressRouteGatewayName != "expressRouteGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteGatewayName'", id.ExpressRouteGatewayName, "expressRouteGatewayName")
 	}
 }
 
 func TestFormatExpressRouteGatewayID(t *testing.T) {
-	actual := NewExpressRouteGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayValue"
+	actual := NewExpressRouteGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseExpressRouteGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName",
 			Expected: &ExpressRouteGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ExpressRouteGatewayName: "expressRouteGatewayValue",
+				ExpressRouteGatewayName: "expressRouteGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseExpressRouteGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName",
 			Expected: &ExpressRouteGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ExpressRouteGatewayName: "expressRouteGatewayValue",
+				ExpressRouteGatewayName: "expressRouteGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteGateways/expressRouteGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEgAtEwAyS/eXpReSsRoUtEgAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEgAtEwAyS/eXpReSsRoUtEgAtEwAyNaMe",
 			Expected: &ExpressRouteGatewayId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ExpressRouteGatewayName: "eXpReSsRoUtEgAtEwAyVaLuE",
+				ExpressRouteGatewayName: "eXpReSsRoUtEgAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEgAtEwAyS/eXpReSsRoUtEgAtEwAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEgAtEwAyS/eXpReSsRoUtEgAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

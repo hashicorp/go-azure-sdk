@@ -15,7 +15,7 @@ type DataBoundariesClient struct {
 }
 
 func NewDataBoundariesClientWithBaseURI(sdkApi sdkEnv.Api) (*DataBoundariesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databoundaries", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databoundaries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataBoundariesClient: %+v", err)
 	}

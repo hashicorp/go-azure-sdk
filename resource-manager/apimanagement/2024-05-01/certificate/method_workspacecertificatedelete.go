@@ -35,6 +35,7 @@ func (o WorkspaceCertificateDeleteOperationOptions) ToHeaders() *client.Headers 
 
 func (o WorkspaceCertificateDeleteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

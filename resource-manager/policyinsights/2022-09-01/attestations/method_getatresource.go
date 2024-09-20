@@ -45,7 +45,6 @@ func (c AttestationsClient) GetAtResource(ctx context.Context, id ScopedAttestat
 
 	var model Attestation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

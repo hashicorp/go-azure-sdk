@@ -45,7 +45,6 @@ func (c CodeVersionClient) RegistryCodeVersionsGet(ctx context.Context, id Regis
 
 	var model CodeVersionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

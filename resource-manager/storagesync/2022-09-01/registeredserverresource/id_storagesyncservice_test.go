@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageSyncServiceId{}
 
 func TestNewStorageSyncServiceID(t *testing.T) {
-	id := NewStorageSyncServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue")
+	id := NewStorageSyncServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewStorageSyncServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StorageSyncServiceName != "storageSyncServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageSyncServiceName'", id.StorageSyncServiceName, "storageSyncServiceValue")
+	if id.StorageSyncServiceName != "storageSyncServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageSyncServiceName'", id.StorageSyncServiceName, "storageSyncServiceName")
 	}
 }
 
 func TestFormatStorageSyncServiceID(t *testing.T) {
-	actual := NewStorageSyncServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceValue"
+	actual := NewStorageSyncServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseStorageSyncServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceName",
 			Expected: &StorageSyncServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				StorageSyncServiceName: "storageSyncServiceValue",
+				StorageSyncServiceName: "storageSyncServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseStorageSyncServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceName",
 			Expected: &StorageSyncServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				StorageSyncServiceName: "storageSyncServiceValue",
+				StorageSyncServiceName: "storageSyncServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageSync/storageSyncServices/storageSyncServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeSyNc/sToRaGeSyNcSeRvIcEs/sToRaGeSyNcSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeSyNc/sToRaGeSyNcSeRvIcEs/sToRaGeSyNcSeRvIcEnAmE",
 			Expected: &StorageSyncServiceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				StorageSyncServiceName: "sToRaGeSyNcSeRvIcEvAlUe",
+				StorageSyncServiceName: "sToRaGeSyNcSeRvIcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeSyNc/sToRaGeSyNcSeRvIcEs/sToRaGeSyNcSeRvIcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeSyNc/sToRaGeSyNcSeRvIcEs/sToRaGeSyNcSeRvIcEnAmE/extra",
 			Error: true,
 		},
 	}

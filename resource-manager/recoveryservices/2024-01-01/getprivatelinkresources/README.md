@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2024-01-01/getprivatelinkresources` Documentation
 
-The `getprivatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `recoveryservices` (API Version `2024-01-01`).
+The `getprivatelinkresources` SDK allows for interaction with Azure Resource Manager `recoveryservices` (API Version `2024-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := getprivatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "privateLinkResourceValue")
+id := getprivatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "privateLinkResourceName")
 
 read, err := client.PrivateLinkResourcesGet(ctx, id)
 if err != nil {

@@ -15,7 +15,7 @@ type WorkspaceManagedSqlServerBlobAuditingClient struct {
 }
 
 func NewWorkspaceManagedSqlServerBlobAuditingClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerBlobAuditingClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacemanagedsqlserverblobauditing", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserverblobauditing", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerBlobAuditingClient: %+v", err)
 	}

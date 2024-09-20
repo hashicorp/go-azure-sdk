@@ -14,6 +14,14 @@ type ScheduledSourceSynchronizationSetting struct {
 	Properties *ScheduledSourceShareSynchronizationSettingProperties `json:"properties,omitempty"`
 
 	// Fields inherited from SourceShareSynchronizationSetting
+
+	Kind SourceShareSynchronizationSettingKind `json:"kind"`
+}
+
+func (s ScheduledSourceSynchronizationSetting) SourceShareSynchronizationSetting() BaseSourceShareSynchronizationSettingImpl {
+	return BaseSourceShareSynchronizationSettingImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = ScheduledSourceSynchronizationSetting{}
@@ -27,9 +35,10 @@ func (s ScheduledSourceSynchronizationSetting) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ScheduledSourceSynchronizationSetting: %+v", err)
 	}
+
 	decoded["kind"] = "ScheduleBased"
 
 	encoded, err = json.Marshal(decoded)

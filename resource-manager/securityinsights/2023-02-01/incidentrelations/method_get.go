@@ -45,7 +45,6 @@ func (c IncidentRelationsClient) Get(ctx context.Context, id RelationId) (result
 
 	var model Relation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

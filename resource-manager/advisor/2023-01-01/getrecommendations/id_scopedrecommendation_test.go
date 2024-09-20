@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedRecommendationId{}
 
 func TestNewScopedRecommendationID(t *testing.T) {
-	id := NewScopedRecommendationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationIdValue")
+	id := NewScopedRecommendationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationId")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.RecommendationId != "recommendationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationIdValue")
+	if id.RecommendationId != "recommendationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationId")
 	}
 }
 
 func TestFormatScopedRecommendationID(t *testing.T) {
-	actual := NewScopedRecommendationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue"
+	actual := NewScopedRecommendationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "recommendationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId",
 			Expected: &ScopedRecommendationId{
 				ResourceUri:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RecommendationId: "recommendationIdValue",
+				RecommendationId: "recommendationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId",
 			Expected: &ScopedRecommendationId{
 				ResourceUri:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				RecommendationId: "recommendationIdValue",
+				RecommendationId: "recommendationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Advisor/recommendations/recommendationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD",
 			Expected: &ScopedRecommendationId{
 				ResourceUri:      "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				RecommendationId: "rEcOmMeNdAtIoNiDvAlUe",
+				RecommendationId: "rEcOmMeNdAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aDvIsOr/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/extra",
 			Error: true,
 		},
 	}

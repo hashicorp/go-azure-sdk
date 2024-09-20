@@ -45,7 +45,6 @@ func (c ClusterRecoveryPointClient) Get(ctx context.Context, id ReplicationProte
 
 	var model ClusterRecoveryPoint
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -44,7 +44,7 @@ func ParseMetricsConfigurationID(input string) (*MetricsConfigurationId, error) 
 	}
 
 	id := MetricsConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMetricsConfigurationIDInsensitively(input string) (*MetricsConfigurati
 	}
 
 	id := MetricsConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MetricsConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticClusters", "clusters", "clusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("clusterName", "clusterName"),
 		resourceids.StaticSegment("staticMetricsConfigurations", "metricsConfigurations", "metricsConfigurations"),
-		resourceids.UserSpecifiedSegment("metricsConfigurationName", "metricsConfigurationValue"),
+		resourceids.UserSpecifiedSegment("metricsConfigurationName", "metricsConfigurationName"),
 	}
 }
 

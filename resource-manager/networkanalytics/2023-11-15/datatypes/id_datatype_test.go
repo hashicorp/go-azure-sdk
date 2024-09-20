@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataTypeId{}
 
 func TestNewDataTypeID(t *testing.T) {
-	id := NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue")
+	id := NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDataTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DataProductName != "dataProductValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataProductName'", id.DataProductName, "dataProductValue")
+	if id.DataProductName != "dataProductName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataProductName'", id.DataProductName, "dataProductName")
 	}
 
-	if id.DataTypeName != "dataTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataTypeName'", id.DataTypeName, "dataTypeValue")
+	if id.DataTypeName != "dataTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataTypeName'", id.DataTypeName, "dataTypeName")
 	}
 }
 
 func TestFormatDataTypeID(t *testing.T) {
-	actual := NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductValue", "dataTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes/dataTypeValue"
+	actual := NewDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataProductName", "dataTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes/dataTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDataTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes/dataTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes/dataTypeName",
 			Expected: &DataTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataProductName:   "dataProductValue",
-				DataTypeName:      "dataTypeValue",
+				DataProductName:   "dataProductName",
+				DataTypeName:      "dataTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes/dataTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes/dataTypeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDataTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtVaLuE/dAtAtYpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtNaMe/dAtAtYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes/dataTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes/dataTypeName",
 			Expected: &DataTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataProductName:   "dataProductValue",
-				DataTypeName:      "dataTypeValue",
+				DataProductName:   "dataProductName",
+				DataTypeName:      "dataTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductValue/dataTypes/dataTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkAnalytics/dataProducts/dataProductName/dataTypes/dataTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtVaLuE/dAtAtYpEs/dAtAtYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtNaMe/dAtAtYpEs/dAtAtYpEnAmE",
 			Expected: &DataTypeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DataProductName:   "dAtApRoDuCtVaLuE",
-				DataTypeName:      "dAtAtYpEvAlUe",
+				DataProductName:   "dAtApRoDuCtNaMe",
+				DataTypeName:      "dAtAtYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtVaLuE/dAtAtYpEs/dAtAtYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkAnAlYtIcS/dAtApRoDuCtS/dAtApRoDuCtNaMe/dAtAtYpEs/dAtAtYpEnAmE/extra",
 			Error: true,
 		},
 	}

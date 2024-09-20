@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-08-01/replicationstorageclassifications` Documentation
 
-The `replicationstorageclassifications` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicessiterecovery` (API Version `2023-08-01`).
+The `replicationstorageclassifications` SDK allows for interaction with Azure Resource Manager `recoveryservicessiterecovery` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassifications.NewReplicationStorageClassificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationStorageClassificationValue")
+id := replicationstorageclassifications.NewReplicationStorageClassificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "storageClassificationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassifications.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := replicationstorageclassifications.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassifications.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue")
+id := replicationstorageclassifications.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName")
 
 // alternatively `client.ListByReplicationFabrics(ctx, id)` can be used to do batched pagination
 items, err := client.ListByReplicationFabricsComplete(ctx, id)

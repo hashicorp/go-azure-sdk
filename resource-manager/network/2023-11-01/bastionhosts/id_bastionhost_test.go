@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BastionHostId{}
 
 func TestNewBastionHostID(t *testing.T) {
-	id := NewBastionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bastionHostValue")
+	id := NewBastionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bastionHostName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewBastionHostID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BastionHostName != "bastionHostValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BastionHostName'", id.BastionHostName, "bastionHostValue")
+	if id.BastionHostName != "bastionHostName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BastionHostName'", id.BastionHostName, "bastionHostName")
 	}
 }
 
 func TestFormatBastionHostID(t *testing.T) {
-	actual := NewBastionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bastionHostValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostValue"
+	actual := NewBastionHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "bastionHostName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseBastionHostID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostName",
 			Expected: &BastionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BastionHostName:   "bastionHostValue",
+				BastionHostName:   "bastionHostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseBastionHostIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostName",
 			Expected: &BastionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BastionHostName:   "bastionHostValue",
+				BastionHostName:   "bastionHostName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/bastionHosts/bastionHostName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/bAsTiOnHoStS/bAsTiOnHoStVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/bAsTiOnHoStS/bAsTiOnHoStNaMe",
 			Expected: &BastionHostId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				BastionHostName:   "bAsTiOnHoStVaLuE",
+				BastionHostName:   "bAsTiOnHoStNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/bAsTiOnHoStS/bAsTiOnHoStVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/bAsTiOnHoStS/bAsTiOnHoStNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ClientGroupId{}
 
 func TestNewClientGroupID(t *testing.T) {
-	id := NewClientGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "clientGroupValue")
+	id := NewClientGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "clientGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewClientGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.ClientGroupName != "clientGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClientGroupName'", id.ClientGroupName, "clientGroupValue")
+	if id.ClientGroupName != "clientGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClientGroupName'", id.ClientGroupName, "clientGroupName")
 	}
 }
 
 func TestFormatClientGroupID(t *testing.T) {
-	actual := NewClientGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "clientGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups/clientGroupValue"
+	actual := NewClientGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "clientGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups/clientGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseClientGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups/clientGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups/clientGroupName",
 			Expected: &ClientGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				ClientGroupName:   "clientGroupValue",
+				NamespaceName:     "namespaceName",
+				ClientGroupName:   "clientGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups/clientGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups/clientGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseClientGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cLiEnTgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cLiEnTgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups/clientGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups/clientGroupName",
 			Expected: &ClientGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				ClientGroupName:   "clientGroupValue",
+				NamespaceName:     "namespaceName",
+				ClientGroupName:   "clientGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/clientGroups/clientGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/clientGroups/clientGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cLiEnTgRoUpS/cLiEnTgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cLiEnTgRoUpS/cLiEnTgRoUpNaMe",
 			Expected: &ClientGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:     "nAmEsPaCeVaLuE",
-				ClientGroupName:   "cLiEnTgRoUpVaLuE",
+				NamespaceName:     "nAmEsPaCeNaMe",
+				ClientGroupName:   "cLiEnTgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cLiEnTgRoUpS/cLiEnTgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cLiEnTgRoUpS/cLiEnTgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

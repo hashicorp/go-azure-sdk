@@ -45,7 +45,6 @@ func (c PolicyAssignmentsClient) DeleteById(ctx context.Context, id PolicyAssign
 
 	var model PolicyAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

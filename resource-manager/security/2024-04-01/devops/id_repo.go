@@ -46,7 +46,7 @@ func ParseRepoID(input string) (*RepoId, error) {
 	}
 
 	id := RepoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRepoIDInsensitively(input string) (*RepoId, error) {
 	}
 
 	id := RepoId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id RepoId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticSecurityConnectors", "securityConnectors", "securityConnectors"),
-		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorValue"),
+		resourceids.UserSpecifiedSegment("securityConnectorName", "securityConnectorName"),
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticGitHubOwners", "gitHubOwners", "gitHubOwners"),
-		resourceids.UserSpecifiedSegment("gitHubOwnerName", "gitHubOwnerValue"),
+		resourceids.UserSpecifiedSegment("gitHubOwnerName", "ownerName"),
 		resourceids.StaticSegment("staticRepos", "repos", "repos"),
-		resourceids.UserSpecifiedSegment("repoName", "repoValue"),
+		resourceids.UserSpecifiedSegment("repoName", "repoName"),
 	}
 }
 

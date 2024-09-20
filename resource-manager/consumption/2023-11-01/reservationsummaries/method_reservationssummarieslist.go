@@ -45,6 +45,7 @@ func (o ReservationsSummariesListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ReservationsSummariesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedAttestationId{}
 
 func TestNewScopedAttestationID(t *testing.T) {
-	id := NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
+	id := NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationName")
 
 	if id.ResourceId != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceId'", id.ResourceId, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.AttestationName != "attestationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationValue")
+	if id.AttestationName != "attestationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationName")
 	}
 }
 
 func TestFormatScopedAttestationID(t *testing.T) {
-	actual := NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue"
+	actual := NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedAttestationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &ScopedAttestationId{
 				ResourceId:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AttestationName: "attestationValue",
+				AttestationName: "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedAttestationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &ScopedAttestationId{
 				ResourceId:      "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				AttestationName: "attestationValue",
+				AttestationName: "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe",
 			Expected: &ScopedAttestationId{
 				ResourceId:      "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				AttestationName: "aTtEsTaTiOnVaLuE",
+				AttestationName: "aTtEsTaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,16 @@ type ClusterTestFailoverJobDetails struct {
 	TestFailoverStatus   *string                                    `json:"testFailoverStatus,omitempty"`
 
 	// Fields inherited from JobDetails
+
 	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}
+
+func (s ClusterTestFailoverJobDetails) JobDetails() BaseJobDetailsImpl {
+	return BaseJobDetailsImpl{
+		AffectedObjectDetails: s.AffectedObjectDetails,
+		InstanceType:          s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ClusterTestFailoverJobDetails{}
@@ -33,9 +42,10 @@ func (s ClusterTestFailoverJobDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ClusterTestFailoverJobDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ClusterTestFailoverJobDetails"
 
 	encoded, err = json.Marshal(decoded)

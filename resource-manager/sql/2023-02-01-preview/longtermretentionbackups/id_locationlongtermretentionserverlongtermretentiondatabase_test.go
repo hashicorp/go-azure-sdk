@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LocationLongTermRetentionServerLongTermRetentionDatabaseId{}
 
 func TestNewLocationLongTermRetentionServerLongTermRetentionDatabaseID(t *testing.T) {
-	id := NewLocationLongTermRetentionServerLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "longTermRetentionServerValue", "longTermRetentionDatabaseValue")
+	id := NewLocationLongTermRetentionServerLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewLocationLongTermRetentionServerLongTermRetentionDatabaseID(t *testin
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.LongTermRetentionServerName != "longTermRetentionServerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionServerName'", id.LongTermRetentionServerName, "longTermRetentionServerValue")
+	if id.LongTermRetentionServerName != "longTermRetentionServerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionServerName'", id.LongTermRetentionServerName, "longTermRetentionServerName")
 	}
 
-	if id.LongTermRetentionDatabaseName != "longTermRetentionDatabaseValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionDatabaseName'", id.LongTermRetentionDatabaseName, "longTermRetentionDatabaseValue")
+	if id.LongTermRetentionDatabaseName != "longTermRetentionDatabaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionDatabaseName'", id.LongTermRetentionDatabaseName, "longTermRetentionDatabaseName")
 	}
 }
 
 func TestFormatLocationLongTermRetentionServerLongTermRetentionDatabaseID(t *testing.T) {
-	actual := NewLocationLongTermRetentionServerLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "longTermRetentionServerValue", "longTermRetentionDatabaseValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases/longTermRetentionDatabaseValue"
+	actual := NewLocationLongTermRetentionServerLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases/longTermRetentionDatabaseName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseLocationLongTermRetentionServerLongTermRetentionDatabaseID(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases/longTermRetentionDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases/longTermRetentionDatabaseName",
 			Expected: &LocationLongTermRetentionServerLongTermRetentionDatabaseId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				LocationName:                  "locationValue",
-				LongTermRetentionServerName:   "longTermRetentionServerValue",
-				LongTermRetentionDatabaseName: "longTermRetentionDatabaseValue",
+				LocationName:                  "locationName",
+				LongTermRetentionServerName:   "longTermRetentionServerName",
+				LongTermRetentionDatabaseName: "longTermRetentionDatabaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases/longTermRetentionDatabaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases/longTermRetentionDatabaseName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseLocationLongTermRetentionServerLongTermRetentionDatabaseIDInsensit
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/lOnGtErMrEtEnTiOnSeRvErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnSeRvErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErVaLuE/lOnGtErMrEtEnTiOnDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases/longTermRetentionDatabaseValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases/longTermRetentionDatabaseName",
 			Expected: &LocationLongTermRetentionServerLongTermRetentionDatabaseId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				LocationName:                  "locationValue",
-				LongTermRetentionServerName:   "longTermRetentionServerValue",
-				LongTermRetentionDatabaseName: "longTermRetentionDatabaseValue",
+				LocationName:                  "locationName",
+				LongTermRetentionServerName:   "longTermRetentionServerName",
+				LongTermRetentionDatabaseName: "longTermRetentionDatabaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/longTermRetentionServers/longTermRetentionServerValue/longTermRetentionDatabases/longTermRetentionDatabaseValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionServers/longTermRetentionServerName/longTermRetentionDatabases/longTermRetentionDatabaseName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErVaLuE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe",
 			Expected: &LocationLongTermRetentionServerLongTermRetentionDatabaseId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				LocationName:                  "lOcAtIoNvAlUe",
-				LongTermRetentionServerName:   "lOnGtErMrEtEnTiOnSeRvErVaLuE",
-				LongTermRetentionDatabaseName: "lOnGtErMrEtEnTiOnDaTaBaSeVaLuE",
+				LocationName:                  "lOcAtIoNnAmE",
+				LongTermRetentionServerName:   "lOnGtErMrEtEnTiOnSeRvErNaMe",
+				LongTermRetentionDatabaseName: "lOnGtErMrEtEnTiOnDaTaBaSeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErVaLuE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnSeRvErS/lOnGtErMrEtEnTiOnSeRvErNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe/extra",
 			Error: true,
 		},
 	}

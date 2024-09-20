@@ -42,7 +42,7 @@ func ParseResourceGroupDeploymentID(input string) (*ResourceGroupDeploymentId, e
 	}
 
 	id := ResourceGroupDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseResourceGroupDeploymentIDInsensitively(input string) (*ResourceGroupDe
 	}
 
 	id := ResourceGroupDeploymentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,7 +113,7 @@ func (id ResourceGroupDeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
-		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
+		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
 	}
 }
 

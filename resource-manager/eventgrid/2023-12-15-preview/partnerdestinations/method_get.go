@@ -45,7 +45,6 @@ func (c PartnerDestinationsClient) Get(ctx context.Context, id PartnerDestinatio
 
 	var model PartnerDestination
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

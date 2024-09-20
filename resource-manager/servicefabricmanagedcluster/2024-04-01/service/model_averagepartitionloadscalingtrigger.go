@@ -17,6 +17,14 @@ type AveragePartitionLoadScalingTrigger struct {
 	UpperLoadThreshold float64 `json:"upperLoadThreshold"`
 
 	// Fields inherited from ScalingTrigger
+
+	Kind ServiceScalingTriggerKind `json:"kind"`
+}
+
+func (s AveragePartitionLoadScalingTrigger) ScalingTrigger() BaseScalingTriggerImpl {
+	return BaseScalingTriggerImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = AveragePartitionLoadScalingTrigger{}
@@ -30,9 +38,10 @@ func (s AveragePartitionLoadScalingTrigger) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AveragePartitionLoadScalingTrigger: %+v", err)
 	}
+
 	decoded["kind"] = "AveragePartitionLoadTrigger"
 
 	encoded, err = json.Marshal(decoded)

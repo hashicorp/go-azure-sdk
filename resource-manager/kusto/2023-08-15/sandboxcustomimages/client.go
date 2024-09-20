@@ -15,7 +15,7 @@ type SandboxCustomImagesClient struct {
 }
 
 func NewSandboxCustomImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*SandboxCustomImagesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sandboxcustomimages", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sandboxcustomimages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SandboxCustomImagesClient: %+v", err)
 	}

@@ -35,6 +35,7 @@ func (o RestorableSqlResourcesListOperationOptions) ToHeaders() *client.Headers 
 
 func (o RestorableSqlResourcesListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c RestorablesClient) RestorableSqlResourcesList(ctx context.Context, id Re
 
 	var model RestorableSqlResourcesListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

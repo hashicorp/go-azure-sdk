@@ -22,6 +22,14 @@ type AutomationRunbookTaskDetails struct {
 	SubscriptionId      *string `json:"subscriptionId,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s AutomationRunbookTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = AutomationRunbookTaskDetails{}
@@ -35,9 +43,10 @@ func (s AutomationRunbookTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AutomationRunbookTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "AutomationRunbookTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

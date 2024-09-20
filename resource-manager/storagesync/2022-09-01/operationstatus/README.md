@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/operationstatus` Documentation
 
-The `operationstatus` SDK allows for interaction with the Azure Resource Manager Service `storagesync` (API Version `2022-09-01`).
+The `operationstatus` SDK allows for interaction with Azure Resource Manager `storagesync` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := operationstatus.NewOperationID("12345678-1234-9876-4563-123456789012", "locationValue", "operationIdValue")
+id := operationstatus.NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "operationId")
 
 read, err := client.LocationOperationStatus(ctx, id)
 if err != nil {

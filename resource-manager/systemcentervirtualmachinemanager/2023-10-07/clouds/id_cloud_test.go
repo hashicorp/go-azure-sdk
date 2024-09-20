@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CloudId{}
 
 func TestNewCloudID(t *testing.T) {
-	id := NewCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudValue")
+	id := NewCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudResourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCloudID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CloudName != "cloudValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudName'", id.CloudName, "cloudValue")
+	if id.CloudName != "cloudResourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudName'", id.CloudName, "cloudResourceName")
 	}
 }
 
 func TestFormatCloudID(t *testing.T) {
-	actual := NewCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudValue"
+	actual := NewCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudResourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudResourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCloudID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudResourceName",
 			Expected: &CloudId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CloudName:         "cloudValue",
+				CloudName:         "cloudResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudResourceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCloudIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudResourceName",
 			Expected: &CloudId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CloudName:         "cloudValue",
+				CloudName:         "cloudResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/clouds/cloudResourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/cLoUdS/cLoUdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/cLoUdS/cLoUdReSoUrCeNaMe",
 			Expected: &CloudId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				CloudName:         "cLoUdVaLuE",
+				CloudName:         "cLoUdReSoUrCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/cLoUdS/cLoUdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/cLoUdS/cLoUdReSoUrCeNaMe/extra",
 			Error: true,
 		},
 	}

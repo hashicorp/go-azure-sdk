@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ActionGroupId{}
 
 func TestNewActionGroupID(t *testing.T) {
-	id := NewActionGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionGroupValue")
+	id := NewActionGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewActionGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ActionGroupName != "actionGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActionGroupName'", id.ActionGroupName, "actionGroupValue")
+	if id.ActionGroupName != "actionGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActionGroupName'", id.ActionGroupName, "actionGroupName")
 	}
 }
 
 func TestFormatActionGroupID(t *testing.T) {
-	actual := NewActionGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupValue"
+	actual := NewActionGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseActionGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupName",
 			Expected: &ActionGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ActionGroupName:   "actionGroupValue",
+				ActionGroupName:   "actionGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseActionGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupName",
 			Expected: &ActionGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ActionGroupName:   "actionGroupValue",
+				ActionGroupName:   "actionGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/actionGroups/actionGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aCtIoNgRoUpS/aCtIoNgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aCtIoNgRoUpS/aCtIoNgRoUpNaMe",
 			Expected: &ActionGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ActionGroupName:   "aCtIoNgRoUpVaLuE",
+				ActionGroupName:   "aCtIoNgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aCtIoNgRoUpS/aCtIoNgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aCtIoNgRoUpS/aCtIoNgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

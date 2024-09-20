@@ -14,7 +14,16 @@ type AddonSrmProperties struct {
 	LicenseKey *string `json:"licenseKey,omitempty"`
 
 	// Fields inherited from AddonProperties
+
+	AddonType         AddonType               `json:"addonType"`
 	ProvisioningState *AddonProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s AddonSrmProperties) AddonProperties() BaseAddonPropertiesImpl {
+	return BaseAddonPropertiesImpl{
+		AddonType:         s.AddonType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = AddonSrmProperties{}
@@ -28,9 +37,10 @@ func (s AddonSrmProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AddonSrmProperties: %+v", err)
 	}
+
 	decoded["addonType"] = "SRM"
 
 	encoded, err = json.Marshal(decoded)

@@ -54,7 +54,7 @@ func (s *DeletedBackupInstance) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["datasourceAuthCredentials"]; ok {
-		impl, err := unmarshalAuthCredentialsImplementation(v)
+		impl, err := UnmarshalAuthCredentialsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DatasourceAuthCredentials' for 'DeletedBackupInstance': %+v", err)
 		}

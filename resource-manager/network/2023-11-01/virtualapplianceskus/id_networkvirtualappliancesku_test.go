@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &NetworkVirtualApplianceSkuId{}
 
 func TestNewNetworkVirtualApplianceSkuID(t *testing.T) {
-	id := NewNetworkVirtualApplianceSkuID("12345678-1234-9876-4563-123456789012", "networkVirtualApplianceSkuValue")
+	id := NewNetworkVirtualApplianceSkuID("12345678-1234-9876-4563-123456789012", "skuName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.NetworkVirtualApplianceSkuName != "networkVirtualApplianceSkuValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceSkuName'", id.NetworkVirtualApplianceSkuName, "networkVirtualApplianceSkuValue")
+	if id.NetworkVirtualApplianceSkuName != "skuName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceSkuName'", id.NetworkVirtualApplianceSkuName, "skuName")
 	}
 }
 
 func TestFormatNetworkVirtualApplianceSkuID(t *testing.T) {
-	actual := NewNetworkVirtualApplianceSkuID("12345678-1234-9876-4563-123456789012", "networkVirtualApplianceSkuValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/networkVirtualApplianceSkuValue"
+	actual := NewNetworkVirtualApplianceSkuID("12345678-1234-9876-4563-123456789012", "skuName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/skuName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseNetworkVirtualApplianceSkuID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/networkVirtualApplianceSkuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/skuName",
 			Expected: &NetworkVirtualApplianceSkuId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
-				NetworkVirtualApplianceSkuName: "networkVirtualApplianceSkuValue",
+				NetworkVirtualApplianceSkuName: "skuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/networkVirtualApplianceSkuValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/skuName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseNetworkVirtualApplianceSkuIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/networkVirtualApplianceSkuValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/skuName",
 			Expected: &NetworkVirtualApplianceSkuId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
-				NetworkVirtualApplianceSkuName: "networkVirtualApplianceSkuValue",
+				NetworkVirtualApplianceSkuName: "skuName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/networkVirtualApplianceSkuValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkVirtualApplianceSkus/skuName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeSkUs/nEtWoRkViRtUaLaPpLiAnCeSkUvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeSkUs/sKuNaMe",
 			Expected: &NetworkVirtualApplianceSkuId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
-				NetworkVirtualApplianceSkuName: "nEtWoRkViRtUaLaPpLiAnCeSkUvAlUe",
+				NetworkVirtualApplianceSkuName: "sKuNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeSkUs/nEtWoRkViRtUaLaPpLiAnCeSkUvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeSkUs/sKuNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &OfferPlanId{}
 
 func TestNewOfferPlanID(t *testing.T) {
-	id := NewOfferPlanID("12345678-1234-9876-4563-123456789012", "publisherIdValue", "offerIdValue", "planIdValue")
+	id := NewOfferPlanID("12345678-1234-9876-4563-123456789012", "publisherId", "offerId", "planId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PublisherId != "publisherIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PublisherId'", id.PublisherId, "publisherIdValue")
+	if id.PublisherId != "publisherId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublisherId'", id.PublisherId, "publisherId")
 	}
 
-	if id.OfferId != "offerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OfferId'", id.OfferId, "offerIdValue")
+	if id.OfferId != "offerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OfferId'", id.OfferId, "offerId")
 	}
 
-	if id.PlanId != "planIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlanId'", id.PlanId, "planIdValue")
+	if id.PlanId != "planId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlanId'", id.PlanId, "planId")
 	}
 }
 
 func TestFormatOfferPlanID(t *testing.T) {
-	actual := NewOfferPlanID("12345678-1234-9876-4563-123456789012", "publisherIdValue", "offerIdValue", "planIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans/planIdValue"
+	actual := NewOfferPlanID("12345678-1234-9876-4563-123456789012", "publisherId", "offerId", "planId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans/planId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,37 +87,37 @@ func TestParseOfferPlanID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans/planIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans/planId",
 			Expected: &OfferPlanId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PublisherId:    "publisherIdValue",
-				OfferId:        "offerIdValue",
-				PlanId:         "planIdValue",
+				PublisherId:    "publisherId",
+				OfferId:        "offerId",
+				PlanId:         "planId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans/planIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans/planId/extra",
 			Error: true,
 		},
 	}
@@ -238,72 +238,72 @@ func TestParseOfferPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE/oFfErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId/oFfErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE/oFfErS/oFfErIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId/oFfErS/oFfErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE/oFfErS/oFfErIdVaLuE/pLaNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId/oFfErS/oFfErId/pLaNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans/planIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans/planId",
 			Expected: &OfferPlanId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PublisherId:    "publisherIdValue",
-				OfferId:        "offerIdValue",
-				PlanId:         "planIdValue",
+				PublisherId:    "publisherId",
+				OfferId:        "offerId",
+				PlanId:         "planId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherIdValue/offers/offerIdValue/plans/planIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualMachine/publishers/publisherId/offers/offerId/plans/planId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE/oFfErS/oFfErIdVaLuE/pLaNs/pLaNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId/oFfErS/oFfErId/pLaNs/pLaNiD",
 			Expected: &OfferPlanId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				PublisherId:    "pUbLiShErIdVaLuE",
-				OfferId:        "oFfErIdVaLuE",
-				PlanId:         "pLaNiDvAlUe",
+				PublisherId:    "pUbLiShErId",
+				OfferId:        "oFfErId",
+				PlanId:         "pLaNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErIdVaLuE/oFfErS/oFfErIdVaLuE/pLaNs/pLaNiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mArKeTpLaCeOrDeRiNg/oFfErTyPeS/vIrTuAlMaChInE/pUbLiShErS/pUbLiShErId/oFfErS/oFfErId/pLaNs/pLaNiD/extra",
 			Error: true,
 		},
 	}

@@ -42,7 +42,7 @@ func (s *Dataset) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["linkedServiceName"]; ok {
-		impl, err := unmarshalReferenceImplementation(v)
+		impl, err := UnmarshalReferenceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'LinkedServiceName' for 'Dataset': %+v", err)
 		}

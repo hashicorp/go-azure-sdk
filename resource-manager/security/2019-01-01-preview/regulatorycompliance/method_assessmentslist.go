@@ -39,6 +39,7 @@ func (o AssessmentsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o AssessmentsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

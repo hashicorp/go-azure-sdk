@@ -15,7 +15,7 @@ type GatewayListDebugCredentialsClient struct {
 }
 
 func NewGatewayListDebugCredentialsClientWithBaseURI(sdkApi sdkEnv.Api) (*GatewayListDebugCredentialsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "gatewaylistdebugcredentials", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "gatewaylistdebugcredentials", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GatewayListDebugCredentialsClient: %+v", err)
 	}

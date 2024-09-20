@@ -15,7 +15,7 @@ type PriceSheetClient struct {
 }
 
 func NewPriceSheetClientWithBaseURI(sdkApi sdkEnv.Api) (*PriceSheetClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "pricesheet", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "pricesheet", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PriceSheetClient: %+v", err)
 	}

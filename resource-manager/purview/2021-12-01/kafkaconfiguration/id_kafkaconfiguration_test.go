@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &KafkaConfigurationId{}
 
 func TestNewKafkaConfigurationID(t *testing.T) {
-	id := NewKafkaConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "kafkaConfigurationValue")
+	id := NewKafkaConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "kafkaConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewKafkaConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.KafkaConfigurationName != "kafkaConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'KafkaConfigurationName'", id.KafkaConfigurationName, "kafkaConfigurationValue")
+	if id.KafkaConfigurationName != "kafkaConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'KafkaConfigurationName'", id.KafkaConfigurationName, "kafkaConfigurationName")
 	}
 }
 
 func TestFormatKafkaConfigurationID(t *testing.T) {
-	actual := NewKafkaConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "kafkaConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations/kafkaConfigurationValue"
+	actual := NewKafkaConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "kafkaConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations/kafkaConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseKafkaConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations/kafkaConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations/kafkaConfigurationName",
 			Expected: &KafkaConfigurationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AccountName:            "accountValue",
-				KafkaConfigurationName: "kafkaConfigurationValue",
+				AccountName:            "accountName",
+				KafkaConfigurationName: "kafkaConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations/kafkaConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations/kafkaConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseKafkaConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtVaLuE/kAfKaCoNfIgUrAtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtNaMe/kAfKaCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations/kafkaConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations/kafkaConfigurationName",
 			Expected: &KafkaConfigurationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AccountName:            "accountValue",
-				KafkaConfigurationName: "kafkaConfigurationValue",
+				AccountName:            "accountName",
+				KafkaConfigurationName: "kafkaConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountValue/kafkaConfigurations/kafkaConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Purview/accounts/accountName/kafkaConfigurations/kafkaConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtVaLuE/kAfKaCoNfIgUrAtIoNs/kAfKaCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtNaMe/kAfKaCoNfIgUrAtIoNs/kAfKaCoNfIgUrAtIoNnAmE",
 			Expected: &KafkaConfigurationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:            "aCcOuNtVaLuE",
-				KafkaConfigurationName: "kAfKaCoNfIgUrAtIoNvAlUe",
+				AccountName:            "aCcOuNtNaMe",
+				KafkaConfigurationName: "kAfKaCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtVaLuE/kAfKaCoNfIgUrAtIoNs/kAfKaCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pUrViEw/aCcOuNtS/aCcOuNtNaMe/kAfKaCoNfIgUrAtIoNs/kAfKaCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

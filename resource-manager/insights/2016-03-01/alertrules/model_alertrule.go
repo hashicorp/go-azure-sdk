@@ -55,7 +55,7 @@ func (s *AlertRule) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["action"]; ok {
-		impl, err := unmarshalRuleActionImplementation(v)
+		impl, err := UnmarshalRuleActionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Action' for 'AlertRule': %+v", err)
 		}
@@ -70,7 +70,7 @@ func (s *AlertRule) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]RuleAction, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRuleActionImplementation(val)
+			impl, err := UnmarshalRuleActionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Actions' for 'AlertRule': %+v", i, err)
 			}
@@ -80,7 +80,7 @@ func (s *AlertRule) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["condition"]; ok {
-		impl, err := unmarshalRuleConditionImplementation(v)
+		impl, err := UnmarshalRuleConditionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Condition' for 'AlertRule': %+v", err)
 		}

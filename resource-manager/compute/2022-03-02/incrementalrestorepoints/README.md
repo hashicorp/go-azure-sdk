@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-02/incrementalrestorepoints` Documentation
 
-The `incrementalrestorepoints` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2022-03-02`).
+The `incrementalrestorepoints` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2022-03-02`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue", "diskRestorePointValue")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
 
 read, err := client.DiskRestorePointGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue", "diskRestorePointValue")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
 
 payload := incrementalrestorepoints.GrantAccessData{
 	// ...
@@ -57,7 +57,7 @@ if err := client.DiskRestorePointGrantAccessThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue")
+id := incrementalrestorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName")
 
 // alternatively `client.DiskRestorePointListByRestorePoint(ctx, id)` can be used to do batched pagination
 items, err := client.DiskRestorePointListByRestorePointComplete(ctx, id)
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue", "diskRestorePointValue")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
 
 if err := client.DiskRestorePointRevokeAccessThenPoll(ctx, id); err != nil {
 	// handle the error

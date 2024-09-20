@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProviderAttestationId{}
 
 func TestNewProviderAttestationID(t *testing.T) {
-	id := NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
+	id := NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewProviderAttestationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AttestationName != "attestationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationValue")
+	if id.AttestationName != "attestationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationName")
 	}
 }
 
 func TestFormatProviderAttestationID(t *testing.T) {
-	actual := NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue"
+	actual := NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseProviderAttestationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &ProviderAttestationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AttestationName:   "attestationValue",
+				AttestationName:   "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseProviderAttestationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &ProviderAttestationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AttestationName:   "attestationValue",
+				AttestationName:   "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe",
 			Expected: &ProviderAttestationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AttestationName:   "aTtEsTaTiOnVaLuE",
+				AttestationName:   "aTtEsTaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

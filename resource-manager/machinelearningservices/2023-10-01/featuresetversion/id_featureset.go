@@ -44,7 +44,7 @@ func ParseFeatureSetID(input string) (*FeatureSetId, error) {
 	}
 
 	id := FeatureSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseFeatureSetIDInsensitively(input string) (*FeatureSetId, error) {
 	}
 
 	id := FeatureSetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id FeatureSetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticFeatureSets", "featureSets", "featureSets"),
-		resourceids.UserSpecifiedSegment("featureSetName", "featureSetValue"),
+		resourceids.UserSpecifiedSegment("featureSetName", "name"),
 	}
 }
 

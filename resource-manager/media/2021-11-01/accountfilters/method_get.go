@@ -45,7 +45,6 @@ func (c AccountFiltersClient) Get(ctx context.Context, id AccountFilterId) (resu
 
 	var model AccountFilter
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

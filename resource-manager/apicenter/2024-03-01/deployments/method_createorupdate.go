@@ -50,7 +50,6 @@ func (c DeploymentsClient) CreateOrUpdate(ctx context.Context, id DeploymentId, 
 
 	var model Deployment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

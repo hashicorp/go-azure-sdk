@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/contenttemplates` Documentation
 
-The `contenttemplates` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2023-11-01`).
+The `contenttemplates` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2023-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
+id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "templateId")
 
 read, err := client.ContentTemplateDelete(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
+id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "templateId")
 
 read, err := client.ContentTemplateGet(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "templateIdValue")
+id := contenttemplates.NewContentTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "templateId")
 
 payload := contenttemplates.TemplateModel{
 	// ...
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttemplates.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := contenttemplates.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, contenttemplates.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, contenttemplates.DefaultListOperationOptions())

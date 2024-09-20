@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualRouterId{}
 
 func TestNewVirtualRouterID(t *testing.T) {
-	id := NewVirtualRouterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualRouterValue")
+	id := NewVirtualRouterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualRouterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualRouterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualRouterName != "virtualRouterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualRouterName'", id.VirtualRouterName, "virtualRouterValue")
+	if id.VirtualRouterName != "virtualRouterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualRouterName'", id.VirtualRouterName, "virtualRouterName")
 	}
 }
 
 func TestFormatVirtualRouterID(t *testing.T) {
-	actual := NewVirtualRouterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualRouterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterValue"
+	actual := NewVirtualRouterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualRouterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualRouterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterName",
 			Expected: &VirtualRouterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualRouterName: "virtualRouterValue",
+				VirtualRouterName: "virtualRouterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualRouterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterName",
 			Expected: &VirtualRouterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualRouterName: "virtualRouterValue",
+				VirtualRouterName: "virtualRouterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualRouters/virtualRouterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlRoUtErS/vIrTuAlRoUtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlRoUtErS/vIrTuAlRoUtErNaMe",
 			Expected: &VirtualRouterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualRouterName: "vIrTuAlRoUtErVaLuE",
+				VirtualRouterName: "vIrTuAlRoUtErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlRoUtErS/vIrTuAlRoUtErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlRoUtErS/vIrTuAlRoUtErNaMe/extra",
 			Error: true,
 		},
 	}

@@ -15,7 +15,7 @@ type ServerAutomaticTuningClient struct {
 }
 
 func NewServerAutomaticTuningClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerAutomaticTuningClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverautomatictuning", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverautomatictuning", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerAutomaticTuningClient: %+v", err)
 	}

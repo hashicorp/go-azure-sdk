@@ -46,7 +46,7 @@ func ParseLiveOutputID(input string) (*LiveOutputId, error) {
 	}
 
 	id := LiveOutputId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseLiveOutputIDInsensitively(input string) (*LiveOutputId, error) {
 	}
 
 	id := LiveOutputId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id LiveOutputId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticLiveEvents", "liveEvents", "liveEvents"),
-		resourceids.UserSpecifiedSegment("liveEventName", "liveEventValue"),
+		resourceids.UserSpecifiedSegment("liveEventName", "liveEventName"),
 		resourceids.StaticSegment("staticLiveOutputs", "liveOutputs", "liveOutputs"),
-		resourceids.UserSpecifiedSegment("liveOutputName", "liveOutputValue"),
+		resourceids.UserSpecifiedSegment("liveOutputName", "liveOutputName"),
 	}
 }
 

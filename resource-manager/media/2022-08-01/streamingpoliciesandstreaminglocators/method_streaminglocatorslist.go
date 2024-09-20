@@ -41,6 +41,7 @@ func (o StreamingLocatorsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o StreamingLocatorsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

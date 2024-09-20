@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsmkeys` Documentation
 
-The `managedhsmkeys` SDK allows for interaction with the Azure Resource Manager Service `keyvault` (API Version `2023-02-01`).
+The `managedhsmkeys` SDK allows for interaction with Azure Resource Manager `keyvault` (API Version `2023-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue")
+id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName")
 
 payload := managedhsmkeys.ManagedHsmKeyCreateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue")
+id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedhsmkeys.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue", "versionValue")
+id := managedhsmkeys.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName", "keyVersion")
 
 read, err := client.GetVersion(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedhsmkeys.NewManagedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue")
+id := managedhsmkeys.NewManagedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMValue", "keyValue")
+id := managedhsmkeys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "keyName")
 
 // alternatively `client.ListVersions(ctx, id)` can be used to do batched pagination
 items, err := client.ListVersionsComplete(ctx, id)

@@ -42,6 +42,7 @@ func (o RegistryEnvironmentVersionsListOperationOptions) ToHeaders() *client.Hea
 
 func (o RegistryEnvironmentVersionsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

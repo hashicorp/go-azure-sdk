@@ -15,7 +15,7 @@ type UserConfirmationPasswordSendClient struct {
 }
 
 func NewUserConfirmationPasswordSendClientWithBaseURI(sdkApi sdkEnv.Api) (*UserConfirmationPasswordSendClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "userconfirmationpasswordsend", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "userconfirmationpasswordsend", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating UserConfirmationPasswordSendClient: %+v", err)
 	}

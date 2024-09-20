@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &CustomerBillingSubscriptionId{}
 
 func TestNewCustomerBillingSubscriptionID(t *testing.T) {
-	id := NewCustomerBillingSubscriptionID("billingAccountValue", "customerValue", "billingSubscriptionValue")
+	id := NewCustomerBillingSubscriptionID("billingAccountName", "customerName", "billingSubscriptionName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.CustomerName != "customerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomerName'", id.CustomerName, "customerValue")
+	if id.CustomerName != "customerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomerName'", id.CustomerName, "customerName")
 	}
 
-	if id.BillingSubscriptionName != "billingSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingSubscriptionName'", id.BillingSubscriptionName, "billingSubscriptionValue")
+	if id.BillingSubscriptionName != "billingSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingSubscriptionName'", id.BillingSubscriptionName, "billingSubscriptionName")
 	}
 }
 
 func TestFormatCustomerBillingSubscriptionID(t *testing.T) {
-	actual := NewCustomerBillingSubscriptionID("billingAccountValue", "customerValue", "billingSubscriptionValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions/billingSubscriptionValue"
+	actual := NewCustomerBillingSubscriptionID("billingAccountName", "customerName", "billingSubscriptionName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions/billingSubscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,36 +63,36 @@ func TestParseCustomerBillingSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions/billingSubscriptionValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions/billingSubscriptionName",
 			Expected: &CustomerBillingSubscriptionId{
-				BillingAccountName:      "billingAccountValue",
-				CustomerName:            "customerValue",
-				BillingSubscriptionName: "billingSubscriptionValue",
+				BillingAccountName:      "billingAccountName",
+				CustomerName:            "customerName",
+				BillingSubscriptionName: "billingSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions/billingSubscriptionValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions/billingSubscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -169,70 +169,70 @@ func TestParseCustomerBillingSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/bIlLiNgSuBsCrIpTiOnS",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/bIlLiNgSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions/billingSubscriptionValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions/billingSubscriptionName",
 			Expected: &CustomerBillingSubscriptionId{
-				BillingAccountName:      "billingAccountValue",
-				CustomerName:            "customerValue",
-				BillingSubscriptionName: "billingSubscriptionValue",
+				BillingAccountName:      "billingAccountName",
+				CustomerName:            "customerName",
+				BillingSubscriptionName: "billingSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/customers/customerValue/billingSubscriptions/billingSubscriptionValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/customers/customerName/billingSubscriptions/billingSubscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/bIlLiNgSuBsCrIpTiOnS/bIlLiNgSuBsCrIpTiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/bIlLiNgSuBsCrIpTiOnS/bIlLiNgSuBsCrIpTiOnNaMe",
 			Expected: &CustomerBillingSubscriptionId{
-				BillingAccountName:      "bIlLiNgAcCoUnTvAlUe",
-				CustomerName:            "cUsToMeRvAlUe",
-				BillingSubscriptionName: "bIlLiNgSuBsCrIpTiOnVaLuE",
+				BillingAccountName:      "bIlLiNgAcCoUnTnAmE",
+				CustomerName:            "cUsToMeRnAmE",
+				BillingSubscriptionName: "bIlLiNgSuBsCrIpTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/cUsToMeRs/cUsToMeRvAlUe/bIlLiNgSuBsCrIpTiOnS/bIlLiNgSuBsCrIpTiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/cUsToMeRs/cUsToMeRnAmE/bIlLiNgSuBsCrIpTiOnS/bIlLiNgSuBsCrIpTiOnNaMe/extra",
 			Error: true,
 		},
 	}

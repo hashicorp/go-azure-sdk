@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SourceControlSyncJobId{}
 
 func TestNewSourceControlSyncJobID(t *testing.T) {
-	id := NewSourceControlSyncJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "sourceControlValue", "sourceControlSyncJobIdValue")
+	id := NewSourceControlSyncJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "sourceControlName", "sourceControlSyncJobId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewSourceControlSyncJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutomationAccountName != "automationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
+	if id.AutomationAccountName != "automationAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountName")
 	}
 
-	if id.SourceControlName != "sourceControlValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SourceControlName'", id.SourceControlName, "sourceControlValue")
+	if id.SourceControlName != "sourceControlName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SourceControlName'", id.SourceControlName, "sourceControlName")
 	}
 
-	if id.SourceControlSyncJobId != "sourceControlSyncJobIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SourceControlSyncJobId'", id.SourceControlSyncJobId, "sourceControlSyncJobIdValue")
+	if id.SourceControlSyncJobId != "sourceControlSyncJobId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SourceControlSyncJobId'", id.SourceControlSyncJobId, "sourceControlSyncJobId")
 	}
 }
 
 func TestFormatSourceControlSyncJobID(t *testing.T) {
-	actual := NewSourceControlSyncJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "sourceControlValue", "sourceControlSyncJobIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs/sourceControlSyncJobIdValue"
+	actual := NewSourceControlSyncJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "sourceControlName", "sourceControlSyncJobId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs/sourceControlSyncJobId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseSourceControlSyncJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs/sourceControlSyncJobIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs/sourceControlSyncJobId",
 			Expected: &SourceControlSyncJobId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AutomationAccountName:  "automationAccountValue",
-				SourceControlName:      "sourceControlValue",
-				SourceControlSyncJobId: "sourceControlSyncJobIdValue",
+				AutomationAccountName:  "automationAccountName",
+				SourceControlName:      "sourceControlName",
+				SourceControlSyncJobId: "sourceControlSyncJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs/sourceControlSyncJobIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs/sourceControlSyncJobId/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseSourceControlSyncJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOuRcEcOnTrOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOuRcEcOnTrOlS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOuRcEcOnTrOlS/sOuRcEcOnTrOlNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE/sOuRcEcOnTrOlSyNcJoBs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOuRcEcOnTrOlS/sOuRcEcOnTrOlNaMe/sOuRcEcOnTrOlSyNcJoBs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs/sourceControlSyncJobIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs/sourceControlSyncJobId",
 			Expected: &SourceControlSyncJobId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				AutomationAccountName:  "automationAccountValue",
-				SourceControlName:      "sourceControlValue",
-				SourceControlSyncJobId: "sourceControlSyncJobIdValue",
+				AutomationAccountName:  "automationAccountName",
+				SourceControlName:      "sourceControlName",
+				SourceControlSyncJobId: "sourceControlSyncJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/sourceControls/sourceControlValue/sourceControlSyncJobs/sourceControlSyncJobIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/sourceControls/sourceControlName/sourceControlSyncJobs/sourceControlSyncJobId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE/sOuRcEcOnTrOlSyNcJoBs/sOuRcEcOnTrOlSyNcJoBiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOuRcEcOnTrOlS/sOuRcEcOnTrOlNaMe/sOuRcEcOnTrOlSyNcJoBs/sOuRcEcOnTrOlSyNcJoBiD",
 			Expected: &SourceControlSyncJobId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				AutomationAccountName:  "aUtOmAtIoNaCcOuNtVaLuE",
-				SourceControlName:      "sOuRcEcOnTrOlVaLuE",
-				SourceControlSyncJobId: "sOuRcEcOnTrOlSyNcJoBiDvAlUe",
+				AutomationAccountName:  "aUtOmAtIoNaCcOuNtNaMe",
+				SourceControlName:      "sOuRcEcOnTrOlNaMe",
+				SourceControlSyncJobId: "sOuRcEcOnTrOlSyNcJoBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOuRcEcOnTrOlS/sOuRcEcOnTrOlVaLuE/sOuRcEcOnTrOlSyNcJoBs/sOuRcEcOnTrOlSyNcJoBiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOuRcEcOnTrOlS/sOuRcEcOnTrOlNaMe/sOuRcEcOnTrOlSyNcJoBs/sOuRcEcOnTrOlSyNcJoBiD/extra",
 			Error: true,
 		},
 	}

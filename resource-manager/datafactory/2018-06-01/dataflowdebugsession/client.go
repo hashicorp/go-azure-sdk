@@ -15,7 +15,7 @@ type DataFlowDebugSessionClient struct {
 }
 
 func NewDataFlowDebugSessionClientWithBaseURI(sdkApi sdkEnv.Api) (*DataFlowDebugSessionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dataflowdebugsession", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "dataflowdebugsession", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataFlowDebugSessionClient: %+v", err)
 	}

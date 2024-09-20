@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &InvoiceId{}
 
 func TestNewInvoiceID(t *testing.T) {
-	id := NewInvoiceID("invoiceValue")
+	id := NewInvoiceID("invoiceName")
 
-	if id.InvoiceName != "invoiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InvoiceName'", id.InvoiceName, "invoiceValue")
+	if id.InvoiceName != "invoiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InvoiceName'", id.InvoiceName, "invoiceName")
 	}
 }
 
 func TestFormatInvoiceID(t *testing.T) {
-	actual := NewInvoiceID("invoiceValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceValue"
+	actual := NewInvoiceID("invoiceName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -65,14 +65,14 @@ func TestParseInvoiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceName",
 			Expected: &InvoiceId{
-				InvoiceName: "invoiceValue",
+				InvoiceName: "invoiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceName/extra",
 			Error: true,
 		},
 	}
@@ -161,26 +161,26 @@ func TestParseInvoiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceName",
 			Expected: &InvoiceId{
-				InvoiceName: "invoiceValue",
+				InvoiceName: "invoiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/default/invoices/invoiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/dEfAuLt/iNvOiCeS/iNvOiCeVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/dEfAuLt/iNvOiCeS/iNvOiCeNaMe",
 			Expected: &InvoiceId{
-				InvoiceName: "iNvOiCeVaLuE",
+				InvoiceName: "iNvOiCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/dEfAuLt/iNvOiCeS/iNvOiCeVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/dEfAuLt/iNvOiCeS/iNvOiCeNaMe/extra",
 			Error: true,
 		},
 	}

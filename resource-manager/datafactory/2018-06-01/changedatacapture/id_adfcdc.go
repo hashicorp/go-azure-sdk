@@ -44,7 +44,7 @@ func ParseAdfcdcID(input string) (*AdfcdcId, error) {
 	}
 
 	id := AdfcdcId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAdfcdcIDInsensitively(input string) (*AdfcdcId, error) {
 	}
 
 	id := AdfcdcId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AdfcdcId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataFactory", "Microsoft.DataFactory", "Microsoft.DataFactory"),
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
-		resourceids.UserSpecifiedSegment("factoryName", "factoryValue"),
+		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticAdfcdcs", "adfcdcs", "adfcdcs"),
-		resourceids.UserSpecifiedSegment("adfcdcName", "adfcdcValue"),
+		resourceids.UserSpecifiedSegment("adfcdcName", "changeDataCaptureName"),
 	}
 }
 

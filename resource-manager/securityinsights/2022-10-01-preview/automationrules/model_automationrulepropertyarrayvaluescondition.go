@@ -39,7 +39,7 @@ func (s *AutomationRulePropertyArrayValuesCondition) UnmarshalJSON(bytes []byte)
 
 		output := make([]AutomationRuleCondition, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalAutomationRuleConditionImplementation(val)
+			impl, err := UnmarshalAutomationRuleConditionImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ItemConditions' for 'AutomationRulePropertyArrayValuesCondition': %+v", i, err)
 			}

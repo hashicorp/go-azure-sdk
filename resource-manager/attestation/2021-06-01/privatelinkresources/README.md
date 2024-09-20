@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/privatelinkresources` Documentation
 
-The `privatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `attestation` (API Version `2021-06-01`).
+The `privatelinkresources` SDK allows for interaction with Azure Resource Manager `attestation` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresources.NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue")
+id := privatelinkresources.NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerName")
 
 read, err := client.ListByProvider(ctx, id)
 if err != nil {

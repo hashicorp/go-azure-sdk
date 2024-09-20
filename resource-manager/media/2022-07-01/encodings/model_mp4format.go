@@ -14,7 +14,16 @@ type Mp4Format struct {
 	OutputFiles *[]OutputFile `json:"outputFiles,omitempty"`
 
 	// Fields inherited from Format
+
 	FilenamePattern string `json:"filenamePattern"`
+	OdataType       string `json:"@odata.type"`
+}
+
+func (s Mp4Format) Format() BaseFormatImpl {
+	return BaseFormatImpl{
+		FilenamePattern: s.FilenamePattern,
+		OdataType:       s.OdataType,
+	}
 }
 
 var _ json.Marshaler = Mp4Format{}
@@ -28,9 +37,10 @@ func (s Mp4Format) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling Mp4Format: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.Mp4Format"
 
 	encoded, err = json.Marshal(decoded)

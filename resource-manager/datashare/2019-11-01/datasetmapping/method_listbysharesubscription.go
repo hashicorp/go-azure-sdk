@@ -41,6 +41,7 @@ func (o ListByShareSubscriptionOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByShareSubscriptionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -105,7 +106,7 @@ func (c DataSetMappingClient) ListByShareSubscription(ctx context.Context, id Sh
 	temp := make([]DataSetMapping, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalDataSetMappingImplementation(v)
+			val, err := UnmarshalDataSetMappingImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for DataSetMapping (%q): %+v", i, v, err)
 				return result, err

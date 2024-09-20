@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataCollectionRuleId{}
 
 func TestNewDataCollectionRuleID(t *testing.T) {
-	id := NewDataCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataCollectionRuleValue")
+	id := NewDataCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataCollectionRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDataCollectionRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DataCollectionRuleName != "dataCollectionRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataCollectionRuleName'", id.DataCollectionRuleName, "dataCollectionRuleValue")
+	if id.DataCollectionRuleName != "dataCollectionRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataCollectionRuleName'", id.DataCollectionRuleName, "dataCollectionRuleName")
 	}
 }
 
 func TestFormatDataCollectionRuleID(t *testing.T) {
-	actual := NewDataCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataCollectionRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleValue"
+	actual := NewDataCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataCollectionRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDataCollectionRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleName",
 			Expected: &DataCollectionRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				DataCollectionRuleName: "dataCollectionRuleValue",
+				DataCollectionRuleName: "dataCollectionRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDataCollectionRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleName",
 			Expected: &DataCollectionRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				DataCollectionRuleName: "dataCollectionRuleValue",
+				DataCollectionRuleName: "dataCollectionRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/dataCollectionRules/dataCollectionRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEs/dAtAcOlLeCtIoNrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEs/dAtAcOlLeCtIoNrUlEnAmE",
 			Expected: &DataCollectionRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				DataCollectionRuleName: "dAtAcOlLeCtIoNrUlEvAlUe",
+				DataCollectionRuleName: "dAtAcOlLeCtIoNrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEs/dAtAcOlLeCtIoNrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEs/dAtAcOlLeCtIoNrUlEnAmE/extra",
 			Error: true,
 		},
 	}

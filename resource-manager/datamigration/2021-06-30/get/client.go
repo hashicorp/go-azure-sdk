@@ -15,7 +15,7 @@ type GETClient struct {
 }
 
 func NewGETClientWithBaseURI(sdkApi sdkEnv.Api) (*GETClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "get", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "get", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GETClient: %+v", err)
 	}

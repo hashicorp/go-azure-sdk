@@ -15,7 +15,16 @@ type WebClientCertificateAuthentication struct {
 	Pfx      SecretBase `json:"pfx"`
 
 	// Fields inherited from WebLinkedServiceTypeProperties
-	Url string `json:"url"`
+
+	AuthenticationType WebAuthenticationType `json:"authenticationType"`
+	Url                string                `json:"url"`
+}
+
+func (s WebClientCertificateAuthentication) WebLinkedServiceTypeProperties() BaseWebLinkedServiceTypePropertiesImpl {
+	return BaseWebLinkedServiceTypePropertiesImpl{
+		AuthenticationType: s.AuthenticationType,
+		Url:                s.Url,
+	}
 }
 
 var _ json.Marshaler = WebClientCertificateAuthentication{}
@@ -29,9 +38,10 @@ func (s WebClientCertificateAuthentication) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling WebClientCertificateAuthentication: %+v", err)
 	}
+
 	decoded["authenticationType"] = "ClientCertificate"
 
 	encoded, err = json.Marshal(decoded)
@@ -51,6 +61,7 @@ func (s *WebClientCertificateAuthentication) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into WebClientCertificateAuthentication: %+v", err)
 	}
 
+	s.AuthenticationType = decoded.AuthenticationType
 	s.Url = decoded.Url
 
 	var temp map[string]json.RawMessage
@@ -59,7 +70,7 @@ func (s *WebClientCertificateAuthentication) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["password"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Password' for 'WebClientCertificateAuthentication': %+v", err)
 		}
@@ -67,7 +78,7 @@ func (s *WebClientCertificateAuthentication) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["pfx"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Pfx' for 'WebClientCertificateAuthentication': %+v", err)
 		}

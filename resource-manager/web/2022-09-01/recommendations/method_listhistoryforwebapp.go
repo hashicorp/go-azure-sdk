@@ -41,6 +41,7 @@ func (o ListHistoryForWebAppOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListHistoryForWebAppOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

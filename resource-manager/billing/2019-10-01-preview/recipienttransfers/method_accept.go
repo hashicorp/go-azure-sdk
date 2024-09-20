@@ -50,7 +50,6 @@ func (c RecipientTransfersClient) Accept(ctx context.Context, id TransferId, inp
 
 	var model RecipientTransferDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

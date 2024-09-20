@@ -52,7 +52,6 @@ func (c EventHubsClustersConfigurationClient) ConfigurationPatch(ctx context.Con
 
 	var model ClusterQuotaConfigurationProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScopeRepetitionId{}
 
 func TestNewScopeRepetitionID(t *testing.T) {
-	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "workflowValue", "runValue", "actionValue", "scopeRepetitionValue")
+	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "runName", "actionName", "repetitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,30 +22,30 @@ func TestNewScopeRepetitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SiteName != "siteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteValue")
+	if id.SiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "name")
 	}
 
-	if id.WorkflowName != "workflowValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowName'", id.WorkflowName, "workflowValue")
+	if id.WorkflowName != "workflowName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowName'", id.WorkflowName, "workflowName")
 	}
 
-	if id.RunName != "runValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RunName'", id.RunName, "runValue")
+	if id.RunName != "runName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RunName'", id.RunName, "runName")
 	}
 
-	if id.ActionName != "actionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActionName'", id.ActionName, "actionValue")
+	if id.ActionName != "actionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActionName'", id.ActionName, "actionName")
 	}
 
-	if id.ScopeRepetitionName != "scopeRepetitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopeRepetitionName'", id.ScopeRepetitionName, "scopeRepetitionValue")
+	if id.ScopeRepetitionName != "repetitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopeRepetitionName'", id.ScopeRepetitionName, "repetitionName")
 	}
 }
 
 func TestFormatScopeRepetitionID(t *testing.T) {
-	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue", "workflowValue", "runValue", "actionValue", "scopeRepetitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue"
+	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "runName", "actionName", "repetitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -99,90 +99,90 @@ func TestParseScopeRepetitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				SiteName:            "siteValue",
-				WorkflowName:        "workflowValue",
-				RunName:             "runValue",
-				ActionName:          "actionValue",
-				ScopeRepetitionName: "scopeRepetitionValue",
+				SiteName:            "name",
+				WorkflowName:        "workflowName",
+				RunName:             "runName",
+				ActionName:          "actionName",
+				ScopeRepetitionName: "repetitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName/extra",
 			Error: true,
 		},
 	}
@@ -315,178 +315,178 @@ func TestParseScopeRepetitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				SiteName:            "siteValue",
-				WorkflowName:        "workflowValue",
-				RunName:             "runValue",
-				ActionName:          "actionValue",
-				ScopeRepetitionName: "scopeRepetitionValue",
+				SiteName:            "name",
+				WorkflowName:        "workflowName",
+				RunName:             "runName",
+				ActionName:          "actionName",
+				ScopeRepetitionName: "repetitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteValue/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/name/hostRuntime/runtime/webHooks/workflow/api/management/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/rEpEtItIoNnAmE",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				SiteName:            "sItEvAlUe",
-				WorkflowName:        "wOrKfLoWvAlUe",
-				RunName:             "rUnVaLuE",
-				ActionName:          "aCtIoNvAlUe",
-				ScopeRepetitionName: "sCoPeRePeTiTiOnVaLuE",
+				SiteName:            "nAmE",
+				WorkflowName:        "wOrKfLoWnAmE",
+				RunName:             "rUnNaMe",
+				ActionName:          "aCtIoNnAmE",
+				ScopeRepetitionName: "rEpEtItIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEvAlUe/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/nAmE/hOsTrUnTiMe/rUnTiMe/wEbHoOkS/wOrKfLoW/aPi/mAnAgEmEnT/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/rEpEtItIoNnAmE/extra",
 			Error: true,
 		},
 	}

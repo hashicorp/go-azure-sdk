@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/informatica/2024-05-08/organizations` Documentation
 
-The `organizations` SDK allows for interaction with the Azure Resource Manager Service `informatica` (API Version `2024-05-08`).
+The `organizations` SDK allows for interaction with Azure Resource Manager `informatica` (API Version `2024-05-08`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 payload := organizations.InformaticaOrganizationResource{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -70,7 +70,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 read, err := client.GetAllServerlessRuntimes(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 read, err := client.GetServerlessMetadata(ctx, id)
 if err != nil {
@@ -136,7 +136,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue")
+id := organizations.NewOrganizationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName")
 
 payload := organizations.InformaticaOrganizationResourceUpdate{
 	// ...

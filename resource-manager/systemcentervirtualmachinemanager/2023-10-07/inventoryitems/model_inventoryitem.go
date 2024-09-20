@@ -40,7 +40,7 @@ func (s *InventoryItem) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalInventoryItemPropertiesImplementation(v)
+		impl, err := UnmarshalInventoryItemPropertiesImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'InventoryItem': %+v", err)
 		}

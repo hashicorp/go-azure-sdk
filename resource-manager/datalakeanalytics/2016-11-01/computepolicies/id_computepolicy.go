@@ -44,7 +44,7 @@ func ParseComputePolicyID(input string) (*ComputePolicyId, error) {
 	}
 
 	id := ComputePolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseComputePolicyIDInsensitively(input string) (*ComputePolicyId, error) {
 	}
 
 	id := ComputePolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ComputePolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataLakeAnalytics", "Microsoft.DataLakeAnalytics", "Microsoft.DataLakeAnalytics"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticComputePolicies", "computePolicies", "computePolicies"),
-		resourceids.UserSpecifiedSegment("computePolicyName", "computePolicyValue"),
+		resourceids.UserSpecifiedSegment("computePolicyName", "computePolicyName"),
 	}
 }
 

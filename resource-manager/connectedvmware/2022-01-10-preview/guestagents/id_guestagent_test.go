@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &GuestAgentId{}
 
 func TestNewGuestAgentID(t *testing.T) {
-	id := NewGuestAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestAgentValue")
+	id := NewGuestAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewGuestAgentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualMachineName != "virtualMachineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
+	if id.VirtualMachineName != "virtualMachineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineName")
 	}
 
-	if id.GuestAgentName != "guestAgentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GuestAgentName'", id.GuestAgentName, "guestAgentValue")
+	if id.GuestAgentName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'GuestAgentName'", id.GuestAgentName, "name")
 	}
 }
 
 func TestFormatGuestAgentID(t *testing.T) {
-	actual := NewGuestAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestAgentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents/guestAgentValue"
+	actual := NewGuestAgentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseGuestAgentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents/guestAgentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents/name",
 			Expected: &GuestAgentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualMachineName: "virtualMachineValue",
-				GuestAgentName:     "guestAgentValue",
+				VirtualMachineName: "virtualMachineName",
+				GuestAgentName:     "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents/guestAgentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents/name/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseGuestAgentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/gUeStAgEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/gUeStAgEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents/guestAgentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents/name",
 			Expected: &GuestAgentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VirtualMachineName: "virtualMachineValue",
-				GuestAgentName:     "guestAgentValue",
+				VirtualMachineName: "virtualMachineName",
+				GuestAgentName:     "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineValue/guestAgents/guestAgentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/guestAgents/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/gUeStAgEnTs/gUeStAgEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/gUeStAgEnTs/nAmE",
 			Expected: &GuestAgentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualMachineName: "vIrTuAlMaChInEvAlUe",
-				GuestAgentName:     "gUeStAgEnTvAlUe",
+				VirtualMachineName: "vIrTuAlMaChInEnAmE",
+				GuestAgentName:     "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/gUeStAgEnTs/gUeStAgEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/gUeStAgEnTs/nAmE/extra",
 			Error: true,
 		},
 	}

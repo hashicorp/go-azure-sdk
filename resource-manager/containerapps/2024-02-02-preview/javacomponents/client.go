@@ -15,7 +15,7 @@ type JavaComponentsClient struct {
 }
 
 func NewJavaComponentsClientWithBaseURI(sdkApi sdkEnv.Api) (*JavaComponentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "javacomponents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "javacomponents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JavaComponentsClient: %+v", err)
 	}

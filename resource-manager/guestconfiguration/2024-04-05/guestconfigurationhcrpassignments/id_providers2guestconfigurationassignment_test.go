@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &Providers2GuestConfigurationAssignmentId{}
 
 func TestNewProviders2GuestConfigurationAssignmentID(t *testing.T) {
-	id := NewProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "guestConfigurationAssignmentValue")
+	id := NewProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "guestConfigurationAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewProviders2GuestConfigurationAssignmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MachineName != "machineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineValue")
+	if id.MachineName != "machineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineName")
 	}
 
-	if id.GuestConfigurationAssignmentName != "guestConfigurationAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GuestConfigurationAssignmentName'", id.GuestConfigurationAssignmentName, "guestConfigurationAssignmentValue")
+	if id.GuestConfigurationAssignmentName != "guestConfigurationAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GuestConfigurationAssignmentName'", id.GuestConfigurationAssignmentName, "guestConfigurationAssignmentName")
 	}
 }
 
 func TestFormatProviders2GuestConfigurationAssignmentID(t *testing.T) {
-	actual := NewProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "guestConfigurationAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue"
+	actual := NewProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "guestConfigurationAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,37 +87,37 @@ func TestParseProviders2GuestConfigurationAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentName",
 			Expected: &Providers2GuestConfigurationAssignmentId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				MachineName:                      "machineValue",
-				GuestConfigurationAssignmentName: "guestConfigurationAssignmentValue",
+				MachineName:                      "machineName",
+				GuestConfigurationAssignmentName: "guestConfigurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -238,72 +238,72 @@ func TestParseProviders2GuestConfigurationAssignmentIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentName",
 			Expected: &Providers2GuestConfigurationAssignmentId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "example-resource-group",
-				MachineName:                      "machineValue",
-				GuestConfigurationAssignmentName: "guestConfigurationAssignmentValue",
+				MachineName:                      "machineName",
+				GuestConfigurationAssignmentName: "guestConfigurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/guestConfigurationAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTnAmE",
 			Expected: &Providers2GuestConfigurationAssignmentId{
 				SubscriptionId:                   "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                "eXaMpLe-rEsOuRcE-GrOuP",
-				MachineName:                      "mAcHiNeVaLuE",
-				GuestConfigurationAssignmentName: "gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe",
+				MachineName:                      "mAcHiNeNaMe",
+				GuestConfigurationAssignmentName: "gUeStCoNfIgUrAtIoNaSsIgNmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/pRoViDeRs/mIcRoSoFt.gUeStCoNfIgUrAtIoN/gUeStCoNfIgUrAtIoNaSsIgNmEnTs/gUeStCoNfIgUrAtIoNaSsIgNmEnTnAmE/extra",
 			Error: true,
 		},
 	}

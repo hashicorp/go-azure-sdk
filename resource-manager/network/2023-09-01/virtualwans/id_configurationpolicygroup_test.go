@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConfigurationPolicyGroupId{}
 
 func TestNewConfigurationPolicyGroupID(t *testing.T) {
-	id := NewConfigurationPolicyGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationValue", "configurationPolicyGroupValue")
+	id := NewConfigurationPolicyGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationName", "configurationPolicyGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewConfigurationPolicyGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VpnServerConfigurationName != "vpnServerConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VpnServerConfigurationName'", id.VpnServerConfigurationName, "vpnServerConfigurationValue")
+	if id.VpnServerConfigurationName != "vpnServerConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VpnServerConfigurationName'", id.VpnServerConfigurationName, "vpnServerConfigurationName")
 	}
 
-	if id.ConfigurationPolicyGroupName != "configurationPolicyGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationPolicyGroupName'", id.ConfigurationPolicyGroupName, "configurationPolicyGroupValue")
+	if id.ConfigurationPolicyGroupName != "configurationPolicyGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationPolicyGroupName'", id.ConfigurationPolicyGroupName, "configurationPolicyGroupName")
 	}
 }
 
 func TestFormatConfigurationPolicyGroupID(t *testing.T) {
-	actual := NewConfigurationPolicyGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationValue", "configurationPolicyGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups/configurationPolicyGroupValue"
+	actual := NewConfigurationPolicyGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationName", "configurationPolicyGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups/configurationPolicyGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConfigurationPolicyGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups/configurationPolicyGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups/configurationPolicyGroupName",
 			Expected: &ConfigurationPolicyGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				VpnServerConfigurationName:   "vpnServerConfigurationValue",
-				ConfigurationPolicyGroupName: "configurationPolicyGroupValue",
+				VpnServerConfigurationName:   "vpnServerConfigurationName",
+				ConfigurationPolicyGroupName: "configurationPolicyGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups/configurationPolicyGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups/configurationPolicyGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConfigurationPolicyGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe/cOnFiGuRaTiOnPoLiCyGrOuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE/cOnFiGuRaTiOnPoLiCyGrOuPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups/configurationPolicyGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups/configurationPolicyGroupName",
 			Expected: &ConfigurationPolicyGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				VpnServerConfigurationName:   "vpnServerConfigurationValue",
-				ConfigurationPolicyGroupName: "configurationPolicyGroupValue",
+				VpnServerConfigurationName:   "vpnServerConfigurationName",
+				ConfigurationPolicyGroupName: "configurationPolicyGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/configurationPolicyGroups/configurationPolicyGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/configurationPolicyGroups/configurationPolicyGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe/cOnFiGuRaTiOnPoLiCyGrOuPs/cOnFiGuRaTiOnPoLiCyGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE/cOnFiGuRaTiOnPoLiCyGrOuPs/cOnFiGuRaTiOnPoLiCyGrOuPnAmE",
 			Expected: &ConfigurationPolicyGroupId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				VpnServerConfigurationName:   "vPnSeRvErCoNfIgUrAtIoNvAlUe",
-				ConfigurationPolicyGroupName: "cOnFiGuRaTiOnPoLiCyGrOuPvAlUe",
+				VpnServerConfigurationName:   "vPnSeRvErCoNfIgUrAtIoNnAmE",
+				ConfigurationPolicyGroupName: "cOnFiGuRaTiOnPoLiCyGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe/cOnFiGuRaTiOnPoLiCyGrOuPs/cOnFiGuRaTiOnPoLiCyGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE/cOnFiGuRaTiOnPoLiCyGrOuPs/cOnFiGuRaTiOnPoLiCyGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

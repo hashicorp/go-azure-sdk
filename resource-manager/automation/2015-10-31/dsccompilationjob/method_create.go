@@ -50,7 +50,6 @@ func (c DscCompilationJobClient) Create(ctx context.Context, id commonids.Automa
 
 	var model DscCompilationJob
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

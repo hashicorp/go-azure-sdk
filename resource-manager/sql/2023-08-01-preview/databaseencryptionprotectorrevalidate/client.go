@@ -15,7 +15,7 @@ type DatabaseEncryptionProtectorRevalidateClient struct {
 }
 
 func NewDatabaseEncryptionProtectorRevalidateClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseEncryptionProtectorRevalidateClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseencryptionprotectorrevalidate", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databaseencryptionprotectorrevalidate", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseEncryptionProtectorRevalidateClient: %+v", err)
 	}

@@ -44,7 +44,7 @@ func ParseStorageAccountCredentialID(input string) (*StorageAccountCredentialId,
 	}
 
 	id := StorageAccountCredentialId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStorageAccountCredentialIDInsensitively(input string) (*StorageAccount
 	}
 
 	id := StorageAccountCredentialId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StorageAccountCredentialId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceValue"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticStorageAccountCredentials", "storageAccountCredentials", "storageAccountCredentials"),
-		resourceids.UserSpecifiedSegment("storageAccountCredentialName", "storageAccountCredentialValue"),
+		resourceids.UserSpecifiedSegment("storageAccountCredentialName", "name"),
 	}
 }
 

@@ -44,7 +44,7 @@ func ParseWorkspacePrivateLinkResourceID(input string) (*WorkspacePrivateLinkRes
 	}
 
 	id := WorkspacePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkspacePrivateLinkResourceIDInsensitively(input string) (*WorkspaceP
 	}
 
 	id := WorkspacePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id WorkspacePrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHealthcareApis", "Microsoft.HealthcareApis", "Microsoft.HealthcareApis"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "groupName"),
 	}
 }
 

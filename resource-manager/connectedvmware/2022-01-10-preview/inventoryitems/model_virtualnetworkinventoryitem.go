@@ -13,10 +13,22 @@ var _ InventoryItemProperties = VirtualNetworkInventoryItem{}
 type VirtualNetworkInventoryItem struct {
 
 	// Fields inherited from InventoryItemProperties
-	ManagedResourceId *string `json:"managedResourceId,omitempty"`
-	MoName            *string `json:"moName,omitempty"`
-	MoRefId           *string `json:"moRefId,omitempty"`
-	ProvisioningState *string `json:"provisioningState,omitempty"`
+
+	InventoryType     InventoryType `json:"inventoryType"`
+	ManagedResourceId *string       `json:"managedResourceId,omitempty"`
+	MoName            *string       `json:"moName,omitempty"`
+	MoRefId           *string       `json:"moRefId,omitempty"`
+	ProvisioningState *string       `json:"provisioningState,omitempty"`
+}
+
+func (s VirtualNetworkInventoryItem) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return BaseInventoryItemPropertiesImpl{
+		InventoryType:     s.InventoryType,
+		ManagedResourceId: s.ManagedResourceId,
+		MoName:            s.MoName,
+		MoRefId:           s.MoRefId,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = VirtualNetworkInventoryItem{}
@@ -30,9 +42,10 @@ func (s VirtualNetworkInventoryItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VirtualNetworkInventoryItem: %+v", err)
 	}
+
 	decoded["inventoryType"] = "VirtualNetwork"
 
 	encoded, err = json.Marshal(decoded)

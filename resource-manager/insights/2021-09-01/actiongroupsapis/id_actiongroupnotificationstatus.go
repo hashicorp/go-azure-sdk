@@ -44,7 +44,7 @@ func ParseActionGroupNotificationStatusID(input string) (*ActionGroupNotificatio
 	}
 
 	id := ActionGroupNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseActionGroupNotificationStatusIDInsensitively(input string) (*ActionGro
 	}
 
 	id := ActionGroupNotificationStatusId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ActionGroupNotificationStatusId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticActionGroups", "actionGroups", "actionGroups"),
-		resourceids.UserSpecifiedSegment("actionGroupName", "actionGroupValue"),
+		resourceids.UserSpecifiedSegment("actionGroupName", "actionGroupName"),
 		resourceids.StaticSegment("staticNotificationStatus", "notificationStatus", "notificationStatus"),
-		resourceids.UserSpecifiedSegment("notificationId", "notificationIdValue"),
+		resourceids.UserSpecifiedSegment("notificationId", "notificationId"),
 	}
 }
 

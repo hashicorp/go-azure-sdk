@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FeatureValidationResponseBase interface {
+	FeatureValidationResponseBase() BaseFeatureValidationResponseBaseImpl
 }
 
-// RawFeatureValidationResponseBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ FeatureValidationResponseBase = BaseFeatureValidationResponseBaseImpl{}
+
+type BaseFeatureValidationResponseBaseImpl struct {
+	ObjectType string `json:"objectType"`
+}
+
+func (s BaseFeatureValidationResponseBaseImpl) FeatureValidationResponseBase() BaseFeatureValidationResponseBaseImpl {
+	return s
+}
+
+var _ FeatureValidationResponseBase = RawFeatureValidationResponseBaseImpl{}
+
+// RawFeatureValidationResponseBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawFeatureValidationResponseBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	featureValidationResponseBase BaseFeatureValidationResponseBaseImpl
+	Type                          string
+	Values                        map[string]interface{}
 }
 
-func unmarshalFeatureValidationResponseBaseImplementation(input []byte) (FeatureValidationResponseBase, error) {
+func (s RawFeatureValidationResponseBaseImpl) FeatureValidationResponseBase() BaseFeatureValidationResponseBaseImpl {
+	return s.featureValidationResponseBase
+}
+
+func UnmarshalFeatureValidationResponseBaseImplementation(input []byte) (FeatureValidationResponseBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalFeatureValidationResponseBaseImplementation(input []byte) (Feature
 		return out, nil
 	}
 
-	out := RawFeatureValidationResponseBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseFeatureValidationResponseBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFeatureValidationResponseBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawFeatureValidationResponseBaseImpl{
+		featureValidationResponseBase: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
 
 }

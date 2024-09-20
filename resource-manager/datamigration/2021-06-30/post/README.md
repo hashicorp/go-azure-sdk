@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/post` Documentation
 
-The `post` SDK allows for interaction with the Azure Resource Manager Service `datamigration` (API Version `2021-06-30`).
+The `post` SDK allows for interaction with Azure Resource Manager `datamigration` (API Version `2021-06-30`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := post.NewFileID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "fileValue")
+id := post.NewFileID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "fileName")
 
 read, err := client.FilesRead(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewFileID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "fileValue")
+id := post.NewFileID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "fileName")
 
 read, err := client.FilesReadWrite(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "serviceTaskValue")
+id := post.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
 
 read, err := client.ServiceTasksCancel(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 payload := post.NameAvailabilityRequest{
 	// ...
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := post.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := post.NameAvailabilityRequest{
 	// ...
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 read, err := client.ServicesCheckStatus(ctx, id)
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -142,7 +142,7 @@ if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -154,7 +154,7 @@ if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksCancel(ctx, id)
 if err != nil {
@@ -170,7 +170,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 payload := post.CommandProperties{
 	// ...

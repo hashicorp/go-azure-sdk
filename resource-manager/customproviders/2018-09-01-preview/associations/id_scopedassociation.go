@@ -40,7 +40,7 @@ func ParseScopedAssociationID(input string) (*ScopedAssociationId, error) {
 	}
 
 	id := ScopedAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedAssociationIDInsensitively(input string) (*ScopedAssociationId, 
 	}
 
 	id := ScopedAssociationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedAssociationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCustomProviders", "Microsoft.CustomProviders", "Microsoft.CustomProviders"),
 		resourceids.StaticSegment("staticAssociations", "associations", "associations"),
-		resourceids.UserSpecifiedSegment("associationName", "associationValue"),
+		resourceids.UserSpecifiedSegment("associationName", "associationName"),
 	}
 }
 

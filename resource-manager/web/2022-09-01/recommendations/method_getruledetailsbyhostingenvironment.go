@@ -35,6 +35,7 @@ func (o GetRuleDetailsByHostingEnvironmentOperationOptions) ToHeaders() *client.
 
 func (o GetRuleDetailsByHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c RecommendationsClient) GetRuleDetailsByHostingEnvironment(ctx context.Co
 
 	var model RecommendationRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

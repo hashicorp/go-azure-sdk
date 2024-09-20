@@ -42,6 +42,7 @@ func (o WorkspaceCertificateListByWorkspaceOperationOptions) ToHeaders() *client
 
 func (o WorkspaceCertificateListByWorkspaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

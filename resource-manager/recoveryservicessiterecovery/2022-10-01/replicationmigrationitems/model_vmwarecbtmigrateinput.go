@@ -14,6 +14,14 @@ type VMwareCbtMigrateInput struct {
 	PerformShutdown string `json:"performShutdown"`
 
 	// Fields inherited from MigrateProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMwareCbtMigrateInput) MigrateProviderSpecificInput() BaseMigrateProviderSpecificInputImpl {
+	return BaseMigrateProviderSpecificInputImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMwareCbtMigrateInput{}
@@ -27,9 +35,10 @@ func (s VMwareCbtMigrateInput) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMwareCbtMigrateInput: %+v", err)
 	}
+
 	decoded["instanceType"] = "VMwareCbt"
 
 	encoded, err = json.Marshal(decoded)

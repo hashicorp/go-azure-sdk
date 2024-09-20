@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccessPolicyId{}
 
 func TestNewAccessPolicyID(t *testing.T) {
-	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "redisValue", "accessPolicyValue")
+	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName", "accessPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAccessPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RedisName != "redisValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RedisName'", id.RedisName, "redisValue")
+	if id.RedisName != "cacheName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RedisName'", id.RedisName, "cacheName")
 	}
 
-	if id.AccessPolicyName != "accessPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPolicyName'", id.AccessPolicyName, "accessPolicyValue")
+	if id.AccessPolicyName != "accessPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPolicyName'", id.AccessPolicyName, "accessPolicyName")
 	}
 }
 
 func TestFormatAccessPolicyID(t *testing.T) {
-	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "redisValue", "accessPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies/accessPolicyValue"
+	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName", "accessPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies/accessPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAccessPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies/accessPolicyName",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RedisName:         "redisValue",
-				AccessPolicyName:  "accessPolicyValue",
+				RedisName:         "cacheName",
+				AccessPolicyName:  "accessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies/accessPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAccessPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/rEdIsVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/cAcHeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/rEdIsVaLuE/aCcEsSpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/cAcHeNaMe/aCcEsSpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies/accessPolicyName",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RedisName:         "redisValue",
-				AccessPolicyName:  "accessPolicyValue",
+				RedisName:         "cacheName",
+				AccessPolicyName:  "accessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/redisValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redis/cacheName/accessPolicies/accessPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/rEdIsVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/cAcHeNaMe/aCcEsSpOlIcIeS/aCcEsSpOlIcYnAmE",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RedisName:         "rEdIsVaLuE",
-				AccessPolicyName:  "aCcEsSpOlIcYvAlUe",
+				RedisName:         "cAcHeNaMe",
+				AccessPolicyName:  "aCcEsSpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/rEdIsVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIs/cAcHeNaMe/aCcEsSpOlIcIeS/aCcEsSpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

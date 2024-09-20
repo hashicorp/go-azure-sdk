@@ -14,10 +14,22 @@ type ResourcePoolInventoryItem struct {
 	Parent *InventoryItemDetails `json:"parent,omitempty"`
 
 	// Fields inherited from InventoryItemProperties
+
+	InventoryType     InventoryType      `json:"inventoryType"`
 	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
 	MoName            *string            `json:"moName,omitempty"`
 	MoRefId           *string            `json:"moRefId,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s ResourcePoolInventoryItem) InventoryItemProperties() BaseInventoryItemPropertiesImpl {
+	return BaseInventoryItemPropertiesImpl{
+		InventoryType:     s.InventoryType,
+		ManagedResourceId: s.ManagedResourceId,
+		MoName:            s.MoName,
+		MoRefId:           s.MoRefId,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = ResourcePoolInventoryItem{}
@@ -31,9 +43,10 @@ func (s ResourcePoolInventoryItem) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ResourcePoolInventoryItem: %+v", err)
 	}
+
 	decoded["inventoryType"] = "ResourcePool"
 
 	encoded, err = json.Marshal(decoded)

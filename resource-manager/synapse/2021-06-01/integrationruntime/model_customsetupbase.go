@@ -9,18 +9,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CustomSetupBase interface {
+	CustomSetupBase() BaseCustomSetupBaseImpl
 }
 
-// RawCustomSetupBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ CustomSetupBase = BaseCustomSetupBaseImpl{}
+
+type BaseCustomSetupBaseImpl struct {
+	Type string `json:"type"`
+}
+
+func (s BaseCustomSetupBaseImpl) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return s
+}
+
+var _ CustomSetupBase = RawCustomSetupBaseImpl{}
+
+// RawCustomSetupBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawCustomSetupBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	customSetupBase BaseCustomSetupBaseImpl
+	Type            string
+	Values          map[string]interface{}
 }
 
-func unmarshalCustomSetupBaseImplementation(input []byte) (CustomSetupBase, error) {
+func (s RawCustomSetupBaseImpl) CustomSetupBase() BaseCustomSetupBaseImpl {
+	return s.customSetupBase
+}
+
+func UnmarshalCustomSetupBaseImplementation(input []byte) (CustomSetupBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -35,10 +52,15 @@ func unmarshalCustomSetupBaseImplementation(input []byte) (CustomSetupBase, erro
 		return nil, nil
 	}
 
-	out := RawCustomSetupBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseCustomSetupBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCustomSetupBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawCustomSetupBaseImpl{
+		customSetupBase: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
 
 }

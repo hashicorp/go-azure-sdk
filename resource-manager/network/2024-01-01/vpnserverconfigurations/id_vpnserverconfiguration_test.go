@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VpnServerConfigurationId{}
 
 func TestNewVpnServerConfigurationID(t *testing.T) {
-	id := NewVpnServerConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationValue")
+	id := NewVpnServerConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVpnServerConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VpnServerConfigurationName != "vpnServerConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VpnServerConfigurationName'", id.VpnServerConfigurationName, "vpnServerConfigurationValue")
+	if id.VpnServerConfigurationName != "vpnServerConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VpnServerConfigurationName'", id.VpnServerConfigurationName, "vpnServerConfigurationName")
 	}
 }
 
 func TestFormatVpnServerConfigurationID(t *testing.T) {
-	actual := NewVpnServerConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue"
+	actual := NewVpnServerConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnServerConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVpnServerConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName",
 			Expected: &VpnServerConfigurationId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				VpnServerConfigurationName: "vpnServerConfigurationValue",
+				VpnServerConfigurationName: "vpnServerConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVpnServerConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName",
 			Expected: &VpnServerConfigurationId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				VpnServerConfigurationName: "vpnServerConfigurationValue",
+				VpnServerConfigurationName: "vpnServerConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/vpnServerConfigurations/vpnServerConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE",
 			Expected: &VpnServerConfigurationId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				VpnServerConfigurationName: "vPnSeRvErCoNfIgUrAtIoNvAlUe",
+				VpnServerConfigurationName: "vPnSeRvErCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vPnSeRvErCoNfIgUrAtIoNs/vPnSeRvErCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

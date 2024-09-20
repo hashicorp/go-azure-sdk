@@ -36,6 +36,7 @@ func (o ContentItemCreateOrUpdateOperationOptions) ToHeaders() *client.Headers {
 
 func (o ContentItemCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c ContentTypeContentItemClient) ContentItemCreateOrUpdate(ctx context.Cont
 
 	var model ContentItemContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AttestationProvidersId{}
 
 func TestNewAttestationProvidersID(t *testing.T) {
-	id := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue")
+	id := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAttestationProvidersID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AttestationProviderName != "attestationProviderValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttestationProviderName'", id.AttestationProviderName, "attestationProviderValue")
+	if id.AttestationProviderName != "providerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttestationProviderName'", id.AttestationProviderName, "providerName")
 	}
 }
 
 func TestFormatAttestationProvidersID(t *testing.T) {
-	actual := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue"
+	actual := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAttestationProvidersID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerName",
 			Expected: &AttestationProvidersId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				AttestationProviderName: "attestationProviderValue",
+				AttestationProviderName: "providerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAttestationProvidersIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerName",
 			Expected: &AttestationProvidersId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				AttestationProviderName: "attestationProviderValue",
+				AttestationProviderName: "providerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/aTtEsTaTiOnPrOvIdErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/pRoViDeRnAmE",
 			Expected: &AttestationProvidersId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				AttestationProviderName: "aTtEsTaTiOnPrOvIdErVaLuE",
+				AttestationProviderName: "pRoViDeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/aTtEsTaTiOnPrOvIdErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/pRoViDeRnAmE/extra",
 			Error: true,
 		},
 	}

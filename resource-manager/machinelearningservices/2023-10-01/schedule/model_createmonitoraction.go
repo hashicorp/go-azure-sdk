@@ -14,6 +14,14 @@ type CreateMonitorAction struct {
 	MonitorDefinition MonitorDefinition `json:"monitorDefinition"`
 
 	// Fields inherited from ScheduleActionBase
+
+	ActionType ScheduleActionType `json:"actionType"`
+}
+
+func (s CreateMonitorAction) ScheduleActionBase() BaseScheduleActionBaseImpl {
+	return BaseScheduleActionBaseImpl{
+		ActionType: s.ActionType,
+	}
 }
 
 var _ json.Marshaler = CreateMonitorAction{}
@@ -27,9 +35,10 @@ func (s CreateMonitorAction) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CreateMonitorAction: %+v", err)
 	}
+
 	decoded["actionType"] = "CreateMonitor"
 
 	encoded, err = json.Marshal(decoded)

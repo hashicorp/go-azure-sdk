@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedViewId{}
 
 func TestNewScopedViewID(t *testing.T) {
-	id := NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewValue")
+	id := NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ViewName != "viewValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ViewName'", id.ViewName, "viewValue")
+	if id.ViewName != "viewName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ViewName'", id.ViewName, "viewName")
 	}
 }
 
 func TestFormatScopedViewID(t *testing.T) {
-	actual := NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewValue"
+	actual := NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedViewID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewName",
 			Expected: &ScopedViewId{
 				Scope:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ViewName: "viewValue",
+				ViewName: "viewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedViewIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewName",
 			Expected: &ScopedViewId{
 				Scope:    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ViewName: "viewValue",
+				ViewName: "viewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/views/viewName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWnAmE",
 			Expected: &ScopedViewId{
 				Scope:    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ViewName: "vIeWvAlUe",
+				ViewName: "vIeWnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/vIeWs/vIeWnAmE/extra",
 			Error: true,
 		},
 	}

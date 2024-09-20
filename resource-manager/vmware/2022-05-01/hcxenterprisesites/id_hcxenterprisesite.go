@@ -44,7 +44,7 @@ func ParseHcxEnterpriseSiteID(input string) (*HcxEnterpriseSiteId, error) {
 	}
 
 	id := HcxEnterpriseSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHcxEnterpriseSiteIDInsensitively(input string) (*HcxEnterpriseSiteId, 
 	}
 
 	id := HcxEnterpriseSiteId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id HcxEnterpriseSiteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAVS", "Microsoft.AVS", "Microsoft.AVS"),
 		resourceids.StaticSegment("staticPrivateClouds", "privateClouds", "privateClouds"),
-		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudValue"),
+		resourceids.UserSpecifiedSegment("privateCloudName", "privateCloudName"),
 		resourceids.StaticSegment("staticHcxEnterpriseSites", "hcxEnterpriseSites", "hcxEnterpriseSites"),
-		resourceids.UserSpecifiedSegment("hcxEnterpriseSiteName", "hcxEnterpriseSiteValue"),
+		resourceids.UserSpecifiedSegment("hcxEnterpriseSiteName", "hcxEnterpriseSiteName"),
 	}
 }
 

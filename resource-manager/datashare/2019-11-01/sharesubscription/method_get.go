@@ -45,7 +45,6 @@ func (c ShareSubscriptionClient) Get(ctx context.Context, id ShareSubscriptionId
 
 	var model ShareSubscription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

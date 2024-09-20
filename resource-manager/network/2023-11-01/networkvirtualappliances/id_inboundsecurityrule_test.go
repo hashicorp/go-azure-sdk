@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InboundSecurityRuleId{}
 
 func TestNewInboundSecurityRuleID(t *testing.T) {
-	id := NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceValue", "inboundSecurityRuleValue")
+	id := NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "ruleCollectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewInboundSecurityRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkVirtualApplianceName != "networkVirtualApplianceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceName'", id.NetworkVirtualApplianceName, "networkVirtualApplianceValue")
+	if id.NetworkVirtualApplianceName != "networkVirtualApplianceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceName'", id.NetworkVirtualApplianceName, "networkVirtualApplianceName")
 	}
 
-	if id.InboundSecurityRuleName != "inboundSecurityRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InboundSecurityRuleName'", id.InboundSecurityRuleName, "inboundSecurityRuleValue")
+	if id.InboundSecurityRuleName != "ruleCollectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InboundSecurityRuleName'", id.InboundSecurityRuleName, "ruleCollectionName")
 	}
 }
 
 func TestFormatInboundSecurityRuleID(t *testing.T) {
-	actual := NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceValue", "inboundSecurityRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules/inboundSecurityRuleValue"
+	actual := NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "ruleCollectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules/ruleCollectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseInboundSecurityRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules/inboundSecurityRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules/ruleCollectionName",
 			Expected: &InboundSecurityRuleId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				NetworkVirtualApplianceName: "networkVirtualApplianceValue",
-				InboundSecurityRuleName:     "inboundSecurityRuleValue",
+				NetworkVirtualApplianceName: "networkVirtualApplianceName",
+				InboundSecurityRuleName:     "ruleCollectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules/inboundSecurityRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules/ruleCollectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseInboundSecurityRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeVaLuE/iNbOuNdSeCuRiTyRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/iNbOuNdSeCuRiTyRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules/inboundSecurityRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules/ruleCollectionName",
 			Expected: &InboundSecurityRuleId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
-				NetworkVirtualApplianceName: "networkVirtualApplianceValue",
-				InboundSecurityRuleName:     "inboundSecurityRuleValue",
+				NetworkVirtualApplianceName: "networkVirtualApplianceName",
+				InboundSecurityRuleName:     "ruleCollectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceValue/inboundSecurityRules/inboundSecurityRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/inboundSecurityRules/ruleCollectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeVaLuE/iNbOuNdSeCuRiTyRuLeS/iNbOuNdSeCuRiTyRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/iNbOuNdSeCuRiTyRuLeS/rUlEcOlLeCtIoNnAmE",
 			Expected: &InboundSecurityRuleId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkVirtualApplianceName: "nEtWoRkViRtUaLaPpLiAnCeVaLuE",
-				InboundSecurityRuleName:     "iNbOuNdSeCuRiTyRuLeVaLuE",
+				NetworkVirtualApplianceName: "nEtWoRkViRtUaLaPpLiAnCeNaMe",
+				InboundSecurityRuleName:     "rUlEcOlLeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeVaLuE/iNbOuNdSeCuRiTyRuLeS/iNbOuNdSeCuRiTyRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/iNbOuNdSeCuRiTyRuLeS/rUlEcOlLeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

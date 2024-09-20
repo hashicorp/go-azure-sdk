@@ -35,6 +35,7 @@ func (o GetByManagementGroupOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByManagementGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c AggregatedCostClient) GetByManagementGroup(ctx context.Context, id commo
 
 	var model ManagementGroupAggregatedCostResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

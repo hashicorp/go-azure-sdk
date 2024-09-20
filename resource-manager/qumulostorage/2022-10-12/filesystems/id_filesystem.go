@@ -42,7 +42,7 @@ func ParseFileSystemID(input string) (*FileSystemId, error) {
 	}
 
 	id := FileSystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseFileSystemIDInsensitively(input string) (*FileSystemId, error) {
 	}
 
 	id := FileSystemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id FileSystemId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticQumuloStorage", "Qumulo.Storage", "Qumulo.Storage"),
 		resourceids.StaticSegment("staticFileSystems", "fileSystems", "fileSystems"),
-		resourceids.UserSpecifiedSegment("fileSystemName", "fileSystemValue"),
+		resourceids.UserSpecifiedSegment("fileSystemName", "fileSystemName"),
 	}
 }
 

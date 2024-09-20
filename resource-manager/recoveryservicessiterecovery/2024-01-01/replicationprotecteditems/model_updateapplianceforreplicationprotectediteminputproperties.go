@@ -30,7 +30,7 @@ func (s *UpdateApplianceForReplicationProtectedItemInputProperties) UnmarshalJSO
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalUpdateApplianceForReplicationProtectedItemProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalUpdateApplianceForReplicationProtectedItemProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'UpdateApplianceForReplicationProtectedItemInputProperties': %+v", err)
 		}

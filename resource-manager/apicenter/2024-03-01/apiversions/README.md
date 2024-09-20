@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-01/apiversions` Documentation
 
-The `apiversions` SDK allows for interaction with the Azure Resource Manager Service `apicenter` (API Version `2024-03-01`).
+The `apiversions` SDK allows for interaction with Azure Resource Manager `apicenter` (API Version `2024-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue")
+id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName")
 
 payload := apiversions.ApiVersion{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue")
+id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue")
+id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue", "versionValue")
+id := apiversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName", "versionName")
 
 read, err := client.Head(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiversions.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceValue", "apiValue")
+id := apiversions.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceName", "apiName")
 
 // alternatively `client.List(ctx, id, apiversions.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, apiversions.DefaultListOperationOptions())

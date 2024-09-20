@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NamespaceTopicEventSubscriptionId{}
 
 func TestNewNamespaceTopicEventSubscriptionID(t *testing.T) {
-	id := NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue")
+	id := NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewNamespaceTopicEventSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.TopicName != "topicValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "topicValue")
+	if id.TopicName != "topicName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "topicName")
 	}
 
-	if id.EventSubscriptionName != "eventSubscriptionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionValue")
+	if id.EventSubscriptionName != "eventSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventSubscriptionName'", id.EventSubscriptionName, "eventSubscriptionName")
 	}
 }
 
 func TestFormatNamespaceTopicEventSubscriptionID(t *testing.T) {
-	actual := NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "eventSubscriptionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue"
+	actual := NewNamespaceTopicEventSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "topicName", "eventSubscriptionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions/eventSubscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseNamespaceTopicEventSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &NamespaceTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				NamespaceName:         "namespaceValue",
-				TopicName:             "topicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				NamespaceName:         "namespaceName",
+				TopicName:             "topicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseNamespaceTopicEventSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/tOpIcS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/tOpIcS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/tOpIcS/tOpIcVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/tOpIcS/tOpIcNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions/eventSubscriptionName",
 			Expected: &NamespaceTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				NamespaceName:         "namespaceValue",
-				TopicName:             "topicValue",
-				EventSubscriptionName: "eventSubscriptionValue",
+				NamespaceName:         "namespaceName",
+				TopicName:             "topicName",
+				EventSubscriptionName: "eventSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/topics/topicValue/eventSubscriptions/eventSubscriptionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/topics/topicName/eventSubscriptions/eventSubscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe",
 			Expected: &NamespaceTopicEventSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:         "nAmEsPaCeVaLuE",
-				TopicName:             "tOpIcVaLuE",
-				EventSubscriptionName: "eVeNtSuBsCrIpTiOnVaLuE",
+				NamespaceName:         "nAmEsPaCeNaMe",
+				TopicName:             "tOpIcNaMe",
+				EventSubscriptionName: "eVeNtSuBsCrIpTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/tOpIcS/tOpIcVaLuE/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/tOpIcS/tOpIcNaMe/eVeNtSuBsCrIpTiOnS/eVeNtSuBsCrIpTiOnNaMe/extra",
 			Error: true,
 		},
 	}

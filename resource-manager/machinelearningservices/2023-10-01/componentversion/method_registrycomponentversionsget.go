@@ -45,7 +45,6 @@ func (c ComponentVersionClient) RegistryComponentVersionsGet(ctx context.Context
 
 	var model ComponentVersionResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

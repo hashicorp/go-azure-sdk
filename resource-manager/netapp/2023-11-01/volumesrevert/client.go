@@ -15,7 +15,7 @@ type VolumesRevertClient struct {
 }
 
 func NewVolumesRevertClientWithBaseURI(sdkApi sdkEnv.Api) (*VolumesRevertClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "volumesrevert", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "volumesrevert", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VolumesRevertClient: %+v", err)
 	}

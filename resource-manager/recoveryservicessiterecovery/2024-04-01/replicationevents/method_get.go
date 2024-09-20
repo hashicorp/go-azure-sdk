@@ -45,7 +45,6 @@ func (c ReplicationEventsClient) Get(ctx context.Context, id ReplicationEventId)
 
 	var model Event
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c ReplicationvCentersClient) Get(ctx context.Context, id ReplicationvCente
 
 	var model VCenter
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FavoriteId{}
 
 func TestNewFavoriteID(t *testing.T) {
-	id := NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "favoriteIdValue")
+	id := NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFavoriteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ComponentName != "componentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "componentValue")
+	if id.ComponentName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "resourceName")
 	}
 
-	if id.FavoriteId != "favoriteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FavoriteId'", id.FavoriteId, "favoriteIdValue")
+	if id.FavoriteId != "favoriteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FavoriteId'", id.FavoriteId, "favoriteId")
 	}
 }
 
 func TestFormatFavoriteID(t *testing.T) {
-	actual := NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "favoriteIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites/favoriteIdValue"
+	actual := NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites/favoriteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFavoriteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites/favoriteIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites/favoriteId",
 			Expected: &FavoriteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				FavoriteId:        "favoriteIdValue",
+				ComponentName:     "resourceName",
+				FavoriteId:        "favoriteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites/favoriteIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites/favoriteId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFavoriteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/fAvOrItEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/fAvOrItEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites/favoriteIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites/favoriteId",
 			Expected: &FavoriteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				FavoriteId:        "favoriteIdValue",
+				ComponentName:     "resourceName",
+				FavoriteId:        "favoriteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/favorites/favoriteIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/favorites/favoriteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/fAvOrItEs/fAvOrItEiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/fAvOrItEs/fAvOrItEiD",
 			Expected: &FavoriteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ComponentName:     "cOmPoNeNtVaLuE",
-				FavoriteId:        "fAvOrItEiDvAlUe",
+				ComponentName:     "rEsOuRcEnAmE",
+				FavoriteId:        "fAvOrItEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/fAvOrItEs/fAvOrItEiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/fAvOrItEs/fAvOrItEiD/extra",
 			Error: true,
 		},
 	}

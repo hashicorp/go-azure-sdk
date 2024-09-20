@@ -34,6 +34,7 @@ func (o ListByServiceOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByServiceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c PolicyDescriptionClient) ListByService(ctx context.Context, id ServiceId
 
 	var model PolicyDescriptionCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

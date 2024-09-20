@@ -48,7 +48,7 @@ func ParseApiReleaseID(input string) (*ApiReleaseId, error) {
 	}
 
 	id := ApiReleaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseApiReleaseIDInsensitively(input string) (*ApiReleaseId, error) {
 	}
 
 	id := ApiReleaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id ApiReleaseId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceId", "workspaceIdValue"),
+		resourceids.UserSpecifiedSegment("workspaceId", "workspaceId"),
 		resourceids.StaticSegment("staticApis", "apis", "apis"),
-		resourceids.UserSpecifiedSegment("apiId", "apiIdValue"),
+		resourceids.UserSpecifiedSegment("apiId", "apiId"),
 		resourceids.StaticSegment("staticReleases", "releases", "releases"),
-		resourceids.UserSpecifiedSegment("releaseId", "releaseIdValue"),
+		resourceids.UserSpecifiedSegment("releaseId", "releaseId"),
 	}
 }
 

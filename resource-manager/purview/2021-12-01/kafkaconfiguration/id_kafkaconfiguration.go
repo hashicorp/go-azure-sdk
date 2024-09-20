@@ -44,7 +44,7 @@ func ParseKafkaConfigurationID(input string) (*KafkaConfigurationId, error) {
 	}
 
 	id := KafkaConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseKafkaConfigurationIDInsensitively(input string) (*KafkaConfigurationId
 	}
 
 	id := KafkaConfigurationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id KafkaConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPurview", "Microsoft.Purview", "Microsoft.Purview"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticKafkaConfigurations", "kafkaConfigurations", "kafkaConfigurations"),
-		resourceids.UserSpecifiedSegment("kafkaConfigurationName", "kafkaConfigurationValue"),
+		resourceids.UserSpecifiedSegment("kafkaConfigurationName", "kafkaConfigurationName"),
 	}
 }
 

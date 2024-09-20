@@ -45,7 +45,6 @@ func (c TransfersClient) PartnerTransfersGet(ctx context.Context, id CustomerTra
 
 	var model PartnerTransferDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type RaiPoliciesClient struct {
 }
 
 func NewRaiPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*RaiPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "raipolicies", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "raipolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RaiPoliciesClient: %+v", err)
 	}

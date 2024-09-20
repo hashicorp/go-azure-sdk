@@ -14,6 +14,14 @@ type MDATPCheckRequirements struct {
 	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
+
+	Kind DataConnectorKind `json:"kind"`
+}
+
+func (s MDATPCheckRequirements) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
+	return BaseDataConnectorsCheckRequirementsImpl{
+		Kind: s.Kind,
+	}
 }
 
 var _ json.Marshaler = MDATPCheckRequirements{}
@@ -27,9 +35,10 @@ func (s MDATPCheckRequirements) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling MDATPCheckRequirements: %+v", err)
 	}
+
 	decoded["kind"] = "MicrosoftDefenderAdvancedThreatProtection"
 
 	encoded, err = json.Marshal(decoded)

@@ -45,7 +45,6 @@ func (c EntitiesClient) Get(ctx context.Context, id EntityId) (result GetOperati
 
 	var model Entity
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

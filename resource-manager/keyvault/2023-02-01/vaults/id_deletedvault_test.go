@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeletedVaultId{}
 
 func TestNewDeletedVaultID(t *testing.T) {
-	id := NewDeletedVaultID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedVaultValue")
+	id := NewDeletedVaultID("12345678-1234-9876-4563-123456789012", "location", "vaultName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.DeletedVaultName != "deletedVaultValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedVaultName'", id.DeletedVaultName, "deletedVaultValue")
+	if id.DeletedVaultName != "vaultName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedVaultName'", id.DeletedVaultName, "vaultName")
 	}
 }
 
 func TestFormatDeletedVaultID(t *testing.T) {
-	actual := NewDeletedVaultID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedVaultValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults/deletedVaultValue"
+	actual := NewDeletedVaultID("12345678-1234-9876-4563-123456789012", "location", "vaultName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults/vaultName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDeletedVaultID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults/deletedVaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults/vaultName",
 			Expected: &DeletedVaultId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				LocationName:     "locationValue",
-				DeletedVaultName: "deletedVaultValue",
+				LocationName:     "location",
+				DeletedVaultName: "vaultName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults/deletedVaultValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults/vaultName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDeletedVaultIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdVaUlTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoN/dElEtEdVaUlTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults/deletedVaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults/vaultName",
 			Expected: &DeletedVaultId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				LocationName:     "locationValue",
-				DeletedVaultName: "deletedVaultValue",
+				LocationName:     "location",
+				DeletedVaultName: "vaultName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/locationValue/deletedVaults/deletedVaultValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.KeyVault/locations/location/deletedVaults/vaultName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdVaUlTs/dElEtEdVaUlTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoN/dElEtEdVaUlTs/vAuLtNaMe",
 			Expected: &DeletedVaultId{
 				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
-				LocationName:     "lOcAtIoNvAlUe",
-				DeletedVaultName: "dElEtEdVaUlTvAlUe",
+				LocationName:     "lOcAtIoN",
+				DeletedVaultName: "vAuLtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdVaUlTs/dElEtEdVaUlTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.kEyVaUlT/lOcAtIoNs/lOcAtIoN/dElEtEdVaUlTs/vAuLtNaMe/extra",
 			Error: true,
 		},
 	}

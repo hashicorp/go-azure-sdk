@@ -50,7 +50,6 @@ func (c ApisClient) CreateOrUpdate(ctx context.Context, id ApiId, input Api) (re
 
 	var model Api
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

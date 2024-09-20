@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AvailabilityGroupListenerId{}
 
 func TestNewAvailabilityGroupListenerID(t *testing.T) {
-	id := NewAvailabilityGroupListenerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupValue", "availabilityGroupListenerValue")
+	id := NewAvailabilityGroupListenerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupName", "availabilityGroupListenerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAvailabilityGroupListenerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SqlVirtualMachineGroupName != "sqlVirtualMachineGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SqlVirtualMachineGroupName'", id.SqlVirtualMachineGroupName, "sqlVirtualMachineGroupValue")
+	if id.SqlVirtualMachineGroupName != "sqlVirtualMachineGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SqlVirtualMachineGroupName'", id.SqlVirtualMachineGroupName, "sqlVirtualMachineGroupName")
 	}
 
-	if id.AvailabilityGroupListenerName != "availabilityGroupListenerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AvailabilityGroupListenerName'", id.AvailabilityGroupListenerName, "availabilityGroupListenerValue")
+	if id.AvailabilityGroupListenerName != "availabilityGroupListenerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AvailabilityGroupListenerName'", id.AvailabilityGroupListenerName, "availabilityGroupListenerName")
 	}
 }
 
 func TestFormatAvailabilityGroupListenerID(t *testing.T) {
-	actual := NewAvailabilityGroupListenerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupValue", "availabilityGroupListenerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners/availabilityGroupListenerValue"
+	actual := NewAvailabilityGroupListenerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupName", "availabilityGroupListenerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners/availabilityGroupListenerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAvailabilityGroupListenerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners/availabilityGroupListenerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners/availabilityGroupListenerName",
 			Expected: &AvailabilityGroupListenerId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SqlVirtualMachineGroupName:    "sqlVirtualMachineGroupValue",
-				AvailabilityGroupListenerName: "availabilityGroupListenerValue",
+				SqlVirtualMachineGroupName:    "sqlVirtualMachineGroupName",
+				AvailabilityGroupListenerName: "availabilityGroupListenerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners/availabilityGroupListenerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners/availabilityGroupListenerName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAvailabilityGroupListenerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe/aVaIlAbIlItYgRoUpLiStEnErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE/aVaIlAbIlItYgRoUpLiStEnErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners/availabilityGroupListenerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners/availabilityGroupListenerName",
 			Expected: &AvailabilityGroupListenerId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SqlVirtualMachineGroupName:    "sqlVirtualMachineGroupValue",
-				AvailabilityGroupListenerName: "availabilityGroupListenerValue",
+				SqlVirtualMachineGroupName:    "sqlVirtualMachineGroupName",
+				AvailabilityGroupListenerName: "availabilityGroupListenerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/availabilityGroupListeners/availabilityGroupListenerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/availabilityGroupListeners/availabilityGroupListenerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe/aVaIlAbIlItYgRoUpLiStEnErS/aVaIlAbIlItYgRoUpLiStEnErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE/aVaIlAbIlItYgRoUpLiStEnErS/aVaIlAbIlItYgRoUpLiStEnErNaMe",
 			Expected: &AvailabilityGroupListenerId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				SqlVirtualMachineGroupName:    "sQlViRtUaLmAcHiNeGrOuPvAlUe",
-				AvailabilityGroupListenerName: "aVaIlAbIlItYgRoUpLiStEnErVaLuE",
+				SqlVirtualMachineGroupName:    "sQlViRtUaLmAcHiNeGrOuPnAmE",
+				AvailabilityGroupListenerName: "aVaIlAbIlItYgRoUpLiStEnErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe/aVaIlAbIlItYgRoUpLiStEnErS/aVaIlAbIlItYgRoUpLiStEnErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE/aVaIlAbIlItYgRoUpLiStEnErS/aVaIlAbIlItYgRoUpLiStEnErNaMe/extra",
 			Error: true,
 		},
 	}

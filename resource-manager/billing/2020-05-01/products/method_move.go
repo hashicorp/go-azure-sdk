@@ -51,7 +51,6 @@ func (c ProductsClient) Move(ctx context.Context, id ProductId, input TransferPr
 
 	var model Product
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

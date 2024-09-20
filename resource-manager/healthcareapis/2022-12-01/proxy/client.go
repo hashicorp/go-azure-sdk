@@ -15,7 +15,7 @@ type ProxyClient struct {
 }
 
 func NewProxyClientWithBaseURI(sdkApi sdkEnv.Api) (*ProxyClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "proxy", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "proxy", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ProxyClient: %+v", err)
 	}

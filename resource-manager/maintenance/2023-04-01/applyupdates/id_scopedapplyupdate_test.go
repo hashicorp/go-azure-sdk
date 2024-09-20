@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedApplyUpdateId{}
 
 func TestNewScopedApplyUpdateID(t *testing.T) {
-	id := NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue")
+	id := NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ApplyUpdateName != "applyUpdateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplyUpdateName'", id.ApplyUpdateName, "applyUpdateValue")
+	if id.ApplyUpdateName != "applyUpdateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplyUpdateName'", id.ApplyUpdateName, "applyUpdateName")
 	}
 }
 
 func TestFormatScopedApplyUpdateID(t *testing.T) {
-	actual := NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateValue"
+	actual := NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedApplyUpdateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateName",
 			Expected: &ScopedApplyUpdateId{
 				Scope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ApplyUpdateName: "applyUpdateValue",
+				ApplyUpdateName: "applyUpdateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedApplyUpdateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateName",
 			Expected: &ScopedApplyUpdateId{
 				Scope:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ApplyUpdateName: "applyUpdateValue",
+				ApplyUpdateName: "applyUpdateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/applyUpdates/applyUpdateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/aPpLyUpDaTeS/aPpLyUpDaTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/aPpLyUpDaTeS/aPpLyUpDaTeNaMe",
 			Expected: &ScopedApplyUpdateId{
 				Scope:           "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ApplyUpdateName: "aPpLyUpDaTeVaLuE",
+				ApplyUpdateName: "aPpLyUpDaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/aPpLyUpDaTeS/aPpLyUpDaTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/aPpLyUpDaTeS/aPpLyUpDaTeNaMe/extra",
 			Error: true,
 		},
 	}

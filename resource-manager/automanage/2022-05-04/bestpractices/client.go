@@ -15,7 +15,7 @@ type BestPracticesClient struct {
 }
 
 func NewBestPracticesClientWithBaseURI(sdkApi sdkEnv.Api) (*BestPracticesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "bestpractices", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "bestpractices", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BestPracticesClient: %+v", err)
 	}

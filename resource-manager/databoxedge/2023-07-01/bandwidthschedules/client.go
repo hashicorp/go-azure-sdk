@@ -15,7 +15,7 @@ type BandwidthSchedulesClient struct {
 }
 
 func NewBandwidthSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*BandwidthSchedulesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "bandwidthschedules", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "bandwidthschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BandwidthSchedulesClient: %+v", err)
 	}

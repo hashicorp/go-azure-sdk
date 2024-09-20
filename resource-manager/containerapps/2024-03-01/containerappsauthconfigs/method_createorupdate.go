@@ -49,7 +49,6 @@ func (c ContainerAppsAuthConfigsClient) CreateOrUpdate(ctx context.Context, id A
 
 	var model AuthConfig
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -39,6 +39,7 @@ func (o ControlsListBySecureScoreOperationOptions) ToHeaders() *client.Headers {
 
 func (o ControlsListBySecureScoreOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

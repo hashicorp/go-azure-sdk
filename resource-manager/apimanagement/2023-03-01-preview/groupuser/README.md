@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-03-01-preview/groupuser` Documentation
 
-The `groupuser` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-03-01-preview`).
+The `groupuser` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-03-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "groupIdValue", "userIdValue")
+id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "groupId", "userId")
 
 read, err := client.CheckEntityExists(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "groupIdValue", "userIdValue")
+id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "groupId", "userId")
 
 read, err := client.Create(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "groupIdValue", "userIdValue")
+id := groupuser.NewGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "groupId", "userId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "groupIdValue")
+id := groupuser.NewGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "groupId")
 
 // alternatively `client.List(ctx, id, groupuser.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, groupuser.DefaultListOperationOptions())
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "groupIdValue", "userIdValue")
+id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "groupId", "userId")
 
 read, err := client.WorkspaceGroupUserCheckEntityExists(ctx, id)
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "groupIdValue", "userIdValue")
+id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "groupId", "userId")
 
 read, err := client.WorkspaceGroupUserCreate(ctx, id)
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "groupIdValue", "userIdValue")
+id := groupuser.NewWorkspaceGroupUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "groupId", "userId")
 
 read, err := client.WorkspaceGroupUserDelete(ctx, id)
 if err != nil {
@@ -137,7 +137,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := groupuser.NewWorkspaceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "groupIdValue")
+id := groupuser.NewWorkspaceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "groupId")
 
 // alternatively `client.WorkspaceGroupUserList(ctx, id, groupuser.DefaultWorkspaceGroupUserListOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceGroupUserListComplete(ctx, id, groupuser.DefaultWorkspaceGroupUserListOperationOptions())

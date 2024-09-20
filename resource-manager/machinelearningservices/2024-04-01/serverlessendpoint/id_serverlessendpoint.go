@@ -44,7 +44,7 @@ func ParseServerlessEndpointID(input string) (*ServerlessEndpointId, error) {
 	}
 
 	id := ServerlessEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseServerlessEndpointIDInsensitively(input string) (*ServerlessEndpointId
 	}
 
 	id := ServerlessEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ServerlessEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticServerlessEndpoints", "serverlessEndpoints", "serverlessEndpoints"),
-		resourceids.UserSpecifiedSegment("serverlessEndpointName", "serverlessEndpointValue"),
+		resourceids.UserSpecifiedSegment("serverlessEndpointName", "name"),
 	}
 }
 

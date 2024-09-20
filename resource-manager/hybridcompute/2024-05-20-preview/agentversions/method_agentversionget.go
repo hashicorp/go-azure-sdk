@@ -45,7 +45,6 @@ func (c AgentVersionsClient) AgentVersionGet(ctx context.Context, id AgentVersio
 
 	var model AgentVersion
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

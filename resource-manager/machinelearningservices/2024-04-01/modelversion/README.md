@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelversion` Documentation
 
-The `modelversion` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2024-04-01`).
+The `modelversion` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 payload := modelversion.ModelVersionResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue")
+id := modelversion.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 // alternatively `client.List(ctx, id, modelversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, modelversion.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 payload := modelversion.DestinationAsset{
 	// ...
@@ -111,7 +111,7 @@ if err := client.PublishThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue", "versionValue")
+id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName", "version")
 
 payload := modelversion.PendingUploadRequestDto{
 	// ...
@@ -132,7 +132,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue", "versionValue")
+id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName", "version")
 
 payload := modelversion.ModelVersionResource{
 	// ...
@@ -149,7 +149,7 @@ if err := client.RegistryModelVersionsCreateOrUpdateThenPoll(ctx, id, payload); 
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue", "versionValue")
+id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName", "version")
 
 if err := client.RegistryModelVersionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -161,7 +161,7 @@ if err := client.RegistryModelVersionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue", "versionValue")
+id := modelversion.NewRegistryModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName", "version")
 
 read, err := client.RegistryModelVersionsGet(ctx, id)
 if err != nil {
@@ -177,7 +177,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue")
+id := modelversion.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName")
 
 // alternatively `client.RegistryModelVersionsList(ctx, id, modelversion.DefaultRegistryModelVersionsListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryModelVersionsListComplete(ctx, id, modelversion.DefaultRegistryModelVersionsListOperationOptions())

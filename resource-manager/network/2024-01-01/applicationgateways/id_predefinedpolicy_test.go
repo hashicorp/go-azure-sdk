@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PredefinedPolicyId{}
 
 func TestNewPredefinedPolicyID(t *testing.T) {
-	id := NewPredefinedPolicyID("12345678-1234-9876-4563-123456789012", "predefinedPolicyValue")
+	id := NewPredefinedPolicyID("12345678-1234-9876-4563-123456789012", "predefinedPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PredefinedPolicyName != "predefinedPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PredefinedPolicyName'", id.PredefinedPolicyName, "predefinedPolicyValue")
+	if id.PredefinedPolicyName != "predefinedPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PredefinedPolicyName'", id.PredefinedPolicyName, "predefinedPolicyName")
 	}
 }
 
 func TestFormatPredefinedPolicyID(t *testing.T) {
-	actual := NewPredefinedPolicyID("12345678-1234-9876-4563-123456789012", "predefinedPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyValue"
+	actual := NewPredefinedPolicyID("12345678-1234-9876-4563-123456789012", "predefinedPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -79,15 +79,15 @@ func TestParsePredefinedPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyName",
 			Expected: &PredefinedPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PredefinedPolicyName: "predefinedPolicyValue",
+				PredefinedPolicyName: "predefinedPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -200,28 +200,28 @@ func TestParsePredefinedPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyName",
 			Expected: &PredefinedPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PredefinedPolicyName: "predefinedPolicyValue",
+				PredefinedPolicyName: "predefinedPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/predefinedPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYaVaIlAbLeSsLoPtIoNs/dEfAuLt/pReDeFiNeDpOlIcIeS/pReDeFiNeDpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYaVaIlAbLeSsLoPtIoNs/dEfAuLt/pReDeFiNeDpOlIcIeS/pReDeFiNeDpOlIcYnAmE",
 			Expected: &PredefinedPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PredefinedPolicyName: "pReDeFiNeDpOlIcYvAlUe",
+				PredefinedPolicyName: "pReDeFiNeDpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYaVaIlAbLeSsLoPtIoNs/dEfAuLt/pReDeFiNeDpOlIcIeS/pReDeFiNeDpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYaVaIlAbLeSsLoPtIoNs/dEfAuLt/pReDeFiNeDpOlIcIeS/pReDeFiNeDpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

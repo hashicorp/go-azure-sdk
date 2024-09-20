@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WorkItemConfigId{}
 
 func TestNewWorkItemConfigID(t *testing.T) {
-	id := NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "workItemConfigIdValue")
+	id := NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "workItemConfigId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewWorkItemConfigID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ComponentName != "componentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "componentValue")
+	if id.ComponentName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "resourceName")
 	}
 
-	if id.WorkItemConfigId != "workItemConfigIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkItemConfigId'", id.WorkItemConfigId, "workItemConfigIdValue")
+	if id.WorkItemConfigId != "workItemConfigId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkItemConfigId'", id.WorkItemConfigId, "workItemConfigId")
 	}
 }
 
 func TestFormatWorkItemConfigID(t *testing.T) {
-	actual := NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentValue", "workItemConfigIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs/workItemConfigIdValue"
+	actual := NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "workItemConfigId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs/workItemConfigId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseWorkItemConfigID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs/workItemConfigIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs/workItemConfigId",
 			Expected: &WorkItemConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				WorkItemConfigId:  "workItemConfigIdValue",
+				ComponentName:     "resourceName",
+				WorkItemConfigId:  "workItemConfigId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs/workItemConfigIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs/workItemConfigId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseWorkItemConfigIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/wOrKiTeMcOnFiGs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/wOrKiTeMcOnFiGs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs/workItemConfigIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs/workItemConfigId",
 			Expected: &WorkItemConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ComponentName:     "componentValue",
-				WorkItemConfigId:  "workItemConfigIdValue",
+				ComponentName:     "resourceName",
+				WorkItemConfigId:  "workItemConfigId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentValue/workItemConfigs/workItemConfigIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/resourceName/workItemConfigs/workItemConfigId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/wOrKiTeMcOnFiGs/wOrKiTeMcOnFiGiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/wOrKiTeMcOnFiGs/wOrKiTeMcOnFiGiD",
 			Expected: &WorkItemConfigId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ComponentName:     "cOmPoNeNtVaLuE",
-				WorkItemConfigId:  "wOrKiTeMcOnFiGiDvAlUe",
+				ComponentName:     "rEsOuRcEnAmE",
+				WorkItemConfigId:  "wOrKiTeMcOnFiGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/cOmPoNeNtVaLuE/wOrKiTeMcOnFiGs/wOrKiTeMcOnFiGiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/cOmPoNeNtS/rEsOuRcEnAmE/wOrKiTeMcOnFiGs/wOrKiTeMcOnFiGiD/extra",
 			Error: true,
 		},
 	}

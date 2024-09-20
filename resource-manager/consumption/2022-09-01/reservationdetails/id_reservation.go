@@ -40,7 +40,7 @@ func ParseReservationID(input string) (*ReservationId, error) {
 	}
 
 	id := ReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseReservationIDInsensitively(input string) (*ReservationId, error) {
 	}
 
 	id := ReservationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id ReservationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCapacity", "Microsoft.Capacity", "Microsoft.Capacity"),
 		resourceids.StaticSegment("staticReservationOrders", "reservationOrders", "reservationOrders"),
-		resourceids.UserSpecifiedSegment("reservationOrderId", "reservationOrderIdValue"),
+		resourceids.UserSpecifiedSegment("reservationOrderId", "reservationOrderId"),
 		resourceids.StaticSegment("staticReservations", "reservations", "reservations"),
-		resourceids.UserSpecifiedSegment("reservationId", "reservationIdValue"),
+		resourceids.UserSpecifiedSegment("reservationId", "reservationId"),
 	}
 }
 

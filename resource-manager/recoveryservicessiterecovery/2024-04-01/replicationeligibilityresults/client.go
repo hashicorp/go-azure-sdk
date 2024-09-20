@@ -15,7 +15,7 @@ type ReplicationEligibilityResultsClient struct {
 }
 
 func NewReplicationEligibilityResultsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationEligibilityResultsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationeligibilityresults", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationeligibilityresults", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationEligibilityResultsClient: %+v", err)
 	}

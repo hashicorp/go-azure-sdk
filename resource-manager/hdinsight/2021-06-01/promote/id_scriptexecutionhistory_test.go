@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScriptExecutionHistoryId{}
 
 func TestNewScriptExecutionHistoryID(t *testing.T) {
-	id := NewScriptExecutionHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "scriptExecutionIdValue")
+	id := NewScriptExecutionHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "scriptExecutionId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewScriptExecutionHistoryID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.ScriptExecutionId != "scriptExecutionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScriptExecutionId'", id.ScriptExecutionId, "scriptExecutionIdValue")
+	if id.ScriptExecutionId != "scriptExecutionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScriptExecutionId'", id.ScriptExecutionId, "scriptExecutionId")
 	}
 }
 
 func TestFormatScriptExecutionHistoryID(t *testing.T) {
-	actual := NewScriptExecutionHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "scriptExecutionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory/scriptExecutionIdValue"
+	actual := NewScriptExecutionHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "scriptExecutionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory/scriptExecutionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseScriptExecutionHistoryID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory/scriptExecutionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory/scriptExecutionId",
 			Expected: &ScriptExecutionHistoryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ScriptExecutionId: "scriptExecutionIdValue",
+				ClusterName:       "clusterName",
+				ScriptExecutionId: "scriptExecutionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory/scriptExecutionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory/scriptExecutionId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseScriptExecutionHistoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTeXeCuTiOnHiStOrY",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTeXeCuTiOnHiStOrY",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory/scriptExecutionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory/scriptExecutionId",
 			Expected: &ScriptExecutionHistoryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				ScriptExecutionId: "scriptExecutionIdValue",
+				ClusterName:       "clusterName",
+				ScriptExecutionId: "scriptExecutionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterValue/scriptExecutionHistory/scriptExecutionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HDInsight/clusters/clusterName/scriptExecutionHistory/scriptExecutionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTeXeCuTiOnHiStOrY/sCrIpTeXeCuTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTeXeCuTiOnHiStOrY/sCrIpTeXeCuTiOnId",
 			Expected: &ScriptExecutionHistoryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				ScriptExecutionId: "sCrIpTeXeCuTiOnIdVaLuE",
+				ClusterName:       "cLuStErNaMe",
+				ScriptExecutionId: "sCrIpTeXeCuTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErVaLuE/sCrIpTeXeCuTiOnHiStOrY/sCrIpTeXeCuTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hDiNsIgHt/cLuStErS/cLuStErNaMe/sCrIpTeXeCuTiOnHiStOrY/sCrIpTeXeCuTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -44,7 +44,7 @@ func ParseMaintenanceID(input string) (*MaintenanceId, error) {
 	}
 
 	id := MaintenanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMaintenanceIDInsensitively(input string) (*MaintenanceId, error) {
 	}
 
 	id := MaintenanceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MaintenanceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMySQL", "Microsoft.DBforMySQL", "Microsoft.DBforMySQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerValue"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "serverName"),
 		resourceids.StaticSegment("staticMaintenances", "maintenances", "maintenances"),
-		resourceids.UserSpecifiedSegment("maintenanceName", "maintenanceValue"),
+		resourceids.UserSpecifiedSegment("maintenanceName", "maintenanceName"),
 	}
 }
 

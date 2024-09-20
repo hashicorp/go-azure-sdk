@@ -42,7 +42,7 @@ func ParseTimeZoneID(input string) (*TimeZoneId, error) {
 	}
 
 	id := TimeZoneId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseTimeZoneIDInsensitively(input string) (*TimeZoneId, error) {
 	}
 
 	id := TimeZoneId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id TimeZoneId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticTimeZones", "timeZones", "timeZones"),
-		resourceids.UserSpecifiedSegment("timeZoneId", "timeZoneIdValue"),
+		resourceids.UserSpecifiedSegment("timeZoneId", "timeZoneId"),
 	}
 }
 

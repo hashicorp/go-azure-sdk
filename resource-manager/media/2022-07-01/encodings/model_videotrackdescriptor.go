@@ -13,6 +13,14 @@ var _ TrackDescriptor = VideoTrackDescriptor{}
 type VideoTrackDescriptor struct {
 
 	// Fields inherited from TrackDescriptor
+
+	OdataType string `json:"@odata.type"`
+}
+
+func (s VideoTrackDescriptor) TrackDescriptor() BaseTrackDescriptorImpl {
+	return BaseTrackDescriptorImpl{
+		OdataType: s.OdataType,
+	}
 }
 
 var _ json.Marshaler = VideoTrackDescriptor{}
@@ -26,9 +34,10 @@ func (s VideoTrackDescriptor) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VideoTrackDescriptor: %+v", err)
 	}
+
 	decoded["@odata.type"] = "#Microsoft.Media.VideoTrackDescriptor"
 
 	encoded, err = json.Marshal(decoded)

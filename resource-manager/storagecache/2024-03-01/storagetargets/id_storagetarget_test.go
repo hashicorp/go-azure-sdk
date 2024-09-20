@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageTargetId{}
 
 func TestNewStorageTargetID(t *testing.T) {
-	id := NewStorageTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheValue", "storageTargetValue")
+	id := NewStorageTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName", "storageTargetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewStorageTargetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CacheName != "cacheValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CacheName'", id.CacheName, "cacheValue")
+	if id.CacheName != "cacheName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CacheName'", id.CacheName, "cacheName")
 	}
 
-	if id.StorageTargetName != "storageTargetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageTargetName'", id.StorageTargetName, "storageTargetValue")
+	if id.StorageTargetName != "storageTargetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageTargetName'", id.StorageTargetName, "storageTargetName")
 	}
 }
 
 func TestFormatStorageTargetID(t *testing.T) {
-	actual := NewStorageTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheValue", "storageTargetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets/storageTargetValue"
+	actual := NewStorageTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName", "storageTargetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets/storageTargetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseStorageTargetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets/storageTargetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets/storageTargetName",
 			Expected: &StorageTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CacheName:         "cacheValue",
-				StorageTargetName: "storageTargetValue",
+				CacheName:         "cacheName",
+				StorageTargetName: "storageTargetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets/storageTargetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets/storageTargetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseStorageTargetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeVaLuE/sToRaGeTaRgEtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeNaMe/sToRaGeTaRgEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets/storageTargetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets/storageTargetName",
 			Expected: &StorageTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				CacheName:         "cacheValue",
-				StorageTargetName: "storageTargetValue",
+				CacheName:         "cacheName",
+				StorageTargetName: "storageTargetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheValue/storageTargets/storageTargetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StorageCache/caches/cacheName/storageTargets/storageTargetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeVaLuE/sToRaGeTaRgEtS/sToRaGeTaRgEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeNaMe/sToRaGeTaRgEtS/sToRaGeTaRgEtNaMe",
 			Expected: &StorageTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				CacheName:         "cAcHeVaLuE",
-				StorageTargetName: "sToRaGeTaRgEtVaLuE",
+				CacheName:         "cAcHeNaMe",
+				StorageTargetName: "sToRaGeTaRgEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeVaLuE/sToRaGeTaRgEtS/sToRaGeTaRgEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGeCaChE/cAcHeS/cAcHeNaMe/sToRaGeTaRgEtS/sToRaGeTaRgEtNaMe/extra",
 			Error: true,
 		},
 	}

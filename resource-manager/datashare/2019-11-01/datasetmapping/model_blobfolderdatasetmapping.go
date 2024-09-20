@@ -14,9 +14,20 @@ type BlobFolderDataSetMapping struct {
 	Properties BlobFolderMappingProperties `json:"properties"`
 
 	// Fields inherited from DataSetMapping
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string            `json:"id,omitempty"`
+	Kind DataSetMappingKind `json:"kind"`
+	Name *string            `json:"name,omitempty"`
+	Type *string            `json:"type,omitempty"`
+}
+
+func (s BlobFolderDataSetMapping) DataSetMapping() BaseDataSetMappingImpl {
+	return BaseDataSetMappingImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = BlobFolderDataSetMapping{}
@@ -30,9 +41,10 @@ func (s BlobFolderDataSetMapping) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BlobFolderDataSetMapping: %+v", err)
 	}
+
 	decoded["kind"] = "BlobFolder"
 
 	encoded, err = json.Marshal(decoded)

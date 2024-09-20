@@ -32,7 +32,7 @@ func (s *CreateNetworkMappingInputProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["fabricSpecificDetails"]; ok {
-		impl, err := unmarshalFabricSpecificCreateNetworkMappingInputImplementation(v)
+		impl, err := UnmarshalFabricSpecificCreateNetworkMappingInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'FabricSpecificDetails' for 'CreateNetworkMappingInputProperties': %+v", err)
 		}

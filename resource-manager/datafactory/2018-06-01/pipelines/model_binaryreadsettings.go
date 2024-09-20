@@ -14,6 +14,14 @@ type BinaryReadSettings struct {
 	CompressionProperties CompressionReadSettings `json:"compressionProperties"`
 
 	// Fields inherited from FormatReadSettings
+
+	Type string `json:"type"`
+}
+
+func (s BinaryReadSettings) FormatReadSettings() BaseFormatReadSettingsImpl {
+	return BaseFormatReadSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = BinaryReadSettings{}
@@ -27,9 +35,10 @@ func (s BinaryReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BinaryReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "BinaryReadSettings"
 
 	encoded, err = json.Marshal(decoded)
@@ -43,6 +52,13 @@ func (s BinaryReadSettings) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BinaryReadSettings{}
 
 func (s *BinaryReadSettings) UnmarshalJSON(bytes []byte) error {
+	type alias BinaryReadSettings
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into BinaryReadSettings: %+v", err)
+	}
+
+	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -50,7 +66,7 @@ func (s *BinaryReadSettings) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["compressionProperties"]; ok {
-		impl, err := unmarshalCompressionReadSettingsImplementation(v)
+		impl, err := UnmarshalCompressionReadSettingsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CompressionProperties' for 'BinaryReadSettings': %+v", err)
 		}

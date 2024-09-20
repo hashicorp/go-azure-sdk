@@ -46,7 +46,7 @@ func ParseDataVersionID(input string) (*DataVersionId, error) {
 	}
 
 	id := DataVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDataVersionIDInsensitively(input string) (*DataVersionId, error) {
 	}
 
 	id := DataVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id DataVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticData", "data", "data"),
-		resourceids.UserSpecifiedSegment("dataName", "dataValue"),
+		resourceids.UserSpecifiedSegment("dataName", "name"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "version"),
 	}
 }
 

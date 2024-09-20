@@ -44,7 +44,7 @@ func ParseConsoleID(input string) (*ConsoleId, error) {
 	}
 
 	id := ConsoleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseConsoleIDInsensitively(input string) (*ConsoleId, error) {
 	}
 
 	id := ConsoleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ConsoleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineName"),
 		resourceids.StaticSegment("staticConsoles", "consoles", "consoles"),
-		resourceids.UserSpecifiedSegment("consoleName", "consoleValue"),
+		resourceids.UserSpecifiedSegment("consoleName", "consoleName"),
 	}
 }
 

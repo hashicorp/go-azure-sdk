@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkHubId{}
 
 func TestNewPrivateLinkHubID(t *testing.T) {
-	id := NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubValue")
+	id := NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPrivateLinkHubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateLinkHubName != "privateLinkHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkHubName'", id.PrivateLinkHubName, "privateLinkHubValue")
+	if id.PrivateLinkHubName != "privateLinkHubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkHubName'", id.PrivateLinkHubName, "privateLinkHubName")
 	}
 }
 
 func TestFormatPrivateLinkHubID(t *testing.T) {
-	actual := NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubValue"
+	actual := NewPrivateLinkHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkHubName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePrivateLinkHubID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubName",
 			Expected: &PrivateLinkHubId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				PrivateLinkHubName: "privateLinkHubValue",
+				PrivateLinkHubName: "privateLinkHubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParsePrivateLinkHubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubName",
 			Expected: &PrivateLinkHubId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				PrivateLinkHubName: "privateLinkHubValue",
+				PrivateLinkHubName: "privateLinkHubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/privateLinkHubs/privateLinkHubName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/pRiVaTeLiNkHuBs/pRiVaTeLiNkHuBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/pRiVaTeLiNkHuBs/pRiVaTeLiNkHuBnAmE",
 			Expected: &PrivateLinkHubId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateLinkHubName: "pRiVaTeLiNkHuBvAlUe",
+				PrivateLinkHubName: "pRiVaTeLiNkHuBnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/pRiVaTeLiNkHuBs/pRiVaTeLiNkHuBvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/pRiVaTeLiNkHuBs/pRiVaTeLiNkHuBnAmE/extra",
 			Error: true,
 		},
 	}

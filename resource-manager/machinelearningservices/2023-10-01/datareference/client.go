@@ -15,7 +15,7 @@ type DataReferenceClient struct {
 }
 
 func NewDataReferenceClientWithBaseURI(sdkApi sdkEnv.Api) (*DataReferenceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datareference", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "datareference", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataReferenceClient: %+v", err)
 	}

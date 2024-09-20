@@ -15,7 +15,7 @@ type VideoAnalyzersClient struct {
 }
 
 func NewVideoAnalyzersClientWithBaseURI(sdkApi sdkEnv.Api) (*VideoAnalyzersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "videoanalyzers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "videoanalyzers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VideoAnalyzersClient: %+v", err)
 	}

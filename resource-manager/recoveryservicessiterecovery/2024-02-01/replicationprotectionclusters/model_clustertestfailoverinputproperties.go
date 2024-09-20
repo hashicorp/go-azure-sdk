@@ -34,7 +34,7 @@ func (s *ClusterTestFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalClusterTestFailoverProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalClusterTestFailoverProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ClusterTestFailoverInputProperties': %+v", err)
 		}

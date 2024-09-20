@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HybridIdentityMetadataId{}
 
 func TestNewHybridIdentityMetadataID(t *testing.T) {
-	id := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "hybridIdentityMetadataValue")
+	id := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "metadataName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHybridIdentityMetadataID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MachineName != "machineValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineValue")
+	if id.MachineName != "machineName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MachineName'", id.MachineName, "machineName")
 	}
 
-	if id.HybridIdentityMetadataName != "hybridIdentityMetadataValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HybridIdentityMetadataName'", id.HybridIdentityMetadataName, "hybridIdentityMetadataValue")
+	if id.HybridIdentityMetadataName != "metadataName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HybridIdentityMetadataName'", id.HybridIdentityMetadataName, "metadataName")
 	}
 }
 
 func TestFormatHybridIdentityMetadataID(t *testing.T) {
-	actual := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue", "hybridIdentityMetadataValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata/hybridIdentityMetadataValue"
+	actual := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "metadataName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata/metadataName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHybridIdentityMetadataID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata/hybridIdentityMetadataValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata/metadataName",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				MachineName:                "machineValue",
-				HybridIdentityMetadataName: "hybridIdentityMetadataValue",
+				MachineName:                "machineName",
+				HybridIdentityMetadataName: "metadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata/hybridIdentityMetadataValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata/metadataName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHybridIdentityMetadataIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/hYbRiDiDeNtItYmEtAdAtA",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/hYbRiDiDeNtItYmEtAdAtA",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata/hybridIdentityMetadataValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata/metadataName",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				MachineName:                "machineValue",
-				HybridIdentityMetadataName: "hybridIdentityMetadataValue",
+				MachineName:                "machineName",
+				HybridIdentityMetadataName: "metadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineValue/hybridIdentityMetadata/hybridIdentityMetadataValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/machines/machineName/hybridIdentityMetadata/metadataName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/hYbRiDiDeNtItYmEtAdAtA/hYbRiDiDeNtItYmEtAdAtAvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/hYbRiDiDeNtItYmEtAdAtA/mEtAdAtAnAmE",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				MachineName:                "mAcHiNeVaLuE",
-				HybridIdentityMetadataName: "hYbRiDiDeNtItYmEtAdAtAvAlUe",
+				MachineName:                "mAcHiNeNaMe",
+				HybridIdentityMetadataName: "mEtAdAtAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeVaLuE/hYbRiDiDeNtItYmEtAdAtA/hYbRiDiDeNtItYmEtAdAtAvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/mAcHiNeS/mAcHiNeNaMe/hYbRiDiDeNtItYmEtAdAtA/mEtAdAtAnAmE/extra",
 			Error: true,
 		},
 	}

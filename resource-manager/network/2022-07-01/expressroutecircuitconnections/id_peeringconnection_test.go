@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PeeringConnectionId{}
 
 func TestNewPeeringConnectionID(t *testing.T) {
-	id := NewPeeringConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteCircuitValue", "peeringValue", "connectionValue")
+	id := NewPeeringConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "circuitName", "peeringName", "connectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewPeeringConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ExpressRouteCircuitName != "expressRouteCircuitValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteCircuitName'", id.ExpressRouteCircuitName, "expressRouteCircuitValue")
+	if id.ExpressRouteCircuitName != "circuitName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteCircuitName'", id.ExpressRouteCircuitName, "circuitName")
 	}
 
-	if id.PeeringName != "peeringValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PeeringName'", id.PeeringName, "peeringValue")
+	if id.PeeringName != "peeringName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PeeringName'", id.PeeringName, "peeringName")
 	}
 
-	if id.ConnectionName != "connectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectionName'", id.ConnectionName, "connectionValue")
+	if id.ConnectionName != "connectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectionName'", id.ConnectionName, "connectionName")
 	}
 }
 
 func TestFormatPeeringConnectionID(t *testing.T) {
-	actual := NewPeeringConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteCircuitValue", "peeringValue", "connectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections/connectionValue"
+	actual := NewPeeringConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "circuitName", "peeringName", "connectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections/connectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParsePeeringConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections/connectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections/connectionName",
 			Expected: &PeeringConnectionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ExpressRouteCircuitName: "expressRouteCircuitValue",
-				PeeringName:             "peeringValue",
-				ConnectionName:          "connectionValue",
+				ExpressRouteCircuitName: "circuitName",
+				PeeringName:             "peeringName",
+				ConnectionName:          "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections/connectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections/connectionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParsePeeringConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE/pEeRiNgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe/pEeRiNgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE/pEeRiNgS/pEeRiNgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe/pEeRiNgS/pEeRiNgNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE/pEeRiNgS/pEeRiNgVaLuE/cOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe/pEeRiNgS/pEeRiNgNaMe/cOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections/connectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections/connectionName",
 			Expected: &PeeringConnectionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ExpressRouteCircuitName: "expressRouteCircuitValue",
-				PeeringName:             "peeringValue",
-				ConnectionName:          "connectionValue",
+				ExpressRouteCircuitName: "circuitName",
+				PeeringName:             "peeringName",
+				ConnectionName:          "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/expressRouteCircuitValue/peerings/peeringValue/connections/connectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRouteCircuits/circuitName/peerings/peeringName/connections/connectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE/pEeRiNgS/pEeRiNgVaLuE/cOnNeCtIoNs/cOnNeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe/pEeRiNgS/pEeRiNgNaMe/cOnNeCtIoNs/cOnNeCtIoNnAmE",
 			Expected: &PeeringConnectionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ExpressRouteCircuitName: "eXpReSsRoUtEcIrCuItVaLuE",
-				PeeringName:             "pEeRiNgVaLuE",
-				ConnectionName:          "cOnNeCtIoNvAlUe",
+				ExpressRouteCircuitName: "cIrCuItNaMe",
+				PeeringName:             "pEeRiNgNaMe",
+				ConnectionName:          "cOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/eXpReSsRoUtEcIrCuItVaLuE/pEeRiNgS/pEeRiNgVaLuE/cOnNeCtIoNs/cOnNeCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEcIrCuItS/cIrCuItNaMe/pEeRiNgS/pEeRiNgNaMe/cOnNeCtIoNs/cOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

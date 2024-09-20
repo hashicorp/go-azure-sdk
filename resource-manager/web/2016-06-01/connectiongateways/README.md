@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/connectiongateways` Documentation
 
-The `connectiongateways` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2016-06-01`).
+The `connectiongateways` SDK allows for interaction with Azure Resource Manager `web` (API Version `2016-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewConnectionGatewayInstallationID("12345678-1234-9876-4563-123456789012", "locationValue", "gatewayIdValue")
+id := connectiongateways.NewConnectionGatewayInstallationID("12345678-1234-9876-4563-123456789012", "location", "gatewayId")
 
 read, err := client.ConnectionGatewayInstallationsGet(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := connectiongateways.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.ConnectionGatewayInstallationsList(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName")
 
 payload := connectiongateways.ConnectionGatewayDefinition{
 	// ...
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName")
 
 read, err := client.ConnectionGatewaysDelete(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName")
 
 read, err := client.ConnectionGatewaysGet(ctx, id)
 if err != nil {
@@ -142,7 +142,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName")
 
 payload := connectiongateways.ConnectionGatewayDefinition{
 	// ...

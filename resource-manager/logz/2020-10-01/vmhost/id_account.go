@@ -44,7 +44,7 @@ func ParseAccountID(input string) (*AccountId, error) {
 	}
 
 	id := AccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseAccountIDInsensitively(input string) (*AccountId, error) {
 	}
 
 	id := AccountId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id AccountId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftLogz", "Microsoft.Logz", "Microsoft.Logz"),
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
-		resourceids.UserSpecifiedSegment("monitorName", "monitorValue"),
+		resourceids.UserSpecifiedSegment("monitorName", "monitorName"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "subAccountName"),
 	}
 }
 

@@ -14,6 +14,14 @@ type CustomForecastHorizon struct {
 	Value int64 `json:"value"`
 
 	// Fields inherited from ForecastHorizon
+
+	Mode ForecastHorizonMode `json:"mode"`
+}
+
+func (s CustomForecastHorizon) ForecastHorizon() BaseForecastHorizonImpl {
+	return BaseForecastHorizonImpl{
+		Mode: s.Mode,
+	}
 }
 
 var _ json.Marshaler = CustomForecastHorizon{}
@@ -27,9 +35,10 @@ func (s CustomForecastHorizon) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling CustomForecastHorizon: %+v", err)
 	}
+
 	decoded["mode"] = "Custom"
 
 	encoded, err = json.Marshal(decoded)

@@ -46,7 +46,6 @@ func (c IntegrationServiceEnvironmentNetworkHealthClient) Get(ctx context.Contex
 
 	var model map[string]IntegrationServiceEnvironmentSubnetNetworkHealth
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

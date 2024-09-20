@@ -46,7 +46,6 @@ func (c ActionsClient) CloudEndpointsAfsShareMetadataCertificatePublicKeys(ctx c
 
 	var model CloudEndpointAfsShareMetadataCertificatePublicKeys
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

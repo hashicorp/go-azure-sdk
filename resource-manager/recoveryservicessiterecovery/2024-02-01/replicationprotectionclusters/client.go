@@ -15,7 +15,7 @@ type ReplicationProtectionClustersClient struct {
 }
 
 func NewReplicationProtectionClustersClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationProtectionClustersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationprotectionclusters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "replicationprotectionclusters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicationProtectionClustersClient: %+v", err)
 	}

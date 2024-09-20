@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ResiliencyPolicyId{}
 
 func TestNewResiliencyPolicyID(t *testing.T) {
-	id := NewResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "resiliencyPolicyValue")
+	id := NewResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewResiliencyPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ContainerAppName != "containerAppValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppValue")
+	if id.ContainerAppName != "appName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "appName")
 	}
 
-	if id.ResiliencyPolicyName != "resiliencyPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResiliencyPolicyName'", id.ResiliencyPolicyName, "resiliencyPolicyValue")
+	if id.ResiliencyPolicyName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResiliencyPolicyName'", id.ResiliencyPolicyName, "name")
 	}
 }
 
 func TestFormatResiliencyPolicyID(t *testing.T) {
-	actual := NewResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "resiliencyPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies/resiliencyPolicyValue"
+	actual := NewResiliencyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseResiliencyPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies/resiliencyPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies/name",
 			Expected: &ResiliencyPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ContainerAppName:     "containerAppValue",
-				ResiliencyPolicyName: "resiliencyPolicyValue",
+				ContainerAppName:     "appName",
+				ResiliencyPolicyName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies/resiliencyPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies/name/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseResiliencyPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/aPpNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/rEsIlIeNcYpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/aPpNaMe/rEsIlIeNcYpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies/resiliencyPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies/name",
 			Expected: &ResiliencyPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ContainerAppName:     "containerAppValue",
-				ResiliencyPolicyName: "resiliencyPolicyValue",
+				ContainerAppName:     "appName",
+				ResiliencyPolicyName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/resiliencyPolicies/resiliencyPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/appName/resiliencyPolicies/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/rEsIlIeNcYpOlIcIeS/rEsIlIeNcYpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/aPpNaMe/rEsIlIeNcYpOlIcIeS/nAmE",
 			Expected: &ResiliencyPolicyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ContainerAppName:     "cOnTaInErApPvAlUe",
-				ResiliencyPolicyName: "rEsIlIeNcYpOlIcYvAlUe",
+				ContainerAppName:     "aPpNaMe",
+				ResiliencyPolicyName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/rEsIlIeNcYpOlIcIeS/rEsIlIeNcYpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/aPpNaMe/rEsIlIeNcYpOlIcIeS/nAmE/extra",
 			Error: true,
 		},
 	}

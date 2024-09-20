@@ -44,7 +44,7 @@ func ParseStreamingEndpointID(input string) (*StreamingEndpointId, error) {
 	}
 
 	id := StreamingEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStreamingEndpointIDInsensitively(input string) (*StreamingEndpointId, 
 	}
 
 	id := StreamingEndpointId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StreamingEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticStreamingEndpoints", "streamingEndpoints", "streamingEndpoints"),
-		resourceids.UserSpecifiedSegment("streamingEndpointName", "streamingEndpointValue"),
+		resourceids.UserSpecifiedSegment("streamingEndpointName", "streamingEndpointName"),
 	}
 }
 

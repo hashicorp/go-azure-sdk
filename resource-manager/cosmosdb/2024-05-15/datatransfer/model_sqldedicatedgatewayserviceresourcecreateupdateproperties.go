@@ -14,8 +14,18 @@ type SqlDedicatedGatewayServiceResourceCreateUpdateProperties struct {
 	DedicatedGatewayType *DedicatedGatewayType `json:"dedicatedGatewayType,omitempty"`
 
 	// Fields inherited from ServiceResourceCreateUpdateProperties
+
 	InstanceCount *int64       `json:"instanceCount,omitempty"`
 	InstanceSize  *ServiceSize `json:"instanceSize,omitempty"`
+	ServiceType   ServiceType  `json:"serviceType"`
+}
+
+func (s SqlDedicatedGatewayServiceResourceCreateUpdateProperties) ServiceResourceCreateUpdateProperties() BaseServiceResourceCreateUpdatePropertiesImpl {
+	return BaseServiceResourceCreateUpdatePropertiesImpl{
+		InstanceCount: s.InstanceCount,
+		InstanceSize:  s.InstanceSize,
+		ServiceType:   s.ServiceType,
+	}
 }
 
 var _ json.Marshaler = SqlDedicatedGatewayServiceResourceCreateUpdateProperties{}
@@ -29,9 +39,10 @@ func (s SqlDedicatedGatewayServiceResourceCreateUpdateProperties) MarshalJSON() 
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
 	}
+
 	decoded["serviceType"] = "SqlDedicatedGateway"
 
 	encoded, err = json.Marshal(decoded)

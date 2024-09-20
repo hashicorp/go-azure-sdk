@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dscnode` Documentation
 
-The `dscnode` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2020-01-13-preview`).
+The `dscnode` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2020-01-13-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue")
+id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue")
+id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dscnode.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue")
+id := dscnode.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName")
 
 // alternatively `client.ListByAutomationAccount(ctx, id, dscnode.DefaultListByAutomationAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAutomationAccountComplete(ctx, id, dscnode.DefaultListByAutomationAccountOperationOptions())
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "nodeIdValue")
+id := dscnode.NewNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "nodeId")
 
 payload := dscnode.DscNodeUpdateParameters{
 	// ...

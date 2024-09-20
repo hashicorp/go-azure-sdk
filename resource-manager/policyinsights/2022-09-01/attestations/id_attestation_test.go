@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AttestationId{}
 
 func TestNewAttestationID(t *testing.T) {
-	id := NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
+	id := NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AttestationName != "attestationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationValue")
+	if id.AttestationName != "attestationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttestationName'", id.AttestationName, "attestationName")
 	}
 }
 
 func TestFormatAttestationID(t *testing.T) {
-	actual := NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationValue"
+	actual := NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAttestationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &AttestationId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				AttestationName: "attestationValue",
+				AttestationName: "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAttestationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationName",
 			Expected: &AttestationId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				AttestationName: "attestationValue",
+				AttestationName: "attestationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.PolicyInsights/attestations/attestationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe",
 			Expected: &AttestationId{
 				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				AttestationName: "aTtEsTaTiOnVaLuE",
+				AttestationName: "aTtEsTaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/aTtEsTaTiOnS/aTtEsTaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

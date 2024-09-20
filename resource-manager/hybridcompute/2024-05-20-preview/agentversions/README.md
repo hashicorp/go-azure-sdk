@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-05-20-preview/agentversions` Documentation
 
-The `agentversions` SDK allows for interaction with the Azure Resource Manager Service `hybridcompute` (API Version `2024-05-20-preview`).
+The `agentversions` SDK allows for interaction with Azure Resource Manager `hybridcompute` (API Version `2024-05-20-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := agentversions.NewAgentVersionID("osTypeValue", "agentVersionValue")
+id := agentversions.NewAgentVersionID("osType", "version")
 
 read, err := client.AgentVersionGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := agentversions.NewOsTypeID("osTypeValue")
+id := agentversions.NewOsTypeID("osType")
 
 // alternatively `client.AgentVersionList(ctx, id)` can be used to do batched pagination
 items, err := client.AgentVersionListComplete(ctx, id)

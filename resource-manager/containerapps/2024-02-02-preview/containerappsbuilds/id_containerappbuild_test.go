@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ContainerAppBuildId{}
 
 func TestNewContainerAppBuildID(t *testing.T) {
-	id := NewContainerAppBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "buildValue")
+	id := NewContainerAppBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "buildName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewContainerAppBuildID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ContainerAppName != "containerAppValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppValue")
+	if id.ContainerAppName != "containerAppName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppName")
 	}
 
-	if id.BuildName != "buildValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BuildName'", id.BuildName, "buildValue")
+	if id.BuildName != "buildName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BuildName'", id.BuildName, "buildName")
 	}
 }
 
 func TestFormatContainerAppBuildID(t *testing.T) {
-	actual := NewContainerAppBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "buildValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds/buildValue"
+	actual := NewContainerAppBuildID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "buildName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds/buildName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseContainerAppBuildID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds/buildValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds/buildName",
 			Expected: &ContainerAppBuildId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ContainerAppName:  "containerAppValue",
-				BuildName:         "buildValue",
+				ContainerAppName:  "containerAppName",
+				BuildName:         "buildName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds/buildValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds/buildName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseContainerAppBuildIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/bUiLdS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/bUiLdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds/buildValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds/buildName",
 			Expected: &ContainerAppBuildId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ContainerAppName:  "containerAppValue",
-				BuildName:         "buildValue",
+				ContainerAppName:  "containerAppName",
+				BuildName:         "buildName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppValue/builds/buildValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/builds/buildName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/bUiLdS/bUiLdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/bUiLdS/bUiLdNaMe",
 			Expected: &ContainerAppBuildId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ContainerAppName:  "cOnTaInErApPvAlUe",
-				BuildName:         "bUiLdVaLuE",
+				ContainerAppName:  "cOnTaInErApPnAmE",
+				BuildName:         "bUiLdNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPvAlUe/bUiLdS/bUiLdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/bUiLdS/bUiLdNaMe/extra",
 			Error: true,
 		},
 	}

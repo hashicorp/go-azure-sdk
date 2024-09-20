@@ -44,7 +44,7 @@ func ParseJitNetworkAccessPolicyID(input string) (*JitNetworkAccessPolicyId, err
 	}
 
 	id := JitNetworkAccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseJitNetworkAccessPolicyIDInsensitively(input string) (*JitNetworkAccess
 	}
 
 	id := JitNetworkAccessPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id JitNetworkAccessPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
 		resourceids.StaticSegment("staticJitNetworkAccessPolicies", "jitNetworkAccessPolicies", "jitNetworkAccessPolicies"),
-		resourceids.UserSpecifiedSegment("jitNetworkAccessPolicyName", "jitNetworkAccessPolicyValue"),
+		resourceids.UserSpecifiedSegment("jitNetworkAccessPolicyName", "jitNetworkAccessPolicyName"),
 	}
 }
 

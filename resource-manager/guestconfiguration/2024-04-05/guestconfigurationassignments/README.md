@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2024-04-05/guestconfigurationassignments` Documentation
 
-The `guestconfigurationassignments` SDK allows for interaction with the Azure Resource Manager Service `guestconfiguration` (API Version `2024-04-05`).
+The `guestconfigurationassignments` SDK allows for interaction with Azure Resource Manager `guestconfiguration` (API Version `2024-04-05`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName")
 
 payload := guestconfigurationassignments.GuestConfigurationAssignment{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue")
+id := guestconfigurationassignments.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
 
 read, err := client.List(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name")
 
 payload := guestconfigurationassignments.GuestConfigurationAssignment{
 	// ...
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name")
 
 read, err := client.VMSSDelete(ctx, id)
 if err != nil {
@@ -163,7 +163,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "guestConfigurationAssignmentValue")
+id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name")
 
 read, err := client.VMSSGet(ctx, id)
 if err != nil {
@@ -179,7 +179,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineScaleSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue")
+id := guestconfigurationassignments.NewVirtualMachineScaleSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName")
 
 read, err := client.VMSSList(ctx, id)
 if err != nil {

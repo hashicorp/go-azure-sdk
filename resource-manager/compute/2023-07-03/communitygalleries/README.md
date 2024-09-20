@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/communitygalleries` Documentation
 
-The `communitygalleries` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2023-07-03`).
+The `communitygalleries` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2023-07-03`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := communitygalleries.NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "communityGalleryValue")
+id := communitygalleries.NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

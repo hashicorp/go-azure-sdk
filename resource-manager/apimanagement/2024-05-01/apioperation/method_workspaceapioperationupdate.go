@@ -36,6 +36,7 @@ func (o WorkspaceApiOperationUpdateOperationOptions) ToHeaders() *client.Headers
 
 func (o WorkspaceApiOperationUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c ApiOperationClient) WorkspaceApiOperationUpdate(ctx context.Context, id 
 
 	var model OperationContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

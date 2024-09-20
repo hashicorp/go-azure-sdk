@@ -45,7 +45,6 @@ func (c RaiPoliciesClient) Get(ctx context.Context, id RaiPolicyId) (result GetO
 
 	var model RaiPolicy
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

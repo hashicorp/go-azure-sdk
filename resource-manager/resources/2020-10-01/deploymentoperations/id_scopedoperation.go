@@ -42,7 +42,7 @@ func ParseScopedOperationID(input string) (*ScopedOperationId, error) {
 	}
 
 	id := ScopedOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseScopedOperationIDInsensitively(input string) (*ScopedOperationId, erro
 	}
 
 	id := ScopedOperationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -112,9 +112,9 @@ func (id ScopedOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResources", "Microsoft.Resources", "Microsoft.Resources"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
-		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
+		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
 		resourceids.StaticSegment("staticOperations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("operationId", "operationIdValue"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
 	}
 }
 

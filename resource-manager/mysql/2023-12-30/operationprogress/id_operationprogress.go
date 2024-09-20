@@ -42,7 +42,7 @@ func ParseOperationProgressID(input string) (*OperationProgressId, error) {
 	}
 
 	id := OperationProgressId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseOperationProgressIDInsensitively(input string) (*OperationProgressId, 
 	}
 
 	id := OperationProgressId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id OperationProgressId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMySQL", "Microsoft.DBforMySQL", "Microsoft.DBforMySQL"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticOperationProgress", "operationProgress", "operationProgress"),
-		resourceids.UserSpecifiedSegment("operationId", "operationIdValue"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
 	}
 }
 

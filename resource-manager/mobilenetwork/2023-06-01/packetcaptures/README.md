@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2023-06-01/packetcaptures` Documentation
 
-The `packetcaptures` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2023-06-01`).
+The `packetcaptures` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2023-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCaptureValue")
+id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCaptureName")
 
 payload := packetcaptures.PacketCapture{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCaptureValue")
+id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCaptureName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCaptureValue")
+id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCaptureName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := packetcaptures.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue")
+id := packetcaptures.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName")
 
 // alternatively `client.ListByPacketCoreControlPlane(ctx, id)` can be used to do batched pagination
 items, err := client.ListByPacketCoreControlPlaneComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue", "packetCaptureValue")
+id := packetcaptures.NewPacketCaptureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneName", "packetCaptureName")
 
 if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error

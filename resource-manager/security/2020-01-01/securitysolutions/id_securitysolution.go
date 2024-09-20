@@ -44,7 +44,7 @@ func ParseSecuritySolutionID(input string) (*SecuritySolutionId, error) {
 	}
 
 	id := SecuritySolutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSecuritySolutionIDInsensitively(input string) (*SecuritySolutionId, er
 	}
 
 	id := SecuritySolutionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id SecuritySolutionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
 		resourceids.StaticSegment("staticSecuritySolutions", "securitySolutions", "securitySolutions"),
-		resourceids.UserSpecifiedSegment("securitySolutionName", "securitySolutionValue"),
+		resourceids.UserSpecifiedSegment("securitySolutionName", "securitySolutionName"),
 	}
 }
 

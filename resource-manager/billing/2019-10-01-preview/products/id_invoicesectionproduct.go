@@ -44,7 +44,7 @@ func ParseInvoiceSectionProductID(input string) (*InvoiceSectionProductId, error
 	}
 
 	id := InvoiceSectionProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseInvoiceSectionProductIDInsensitively(input string) (*InvoiceSectionPro
 	}
 
 	id := InvoiceSectionProductId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -117,13 +117,13 @@ func (id InvoiceSectionProductId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountValue"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
-		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileValue"),
+		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileName"),
 		resourceids.StaticSegment("staticInvoiceSections", "invoiceSections", "invoiceSections"),
-		resourceids.UserSpecifiedSegment("invoiceSectionName", "invoiceSectionValue"),
+		resourceids.UserSpecifiedSegment("invoiceSectionName", "invoiceSectionName"),
 		resourceids.StaticSegment("staticProducts", "products", "products"),
-		resourceids.UserSpecifiedSegment("productName", "productValue"),
+		resourceids.UserSpecifiedSegment("productName", "productName"),
 	}
 }
 

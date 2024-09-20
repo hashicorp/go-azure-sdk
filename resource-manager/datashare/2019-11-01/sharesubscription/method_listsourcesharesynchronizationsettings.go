@@ -73,7 +73,7 @@ func (c ShareSubscriptionClient) ListSourceShareSynchronizationSettings(ctx cont
 	temp := make([]SourceShareSynchronizationSetting, 0)
 	if values.Values != nil {
 		for i, v := range *values.Values {
-			val, err := unmarshalSourceShareSynchronizationSettingImplementation(v)
+			val, err := UnmarshalSourceShareSynchronizationSettingImplementation(v)
 			if err != nil {
 				err = fmt.Errorf("unmarshalling item %d for SourceShareSynchronizationSetting (%q): %+v", i, v, err)
 				return result, err

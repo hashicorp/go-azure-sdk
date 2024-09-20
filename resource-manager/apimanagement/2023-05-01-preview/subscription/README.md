@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/subscription` Documentation
 
-The `subscription` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `subscription` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 payload := subscription.SubscriptionCreateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.Delete(ctx, id, subscription.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := subscription.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.List(ctx, id, subscription.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, subscription.DefaultListOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.ListSecrets(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.RegeneratePrimaryKey(ctx, id)
 if err != nil {
@@ -142,7 +142,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 read, err := client.RegenerateSecondaryKey(ctx, id)
 if err != nil {
@@ -158,7 +158,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
+id := subscription.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "sid")
 
 payload := subscription.SubscriptionUpdateParameters{
 	// ...
@@ -179,7 +179,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "userIdValue", "subscriptionValue")
+id := subscription.NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId", "sid")
 
 read, err := client.UserSubscriptionGet(ctx, id)
 if err != nil {
@@ -195,7 +195,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 payload := subscription.SubscriptionCreateParameters{
 	// ...
@@ -216,7 +216,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionDelete(ctx, id, subscription.DefaultWorkspaceSubscriptionDeleteOperationOptions())
 if err != nil {
@@ -232,7 +232,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionGet(ctx, id)
 if err != nil {
@@ -248,7 +248,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionGetEntityTag(ctx, id)
 if err != nil {
@@ -264,7 +264,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue")
+id := subscription.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId")
 
 // alternatively `client.WorkspaceSubscriptionList(ctx, id, subscription.DefaultWorkspaceSubscriptionListOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceSubscriptionListComplete(ctx, id, subscription.DefaultWorkspaceSubscriptionListOperationOptions())
@@ -281,7 +281,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionListSecrets(ctx, id)
 if err != nil {
@@ -297,7 +297,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionRegeneratePrimaryKey(ctx, id)
 if err != nil {
@@ -313,7 +313,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 read, err := client.WorkspaceSubscriptionRegenerateSecondaryKey(ctx, id)
 if err != nil {
@@ -329,7 +329,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "subscriptionValue")
+id := subscription.NewWorkspaceSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "sid")
 
 payload := subscription.SubscriptionUpdateParameters{
 	// ...

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkResourceId{}
 
 func TestNewPrivateLinkResourceID(t *testing.T) {
-	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkForAzureAdValue", "privateLinkResourceValue")
+	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName", "groupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateLinkForAzureAdName != "privateLinkForAzureAdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkForAzureAdName'", id.PrivateLinkForAzureAdName, "privateLinkForAzureAdValue")
+	if id.PrivateLinkForAzureAdName != "policyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkForAzureAdName'", id.PrivateLinkForAzureAdName, "policyName")
 	}
 
-	if id.PrivateLinkResourceName != "privateLinkResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "privateLinkResourceValue")
+	if id.PrivateLinkResourceName != "groupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "groupName")
 	}
 }
 
 func TestFormatPrivateLinkResourceID(t *testing.T) {
-	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkForAzureAdValue", "privateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources/privateLinkResourceValue"
+	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName", "groupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources/groupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources/groupName",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				PrivateLinkForAzureAdName: "privateLinkForAzureAdValue",
-				PrivateLinkResourceName:   "privateLinkResourceValue",
+				PrivateLinkForAzureAdName: "policyName",
+				PrivateLinkResourceName:   "groupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources/groupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pRiVaTeLiNkFoRaZuReAdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pOlIcYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pRiVaTeLiNkFoRaZuReAdVaLuE/pRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pOlIcYnAmE/pRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources/groupName",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				PrivateLinkForAzureAdName: "privateLinkForAzureAdValue",
-				PrivateLinkResourceName:   "privateLinkResourceValue",
+				PrivateLinkForAzureAdName: "policyName",
+				PrivateLinkResourceName:   "groupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/privateLinkForAzureAdValue/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AADIAM/privateLinkForAzureAd/policyName/privateLinkResources/groupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pRiVaTeLiNkFoRaZuReAdVaLuE/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pOlIcYnAmE/pRiVaTeLiNkReSoUrCeS/gRoUpNaMe",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateLinkForAzureAdName: "pRiVaTeLiNkFoRaZuReAdVaLuE",
-				PrivateLinkResourceName:   "pRiVaTeLiNkReSoUrCeVaLuE",
+				PrivateLinkForAzureAdName: "pOlIcYnAmE",
+				PrivateLinkResourceName:   "gRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pRiVaTeLiNkFoRaZuReAdVaLuE/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aAdIaM/pRiVaTeLiNkFoRaZuReAd/pOlIcYnAmE/pRiVaTeLiNkReSoUrCeS/gRoUpNaMe/extra",
 			Error: true,
 		},
 	}

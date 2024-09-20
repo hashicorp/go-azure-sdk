@@ -46,7 +46,6 @@ func (c CustomOperationClient) TasksCancel(ctx context.Context, id TaskId) (resu
 
 	var model ProjectTask
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

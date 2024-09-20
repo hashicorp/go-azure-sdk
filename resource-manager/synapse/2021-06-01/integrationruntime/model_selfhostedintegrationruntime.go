@@ -14,7 +14,16 @@ type SelfHostedIntegrationRuntime struct {
 	TypeProperties *SelfHostedIntegrationRuntimeTypeProperties `json:"typeProperties,omitempty"`
 
 	// Fields inherited from IntegrationRuntime
-	Description *string `json:"description,omitempty"`
+
+	Description *string                `json:"description,omitempty"`
+	Type        IntegrationRuntimeType `json:"type"`
+}
+
+func (s SelfHostedIntegrationRuntime) IntegrationRuntime() BaseIntegrationRuntimeImpl {
+	return BaseIntegrationRuntimeImpl{
+		Description: s.Description,
+		Type:        s.Type,
+	}
 }
 
 var _ json.Marshaler = SelfHostedIntegrationRuntime{}
@@ -28,9 +37,10 @@ func (s SelfHostedIntegrationRuntime) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SelfHostedIntegrationRuntime: %+v", err)
 	}
+
 	decoded["type"] = "SelfHosted"
 
 	encoded, err = json.Marshal(decoded)

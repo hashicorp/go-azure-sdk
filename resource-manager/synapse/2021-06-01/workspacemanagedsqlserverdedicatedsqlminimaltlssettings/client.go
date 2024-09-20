@@ -15,7 +15,7 @@ type WorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClient struct {
 }
 
 func NewWorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workspacemanagedsqlserverdedicatedsqlminimaltlssettings", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserverdedicatedsqlminimaltlssettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerDedicatedSQLminimalTlsSettingsClient: %+v", err)
 	}

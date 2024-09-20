@@ -16,7 +16,7 @@ import (
 type IndicatorCreateIndicatorOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ThreatIntelligenceInformation
+	Model        ThreatIntelligenceInformation
 }
 
 // IndicatorCreateIndicator ...
@@ -53,11 +53,11 @@ func (c ThreatIntelligenceClient) IndicatorCreateIndicator(ctx context.Context, 
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalThreatIntelligenceInformationImplementation(respObj)
+	model, err := UnmarshalThreatIntelligenceInformationImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

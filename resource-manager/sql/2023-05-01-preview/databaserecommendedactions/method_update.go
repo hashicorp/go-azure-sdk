@@ -49,7 +49,6 @@ func (c DatabaseRecommendedActionsClient) Update(ctx context.Context, id Recomme
 
 	var model RecommendedAction
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

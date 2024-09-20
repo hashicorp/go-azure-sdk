@@ -15,7 +15,7 @@ type RegionClient struct {
 }
 
 func NewRegionClientWithBaseURI(sdkApi sdkEnv.Api) (*RegionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "region", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "region", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RegionClient: %+v", err)
 	}

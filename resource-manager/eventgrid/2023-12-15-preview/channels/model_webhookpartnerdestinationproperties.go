@@ -32,7 +32,7 @@ func (s *WebhookPartnerDestinationProperties) UnmarshalJSON(bytes []byte) error 
 	}
 
 	if v, ok := temp["clientAuthentication"]; ok {
-		impl, err := unmarshalPartnerClientAuthenticationImplementation(v)
+		impl, err := UnmarshalPartnerClientAuthenticationImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ClientAuthentication' for 'WebhookPartnerDestinationProperties': %+v", err)
 		}

@@ -45,7 +45,6 @@ func (c AlertsClient) GetSubscriptionLevelAlert(ctx context.Context, id AlertId)
 
 	var model Alert
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

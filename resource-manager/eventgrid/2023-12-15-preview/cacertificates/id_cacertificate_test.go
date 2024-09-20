@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CaCertificateId{}
 
 func TestNewCaCertificateID(t *testing.T) {
-	id := NewCaCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "caCertificateValue")
+	id := NewCaCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "caCertificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewCaCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NamespaceName != "namespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
+	if id.NamespaceName != "namespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.CaCertificateName != "caCertificateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CaCertificateName'", id.CaCertificateName, "caCertificateValue")
+	if id.CaCertificateName != "caCertificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CaCertificateName'", id.CaCertificateName, "caCertificateName")
 	}
 }
 
 func TestFormatCaCertificateID(t *testing.T) {
-	actual := NewCaCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "caCertificateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates/caCertificateValue"
+	actual := NewCaCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "caCertificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates/caCertificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseCaCertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates/caCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates/caCertificateName",
 			Expected: &CaCertificateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				CaCertificateName: "caCertificateValue",
+				NamespaceName:     "namespaceName",
+				CaCertificateName: "caCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates/caCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates/caCertificateName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseCaCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cAcErTiFiCaTeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cAcErTiFiCaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates/caCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates/caCertificateName",
 			Expected: &CaCertificateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NamespaceName:     "namespaceValue",
-				CaCertificateName: "caCertificateValue",
+				NamespaceName:     "namespaceName",
+				CaCertificateName: "caCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceValue/caCertificates/caCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/namespaces/namespaceName/caCertificates/caCertificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cAcErTiFiCaTeS/cAcErTiFiCaTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cAcErTiFiCaTeS/cAcErTiFiCaTeNaMe",
 			Expected: &CaCertificateId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:     "nAmEsPaCeVaLuE",
-				CaCertificateName: "cAcErTiFiCaTeVaLuE",
+				NamespaceName:     "nAmEsPaCeNaMe",
+				CaCertificateName: "cAcErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeVaLuE/cAcErTiFiCaTeS/cAcErTiFiCaTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/nAmEsPaCeS/nAmEsPaCeNaMe/cAcErTiFiCaTeS/cAcErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

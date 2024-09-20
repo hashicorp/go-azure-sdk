@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/put` Documentation
 
-The `put` SDK allows for interaction with the Azure Resource Manager Service `datamigration` (API Version `2021-06-30`).
+The `put` SDK allows for interaction with Azure Resource Manager `datamigration` (API Version `2021-06-30`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := put.NewFileID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "fileValue")
+id := put.NewFileID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "fileName")
 
 payload := put.ProjectFile{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue")
+id := put.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
 
 payload := put.Project{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "serviceTaskValue")
+id := put.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
 
 payload := put.ProjectTask{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := put.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 payload := put.DataMigrationService{
 	// ...
@@ -104,7 +104,7 @@ if err := client.ServicesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+id := put.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 payload := put.ProjectTask{
 	// ...

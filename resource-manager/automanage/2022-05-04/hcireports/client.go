@@ -15,7 +15,7 @@ type HCIReportsClient struct {
 }
 
 func NewHCIReportsClientWithBaseURI(sdkApi sdkEnv.Api) (*HCIReportsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "hcireports", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "hcireports", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HCIReportsClient: %+v", err)
 	}

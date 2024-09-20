@@ -15,7 +15,7 @@ type MetricsClient struct {
 }
 
 func NewMetricsClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "metrics", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "metrics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MetricsClient: %+v", err)
 	}

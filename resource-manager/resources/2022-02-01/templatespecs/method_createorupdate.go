@@ -50,7 +50,6 @@ func (c TemplateSpecsClient) CreateOrUpdate(ctx context.Context, id TemplateSpec
 
 	var model TemplateSpec
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

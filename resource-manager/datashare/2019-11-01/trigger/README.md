@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/trigger` Documentation
 
-The `trigger` SDK allows for interaction with the Azure Resource Manager Service `datashare` (API Version `2019-11-01`).
+The `trigger` SDK allows for interaction with Azure Resource Manager `datashare` (API Version `2019-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue", "triggerValue")
+id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName", "triggerName")
 
 payload := trigger.Trigger{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue", "triggerValue")
+id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName", "triggerName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue", "triggerValue")
+id := trigger.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName", "triggerName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := trigger.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
+id := trigger.NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "shareSubscriptionName")
 
 // alternatively `client.ListByShareSubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListByShareSubscriptionComplete(ctx, id)

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SessionPoolId{}
 
 func TestNewSessionPoolID(t *testing.T) {
-	id := NewSessionPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sessionPoolValue")
+	id := NewSessionPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sessionPoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSessionPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SessionPoolName != "sessionPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SessionPoolName'", id.SessionPoolName, "sessionPoolValue")
+	if id.SessionPoolName != "sessionPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SessionPoolName'", id.SessionPoolName, "sessionPoolName")
 	}
 }
 
 func TestFormatSessionPoolID(t *testing.T) {
-	actual := NewSessionPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sessionPoolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolValue"
+	actual := NewSessionPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sessionPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSessionPoolID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolName",
 			Expected: &SessionPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SessionPoolName:   "sessionPoolValue",
+				SessionPoolName:   "sessionPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSessionPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolName",
 			Expected: &SessionPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				SessionPoolName:   "sessionPoolValue",
+				SessionPoolName:   "sessionPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/sessionPools/sessionPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/sEsSiOnPoOlS/sEsSiOnPoOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/sEsSiOnPoOlS/sEsSiOnPoOlNaMe",
 			Expected: &SessionPoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SessionPoolName:   "sEsSiOnPoOlVaLuE",
+				SessionPoolName:   "sEsSiOnPoOlNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/sEsSiOnPoOlS/sEsSiOnPoOlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/sEsSiOnPoOlS/sEsSiOnPoOlNaMe/extra",
 			Error: true,
 		},
 	}

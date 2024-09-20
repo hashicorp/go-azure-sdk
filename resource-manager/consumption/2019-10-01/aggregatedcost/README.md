@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/aggregatedcost` Documentation
 
-The `aggregatedcost` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2019-10-01`).
+The `aggregatedcost` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2019-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := commonids.NewManagementGroupID("groupIdValue")
+id := commonids.NewManagementGroupID("groupId")
 
 read, err := client.GetByManagementGroup(ctx, id, aggregatedcost.DefaultGetByManagementGroupOperationOptions())
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := aggregatedcost.NewProviders2BillingPeriodID("managementGroupIdValue", "billingPeriodValue")
+id := aggregatedcost.NewProviders2BillingPeriodID("managementGroupId", "billingPeriodName")
 
 read, err := client.GetForBillingPeriodByManagementGroup(ctx, id)
 if err != nil {

@@ -46,7 +46,7 @@ func ParseWorkspacePolicyFragmentID(input string) (*WorkspacePolicyFragmentId, e
 	}
 
 	id := WorkspacePolicyFragmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseWorkspacePolicyFragmentIDInsensitively(input string) (*WorkspacePolicy
 	}
 
 	id := WorkspacePolicyFragmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id WorkspacePolicyFragmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceId", "workspaceIdValue"),
+		resourceids.UserSpecifiedSegment("workspaceId", "workspaceId"),
 		resourceids.StaticSegment("staticPolicyFragments", "policyFragments", "policyFragments"),
-		resourceids.UserSpecifiedSegment("policyFragmentName", "policyFragmentValue"),
+		resourceids.UserSpecifiedSegment("policyFragmentName", "id"),
 	}
 }
 

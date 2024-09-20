@@ -45,7 +45,6 @@ func (c DiagnosticClient) WorkspaceDiagnosticGet(ctx context.Context, id Workspa
 
 	var model DiagnosticContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -34,6 +34,7 @@ func (o ResetAllFiltersForHostingEnvironmentOperationOptions) ToHeaders() *clien
 
 func (o ResetAllFiltersForHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

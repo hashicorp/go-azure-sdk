@@ -18,10 +18,22 @@ type SalesforceV2Source struct {
 	SOQLQuery             *string      `json:"SOQLQuery,omitempty"`
 
 	// Fields inherited from CopySource
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
 	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
+	Type                     string  `json:"type"`
+}
+
+func (s SalesforceV2Source) CopySource() BaseCopySourceImpl {
+	return BaseCopySourceImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SourceRetryCount:         s.SourceRetryCount,
+		SourceRetryWait:          s.SourceRetryWait,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = SalesforceV2Source{}
@@ -35,9 +47,10 @@ func (s SalesforceV2Source) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SalesforceV2Source: %+v", err)
 	}
+
 	decoded["type"] = "SalesforceV2Source"
 
 	encoded, err = json.Marshal(decoded)

@@ -45,7 +45,6 @@ func (c ImportJobsClient) Get(ctx context.Context, id ImportJobId) (result GetOp
 
 	var model ImportJob
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

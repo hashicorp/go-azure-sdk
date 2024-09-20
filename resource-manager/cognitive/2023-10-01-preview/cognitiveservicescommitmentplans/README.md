@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-10-01-preview/cognitiveservicescommitmentplans` Documentation
 
-The `cognitiveservicescommitmentplans` SDK allows for interaction with the Azure Resource Manager Service `cognitive` (API Version `2023-10-01-preview`).
+The `cognitiveservicescommitmentplans` SDK allows for interaction with Azure Resource Manager `cognitive` (API Version `2023-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 payload := cognitiveservicescommitmentplans.CommitmentPlan{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CommitmentPlansCreateOrUpdatePlanThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 if err := client.CommitmentPlansDeletePlanThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.CommitmentPlansDeletePlanThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 read, err := client.CommitmentPlansGetPlan(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue")
+id := cognitiveservicescommitmentplans.NewCommitmentPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanName")
 
 payload := cognitiveservicescommitmentplans.PatchResourceTagsAndSku{
 	// ...

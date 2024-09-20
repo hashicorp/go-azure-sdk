@@ -73,7 +73,7 @@ func (s *TumblingWindowTriggerTypeProperties) UnmarshalJSON(bytes []byte) error 
 
 		output := make([]DependencyReference, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalDependencyReferenceImplementation(val)
+			impl, err := UnmarshalDependencyReferenceImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'DependsOn' for 'TumblingWindowTriggerTypeProperties': %+v", i, err)
 			}

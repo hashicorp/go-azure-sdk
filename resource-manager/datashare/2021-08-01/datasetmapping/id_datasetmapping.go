@@ -46,7 +46,7 @@ func ParseDataSetMappingID(input string) (*DataSetMappingId, error) {
 	}
 
 	id := DataSetMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseDataSetMappingIDInsensitively(input string) (*DataSetMappingId, error)
 	}
 
 	id := DataSetMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id DataSetMappingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataShare", "Microsoft.DataShare", "Microsoft.DataShare"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticShareSubscriptions", "shareSubscriptions", "shareSubscriptions"),
-		resourceids.UserSpecifiedSegment("shareSubscriptionName", "shareSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("shareSubscriptionName", "shareSubscriptionName"),
 		resourceids.StaticSegment("staticDataSetMappings", "dataSetMappings", "dataSetMappings"),
-		resourceids.UserSpecifiedSegment("dataSetMappingName", "dataSetMappingValue"),
+		resourceids.UserSpecifiedSegment("dataSetMappingName", "dataSetMappingName"),
 	}
 }
 

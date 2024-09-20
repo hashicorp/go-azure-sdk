@@ -44,7 +44,7 @@ func ParseLibraryID(input string) (*LibraryId, error) {
 	}
 
 	id := LibraryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseLibraryIDInsensitively(input string) (*LibraryId, error) {
 	}
 
 	id := LibraryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id LibraryId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticLibraries", "libraries", "libraries"),
-		resourceids.UserSpecifiedSegment("libraryName", "libraryValue"),
+		resourceids.UserSpecifiedSegment("libraryName", "libraryName"),
 	}
 }
 

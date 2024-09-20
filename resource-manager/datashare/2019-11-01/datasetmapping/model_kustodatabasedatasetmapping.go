@@ -14,9 +14,20 @@ type KustoDatabaseDataSetMapping struct {
 	Properties KustoDatabaseDataSetMappingProperties `json:"properties"`
 
 	// Fields inherited from DataSetMapping
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+
+	Id   *string            `json:"id,omitempty"`
+	Kind DataSetMappingKind `json:"kind"`
+	Name *string            `json:"name,omitempty"`
+	Type *string            `json:"type,omitempty"`
+}
+
+func (s KustoDatabaseDataSetMapping) DataSetMapping() BaseDataSetMappingImpl {
+	return BaseDataSetMappingImpl{
+		Id:   s.Id,
+		Kind: s.Kind,
+		Name: s.Name,
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = KustoDatabaseDataSetMapping{}
@@ -30,9 +41,10 @@ func (s KustoDatabaseDataSetMapping) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling KustoDatabaseDataSetMapping: %+v", err)
 	}
+
 	decoded["kind"] = "KustoDatabase"
 
 	encoded, err = json.Marshal(decoded)

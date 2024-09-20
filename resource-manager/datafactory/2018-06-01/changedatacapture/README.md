@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/changedatacapture` Documentation
 
-The `changedatacapture` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `changedatacapture` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 payload := changedatacapture.ChangeDataCaptureResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 read, err := client.Get(ctx, id, changedatacapture.DefaultGetOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := changedatacapture.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 // alternatively `client.ListByFactory(ctx, id)` can be used to do batched pagination
 items, err := client.ListByFactoryComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 read, err := client.Start(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 read, err := client.Status(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "adfcdcValue")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
 
 read, err := client.Stop(ctx, id)
 if err != nil {

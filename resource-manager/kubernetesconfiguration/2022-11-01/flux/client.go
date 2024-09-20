@@ -15,7 +15,7 @@ type FluxClient struct {
 }
 
 func NewFluxClientWithBaseURI(sdkApi sdkEnv.Api) (*FluxClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "flux", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "flux", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FluxClient: %+v", err)
 	}

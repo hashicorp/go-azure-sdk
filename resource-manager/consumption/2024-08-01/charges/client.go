@@ -15,7 +15,7 @@ type ChargesClient struct {
 }
 
 func NewChargesClientWithBaseURI(sdkApi sdkEnv.Api) (*ChargesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "charges", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "charges", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ChargesClient: %+v", err)
 	}

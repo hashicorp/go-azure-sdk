@@ -15,7 +15,7 @@ type RestoreClient struct {
 }
 
 func NewRestoreClientWithBaseURI(sdkApi sdkEnv.Api) (*RestoreClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "restore", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "restore", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RestoreClient: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InstanceFailoverGroupId{}
 
 func TestNewInstanceFailoverGroupID(t *testing.T) {
-	id := NewInstanceFailoverGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "instanceFailoverGroupValue")
+	id := NewInstanceFailoverGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "failoverGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewInstanceFailoverGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.InstanceFailoverGroupName != "instanceFailoverGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InstanceFailoverGroupName'", id.InstanceFailoverGroupName, "instanceFailoverGroupValue")
+	if id.InstanceFailoverGroupName != "failoverGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InstanceFailoverGroupName'", id.InstanceFailoverGroupName, "failoverGroupName")
 	}
 }
 
 func TestFormatInstanceFailoverGroupID(t *testing.T) {
-	actual := NewInstanceFailoverGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "instanceFailoverGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups/instanceFailoverGroupValue"
+	actual := NewInstanceFailoverGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "failoverGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups/failoverGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseInstanceFailoverGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups/instanceFailoverGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups/failoverGroupName",
 			Expected: &InstanceFailoverGroupId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				LocationName:              "locationValue",
-				InstanceFailoverGroupName: "instanceFailoverGroupValue",
+				LocationName:              "locationName",
+				InstanceFailoverGroupName: "failoverGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups/instanceFailoverGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups/failoverGroupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseInstanceFailoverGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/iNsTaNcEfAiLoVeRgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/iNsTaNcEfAiLoVeRgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups/instanceFailoverGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups/failoverGroupName",
 			Expected: &InstanceFailoverGroupId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				LocationName:              "locationValue",
-				InstanceFailoverGroupName: "instanceFailoverGroupValue",
+				LocationName:              "locationName",
+				InstanceFailoverGroupName: "failoverGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationValue/instanceFailoverGroups/instanceFailoverGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/instanceFailoverGroups/failoverGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/iNsTaNcEfAiLoVeRgRoUpS/iNsTaNcEfAiLoVeRgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/iNsTaNcEfAiLoVeRgRoUpS/fAiLoVeRgRoUpNaMe",
 			Expected: &InstanceFailoverGroupId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				LocationName:              "lOcAtIoNvAlUe",
-				InstanceFailoverGroupName: "iNsTaNcEfAiLoVeRgRoUpVaLuE",
+				LocationName:              "lOcAtIoNnAmE",
+				InstanceFailoverGroupName: "fAiLoVeRgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNvAlUe/iNsTaNcEfAiLoVeRgRoUpS/iNsTaNcEfAiLoVeRgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/iNsTaNcEfAiLoVeRgRoUpS/fAiLoVeRgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

@@ -44,7 +44,7 @@ func ParseImportJobID(input string) (*ImportJobId, error) {
 	}
 
 	id := ImportJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseImportJobIDInsensitively(input string) (*ImportJobId, error) {
 	}
 
 	id := ImportJobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ImportJobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStorageCache", "Microsoft.StorageCache", "Microsoft.StorageCache"),
 		resourceids.StaticSegment("staticAmlFilesystems", "amlFilesystems", "amlFilesystems"),
-		resourceids.UserSpecifiedSegment("amlFilesystemName", "amlFilesystemValue"),
+		resourceids.UserSpecifiedSegment("amlFilesystemName", "amlFilesystemName"),
 		resourceids.StaticSegment("staticImportJobs", "importJobs", "importJobs"),
-		resourceids.UserSpecifiedSegment("importJobName", "importJobValue"),
+		resourceids.UserSpecifiedSegment("importJobName", "importJobName"),
 	}
 }
 

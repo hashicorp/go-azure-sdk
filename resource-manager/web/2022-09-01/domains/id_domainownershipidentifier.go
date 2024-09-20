@@ -44,7 +44,7 @@ func ParseDomainOwnershipIdentifierID(input string) (*DomainOwnershipIdentifierI
 	}
 
 	id := DomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDomainOwnershipIdentifierIDInsensitively(input string) (*DomainOwnersh
 	}
 
 	id := DomainOwnershipIdentifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DomainOwnershipIdentifierId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDomainRegistration", "Microsoft.DomainRegistration", "Microsoft.DomainRegistration"),
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainName", "domainValue"),
+		resourceids.UserSpecifiedSegment("domainName", "domainName"),
 		resourceids.StaticSegment("staticDomainOwnershipIdentifiers", "domainOwnershipIdentifiers", "domainOwnershipIdentifiers"),
-		resourceids.UserSpecifiedSegment("domainOwnershipIdentifierName", "domainOwnershipIdentifierValue"),
+		resourceids.UserSpecifiedSegment("domainOwnershipIdentifierName", "name"),
 	}
 }
 

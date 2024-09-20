@@ -15,7 +15,7 @@ type PolicyRestrictionsClient struct {
 }
 
 func NewPolicyRestrictionsClientWithBaseURI(sdkApi sdkEnv.Api) (*PolicyRestrictionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "policyrestrictions", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "policyrestrictions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PolicyRestrictionsClient: %+v", err)
 	}

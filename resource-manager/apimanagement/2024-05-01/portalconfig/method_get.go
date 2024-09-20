@@ -45,7 +45,6 @@ func (c PortalConfigClient) Get(ctx context.Context, id PortalConfigId) (result 
 
 	var model PortalConfigContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

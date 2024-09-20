@@ -46,7 +46,6 @@ func (c DenyAssignmentsClient) GetById(ctx context.Context, id commonids.ScopeId
 
 	var model DenyAssignment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

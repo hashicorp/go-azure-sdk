@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-07-01-preview/pricesheets` Documentation
 
-The `pricesheets` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2023-07-01-preview`).
+The `pricesheets` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2023-07-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := pricesheets.NewInvoiceID("billingAccountValue", "billingProfileValue", "invoiceValue")
+id := pricesheets.NewInvoiceID("billingAccountName", "billingProfileName", "invoiceName")
 
 if err := client.PriceSheetDownloadThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.PriceSheetDownloadThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := pricesheets.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := pricesheets.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 if err := client.PriceSheetDownloadByBillingProfileThenPoll(ctx, id); err != nil {
 	// handle the error

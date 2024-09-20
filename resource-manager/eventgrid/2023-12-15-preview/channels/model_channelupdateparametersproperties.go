@@ -47,7 +47,7 @@ func (s *ChannelUpdateParametersProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["partnerDestinationInfo"]; ok {
-		impl, err := unmarshalPartnerUpdateDestinationInfoImplementation(v)
+		impl, err := UnmarshalPartnerUpdateDestinationInfoImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PartnerDestinationInfo' for 'ChannelUpdateParametersProperties': %+v", err)
 		}

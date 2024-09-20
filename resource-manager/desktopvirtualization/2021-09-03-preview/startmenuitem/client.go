@@ -15,7 +15,7 @@ type StartMenuItemClient struct {
 }
 
 func NewStartMenuItemClientWithBaseURI(sdkApi sdkEnv.Api) (*StartMenuItemClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "startmenuitem", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "startmenuitem", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StartMenuItemClient: %+v", err)
 	}

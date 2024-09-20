@@ -50,7 +50,6 @@ func (c CostAllocationRulesClient) CheckNameAvailability(ctx context.Context, id
 
 	var model CostAllocationRuleCheckNameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

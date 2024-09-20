@@ -45,7 +45,6 @@ func (c UsagesInformationClient) UsagesGet(ctx context.Context, id ScopedUsageId
 
 	var model CurrentUsagesBase
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

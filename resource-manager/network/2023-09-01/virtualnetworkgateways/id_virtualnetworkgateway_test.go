@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkGatewayId{}
 
 func TestNewVirtualNetworkGatewayID(t *testing.T) {
-	id := NewVirtualNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayValue")
+	id := NewVirtualNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualNetworkGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualNetworkGatewayName != "virtualNetworkGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkGatewayName'", id.VirtualNetworkGatewayName, "virtualNetworkGatewayValue")
+	if id.VirtualNetworkGatewayName != "virtualNetworkGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkGatewayName'", id.VirtualNetworkGatewayName, "virtualNetworkGatewayName")
 	}
 }
 
 func TestFormatVirtualNetworkGatewayID(t *testing.T) {
-	actual := NewVirtualNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayValue"
+	actual := NewVirtualNetworkGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualNetworkGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName",
 			Expected: &VirtualNetworkGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				VirtualNetworkGatewayName: "virtualNetworkGatewayValue",
+				VirtualNetworkGatewayName: "virtualNetworkGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualNetworkGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName",
 			Expected: &VirtualNetworkGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				VirtualNetworkGatewayName: "virtualNetworkGatewayValue",
+				VirtualNetworkGatewayName: "virtualNetworkGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkGateways/virtualNetworkGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKgAtEwAyS/vIrTuAlNeTwOrKgAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKgAtEwAyS/vIrTuAlNeTwOrKgAtEwAyNaMe",
 			Expected: &VirtualNetworkGatewayId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualNetworkGatewayName: "vIrTuAlNeTwOrKgAtEwAyVaLuE",
+				VirtualNetworkGatewayName: "vIrTuAlNeTwOrKgAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKgAtEwAyS/vIrTuAlNeTwOrKgAtEwAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKgAtEwAyS/vIrTuAlNeTwOrKgAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

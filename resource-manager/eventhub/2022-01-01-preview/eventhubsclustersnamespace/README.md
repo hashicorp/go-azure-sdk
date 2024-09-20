@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2022-01-01-preview/eventhubsclustersnamespace` Documentation
 
-The `eventhubsclustersnamespace` SDK allows for interaction with the Azure Resource Manager Service `eventhub` (API Version `2022-01-01-preview`).
+The `eventhubsclustersnamespace` SDK allows for interaction with Azure Resource Manager `eventhub` (API Version `2022-01-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventhubsclustersnamespace.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+id := eventhubsclustersnamespace.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
 
 read, err := client.ClustersListNamespaces(ctx, id)
 if err != nil {

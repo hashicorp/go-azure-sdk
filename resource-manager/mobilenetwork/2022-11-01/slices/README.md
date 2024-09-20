@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/slices` Documentation
 
-The `slices` SDK allows for interaction with the Azure Resource Manager Service `mobilenetwork` (API Version `2022-11-01`).
+The `slices` SDK allows for interaction with Azure Resource Manager `mobilenetwork` (API Version `2022-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := slices.NewMobileNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkValue")
+id := slices.NewMobileNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mobileNetworkName")
 
 // alternatively `client.ListByMobileNetwork(ctx, id)` can be used to do batched pagination
 items, err := client.ListByMobileNetworkComplete(ctx, id)

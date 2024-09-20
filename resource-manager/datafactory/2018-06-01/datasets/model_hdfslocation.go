@@ -13,8 +13,18 @@ var _ DatasetLocation = HdfsLocation{}
 type HdfsLocation struct {
 
 	// Fields inherited from DatasetLocation
+
 	FileName   *string `json:"fileName,omitempty"`
 	FolderPath *string `json:"folderPath,omitempty"`
+	Type       string  `json:"type"`
+}
+
+func (s HdfsLocation) DatasetLocation() BaseDatasetLocationImpl {
+	return BaseDatasetLocationImpl{
+		FileName:   s.FileName,
+		FolderPath: s.FolderPath,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = HdfsLocation{}
@@ -28,9 +38,10 @@ func (s HdfsLocation) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling HdfsLocation: %+v", err)
 	}
+
 	decoded["type"] = "HdfsLocation"
 
 	encoded, err = json.Marshal(decoded)

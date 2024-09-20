@@ -15,7 +15,7 @@ type RecoveryServicesClient struct {
 }
 
 func NewRecoveryServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoveryServicesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "recoveryservices", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "recoveryservices", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RecoveryServicesClient: %+v", err)
 	}

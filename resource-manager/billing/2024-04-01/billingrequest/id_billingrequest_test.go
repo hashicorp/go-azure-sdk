@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &BillingRequestId{}
 
 func TestNewBillingRequestID(t *testing.T) {
-	id := NewBillingRequestID("billingRequestValue")
+	id := NewBillingRequestID("billingRequestName")
 
-	if id.BillingRequestName != "billingRequestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingRequestName'", id.BillingRequestName, "billingRequestValue")
+	if id.BillingRequestName != "billingRequestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingRequestName'", id.BillingRequestName, "billingRequestName")
 	}
 }
 
 func TestFormatBillingRequestID(t *testing.T) {
-	actual := NewBillingRequestID("billingRequestValue").ID()
-	expected := "/providers/Microsoft.Billing/billingRequests/billingRequestValue"
+	actual := NewBillingRequestID("billingRequestName").ID()
+	expected := "/providers/Microsoft.Billing/billingRequests/billingRequestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseBillingRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestValue",
+			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestName",
 			Expected: &BillingRequestId{
-				BillingRequestName: "billingRequestValue",
+				BillingRequestName: "billingRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestValue/extra",
+			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseBillingRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestValue",
+			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestName",
 			Expected: &BillingRequestId{
-				BillingRequestName: "billingRequestValue",
+				BillingRequestName: "billingRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestValue/extra",
+			Input: "/providers/Microsoft.Billing/billingRequests/billingRequestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgReQuEsTs/bIlLiNgReQuEsTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgReQuEsTs/bIlLiNgReQuEsTnAmE",
 			Expected: &BillingRequestId{
-				BillingRequestName: "bIlLiNgReQuEsTvAlUe",
+				BillingRequestName: "bIlLiNgReQuEsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgReQuEsTs/bIlLiNgReQuEsTvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgReQuEsTs/bIlLiNgReQuEsTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ResourceId{}
 
 func TestNewResourceID(t *testing.T) {
-	id := NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+	id := NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DigitalTwinsInstanceName != "digitalTwinsInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "digitalTwinsInstanceValue")
+	if id.DigitalTwinsInstanceName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "resourceName")
 	}
 
 	if id.ResourceId != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
@@ -32,8 +32,8 @@ func TestNewResourceID(t *testing.T) {
 }
 
 func TestFormatResourceID(t *testing.T) {
-	actual := NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"
+	actual := NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,21 +87,21 @@ func TestParseResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Expected: &ResourceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "digitalTwinsInstanceValue",
+				DigitalTwinsInstanceName: "resourceName",
 				ResourceId:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			},
 		},
@@ -223,41 +223,41 @@ func TestParseResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/pRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/pRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/privateLinkResources/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Expected: &ResourceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "digitalTwinsInstanceValue",
+				DigitalTwinsInstanceName: "resourceName",
 				ResourceId:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			},
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/pRiVaTeLiNkReSoUrCeS/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/pRiVaTeLiNkReSoUrCeS/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
 			Expected: &ResourceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				DigitalTwinsInstanceName: "dIgItAlTwInSiNsTaNcEvAlUe",
+				DigitalTwinsInstanceName: "rEsOuRcEnAmE",
 				ResourceId:               "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
 			},
 		},

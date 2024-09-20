@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SharedPrivateLinkResourceId{}
 
 func TestNewSharedPrivateLinkResourceID(t *testing.T) {
-	id := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "sharedPrivateLinkResourceValue")
+	id := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName", "sharedPrivateLinkResourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSharedPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SearchServiceName != "searchServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceValue")
+	if id.SearchServiceName != "searchServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceName")
 	}
 
-	if id.SharedPrivateLinkResourceName != "sharedPrivateLinkResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedPrivateLinkResourceName'", id.SharedPrivateLinkResourceName, "sharedPrivateLinkResourceValue")
+	if id.SharedPrivateLinkResourceName != "sharedPrivateLinkResourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedPrivateLinkResourceName'", id.SharedPrivateLinkResourceName, "sharedPrivateLinkResourceName")
 	}
 }
 
 func TestFormatSharedPrivateLinkResourceID(t *testing.T) {
-	actual := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "sharedPrivateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue"
+	actual := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName", "sharedPrivateLinkResourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources/sharedPrivateLinkResourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSharedPrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources/sharedPrivateLinkResourceName",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SearchServiceName:             "searchServiceValue",
-				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
+				SearchServiceName:             "searchServiceName",
+				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources/sharedPrivateLinkResourceName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSharedPrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe/sHaReDpRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources/sharedPrivateLinkResourceName",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				SearchServiceName:             "searchServiceValue",
-				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
+				SearchServiceName:             "searchServiceName",
+				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName/sharedPrivateLinkResources/sharedPrivateLinkResourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeNaMe",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				SearchServiceName:             "sEaRcHsErViCeVaLuE",
-				SharedPrivateLinkResourceName: "sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
+				SearchServiceName:             "sEaRcHsErViCeNaMe",
+				SharedPrivateLinkResourceName: "sHaReDpRiVaTeLiNkReSoUrCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeNaMe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeNaMe/extra",
 			Error: true,
 		},
 	}

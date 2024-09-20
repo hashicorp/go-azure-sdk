@@ -17,6 +17,14 @@ type ScriptActionTaskDetails struct {
 	Path                *string `json:"path,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s ScriptActionTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ScriptActionTaskDetails{}
@@ -30,9 +38,10 @@ func (s ScriptActionTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ScriptActionTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ScriptActionTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

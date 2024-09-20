@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/azureactivedirectory/2020-03-01/privatelinkresources` Documentation
 
-The `privatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `azureactivedirectory` (API Version `2020-03-01`).
+The `privatelinkresources` SDK allows for interaction with Azure Resource Manager `azureactivedirectory` (API Version `2020-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkForAzureAdValue", "privateLinkResourceValue")
+id := privatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName", "groupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privatelinkresources.NewPrivateLinkForAzureAdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkForAzureAdValue")
+id := privatelinkresources.NewPrivateLinkForAzureAdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName")
 
 // alternatively `client.ListByPrivateLinkPolicy(ctx, id)` can be used to do batched pagination
 items, err := client.ListByPrivateLinkPolicyComplete(ctx, id)

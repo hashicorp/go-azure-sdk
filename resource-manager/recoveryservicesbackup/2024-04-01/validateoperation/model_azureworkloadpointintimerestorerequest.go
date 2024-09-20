@@ -23,7 +23,16 @@ type AzureWorkloadPointInTimeRestoreRequest struct {
 	UserAssignedManagedIdentityDetails *UserAssignedManagedIdentityDetails `json:"userAssignedManagedIdentityDetails,omitempty"`
 
 	// Fields inherited from RestoreRequest
+
+	ObjectType                     string    `json:"objectType"`
 	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}
+
+func (s AzureWorkloadPointInTimeRestoreRequest) RestoreRequest() BaseRestoreRequestImpl {
+	return BaseRestoreRequestImpl{
+		ObjectType:                     s.ObjectType,
+		ResourceGuardOperationRequests: s.ResourceGuardOperationRequests,
+	}
 }
 
 var _ json.Marshaler = AzureWorkloadPointInTimeRestoreRequest{}
@@ -37,9 +46,10 @@ func (s AzureWorkloadPointInTimeRestoreRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureWorkloadPointInTimeRestoreRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "AzureWorkloadPointInTimeRestoreRequest"
 
 	encoded, err = json.Marshal(decoded)

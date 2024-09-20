@@ -50,7 +50,6 @@ func (c DataProductsClient) AddUserRole(ctx context.Context, id DataProductId, i
 
 	var model RoleAssignmentDetail
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

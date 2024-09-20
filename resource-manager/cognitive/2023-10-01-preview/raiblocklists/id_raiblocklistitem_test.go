@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RaiBlocklistItemId{}
 
 func TestNewRaiBlocklistItemID(t *testing.T) {
-	id := NewRaiBlocklistItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "raiBlocklistValue", "raiBlocklistItemValue")
+	id := NewRaiBlocklistItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "raiBlocklistName", "raiBlocklistItemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewRaiBlocklistItemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 
-	if id.RaiBlocklistName != "raiBlocklistValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RaiBlocklistName'", id.RaiBlocklistName, "raiBlocklistValue")
+	if id.RaiBlocklistName != "raiBlocklistName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RaiBlocklistName'", id.RaiBlocklistName, "raiBlocklistName")
 	}
 
-	if id.RaiBlocklistItemName != "raiBlocklistItemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RaiBlocklistItemName'", id.RaiBlocklistItemName, "raiBlocklistItemValue")
+	if id.RaiBlocklistItemName != "raiBlocklistItemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RaiBlocklistItemName'", id.RaiBlocklistItemName, "raiBlocklistItemName")
 	}
 }
 
 func TestFormatRaiBlocklistItemID(t *testing.T) {
-	actual := NewRaiBlocklistItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "raiBlocklistValue", "raiBlocklistItemValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems/raiBlocklistItemValue"
+	actual := NewRaiBlocklistItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "raiBlocklistName", "raiBlocklistItemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems/raiBlocklistItemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseRaiBlocklistItemID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems/raiBlocklistItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems/raiBlocklistItemName",
 			Expected: &RaiBlocklistItemId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AccountName:          "accountValue",
-				RaiBlocklistName:     "raiBlocklistValue",
-				RaiBlocklistItemName: "raiBlocklistItemValue",
+				AccountName:          "accountName",
+				RaiBlocklistName:     "raiBlocklistName",
+				RaiBlocklistItemName: "raiBlocklistItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems/raiBlocklistItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems/raiBlocklistItemName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseRaiBlocklistItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE/rAiBlOcKlIsTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe/rAiBlOcKlIsTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE/rAiBlOcKlIsTs/rAiBlOcKlIsTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe/rAiBlOcKlIsTs/rAiBlOcKlIsTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE/rAiBlOcKlIsTs/rAiBlOcKlIsTvAlUe/rAiBlOcKlIsTiTeMs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe/rAiBlOcKlIsTs/rAiBlOcKlIsTnAmE/rAiBlOcKlIsTiTeMs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems/raiBlocklistItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems/raiBlocklistItemName",
 			Expected: &RaiBlocklistItemId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AccountName:          "accountValue",
-				RaiBlocklistName:     "raiBlocklistValue",
-				RaiBlocklistItemName: "raiBlocklistItemValue",
+				AccountName:          "accountName",
+				RaiBlocklistName:     "raiBlocklistName",
+				RaiBlocklistItemName: "raiBlocklistItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountValue/raiBlocklists/raiBlocklistValue/raiBlocklistItems/raiBlocklistItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/raiBlocklists/raiBlocklistName/raiBlocklistItems/raiBlocklistItemName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE/rAiBlOcKlIsTs/rAiBlOcKlIsTvAlUe/rAiBlOcKlIsTiTeMs/rAiBlOcKlIsTiTeMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe/rAiBlOcKlIsTs/rAiBlOcKlIsTnAmE/rAiBlOcKlIsTiTeMs/rAiBlOcKlIsTiTeMnAmE",
 			Expected: &RaiBlocklistItemId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:          "aCcOuNtVaLuE",
-				RaiBlocklistName:     "rAiBlOcKlIsTvAlUe",
-				RaiBlocklistItemName: "rAiBlOcKlIsTiTeMvAlUe",
+				AccountName:          "aCcOuNtNaMe",
+				RaiBlocklistName:     "rAiBlOcKlIsTnAmE",
+				RaiBlocklistItemName: "rAiBlOcKlIsTiTeMnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtVaLuE/rAiBlOcKlIsTs/rAiBlOcKlIsTvAlUe/rAiBlOcKlIsTiTeMs/rAiBlOcKlIsTiTeMvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/aCcOuNtS/aCcOuNtNaMe/rAiBlOcKlIsTs/rAiBlOcKlIsTnAmE/rAiBlOcKlIsTiTeMs/rAiBlOcKlIsTiTeMnAmE/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CredentialId{}
 
 func TestNewCredentialID(t *testing.T) {
-	id := NewCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "credentialValue")
+	id := NewCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "credentialName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewCredentialID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FactoryName != "factoryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryValue")
+	if id.FactoryName != "factoryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.CredentialName != "credentialValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CredentialName'", id.CredentialName, "credentialValue")
+	if id.CredentialName != "credentialName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CredentialName'", id.CredentialName, "credentialName")
 	}
 }
 
 func TestFormatCredentialID(t *testing.T) {
-	actual := NewCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "credentialValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials/credentialValue"
+	actual := NewCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "credentialName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials/credentialName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseCredentialID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials/credentialValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials/credentialName",
 			Expected: &CredentialId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				CredentialName:    "credentialValue",
+				FactoryName:       "factoryName",
+				CredentialName:    "credentialName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials/credentialValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials/credentialName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseCredentialIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/cReDeNtIaLs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/cReDeNtIaLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials/credentialValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials/credentialName",
 			Expected: &CredentialId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				CredentialName:    "credentialValue",
+				FactoryName:       "factoryName",
+				CredentialName:    "credentialName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/credentials/credentialValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/credentials/credentialName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/cReDeNtIaLs/cReDeNtIaLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/cReDeNtIaLs/cReDeNtIaLnAmE",
 			Expected: &CredentialId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FactoryName:       "fAcToRyVaLuE",
-				CredentialName:    "cReDeNtIaLvAlUe",
+				FactoryName:       "fAcToRyNaMe",
+				CredentialName:    "cReDeNtIaLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/cReDeNtIaLs/cReDeNtIaLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/cReDeNtIaLs/cReDeNtIaLnAmE/extra",
 			Error: true,
 		},
 	}

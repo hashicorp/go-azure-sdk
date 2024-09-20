@@ -15,7 +15,7 @@ type SqlPoolsRestorePointsClient struct {
 }
 
 func NewSqlPoolsRestorePointsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsRestorePointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "sqlpoolsrestorepoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsrestorepoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SqlPoolsRestorePointsClient: %+v", err)
 	}

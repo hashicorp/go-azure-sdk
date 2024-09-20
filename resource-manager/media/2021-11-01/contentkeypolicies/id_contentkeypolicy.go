@@ -44,7 +44,7 @@ func ParseContentKeyPolicyID(input string) (*ContentKeyPolicyId, error) {
 	}
 
 	id := ContentKeyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseContentKeyPolicyIDInsensitively(input string) (*ContentKeyPolicyId, er
 	}
 
 	id := ContentKeyPolicyId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ContentKeyPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticContentKeyPolicies", "contentKeyPolicies", "contentKeyPolicies"),
-		resourceids.UserSpecifiedSegment("contentKeyPolicyName", "contentKeyPolicyValue"),
+		resourceids.UserSpecifiedSegment("contentKeyPolicyName", "contentKeyPolicyName"),
 	}
 }
 

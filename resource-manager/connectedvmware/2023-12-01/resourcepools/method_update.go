@@ -49,7 +49,6 @@ func (c ResourcePoolsClient) Update(ctx context.Context, id ResourcePoolId, inpu
 
 	var model ResourcePool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

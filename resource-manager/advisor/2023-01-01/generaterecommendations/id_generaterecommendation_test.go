@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GenerateRecommendationId{}
 
 func TestNewGenerateRecommendationID(t *testing.T) {
-	id := NewGenerateRecommendationID("12345678-1234-9876-4563-123456789012", "operationIdValue")
+	id := NewGenerateRecommendationID("12345678-1234-9876-4563-123456789012", "operationId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatGenerateRecommendationID(t *testing.T) {
-	actual := NewGenerateRecommendationID("12345678-1234-9876-4563-123456789012", "operationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationIdValue"
+	actual := NewGenerateRecommendationID("12345678-1234-9876-4563-123456789012", "operationId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseGenerateRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationId",
 			Expected: &GenerateRecommendationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				OperationId:    "operationIdValue",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationId/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseGenerateRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationId",
 			Expected: &GenerateRecommendationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				OperationId:    "operationIdValue",
+				OperationId:    "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Advisor/generateRecommendations/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/gEnErAtErEcOmMeNdAtIoNs/oPeRaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/gEnErAtErEcOmMeNdAtIoNs/oPeRaTiOnId",
 			Expected: &GenerateRecommendationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				OperationId:    "oPeRaTiOnIdVaLuE",
+				OperationId:    "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/gEnErAtErEcOmMeNdAtIoNs/oPeRaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aDvIsOr/gEnErAtErEcOmMeNdAtIoNs/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

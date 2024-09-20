@@ -50,7 +50,6 @@ func (c DppJobClient) FetchCrossRegionRestoreJobGet(ctx context.Context, id Prov
 
 	var model AzureBackupJobResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

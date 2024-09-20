@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ServerTrustCertificateId{}
 
 func TestNewServerTrustCertificateID(t *testing.T) {
-	id := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "serverTrustCertificateValue")
+	id := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "certificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewServerTrustCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedInstanceName != "managedInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceValue")
+	if id.ManagedInstanceName != "managedInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.ServerTrustCertificateName != "serverTrustCertificateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerTrustCertificateName'", id.ServerTrustCertificateName, "serverTrustCertificateValue")
+	if id.ServerTrustCertificateName != "certificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerTrustCertificateName'", id.ServerTrustCertificateName, "certificateName")
 	}
 }
 
 func TestFormatServerTrustCertificateID(t *testing.T) {
-	actual := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "serverTrustCertificateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates/serverTrustCertificateValue"
+	actual := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "certificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseServerTrustCertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates/serverTrustCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ManagedInstanceName:        "managedInstanceValue",
-				ServerTrustCertificateName: "serverTrustCertificateValue",
+				ManagedInstanceName:        "managedInstanceName",
+				ServerTrustCertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates/serverTrustCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseServerTrustCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/sErVeRtRuStCeRtIfIcAtEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates/serverTrustCertificateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				ManagedInstanceName:        "managedInstanceValue",
-				ServerTrustCertificateName: "serverTrustCertificateValue",
+				ManagedInstanceName:        "managedInstanceName",
+				ServerTrustCertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/serverTrustCertificates/serverTrustCertificateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/sErVeRtRuStCeRtIfIcAtEs/sErVeRtRuStCeRtIfIcAtEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/cErTiFiCaTeNaMe",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedInstanceName:        "mAnAgEdInStAnCeVaLuE",
-				ServerTrustCertificateName: "sErVeRtRuStCeRtIfIcAtEvAlUe",
+				ManagedInstanceName:        "mAnAgEdInStAnCeNaMe",
+				ServerTrustCertificateName: "cErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/sErVeRtRuStCeRtIfIcAtEs/sErVeRtRuStCeRtIfIcAtEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/cErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

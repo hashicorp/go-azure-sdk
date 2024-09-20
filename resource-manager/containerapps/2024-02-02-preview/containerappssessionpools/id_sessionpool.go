@@ -42,7 +42,7 @@ func ParseSessionPoolID(input string) (*SessionPoolId, error) {
 	}
 
 	id := SessionPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSessionPoolIDInsensitively(input string) (*SessionPoolId, error) {
 	}
 
 	id := SessionPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id SessionPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticSessionPools", "sessionPools", "sessionPools"),
-		resourceids.UserSpecifiedSegment("sessionPoolName", "sessionPoolValue"),
+		resourceids.UserSpecifiedSegment("sessionPoolName", "sessionPoolName"),
 	}
 }
 

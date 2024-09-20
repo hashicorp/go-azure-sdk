@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StaticMemberId{}
 
 func TestNewStaticMemberID(t *testing.T) {
-	id := NewStaticMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerValue", "networkGroupValue", "staticMemberValue")
+	id := NewStaticMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "networkGroupName", "staticMemberName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewStaticMemberID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NetworkManagerName != "networkManagerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerValue")
+	if id.NetworkManagerName != "networkManagerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.NetworkGroupName != "networkGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkGroupName'", id.NetworkGroupName, "networkGroupValue")
+	if id.NetworkGroupName != "networkGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkGroupName'", id.NetworkGroupName, "networkGroupName")
 	}
 
-	if id.StaticMemberName != "staticMemberValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StaticMemberName'", id.StaticMemberName, "staticMemberValue")
+	if id.StaticMemberName != "staticMemberName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StaticMemberName'", id.StaticMemberName, "staticMemberName")
 	}
 }
 
 func TestFormatStaticMemberID(t *testing.T) {
-	actual := NewStaticMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerValue", "networkGroupValue", "staticMemberValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers/staticMemberValue"
+	actual := NewStaticMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "networkGroupName", "staticMemberName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers/staticMemberName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseStaticMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers/staticMemberValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers/staticMemberName",
 			Expected: &StaticMemberId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkManagerName: "networkManagerValue",
-				NetworkGroupName:   "networkGroupValue",
-				StaticMemberName:   "staticMemberValue",
+				NetworkManagerName: "networkManagerName",
+				NetworkGroupName:   "networkGroupName",
+				StaticMemberName:   "staticMemberName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers/staticMemberValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers/staticMemberName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseStaticMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe/nEtWoRkGrOuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/nEtWoRkGrOuPs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe/nEtWoRkGrOuPs/nEtWoRkGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/nEtWoRkGrOuPs/nEtWoRkGrOuPnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe/nEtWoRkGrOuPs/nEtWoRkGrOuPvAlUe/sTaTiCmEmBeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/nEtWoRkGrOuPs/nEtWoRkGrOuPnAmE/sTaTiCmEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers/staticMemberValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers/staticMemberName",
 			Expected: &StaticMemberId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				NetworkManagerName: "networkManagerValue",
-				NetworkGroupName:   "networkGroupValue",
-				StaticMemberName:   "staticMemberValue",
+				NetworkManagerName: "networkManagerName",
+				NetworkGroupName:   "networkGroupName",
+				StaticMemberName:   "staticMemberName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerValue/networkGroups/networkGroupValue/staticMembers/staticMemberValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/networkGroups/networkGroupName/staticMembers/staticMemberName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe/nEtWoRkGrOuPs/nEtWoRkGrOuPvAlUe/sTaTiCmEmBeRs/sTaTiCmEmBeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/nEtWoRkGrOuPs/nEtWoRkGrOuPnAmE/sTaTiCmEmBeRs/sTaTiCmEmBeRnAmE",
 			Expected: &StaticMemberId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				NetworkManagerName: "nEtWoRkMaNaGeRvAlUe",
-				NetworkGroupName:   "nEtWoRkGrOuPvAlUe",
-				StaticMemberName:   "sTaTiCmEmBeRvAlUe",
+				NetworkManagerName: "nEtWoRkMaNaGeRnAmE",
+				NetworkGroupName:   "nEtWoRkGrOuPnAmE",
+				StaticMemberName:   "sTaTiCmEmBeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRvAlUe/nEtWoRkGrOuPs/nEtWoRkGrOuPvAlUe/sTaTiCmEmBeRs/sTaTiCmEmBeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/nEtWoRkGrOuPs/nEtWoRkGrOuPnAmE/sTaTiCmEmBeRs/sTaTiCmEmBeRnAmE/extra",
 			Error: true,
 		},
 	}

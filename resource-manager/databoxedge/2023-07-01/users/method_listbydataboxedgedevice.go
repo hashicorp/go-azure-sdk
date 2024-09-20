@@ -39,6 +39,7 @@ func (o ListByDataBoxEdgeDeviceOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByDataBoxEdgeDeviceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

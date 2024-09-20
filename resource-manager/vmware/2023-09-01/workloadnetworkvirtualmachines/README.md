@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2023-09-01/workloadnetworkvirtualmachines` Documentation
 
-The `workloadnetworkvirtualmachines` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2023-09-01`).
+The `workloadnetworkvirtualmachines` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workloadnetworkvirtualmachines.NewDefaultVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "virtualMachineIdValue")
+id := workloadnetworkvirtualmachines.NewDefaultVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "virtualMachineId")
 
 read, err := client.WorkloadNetworksGetVirtualMachine(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworkvirtualmachines.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := workloadnetworkvirtualmachines.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListVirtualMachines(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListVirtualMachinesComplete(ctx, id)

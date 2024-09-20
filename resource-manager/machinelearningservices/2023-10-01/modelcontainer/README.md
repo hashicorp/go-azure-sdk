@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2023-10-01/modelcontainer` Documentation
 
-The `modelcontainer` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2023-10-01`).
+The `modelcontainer` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue")
+id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 payload := modelcontainer.ModelContainerResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue")
+id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue")
+id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := modelcontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id, modelcontainer.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, modelcontainer.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue")
+id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName")
 
 payload := modelcontainer.ModelContainerResource{
 	// ...
@@ -111,7 +111,7 @@ if err := client.RegistryModelContainersCreateOrUpdateThenPoll(ctx, id, payload)
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue")
+id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName")
 
 if err := client.RegistryModelContainersDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -123,7 +123,7 @@ if err := client.RegistryModelContainersDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "modelValue")
+id := modelcontainer.NewRegistryModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "modelName")
 
 read, err := client.RegistryModelContainersGet(ctx, id)
 if err != nil {
@@ -139,7 +139,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelcontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue")
+id := modelcontainer.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName")
 
 // alternatively `client.RegistryModelContainersList(ctx, id, modelcontainer.DefaultRegistryModelContainersListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryModelContainersListComplete(ctx, id, modelcontainer.DefaultRegistryModelContainersListOperationOptions())

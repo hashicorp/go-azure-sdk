@@ -20,11 +20,24 @@ type AzureBlobDatastore struct {
 	SubscriptionId                *string                        `json:"subscriptionId,omitempty"`
 
 	// Fields inherited from Datastore
-	Credentials DatastoreCredentials `json:"credentials"`
-	Description *string              `json:"description,omitempty"`
-	IsDefault   *bool                `json:"isDefault,omitempty"`
-	Properties  *map[string]string   `json:"properties,omitempty"`
-	Tags        *map[string]string   `json:"tags,omitempty"`
+
+	Credentials   DatastoreCredentials `json:"credentials"`
+	DatastoreType DatastoreType        `json:"datastoreType"`
+	Description   *string              `json:"description,omitempty"`
+	IsDefault     *bool                `json:"isDefault,omitempty"`
+	Properties    *map[string]string   `json:"properties,omitempty"`
+	Tags          *map[string]string   `json:"tags,omitempty"`
+}
+
+func (s AzureBlobDatastore) Datastore() BaseDatastoreImpl {
+	return BaseDatastoreImpl{
+		Credentials:   s.Credentials,
+		DatastoreType: s.DatastoreType,
+		Description:   s.Description,
+		IsDefault:     s.IsDefault,
+		Properties:    s.Properties,
+		Tags:          s.Tags,
+	}
 }
 
 var _ json.Marshaler = AzureBlobDatastore{}
@@ -38,9 +51,10 @@ func (s AzureBlobDatastore) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureBlobDatastore: %+v", err)
 	}
+
 	decoded["datastoreType"] = "AzureBlob"
 
 	encoded, err = json.Marshal(decoded)
@@ -62,6 +76,7 @@ func (s *AzureBlobDatastore) UnmarshalJSON(bytes []byte) error {
 
 	s.AccountName = decoded.AccountName
 	s.ContainerName = decoded.ContainerName
+	s.DatastoreType = decoded.DatastoreType
 	s.Description = decoded.Description
 	s.Endpoint = decoded.Endpoint
 	s.IsDefault = decoded.IsDefault
@@ -78,7 +93,7 @@ func (s *AzureBlobDatastore) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["credentials"]; ok {
-		impl, err := unmarshalDatastoreCredentialsImplementation(v)
+		impl, err := UnmarshalDatastoreCredentialsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Credentials' for 'AzureBlobDatastore': %+v", err)
 		}

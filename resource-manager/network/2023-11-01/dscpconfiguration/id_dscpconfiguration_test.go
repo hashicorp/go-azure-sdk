@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DscpConfigurationId{}
 
 func TestNewDscpConfigurationID(t *testing.T) {
-	id := NewDscpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dscpConfigurationValue")
+	id := NewDscpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dscpConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDscpConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DscpConfigurationName != "dscpConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DscpConfigurationName'", id.DscpConfigurationName, "dscpConfigurationValue")
+	if id.DscpConfigurationName != "dscpConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DscpConfigurationName'", id.DscpConfigurationName, "dscpConfigurationName")
 	}
 }
 
 func TestFormatDscpConfigurationID(t *testing.T) {
-	actual := NewDscpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dscpConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationValue"
+	actual := NewDscpConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dscpConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDscpConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationName",
 			Expected: &DscpConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DscpConfigurationName: "dscpConfigurationValue",
+				DscpConfigurationName: "dscpConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDscpConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationName",
 			Expected: &DscpConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DscpConfigurationName: "dscpConfigurationValue",
+				DscpConfigurationName: "dscpConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dscpConfigurations/dscpConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dScPcOnFiGuRaTiOnS/dScPcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dScPcOnFiGuRaTiOnS/dScPcOnFiGuRaTiOnNaMe",
 			Expected: &DscpConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				DscpConfigurationName: "dScPcOnFiGuRaTiOnVaLuE",
+				DscpConfigurationName: "dScPcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dScPcOnFiGuRaTiOnS/dScPcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dScPcOnFiGuRaTiOnS/dScPcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

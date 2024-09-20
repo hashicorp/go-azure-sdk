@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/namespacesprivatelinkresources` Documentation
 
-The `namespacesprivatelinkresources` SDK allows for interaction with the Azure Resource Manager Service `relay` (API Version `2021-11-01`).
+The `namespacesprivatelinkresources` SDK allows for interaction with Azure Resource Manager `relay` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := namespacesprivatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateLinkResourceValue")
+id := namespacesprivatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "privateLinkResourceName")
 
 read, err := client.PrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesprivatelinkresources.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+id := namespacesprivatelinkresources.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
 
 // alternatively `client.PrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateLinkResourcesListComplete(ctx, id)

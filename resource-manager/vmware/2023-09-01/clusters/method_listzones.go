@@ -46,7 +46,6 @@ func (c ClustersClient) ListZones(ctx context.Context, id ClusterId) (result Lis
 
 	var model ClusterZoneList
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

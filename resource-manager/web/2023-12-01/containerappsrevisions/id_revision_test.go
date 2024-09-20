@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RevisionId{}
 
 func TestNewRevisionID(t *testing.T) {
-	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "revisionValue")
+	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRevisionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ContainerAppName != "containerAppValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppValue")
+	if id.ContainerAppName != "containerAppName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppName")
 	}
 
-	if id.RevisionName != "revisionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RevisionName'", id.RevisionName, "revisionValue")
+	if id.RevisionName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'RevisionName'", id.RevisionName, "name")
 	}
 }
 
 func TestFormatRevisionID(t *testing.T) {
-	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppValue", "revisionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions/revisionValue"
+	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRevisionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions/revisionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ContainerAppName:  "containerAppValue",
-				RevisionName:      "revisionValue",
+				ContainerAppName:  "containerAppName",
+				RevisionName:      "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions/revisionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRevisionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe/rEvIsIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions/revisionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ContainerAppName:  "containerAppValue",
-				RevisionName:      "revisionValue",
+				ContainerAppName:  "containerAppName",
+				RevisionName:      "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppValue/revisions/revisionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe/rEvIsIoNs/rEvIsIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/nAmE",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ContainerAppName:  "cOnTaInErApPvAlUe",
-				RevisionName:      "rEvIsIoNvAlUe",
+				ContainerAppName:  "cOnTaInErApPnAmE",
+				RevisionName:      "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPvAlUe/rEvIsIoNs/rEvIsIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/nAmE/extra",
 			Error: true,
 		},
 	}

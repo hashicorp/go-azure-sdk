@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DatasetId{}
 
 func TestNewDatasetID(t *testing.T) {
-	id := NewDatasetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "datasetValue")
+	id := NewDatasetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "datasetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDatasetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FactoryName != "factoryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryValue")
+	if id.FactoryName != "factoryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.DatasetName != "datasetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatasetName'", id.DatasetName, "datasetValue")
+	if id.DatasetName != "datasetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatasetName'", id.DatasetName, "datasetName")
 	}
 }
 
 func TestFormatDatasetID(t *testing.T) {
-	actual := NewDatasetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "datasetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets/datasetValue"
+	actual := NewDatasetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "datasetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets/datasetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDatasetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets/datasetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets/datasetName",
 			Expected: &DatasetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				DatasetName:       "datasetValue",
+				FactoryName:       "factoryName",
+				DatasetName:       "datasetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets/datasetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets/datasetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDatasetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/dAtAsEtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/dAtAsEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets/datasetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets/datasetName",
 			Expected: &DatasetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FactoryName:       "factoryValue",
-				DatasetName:       "datasetValue",
+				FactoryName:       "factoryName",
+				DatasetName:       "datasetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/datasets/datasetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/datasets/datasetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/dAtAsEtS/dAtAsEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/dAtAsEtS/dAtAsEtNaMe",
 			Expected: &DatasetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FactoryName:       "fAcToRyVaLuE",
-				DatasetName:       "dAtAsEtVaLuE",
+				FactoryName:       "fAcToRyNaMe",
+				DatasetName:       "dAtAsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/dAtAsEtS/dAtAsEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/dAtAsEtS/dAtAsEtNaMe/extra",
 			Error: true,
 		},
 	}

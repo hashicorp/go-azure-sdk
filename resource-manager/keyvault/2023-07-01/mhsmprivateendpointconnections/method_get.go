@@ -45,7 +45,6 @@ func (c MHSMPrivateEndpointConnectionsClient) Get(ctx context.Context, id Privat
 
 	var model MHSMPrivateEndpointConnection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

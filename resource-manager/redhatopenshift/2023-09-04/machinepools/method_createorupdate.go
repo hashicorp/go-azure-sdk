@@ -50,7 +50,6 @@ func (c MachinePoolsClient) CreateOrUpdate(ctx context.Context, id MachinePoolId
 
 	var model MachinePool
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

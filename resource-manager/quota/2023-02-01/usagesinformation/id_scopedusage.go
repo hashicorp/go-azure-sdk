@@ -40,7 +40,7 @@ func ParseScopedUsageID(input string) (*ScopedUsageId, error) {
 	}
 
 	id := ScopedUsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseScopedUsageIDInsensitively(input string) (*ScopedUsageId, error) {
 	}
 
 	id := ScopedUsageId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -106,7 +106,7 @@ func (id ScopedUsageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftQuota", "Microsoft.Quota", "Microsoft.Quota"),
 		resourceids.StaticSegment("staticUsages", "usages", "usages"),
-		resourceids.UserSpecifiedSegment("usageName", "usageValue"),
+		resourceids.UserSpecifiedSegment("usageName", "resourceName"),
 	}
 }
 

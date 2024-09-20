@@ -39,7 +39,7 @@ func (s *LinkerProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["authInfo"]; ok {
-		impl, err := unmarshalAuthInfoBaseImplementation(v)
+		impl, err := UnmarshalAuthInfoBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'AuthInfo' for 'LinkerProperties': %+v", err)
 		}
@@ -47,7 +47,7 @@ func (s *LinkerProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["targetService"]; ok {
-		impl, err := unmarshalTargetServiceBaseImplementation(v)
+		impl, err := UnmarshalTargetServiceBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetService' for 'LinkerProperties': %+v", err)
 		}

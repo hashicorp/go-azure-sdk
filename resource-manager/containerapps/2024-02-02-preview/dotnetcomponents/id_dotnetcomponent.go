@@ -44,7 +44,7 @@ func ParseDotNetComponentID(input string) (*DotNetComponentId, error) {
 	}
 
 	id := DotNetComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDotNetComponentIDInsensitively(input string) (*DotNetComponentId, erro
 	}
 
 	id := DotNetComponentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DotNetComponentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticManagedEnvironments", "managedEnvironments", "managedEnvironments"),
-		resourceids.UserSpecifiedSegment("managedEnvironmentName", "managedEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("managedEnvironmentName", "environmentName"),
 		resourceids.StaticSegment("staticDotNetComponents", "dotNetComponents", "dotNetComponents"),
-		resourceids.UserSpecifiedSegment("dotNetComponentName", "dotNetComponentValue"),
+		resourceids.UserSpecifiedSegment("dotNetComponentName", "name"),
 	}
 }
 

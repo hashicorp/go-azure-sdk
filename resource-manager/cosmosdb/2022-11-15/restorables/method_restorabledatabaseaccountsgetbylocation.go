@@ -45,7 +45,6 @@ func (c RestorablesClient) RestorableDatabaseAccountsGetByLocation(ctx context.C
 
 	var model RestorableDatabaseAccountGetResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2023-08-15/kusto` Documentation
 
-The `kusto` SDK allows for interaction with the Azure Resource Manager Service `kusto` (API Version `2023-08-15`).
+The `kusto` SDK allows for interaction with Azure Resource Manager `kusto` (API Version `2023-08-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := kusto.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := kusto.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.SkusList(ctx, id)
 if err != nil {

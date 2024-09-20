@@ -14,6 +14,14 @@ type ExistingRecoveryProximityPlacementGroup struct {
 	RecoveryProximityPlacementGroupId *string `json:"recoveryProximityPlacementGroupId,omitempty"`
 
 	// Fields inherited from RecoveryProximityPlacementGroupCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s ExistingRecoveryProximityPlacementGroup) RecoveryProximityPlacementGroupCustomDetails() BaseRecoveryProximityPlacementGroupCustomDetailsImpl {
+	return BaseRecoveryProximityPlacementGroupCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = ExistingRecoveryProximityPlacementGroup{}
@@ -27,9 +35,10 @@ func (s ExistingRecoveryProximityPlacementGroup) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExistingRecoveryProximityPlacementGroup: %+v", err)
 	}
+
 	decoded["resourceType"] = "Existing"
 
 	encoded, err = json.Marshal(decoded)

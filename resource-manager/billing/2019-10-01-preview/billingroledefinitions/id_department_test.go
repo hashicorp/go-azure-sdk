@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DepartmentId{}
 
 func TestNewDepartmentID(t *testing.T) {
-	id := NewDepartmentID("billingAccountValue", "departmentValue")
+	id := NewDepartmentID("billingAccountName", "departmentName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.DepartmentName != "departmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DepartmentName'", id.DepartmentName, "departmentValue")
+	if id.DepartmentName != "departmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DepartmentName'", id.DepartmentName, "departmentName")
 	}
 }
 
 func TestFormatDepartmentID(t *testing.T) {
-	actual := NewDepartmentID("billingAccountValue", "departmentValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments/departmentValue"
+	actual := NewDepartmentID("billingAccountName", "departmentName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments/departmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseDepartmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments/departmentValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments/departmentName",
 			Expected: &DepartmentId{
-				BillingAccountName: "billingAccountValue",
-				DepartmentName:     "departmentValue",
+				BillingAccountName: "billingAccountName",
+				DepartmentName:     "departmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments/departmentValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments/departmentName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseDepartmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/dEpArTmEnTs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/dEpArTmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments/departmentValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments/departmentName",
 			Expected: &DepartmentId{
-				BillingAccountName: "billingAccountValue",
-				DepartmentName:     "departmentValue",
+				BillingAccountName: "billingAccountName",
+				DepartmentName:     "departmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/departments/departmentValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/departments/departmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/dEpArTmEnTs/dEpArTmEnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/dEpArTmEnTs/dEpArTmEnTnAmE",
 			Expected: &DepartmentId{
-				BillingAccountName: "bIlLiNgAcCoUnTvAlUe",
-				DepartmentName:     "dEpArTmEnTvAlUe",
+				BillingAccountName: "bIlLiNgAcCoUnTnAmE",
+				DepartmentName:     "dEpArTmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/dEpArTmEnTs/dEpArTmEnTvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/dEpArTmEnTs/dEpArTmEnTnAmE/extra",
 			Error: true,
 		},
 	}

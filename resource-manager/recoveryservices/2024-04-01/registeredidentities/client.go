@@ -15,7 +15,7 @@ type RegisteredIdentitiesClient struct {
 }
 
 func NewRegisteredIdentitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*RegisteredIdentitiesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "registeredidentities", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "registeredidentities", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RegisteredIdentitiesClient: %+v", err)
 	}

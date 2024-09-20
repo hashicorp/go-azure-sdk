@@ -46,7 +46,6 @@ func (c WorkspacesClient) WorkspaceAadAdminsGet(ctx context.Context, id Workspac
 
 	var model WorkspaceAadAdminInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -13,6 +13,14 @@ var _ DataReferenceCredential = AnonymousAccessCredential{}
 type AnonymousAccessCredential struct {
 
 	// Fields inherited from DataReferenceCredential
+
+	CredentialType DataReferenceCredentialType `json:"credentialType"`
+}
+
+func (s AnonymousAccessCredential) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return BaseDataReferenceCredentialImpl{
+		CredentialType: s.CredentialType,
+	}
 }
 
 var _ json.Marshaler = AnonymousAccessCredential{}
@@ -26,9 +34,10 @@ func (s AnonymousAccessCredential) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AnonymousAccessCredential: %+v", err)
 	}
+
 	decoded["credentialType"] = "NoCredentials"
 
 	encoded, err = json.Marshal(decoded)

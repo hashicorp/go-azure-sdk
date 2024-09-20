@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NodeConfigurationId{}
 
 func TestNewNodeConfigurationID(t *testing.T) {
-	id := NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "nodeConfigurationValue")
+	id := NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "configurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewNodeConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerGroupsv2Name != "serverGroupsv2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "serverGroupsv2Value")
+	if id.ServerGroupsv2Name != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "clusterName")
 	}
 
-	if id.NodeConfigurationName != "nodeConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NodeConfigurationName'", id.NodeConfigurationName, "nodeConfigurationValue")
+	if id.NodeConfigurationName != "configurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NodeConfigurationName'", id.NodeConfigurationName, "configurationName")
 	}
 }
 
 func TestFormatNodeConfigurationID(t *testing.T) {
-	actual := NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "nodeConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations/nodeConfigurationValue"
+	actual := NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "configurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations/configurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseNodeConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations/nodeConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations/configurationName",
 			Expected: &NodeConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				ServerGroupsv2Name:    "serverGroupsv2Value",
-				NodeConfigurationName: "nodeConfigurationValue",
+				ServerGroupsv2Name:    "clusterName",
+				NodeConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations/nodeConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations/configurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseNodeConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/nOdEcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/nOdEcOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations/nodeConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations/configurationName",
 			Expected: &NodeConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				ServerGroupsv2Name:    "serverGroupsv2Value",
-				NodeConfigurationName: "nodeConfigurationValue",
+				ServerGroupsv2Name:    "clusterName",
+				NodeConfigurationName: "configurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/nodeConfigurations/nodeConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/clusterName/nodeConfigurations/configurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/nOdEcOnFiGuRaTiOnS/nOdEcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/nOdEcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
 			Expected: &NodeConfigurationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerGroupsv2Name:    "sErVeRgRoUpSv2vAlUe",
-				NodeConfigurationName: "nOdEcOnFiGuRaTiOnVaLuE",
+				ServerGroupsv2Name:    "cLuStErNaMe",
+				NodeConfigurationName: "cOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/nOdEcOnFiGuRaTiOnS/nOdEcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/cLuStErNaMe/nOdEcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

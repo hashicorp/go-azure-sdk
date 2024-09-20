@@ -34,6 +34,7 @@ func (o SqlPoolMaintenanceWindowOptionsGetOperationOptions) ToHeaders() *client.
 
 func (o SqlPoolMaintenanceWindowOptionsGetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -74,7 +75,6 @@ func (c SqlPoolsMaintenanceWindowOptionsClient) SqlPoolMaintenanceWindowOptionsG
 
 	var model MaintenanceWindowOptions
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -32,7 +32,7 @@ func (s *FunctionConfiguration) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["binding"]; ok {
-		impl, err := unmarshalFunctionBindingImplementation(v)
+		impl, err := UnmarshalFunctionBindingImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Binding' for 'FunctionConfiguration': %+v", err)
 		}

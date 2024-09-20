@@ -44,7 +44,7 @@ func ParsePrivateLinkHubPrivateEndpointConnectionID(input string) (*PrivateLinkH
 	}
 
 	id := PrivateLinkHubPrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParsePrivateLinkHubPrivateEndpointConnectionIDInsensitively(input string) (
 	}
 
 	id := PrivateLinkHubPrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id PrivateLinkHubPrivateEndpointConnectionId) Segments() []resourceids.Seg
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticPrivateLinkHubs", "privateLinkHubs", "privateLinkHubs"),
-		resourceids.UserSpecifiedSegment("privateLinkHubName", "privateLinkHubValue"),
+		resourceids.UserSpecifiedSegment("privateLinkHubName", "privateLinkHubName"),
 		resourceids.StaticSegment("staticPrivateEndpointConnections", "privateEndpointConnections", "privateEndpointConnections"),
-		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionValue"),
+		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionName"),
 	}
 }
 

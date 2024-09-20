@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VCenterId{}
 
 func TestNewVCenterID(t *testing.T) {
-	id := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue", "vCenterValue")
+	id := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "vcenterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVCenterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VmwareSiteName != "vmwareSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmwareSiteName'", id.VmwareSiteName, "vmwareSiteValue")
+	if id.VmwareSiteName != "siteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VmwareSiteName'", id.VmwareSiteName, "siteName")
 	}
 
-	if id.VCenterName != "vCenterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vCenterValue")
+	if id.VCenterName != "vcenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vcenterName")
 	}
 }
 
 func TestFormatVCenterID(t *testing.T) {
-	actual := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue", "vCenterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters/vCenterValue"
+	actual := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "vcenterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters/vcenterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVCenterID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters/vCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters/vcenterName",
 			Expected: &VCenterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmwareSiteName:    "vmwareSiteValue",
-				VCenterName:       "vCenterValue",
+				VmwareSiteName:    "siteName",
+				VCenterName:       "vcenterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters/vCenterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters/vcenterName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVCenterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe/vCeNtErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE/vCeNtErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters/vCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters/vcenterName",
 			Expected: &VCenterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmwareSiteName:    "vmwareSiteValue",
-				VCenterName:       "vCenterValue",
+				VmwareSiteName:    "siteName",
+				VCenterName:       "vcenterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/vCenters/vCenterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/vCenters/vcenterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe/vCeNtErS/vCeNtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE/vCeNtErS/vCeNtErNaMe",
 			Expected: &VCenterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VmwareSiteName:    "vMwArEsItEvAlUe",
-				VCenterName:       "vCeNtErVaLuE",
+				VmwareSiteName:    "sItEnAmE",
+				VCenterName:       "vCeNtErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe/vCeNtErS/vCeNtErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE/vCeNtErS/vCeNtErNaMe/extra",
 			Error: true,
 		},
 	}

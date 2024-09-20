@@ -35,6 +35,7 @@ func (o ListByServerOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListByServerOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -75,7 +76,6 @@ func (c ServerAdvisorsClient) ListByServer(ctx context.Context, id commonids.Sql
 
 	var model []Advisor
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

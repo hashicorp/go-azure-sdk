@@ -16,11 +16,24 @@ type EntityAnalytics struct {
 	Properties *EntityAnalyticsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Settings
+
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
+	Kind       SettingKind            `json:"kind"`
 	Name       *string                `json:"name,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
+}
+
+func (s EntityAnalytics) Settings() BaseSettingsImpl {
+	return BaseSettingsImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
 }
 
 var _ json.Marshaler = EntityAnalytics{}
@@ -34,9 +47,10 @@ func (s EntityAnalytics) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling EntityAnalytics: %+v", err)
 	}
+
 	decoded["kind"] = "EntityAnalytics"
 
 	encoded, err = json.Marshal(decoded)

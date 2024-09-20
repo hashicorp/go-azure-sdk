@@ -30,7 +30,7 @@ func (s *TargetCopySetting) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["copyAfter"]; ok {
-		impl, err := unmarshalCopyOptionImplementation(v)
+		impl, err := UnmarshalCopyOptionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CopyAfter' for 'TargetCopySetting': %+v", err)
 		}

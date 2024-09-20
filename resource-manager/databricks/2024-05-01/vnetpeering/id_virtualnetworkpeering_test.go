@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkPeeringId{}
 
 func TestNewVirtualNetworkPeeringID(t *testing.T) {
-	id := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "virtualNetworkPeeringValue")
+	id := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "peeringName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewVirtualNetworkPeeringID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.VirtualNetworkPeeringName != "virtualNetworkPeeringValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkPeeringName'", id.VirtualNetworkPeeringName, "virtualNetworkPeeringValue")
+	if id.VirtualNetworkPeeringName != "peeringName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkPeeringName'", id.VirtualNetworkPeeringName, "peeringName")
 	}
 }
 
 func TestFormatVirtualNetworkPeeringID(t *testing.T) {
-	actual := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "virtualNetworkPeeringValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings/virtualNetworkPeeringValue"
+	actual := NewVirtualNetworkPeeringID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "peeringName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings/peeringName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseVirtualNetworkPeeringID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings/virtualNetworkPeeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings/peeringName",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				WorkspaceName:             "workspaceValue",
-				VirtualNetworkPeeringName: "virtualNetworkPeeringValue",
+				WorkspaceName:             "workspaceName",
+				VirtualNetworkPeeringName: "peeringName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings/virtualNetworkPeeringValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings/peeringName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseVirtualNetworkPeeringIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/vIrTuAlNeTwOrKpEeRiNgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/vIrTuAlNeTwOrKpEeRiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings/virtualNetworkPeeringValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings/peeringName",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				WorkspaceName:             "workspaceValue",
-				VirtualNetworkPeeringName: "virtualNetworkPeeringValue",
+				WorkspaceName:             "workspaceName",
+				VirtualNetworkPeeringName: "peeringName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceValue/virtualNetworkPeerings/virtualNetworkPeeringValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/workspaces/workspaceName/virtualNetworkPeerings/peeringName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/vIrTuAlNeTwOrKpEeRiNgS/pEeRiNgNaMe",
 			Expected: &VirtualNetworkPeeringId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:             "wOrKsPaCeVaLuE",
-				VirtualNetworkPeeringName: "vIrTuAlNeTwOrKpEeRiNgVaLuE",
+				WorkspaceName:             "wOrKsPaCeNaMe",
+				VirtualNetworkPeeringName: "pEeRiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeVaLuE/vIrTuAlNeTwOrKpEeRiNgS/vIrTuAlNeTwOrKpEeRiNgVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/wOrKsPaCeS/wOrKsPaCeNaMe/vIrTuAlNeTwOrKpEeRiNgS/pEeRiNgNaMe/extra",
 			Error: true,
 		},
 	}

@@ -15,7 +15,7 @@ type RecoveryPointClient struct {
 }
 
 func NewRecoveryPointClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoveryPointClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "recoverypoint", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "recoverypoint", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RecoveryPointClient: %+v", err)
 	}

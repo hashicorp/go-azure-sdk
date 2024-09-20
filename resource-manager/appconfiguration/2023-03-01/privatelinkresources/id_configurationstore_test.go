@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConfigurationStoreId{}
 
 func TestNewConfigurationStoreID(t *testing.T) {
-	id := NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue")
+	id := NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewConfigurationStoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConfigurationStoreName != "configurationStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configurationStoreValue")
+	if id.ConfigurationStoreName != "configStoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configStoreName")
 	}
 }
 
 func TestFormatConfigurationStoreID(t *testing.T) {
-	actual := NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue"
+	actual := NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseConfigurationStoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Expected: &ConfigurationStoreId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ConfigurationStoreName: "configurationStoreValue",
+				ConfigurationStoreName: "configStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseConfigurationStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Expected: &ConfigurationStoreId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ConfigurationStoreName: "configurationStoreValue",
+				ConfigurationStoreName: "configStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe",
 			Expected: &ConfigurationStoreId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ConfigurationStoreName: "cOnFiGuRaTiOnStOrEvAlUe",
+				ConfigurationStoreName: "cOnFiGsToReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/extra",
 			Error: true,
 		},
 	}

@@ -39,6 +39,7 @@ func (o ControlsListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ControlsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

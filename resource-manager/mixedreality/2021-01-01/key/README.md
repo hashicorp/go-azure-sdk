@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/key` Documentation
 
-The `key` SDK allows for interaction with the Azure Resource Manager Service `mixedreality` (API Version `2021-01-01`).
+The `key` SDK allows for interaction with Azure Resource Manager `mixedreality` (API Version `2021-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue")
+id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.RemoteRenderingAccountsListKeys(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue")
+id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := key.AccountKeyRegenerateRequest{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue")
+id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 read, err := client.SpatialAnchorsAccountsListKeys(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue")
+id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 payload := key.AccountKeyRegenerateRequest{
 	// ...

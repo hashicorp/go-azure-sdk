@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyAssignmentIdId{}
 
 func TestNewPolicyAssignmentIdID(t *testing.T) {
-	id := NewPolicyAssignmentIdID("policyAssignmentIdValue")
+	id := NewPolicyAssignmentIdID("policyAssignmentId")
 
-	if id.PolicyAssignmentId != "policyAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyAssignmentId'", id.PolicyAssignmentId, "policyAssignmentIdValue")
+	if id.PolicyAssignmentId != "policyAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyAssignmentId'", id.PolicyAssignmentId, "policyAssignmentId")
 	}
 }
 
 func TestFormatPolicyAssignmentIdID(t *testing.T) {
-	actual := NewPolicyAssignmentIdID("policyAssignmentIdValue").ID()
-	expected := "/policyAssignmentIdValue"
+	actual := NewPolicyAssignmentIdID("policyAssignmentId").ID()
+	expected := "/policyAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,14 +40,14 @@ func TestParsePolicyAssignmentIdID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policyAssignmentIdValue",
+			Input: "/policyAssignmentId",
 			Expected: &PolicyAssignmentIdId{
-				PolicyAssignmentId: "policyAssignmentIdValue",
+				PolicyAssignmentId: "policyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policyAssignmentIdValue/extra",
+			Input: "/policyAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -86,26 +86,26 @@ func TestParsePolicyAssignmentIdIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policyAssignmentIdValue",
+			Input: "/policyAssignmentId",
 			Expected: &PolicyAssignmentIdId{
-				PolicyAssignmentId: "policyAssignmentIdValue",
+				PolicyAssignmentId: "policyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policyAssignmentIdValue/extra",
+			Input: "/policyAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcYaSsIgNmEnTiDvAlUe",
+			Input: "/pOlIcYaSsIgNmEnTiD",
 			Expected: &PolicyAssignmentIdId{
-				PolicyAssignmentId: "pOlIcYaSsIgNmEnTiDvAlUe",
+				PolicyAssignmentId: "pOlIcYaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcYaSsIgNmEnTiDvAlUe/extra",
+			Input: "/pOlIcYaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

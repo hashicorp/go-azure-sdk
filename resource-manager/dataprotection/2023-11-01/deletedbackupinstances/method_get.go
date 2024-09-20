@@ -45,7 +45,6 @@ func (c DeletedBackupInstancesClient) Get(ctx context.Context, id DeletedBackupI
 
 	var model DeletedBackupInstanceResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

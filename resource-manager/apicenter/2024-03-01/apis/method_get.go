@@ -45,7 +45,6 @@ func (c ApisClient) Get(ctx context.Context, id ApiId) (result GetOperationRespo
 
 	var model Api
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

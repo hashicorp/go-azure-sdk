@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-03-01-preview/contenttypecontentitem` Documentation
 
-The `contenttypecontentitem` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-03-01-preview`).
+The `contenttypecontentitem` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-03-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue", "contentItemIdValue")
+id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "contentTypeId", "contentItemId")
 
 payload := contenttypecontentitem.ContentItemContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue", "contentItemIdValue")
+id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "contentTypeId", "contentItemId")
 
 read, err := client.ContentItemDelete(ctx, id, contenttypecontentitem.DefaultContentItemDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue", "contentItemIdValue")
+id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "contentTypeId", "contentItemId")
 
 read, err := client.ContentItemGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue", "contentItemIdValue")
+id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "contentTypeId", "contentItemId")
 
 read, err := client.ContentItemGetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contenttypecontentitem.NewContentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue")
+id := contenttypecontentitem.NewContentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "contentTypeId")
 
 // alternatively `client.ContentItemListByService(ctx, id)` can be used to do batched pagination
 items, err := client.ContentItemListByServiceComplete(ctx, id)

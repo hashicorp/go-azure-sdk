@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FluidRelayContainerId{}
 
 func TestNewFluidRelayContainerID(t *testing.T) {
-	id := NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerValue", "fluidRelayContainerValue")
+	id := NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerName", "fluidRelayContainerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFluidRelayContainerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroup'", id.ResourceGroup, "example-resource-group")
 	}
 
-	if id.FluidRelayServerName != "fluidRelayServerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FluidRelayServerName'", id.FluidRelayServerName, "fluidRelayServerValue")
+	if id.FluidRelayServerName != "fluidRelayServerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FluidRelayServerName'", id.FluidRelayServerName, "fluidRelayServerName")
 	}
 
-	if id.FluidRelayContainerName != "fluidRelayContainerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FluidRelayContainerName'", id.FluidRelayContainerName, "fluidRelayContainerValue")
+	if id.FluidRelayContainerName != "fluidRelayContainerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FluidRelayContainerName'", id.FluidRelayContainerName, "fluidRelayContainerName")
 	}
 }
 
 func TestFormatFluidRelayContainerID(t *testing.T) {
-	actual := NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerValue", "fluidRelayContainerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers/fluidRelayContainerValue"
+	actual := NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerName", "fluidRelayContainerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers/fluidRelayContainerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFluidRelayContainerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers/fluidRelayContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers/fluidRelayContainerName",
 			Expected: &FluidRelayContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:           "example-resource-group",
-				FluidRelayServerName:    "fluidRelayServerValue",
-				FluidRelayContainerName: "fluidRelayContainerValue",
+				FluidRelayServerName:    "fluidRelayServerName",
+				FluidRelayContainerName: "fluidRelayContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers/fluidRelayContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers/fluidRelayContainerName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFluidRelayContainerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRvAlUe/fLuIdReLaYcOnTaInErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRnAmE/fLuIdReLaYcOnTaInErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers/fluidRelayContainerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers/fluidRelayContainerName",
 			Expected: &FluidRelayContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:           "example-resource-group",
-				FluidRelayServerName:    "fluidRelayServerValue",
-				FluidRelayContainerName: "fluidRelayContainerValue",
+				FluidRelayServerName:    "fluidRelayServerName",
+				FluidRelayContainerName: "fluidRelayContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerValue/fluidRelayContainers/fluidRelayContainerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.FluidRelay/fluidRelayServers/fluidRelayServerName/fluidRelayContainers/fluidRelayContainerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRvAlUe/fLuIdReLaYcOnTaInErS/fLuIdReLaYcOnTaInErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRnAmE/fLuIdReLaYcOnTaInErS/fLuIdReLaYcOnTaInErNaMe",
 			Expected: &FluidRelayContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:           "eXaMpLe-rEsOuRcE-GrOuP",
-				FluidRelayServerName:    "fLuIdReLaYsErVeRvAlUe",
-				FluidRelayContainerName: "fLuIdReLaYcOnTaInErVaLuE",
+				FluidRelayServerName:    "fLuIdReLaYsErVeRnAmE",
+				FluidRelayContainerName: "fLuIdReLaYcOnTaInErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRvAlUe/fLuIdReLaYcOnTaInErS/fLuIdReLaYcOnTaInErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.fLuIdReLaY/fLuIdReLaYsErVeRs/fLuIdReLaYsErVeRnAmE/fLuIdReLaYcOnTaInErS/fLuIdReLaYcOnTaInErNaMe/extra",
 			Error: true,
 		},
 	}

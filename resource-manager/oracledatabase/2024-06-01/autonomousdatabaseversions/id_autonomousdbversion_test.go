@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &AutonomousDbVersionId{}
 
 func TestNewAutonomousDbVersionID(t *testing.T) {
-	id := NewAutonomousDbVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "autonomousDbVersionValue")
+	id := NewAutonomousDbVersionID("12345678-1234-9876-4563-123456789012", "location", "autonomousdbversionsname")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "location" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
 	}
 
-	if id.AutonomousDbVersionName != "autonomousDbVersionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDbVersionName'", id.AutonomousDbVersionName, "autonomousDbVersionValue")
+	if id.AutonomousDbVersionName != "autonomousdbversionsname" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutonomousDbVersionName'", id.AutonomousDbVersionName, "autonomousdbversionsname")
 	}
 }
 
 func TestFormatAutonomousDbVersionID(t *testing.T) {
-	actual := NewAutonomousDbVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "autonomousDbVersionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions/autonomousDbVersionValue"
+	actual := NewAutonomousDbVersionID("12345678-1234-9876-4563-123456789012", "location", "autonomousdbversionsname").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions/autonomousdbversionsname"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseAutonomousDbVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions/autonomousDbVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions/autonomousdbversionsname",
 			Expected: &AutonomousDbVersionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "locationValue",
-				AutonomousDbVersionName: "autonomousDbVersionValue",
+				LocationName:            "location",
+				AutonomousDbVersionName: "autonomousdbversionsname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions/autonomousDbVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions/autonomousdbversionsname/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseAutonomousDbVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdBvErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdBvErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions/autonomousDbVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions/autonomousdbversionsname",
 			Expected: &AutonomousDbVersionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "locationValue",
-				AutonomousDbVersionName: "autonomousDbVersionValue",
+				LocationName:            "location",
+				AutonomousDbVersionName: "autonomousdbversionsname",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationValue/autonomousDbVersions/autonomousDbVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/autonomousDbVersions/autonomousdbversionsname/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdBvErSiOnS/aUtOnOmOuSdBvErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdBvErSiOnS/aUtOnOmOuSdBvErSiOnSnAmE",
 			Expected: &AutonomousDbVersionId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "lOcAtIoNvAlUe",
-				AutonomousDbVersionName: "aUtOnOmOuSdBvErSiOnVaLuE",
+				LocationName:            "lOcAtIoN",
+				AutonomousDbVersionName: "aUtOnOmOuSdBvErSiOnSnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNvAlUe/aUtOnOmOuSdBvErSiOnS/aUtOnOmOuSdBvErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/aUtOnOmOuSdBvErSiOnS/aUtOnOmOuSdBvErSiOnSnAmE/extra",
 			Error: true,
 		},
 	}

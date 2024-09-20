@@ -15,7 +15,7 @@ type FileImportsClient struct {
 }
 
 func NewFileImportsClientWithBaseURI(sdkApi sdkEnv.Api) (*FileImportsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "fileimports", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "fileimports", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FileImportsClient: %+v", err)
 	}

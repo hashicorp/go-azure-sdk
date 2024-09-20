@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RouteFilterRuleId{}
 
 func TestNewRouteFilterRuleID(t *testing.T) {
-	id := NewRouteFilterRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterValue", "routeFilterRuleValue")
+	id := NewRouteFilterRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterName", "ruleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRouteFilterRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RouteFilterName != "routeFilterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterName'", id.RouteFilterName, "routeFilterValue")
+	if id.RouteFilterName != "routeFilterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterName'", id.RouteFilterName, "routeFilterName")
 	}
 
-	if id.RouteFilterRuleName != "routeFilterRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterRuleName'", id.RouteFilterRuleName, "routeFilterRuleValue")
+	if id.RouteFilterRuleName != "ruleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteFilterRuleName'", id.RouteFilterRuleName, "ruleName")
 	}
 }
 
 func TestFormatRouteFilterRuleID(t *testing.T) {
-	actual := NewRouteFilterRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterValue", "routeFilterRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules/routeFilterRuleValue"
+	actual := NewRouteFilterRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeFilterName", "ruleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules/ruleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRouteFilterRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules/routeFilterRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules/ruleName",
 			Expected: &RouteFilterRuleId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				RouteFilterName:     "routeFilterValue",
-				RouteFilterRuleName: "routeFilterRuleValue",
+				RouteFilterName:     "routeFilterName",
+				RouteFilterRuleName: "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules/routeFilterRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules/ruleName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRouteFilterRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE/rOuTeFiLtErRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe/rOuTeFiLtErRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules/routeFilterRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules/ruleName",
 			Expected: &RouteFilterRuleId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				RouteFilterName:     "routeFilterValue",
-				RouteFilterRuleName: "routeFilterRuleValue",
+				RouteFilterName:     "routeFilterName",
+				RouteFilterRuleName: "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterValue/routeFilterRules/routeFilterRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeFilters/routeFilterName/routeFilterRules/ruleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE/rOuTeFiLtErRuLeS/rOuTeFiLtErRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe/rOuTeFiLtErRuLeS/rUlEnAmE",
 			Expected: &RouteFilterRuleId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				RouteFilterName:     "rOuTeFiLtErVaLuE",
-				RouteFilterRuleName: "rOuTeFiLtErRuLeVaLuE",
+				RouteFilterName:     "rOuTeFiLtErNaMe",
+				RouteFilterRuleName: "rUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErVaLuE/rOuTeFiLtErRuLeS/rOuTeFiLtErRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeFiLtErS/rOuTeFiLtErNaMe/rOuTeFiLtErRuLeS/rUlEnAmE/extra",
 			Error: true,
 		},
 	}

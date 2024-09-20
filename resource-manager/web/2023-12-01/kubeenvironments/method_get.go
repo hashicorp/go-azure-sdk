@@ -45,7 +45,6 @@ func (c KubeEnvironmentsClient) Get(ctx context.Context, id KubeEnvironmentId) (
 
 	var model KubeEnvironment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

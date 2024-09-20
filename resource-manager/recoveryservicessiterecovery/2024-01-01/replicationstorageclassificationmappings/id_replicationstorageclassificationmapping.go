@@ -48,7 +48,7 @@ func ParseReplicationStorageClassificationMappingID(input string) (*ReplicationS
 	}
 
 	id := ReplicationStorageClassificationMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseReplicationStorageClassificationMappingIDInsensitively(input string) (
 	}
 
 	id := ReplicationStorageClassificationMappingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id ReplicationStorageClassificationMappingId) Segments() []resourceids.Seg
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "fabricName"),
 		resourceids.StaticSegment("staticReplicationStorageClassifications", "replicationStorageClassifications", "replicationStorageClassifications"),
-		resourceids.UserSpecifiedSegment("replicationStorageClassificationName", "replicationStorageClassificationValue"),
+		resourceids.UserSpecifiedSegment("replicationStorageClassificationName", "storageClassificationName"),
 		resourceids.StaticSegment("staticReplicationStorageClassificationMappings", "replicationStorageClassificationMappings", "replicationStorageClassificationMappings"),
-		resourceids.UserSpecifiedSegment("replicationStorageClassificationMappingName", "replicationStorageClassificationMappingValue"),
+		resourceids.UserSpecifiedSegment("replicationStorageClassificationMappingName", "storageClassificationMappingName"),
 	}
 }
 

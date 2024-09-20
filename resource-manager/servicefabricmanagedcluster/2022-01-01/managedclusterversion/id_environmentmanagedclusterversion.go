@@ -42,7 +42,7 @@ func ParseEnvironmentManagedClusterVersionID(input string) (*EnvironmentManagedC
 	}
 
 	id := EnvironmentManagedClusterVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseEnvironmentManagedClusterVersionIDInsensitively(input string) (*Enviro
 	}
 
 	id := EnvironmentManagedClusterVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,11 +113,11 @@ func (id EnvironmentManagedClusterVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
 		resourceids.StaticSegment("environment", "Windows", "Windows"),
 		resourceids.StaticSegment("staticManagedClusterVersions", "managedClusterVersions", "managedClusterVersions"),
-		resourceids.UserSpecifiedSegment("managedClusterVersionName", "managedClusterVersionValue"),
+		resourceids.UserSpecifiedSegment("managedClusterVersionName", "clusterVersion"),
 	}
 }
 

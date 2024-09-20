@@ -46,7 +46,6 @@ func (c DiagnosticsClient) JobsProxyGet(ctx context.Context, id JobId) (result J
 
 	var model Job
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type IntegrationServiceEnvironmentSkusClient struct {
 }
 
 func NewIntegrationServiceEnvironmentSkusClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentSkusClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationserviceenvironmentskus", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "integrationserviceenvironmentskus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentSkusClient: %+v", err)
 	}

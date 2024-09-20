@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataReferenceCredential interface {
+	DataReferenceCredential() BaseDataReferenceCredentialImpl
 }
 
-// RawDataReferenceCredentialImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DataReferenceCredential = BaseDataReferenceCredentialImpl{}
+
+type BaseDataReferenceCredentialImpl struct {
+	CredentialType DataReferenceCredentialType `json:"credentialType"`
+}
+
+func (s BaseDataReferenceCredentialImpl) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return s
+}
+
+var _ DataReferenceCredential = RawDataReferenceCredentialImpl{}
+
+// RawDataReferenceCredentialImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDataReferenceCredentialImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataReferenceCredential BaseDataReferenceCredentialImpl
+	Type                    string
+	Values                  map[string]interface{}
 }
 
-func unmarshalDataReferenceCredentialImplementation(input []byte) (DataReferenceCredential, error) {
+func (s RawDataReferenceCredentialImpl) DataReferenceCredential() BaseDataReferenceCredentialImpl {
+	return s.dataReferenceCredential
+}
+
+func UnmarshalDataReferenceCredentialImplementation(input []byte) (DataReferenceCredential, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +85,15 @@ func unmarshalDataReferenceCredentialImplementation(input []byte) (DataReference
 		return out, nil
 	}
 
-	out := RawDataReferenceCredentialImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDataReferenceCredentialImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataReferenceCredentialImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDataReferenceCredentialImpl{
+		dataReferenceCredential: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
 
 }

@@ -15,7 +15,7 @@ type ComponentAnnotationsAPIsClient struct {
 }
 
 func NewComponentAnnotationsAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentAnnotationsAPIsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "componentannotationsapis", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "componentannotationsapis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComponentAnnotationsAPIsClient: %+v", err)
 	}

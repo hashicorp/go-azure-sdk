@@ -14,6 +14,14 @@ type InMageRcmApplianceSpecificDetails struct {
 	Appliances *[]InMageRcmApplianceDetails `json:"appliances,omitempty"`
 
 	// Fields inherited from ApplianceSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageRcmApplianceSpecificDetails) ApplianceSpecificDetails() BaseApplianceSpecificDetailsImpl {
+	return BaseApplianceSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageRcmApplianceSpecificDetails{}
@@ -27,9 +35,10 @@ func (s InMageRcmApplianceSpecificDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageRcmApplianceSpecificDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageRcm"
 
 	encoded, err = json.Marshal(decoded)

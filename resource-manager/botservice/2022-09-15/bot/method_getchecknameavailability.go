@@ -49,7 +49,6 @@ func (c BotClient) GetCheckNameAvailability(ctx context.Context, input CheckName
 
 	var model CheckNameAvailabilityResponseBody
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

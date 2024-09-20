@@ -40,7 +40,7 @@ func ParseAttestationID(input string) (*AttestationId, error) {
 	}
 
 	id := AttestationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAttestationIDInsensitively(input string) (*AttestationId, error) {
 	}
 
 	id := AttestationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,7 @@ func (id AttestationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPolicyInsights", "Microsoft.PolicyInsights", "Microsoft.PolicyInsights"),
 		resourceids.StaticSegment("staticAttestations", "attestations", "attestations"),
-		resourceids.UserSpecifiedSegment("attestationName", "attestationValue"),
+		resourceids.UserSpecifiedSegment("attestationName", "attestationName"),
 	}
 }
 

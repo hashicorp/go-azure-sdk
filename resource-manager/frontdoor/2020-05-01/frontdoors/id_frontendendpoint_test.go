@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FrontendEndpointId{}
 
 func TestNewFrontendEndpointID(t *testing.T) {
-	id := NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue")
+	id := NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorName", "frontendEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFrontendEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FrontDoorName != "frontDoorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorName'", id.FrontDoorName, "frontDoorValue")
+	if id.FrontDoorName != "frontDoorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorName'", id.FrontDoorName, "frontDoorName")
 	}
 
-	if id.FrontendEndpointName != "frontendEndpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FrontendEndpointName'", id.FrontendEndpointName, "frontendEndpointValue")
+	if id.FrontendEndpointName != "frontendEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FrontendEndpointName'", id.FrontendEndpointName, "frontendEndpointName")
 	}
 }
 
 func TestFormatFrontendEndpointID(t *testing.T) {
-	actual := NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints/frontendEndpointValue"
+	actual := NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorName", "frontendEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints/frontendEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFrontendEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints/frontendEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints/frontendEndpointName",
 			Expected: &FrontendEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				FrontDoorName:        "frontDoorValue",
-				FrontendEndpointName: "frontendEndpointValue",
+				FrontDoorName:        "frontDoorName",
+				FrontendEndpointName: "frontendEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints/frontendEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints/frontendEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFrontendEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/fRoNtEnDeNdPoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/fRoNtEnDeNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints/frontendEndpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints/frontendEndpointName",
 			Expected: &FrontendEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				FrontDoorName:        "frontDoorValue",
-				FrontendEndpointName: "frontendEndpointValue",
+				FrontDoorName:        "frontDoorName",
+				FrontendEndpointName: "frontendEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorValue/frontendEndpoints/frontendEndpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoors/frontDoorName/frontendEndpoints/frontendEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/fRoNtEnDeNdPoInTs/fRoNtEnDeNdPoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/fRoNtEnDeNdPoInTs/fRoNtEnDeNdPoInTnAmE",
 			Expected: &FrontendEndpointId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				FrontDoorName:        "fRoNtDoOrVaLuE",
-				FrontendEndpointName: "fRoNtEnDeNdPoInTvAlUe",
+				FrontDoorName:        "fRoNtDoOrNaMe",
+				FrontendEndpointName: "fRoNtEnDeNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrVaLuE/fRoNtEnDeNdPoInTs/fRoNtEnDeNdPoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrS/fRoNtDoOrNaMe/fRoNtEnDeNdPoInTs/fRoNtEnDeNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

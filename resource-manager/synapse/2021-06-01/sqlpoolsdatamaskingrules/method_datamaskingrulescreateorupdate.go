@@ -50,7 +50,6 @@ func (c SqlPoolsDataMaskingRulesClient) DataMaskingRulesCreateOrUpdate(ctx conte
 
 	var model DataMaskingRule
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

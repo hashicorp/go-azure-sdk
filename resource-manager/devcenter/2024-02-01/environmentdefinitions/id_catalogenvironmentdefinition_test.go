@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CatalogEnvironmentDefinitionId{}
 
 func TestNewCatalogEnvironmentDefinitionID(t *testing.T) {
-	id := NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue", "environmentDefinitionValue")
+	id := NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName", "environmentDefinitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewCatalogEnvironmentDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DevCenterName != "devCenterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DevCenterName'", id.DevCenterName, "devCenterValue")
+	if id.DevCenterName != "devCenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DevCenterName'", id.DevCenterName, "devCenterName")
 	}
 
-	if id.CatalogName != "catalogValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CatalogName'", id.CatalogName, "catalogValue")
+	if id.CatalogName != "catalogName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CatalogName'", id.CatalogName, "catalogName")
 	}
 
-	if id.EnvironmentDefinitionName != "environmentDefinitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentDefinitionName'", id.EnvironmentDefinitionName, "environmentDefinitionValue")
+	if id.EnvironmentDefinitionName != "environmentDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentDefinitionName'", id.EnvironmentDefinitionName, "environmentDefinitionName")
 	}
 }
 
 func TestFormatCatalogEnvironmentDefinitionID(t *testing.T) {
-	actual := NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterValue", "catalogValue", "environmentDefinitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions/environmentDefinitionValue"
+	actual := NewCatalogEnvironmentDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "devCenterName", "catalogName", "environmentDefinitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions/environmentDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseCatalogEnvironmentDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions/environmentDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions/environmentDefinitionName",
 			Expected: &CatalogEnvironmentDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				DevCenterName:             "devCenterValue",
-				CatalogName:               "catalogValue",
-				EnvironmentDefinitionName: "environmentDefinitionValue",
+				DevCenterName:             "devCenterName",
+				CatalogName:               "catalogName",
+				EnvironmentDefinitionName: "environmentDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions/environmentDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions/environmentDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseCatalogEnvironmentDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE/eNvIrOnMeNtDeFiNiTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe/eNvIrOnMeNtDeFiNiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions/environmentDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions/environmentDefinitionName",
 			Expected: &CatalogEnvironmentDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				DevCenterName:             "devCenterValue",
-				CatalogName:               "catalogValue",
-				EnvironmentDefinitionName: "environmentDefinitionValue",
+				DevCenterName:             "devCenterName",
+				CatalogName:               "catalogName",
+				EnvironmentDefinitionName: "environmentDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterValue/catalogs/catalogValue/environmentDefinitions/environmentDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/devCenters/devCenterName/catalogs/catalogName/environmentDefinitions/environmentDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE/eNvIrOnMeNtDeFiNiTiOnS/eNvIrOnMeNtDeFiNiTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe/eNvIrOnMeNtDeFiNiTiOnS/eNvIrOnMeNtDeFiNiTiOnNaMe",
 			Expected: &CatalogEnvironmentDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				DevCenterName:             "dEvCeNtErVaLuE",
-				CatalogName:               "cAtAlOgVaLuE",
-				EnvironmentDefinitionName: "eNvIrOnMeNtDeFiNiTiOnVaLuE",
+				DevCenterName:             "dEvCeNtErNaMe",
+				CatalogName:               "cAtAlOgNaMe",
+				EnvironmentDefinitionName: "eNvIrOnMeNtDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErVaLuE/cAtAlOgS/cAtAlOgVaLuE/eNvIrOnMeNtDeFiNiTiOnS/eNvIrOnMeNtDeFiNiTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/dEvCeNtErS/dEvCeNtErNaMe/cAtAlOgS/cAtAlOgNaMe/eNvIrOnMeNtDeFiNiTiOnS/eNvIrOnMeNtDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

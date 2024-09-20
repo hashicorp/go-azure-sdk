@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WorkloadClassifierId{}
 
 func TestNewWorkloadClassifierID(t *testing.T) {
-	id := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue", "workloadClassifierValue")
+	id := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName", "workloadClassifierName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,26 +22,26 @@ func TestNewWorkloadClassifierID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.SqlPoolName != "sqlPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SqlPoolName'", id.SqlPoolName, "sqlPoolValue")
+	if id.SqlPoolName != "sqlPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SqlPoolName'", id.SqlPoolName, "sqlPoolName")
 	}
 
-	if id.WorkloadGroupName != "workloadGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkloadGroupName'", id.WorkloadGroupName, "workloadGroupValue")
+	if id.WorkloadGroupName != "workloadGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkloadGroupName'", id.WorkloadGroupName, "workloadGroupName")
 	}
 
-	if id.WorkloadClassifierName != "workloadClassifierValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkloadClassifierName'", id.WorkloadClassifierName, "workloadClassifierValue")
+	if id.WorkloadClassifierName != "workloadClassifierName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkloadClassifierName'", id.WorkloadClassifierName, "workloadClassifierName")
 	}
 }
 
 func TestFormatWorkloadClassifierID(t *testing.T) {
-	actual := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue", "workloadClassifierValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue"
+	actual := NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName", "workloadClassifierName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -95,49 +95,49 @@ func TestParseWorkloadClassifierID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				WorkspaceName:          "workspaceValue",
-				SqlPoolName:            "sqlPoolValue",
-				WorkloadGroupName:      "workloadGroupValue",
-				WorkloadClassifierName: "workloadClassifierValue",
+				WorkspaceName:          "workspaceName",
+				SqlPoolName:            "sqlPoolName",
+				WorkloadGroupName:      "workloadGroupName",
+				WorkloadClassifierName: "workloadClassifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName/extra",
 			Error: true,
 		},
 	}
@@ -266,96 +266,96 @@ func TestParseWorkloadClassifierIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE/wOrKlOaDgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/wOrKlOaDgRoUpS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				WorkspaceName:          "workspaceValue",
-				SqlPoolName:            "sqlPoolValue",
-				WorkloadGroupName:      "workloadGroupValue",
-				WorkloadClassifierName: "workloadClassifierValue",
+				WorkspaceName:          "workspaceName",
+				SqlPoolName:            "sqlPoolName",
+				WorkloadGroupName:      "workloadGroupName",
+				WorkloadClassifierName: "workloadClassifierName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceValue/sqlPools/sqlPoolValue/workloadGroups/workloadGroupValue/workloadClassifiers/workloadClassifierValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/workloadGroups/workloadGroupName/workloadClassifiers/workloadClassifierName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRnAmE",
 			Expected: &WorkloadClassifierId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:          "wOrKsPaCeVaLuE",
-				SqlPoolName:            "sQlPoOlVaLuE",
-				WorkloadGroupName:      "wOrKlOaDgRoUpVaLuE",
-				WorkloadClassifierName: "wOrKlOaDcLaSsIfIeRvAlUe",
+				WorkspaceName:          "wOrKsPaCeNaMe",
+				SqlPoolName:            "sQlPoOlNaMe",
+				WorkloadGroupName:      "wOrKlOaDgRoUpNaMe",
+				WorkloadClassifierName: "wOrKlOaDcLaSsIfIeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeVaLuE/sQlPoOlS/sQlPoOlVaLuE/wOrKlOaDgRoUpS/wOrKlOaDgRoUpVaLuE/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/wOrKlOaDgRoUpS/wOrKlOaDgRoUpNaMe/wOrKlOaDcLaSsIfIeRs/wOrKlOaDcLaSsIfIeRnAmE/extra",
 			Error: true,
 		},
 	}

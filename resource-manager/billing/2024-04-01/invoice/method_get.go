@@ -45,7 +45,6 @@ func (c InvoiceClient) Get(ctx context.Context, id InvoiceId) (result GetOperati
 
 	var model Invoice
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

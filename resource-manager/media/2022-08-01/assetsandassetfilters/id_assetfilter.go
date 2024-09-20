@@ -46,7 +46,7 @@ func ParseAssetFilterID(input string) (*AssetFilterId, error) {
 	}
 
 	id := AssetFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseAssetFilterIDInsensitively(input string) (*AssetFilterId, error) {
 	}
 
 	id := AssetFilterId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id AssetFilterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticAssets", "assets", "assets"),
-		resourceids.UserSpecifiedSegment("assetName", "assetValue"),
+		resourceids.UserSpecifiedSegment("assetName", "assetName"),
 		resourceids.StaticSegment("staticAssetFilters", "assetFilters", "assetFilters"),
-		resourceids.UserSpecifiedSegment("assetFilterName", "assetFilterValue"),
+		resourceids.UserSpecifiedSegment("assetFilterName", "filterName"),
 	}
 }
 

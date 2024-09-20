@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WorkbookTemplateId{}
 
 func TestNewWorkbookTemplateID(t *testing.T) {
-	id := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookTemplateValue")
+	id := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewWorkbookTemplateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkbookTemplateName != "workbookTemplateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkbookTemplateName'", id.WorkbookTemplateName, "workbookTemplateValue")
+	if id.WorkbookTemplateName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkbookTemplateName'", id.WorkbookTemplateName, "resourceName")
 	}
 }
 
 func TestFormatWorkbookTemplateID(t *testing.T) {
-	actual := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookTemplateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue"
+	actual := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseWorkbookTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceName",
 			Expected: &WorkbookTemplateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				WorkbookTemplateName: "workbookTemplateValue",
+				WorkbookTemplateName: "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseWorkbookTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceName",
 			Expected: &WorkbookTemplateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				WorkbookTemplateName: "workbookTemplateValue",
+				WorkbookTemplateName: "resourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/wOrKbOoKtEmPlAtEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/rEsOuRcEnAmE",
 			Expected: &WorkbookTemplateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkbookTemplateName: "wOrKbOoKtEmPlAtEvAlUe",
+				WorkbookTemplateName: "rEsOuRcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/wOrKbOoKtEmPlAtEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/rEsOuRcEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -50,7 +50,6 @@ func (c POSTClient) TasksCommand(ctx context.Context, id TaskId, input CommandPr
 
 	var model CommandProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

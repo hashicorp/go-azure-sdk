@@ -44,7 +44,7 @@ func ParseKeyValueID(input string) (*KeyValueId, error) {
 	}
 
 	id := KeyValueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseKeyValueIDInsensitively(input string) (*KeyValueId, error) {
 	}
 
 	id := KeyValueId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id KeyValueId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppConfiguration", "Microsoft.AppConfiguration", "Microsoft.AppConfiguration"),
 		resourceids.StaticSegment("staticConfigurationStores", "configurationStores", "configurationStores"),
-		resourceids.UserSpecifiedSegment("configurationStoreName", "configurationStoreValue"),
+		resourceids.UserSpecifiedSegment("configurationStoreName", "configStoreName"),
 		resourceids.StaticSegment("staticKeyValues", "keyValues", "keyValues"),
-		resourceids.UserSpecifiedSegment("keyValueName", "keyValueValue"),
+		resourceids.UserSpecifiedSegment("keyValueName", "keyValueName"),
 	}
 }
 

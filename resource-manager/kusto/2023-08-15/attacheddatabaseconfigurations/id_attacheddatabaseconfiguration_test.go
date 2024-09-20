@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AttachedDatabaseConfigurationId{}
 
 func TestNewAttachedDatabaseConfigurationID(t *testing.T) {
-	id := NewAttachedDatabaseConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "attachedDatabaseConfigurationValue")
+	id := NewAttachedDatabaseConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "attachedDatabaseConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewAttachedDatabaseConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.AttachedDatabaseConfigurationName != "attachedDatabaseConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachedDatabaseConfigurationName'", id.AttachedDatabaseConfigurationName, "attachedDatabaseConfigurationValue")
+	if id.AttachedDatabaseConfigurationName != "attachedDatabaseConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachedDatabaseConfigurationName'", id.AttachedDatabaseConfigurationName, "attachedDatabaseConfigurationName")
 	}
 }
 
 func TestFormatAttachedDatabaseConfigurationID(t *testing.T) {
-	actual := NewAttachedDatabaseConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "attachedDatabaseConfigurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations/attachedDatabaseConfigurationValue"
+	actual := NewAttachedDatabaseConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "attachedDatabaseConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations/attachedDatabaseConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseAttachedDatabaseConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations/attachedDatabaseConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations/attachedDatabaseConfigurationName",
 			Expected: &AttachedDatabaseConfigurationId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
-				ClusterName:                       "clusterValue",
-				AttachedDatabaseConfigurationName: "attachedDatabaseConfigurationValue",
+				ClusterName:                       "clusterName",
+				AttachedDatabaseConfigurationName: "attachedDatabaseConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations/attachedDatabaseConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations/attachedDatabaseConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseAttachedDatabaseConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations/attachedDatabaseConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations/attachedDatabaseConfigurationName",
 			Expected: &AttachedDatabaseConfigurationId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
-				ClusterName:                       "clusterValue",
-				AttachedDatabaseConfigurationName: "attachedDatabaseConfigurationValue",
+				ClusterName:                       "clusterName",
+				AttachedDatabaseConfigurationName: "attachedDatabaseConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/attachedDatabaseConfigurations/attachedDatabaseConfigurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/attachedDatabaseConfigurations/attachedDatabaseConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnNaMe",
 			Expected: &AttachedDatabaseConfigurationId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:                       "cLuStErVaLuE",
-				AttachedDatabaseConfigurationName: "aTtAcHeDdAtAbAsEcOnFiGuRaTiOnVaLuE",
+				ClusterName:                       "cLuStErNaMe",
+				AttachedDatabaseConfigurationName: "aTtAcHeDdAtAbAsEcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnS/aTtAcHeDdAtAbAsEcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

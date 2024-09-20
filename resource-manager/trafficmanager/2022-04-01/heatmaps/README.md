@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/heatmaps` Documentation
 
-The `heatmaps` SDK allows for interaction with the Azure Resource Manager Service `trafficmanager` (API Version `2022-04-01`).
+The `heatmaps` SDK allows for interaction with Azure Resource Manager `trafficmanager` (API Version `2022-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := heatmaps.NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileValue")
+id := heatmaps.NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
 
 read, err := client.HeatMapGet(ctx, id, heatmaps.DefaultHeatMapGetOperationOptions())
 if err != nil {

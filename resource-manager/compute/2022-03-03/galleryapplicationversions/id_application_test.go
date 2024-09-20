@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationId{}
 
 func TestNewApplicationID(t *testing.T) {
-	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue")
+	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "galleryApplicationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewApplicationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.GalleryName != "galleryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryName'", id.GalleryName, "galleryValue")
+	if id.GalleryName != "galleryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GalleryName'", id.GalleryName, "galleryName")
 	}
 
-	if id.ApplicationName != "applicationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationValue")
+	if id.ApplicationName != "galleryApplicationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "galleryApplicationName")
 	}
 }
 
 func TestFormatApplicationID(t *testing.T) {
-	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue"
+	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "galleryApplicationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications/galleryApplicationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseApplicationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications/galleryApplicationName",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				GalleryName:       "galleryValue",
-				ApplicationName:   "applicationValue",
+				GalleryName:       "galleryName",
+				ApplicationName:   "galleryApplicationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications/galleryApplicationName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/aPpLiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications/galleryApplicationName",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				GalleryName:       "galleryValue",
-				ApplicationName:   "applicationValue",
+				GalleryName:       "galleryName",
+				ApplicationName:   "galleryApplicationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/applications/galleryApplicationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNnAmE",
 			Expected: &ApplicationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				GalleryName:       "gAlLeRyVaLuE",
-				ApplicationName:   "aPpLiCaTiOnVaLuE",
+				GalleryName:       "gAlLeRyNaMe",
+				ApplicationName:   "gAlLeRyApPlIcAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

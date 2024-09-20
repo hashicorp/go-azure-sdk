@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DnsForwardingRulesetId{}
 
 func TestNewDnsForwardingRulesetID(t *testing.T) {
-	id := NewDnsForwardingRulesetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetValue")
+	id := NewDnsForwardingRulesetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDnsForwardingRulesetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DnsForwardingRulesetName != "dnsForwardingRulesetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsForwardingRulesetName'", id.DnsForwardingRulesetName, "dnsForwardingRulesetValue")
+	if id.DnsForwardingRulesetName != "dnsForwardingRulesetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsForwardingRulesetName'", id.DnsForwardingRulesetName, "dnsForwardingRulesetName")
 	}
 }
 
 func TestFormatDnsForwardingRulesetID(t *testing.T) {
-	actual := NewDnsForwardingRulesetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue"
+	actual := NewDnsForwardingRulesetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dnsForwardingRulesetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDnsForwardingRulesetID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName",
 			Expected: &DnsForwardingRulesetId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DnsForwardingRulesetName: "dnsForwardingRulesetValue",
+				DnsForwardingRulesetName: "dnsForwardingRulesetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDnsForwardingRulesetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName",
 			Expected: &DnsForwardingRulesetId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DnsForwardingRulesetName: "dnsForwardingRulesetValue",
+				DnsForwardingRulesetName: "dnsForwardingRulesetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/dnsForwardingRulesets/dnsForwardingRulesetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE",
 			Expected: &DnsForwardingRulesetId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				DnsForwardingRulesetName: "dNsFoRwArDiNgRuLeSeTvAlUe",
+				DnsForwardingRulesetName: "dNsFoRwArDiNgRuLeSeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/dNsFoRwArDiNgRuLeSeTs/dNsFoRwArDiNgRuLeSeTnAmE/extra",
 			Error: true,
 		},
 	}

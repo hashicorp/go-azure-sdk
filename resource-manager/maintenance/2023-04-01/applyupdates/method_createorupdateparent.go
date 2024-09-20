@@ -48,7 +48,6 @@ func (c ApplyUpdatesClient) CreateOrUpdateParent(ctx context.Context, id commoni
 
 	var model ApplyUpdate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

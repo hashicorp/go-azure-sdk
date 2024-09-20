@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ServerlessRuntimeId{}
 
 func TestNewServerlessRuntimeID(t *testing.T) {
-	id := NewServerlessRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue", "serverlessRuntimeValue")
+	id := NewServerlessRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName", "serverlessRuntimeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewServerlessRuntimeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.OrganizationName != "organizationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OrganizationName'", id.OrganizationName, "organizationValue")
+	if id.OrganizationName != "organizationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OrganizationName'", id.OrganizationName, "organizationName")
 	}
 
-	if id.ServerlessRuntimeName != "serverlessRuntimeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerlessRuntimeName'", id.ServerlessRuntimeName, "serverlessRuntimeValue")
+	if id.ServerlessRuntimeName != "serverlessRuntimeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerlessRuntimeName'", id.ServerlessRuntimeName, "serverlessRuntimeName")
 	}
 }
 
 func TestFormatServerlessRuntimeID(t *testing.T) {
-	actual := NewServerlessRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationValue", "serverlessRuntimeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes/serverlessRuntimeValue"
+	actual := NewServerlessRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "organizationName", "serverlessRuntimeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes/serverlessRuntimeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseServerlessRuntimeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes/serverlessRuntimeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes/serverlessRuntimeName",
 			Expected: &ServerlessRuntimeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				OrganizationName:      "organizationValue",
-				ServerlessRuntimeName: "serverlessRuntimeValue",
+				OrganizationName:      "organizationName",
+				ServerlessRuntimeName: "serverlessRuntimeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes/serverlessRuntimeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes/serverlessRuntimeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseServerlessRuntimeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe/sErVeRlEsSrUnTiMeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE/sErVeRlEsSrUnTiMeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes/serverlessRuntimeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes/serverlessRuntimeName",
 			Expected: &ServerlessRuntimeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				OrganizationName:      "organizationValue",
-				ServerlessRuntimeName: "serverlessRuntimeValue",
+				OrganizationName:      "organizationName",
+				ServerlessRuntimeName: "serverlessRuntimeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationValue/serverlessRuntimes/serverlessRuntimeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Informatica.DataManagement/organizations/organizationName/serverlessRuntimes/serverlessRuntimeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe/sErVeRlEsSrUnTiMeS/sErVeRlEsSrUnTiMeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE/sErVeRlEsSrUnTiMeS/sErVeRlEsSrUnTiMeNaMe",
 			Expected: &ServerlessRuntimeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				OrganizationName:      "oRgAnIzAtIoNvAlUe",
-				ServerlessRuntimeName: "sErVeRlEsSrUnTiMeVaLuE",
+				OrganizationName:      "oRgAnIzAtIoNnAmE",
+				ServerlessRuntimeName: "sErVeRlEsSrUnTiMeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNvAlUe/sErVeRlEsSrUnTiMeS/sErVeRlEsSrUnTiMeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/iNfOrMaTiCa.dAtAmAnAgEmEnT/oRgAnIzAtIoNs/oRgAnIzAtIoNnAmE/sErVeRlEsSrUnTiMeS/sErVeRlEsSrUnTiMeNaMe/extra",
 			Error: true,
 		},
 	}

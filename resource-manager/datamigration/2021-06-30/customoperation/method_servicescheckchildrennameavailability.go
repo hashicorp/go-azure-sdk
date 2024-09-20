@@ -50,7 +50,6 @@ func (c CustomOperationClient) ServicesCheckChildrenNameAvailability(ctx context
 
 	var model NameAvailabilityResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

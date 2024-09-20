@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2023-12-01/azurebackupjobs` Documentation
 
-The `azurebackupjobs` SDK allows for interaction with the Azure Resource Manager Service `dataprotection` (API Version `2023-12-01`).
+The `azurebackupjobs` SDK allows for interaction with Azure Resource Manager `dataprotection` (API Version `2023-12-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := azurebackupjobs.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue")
+id := azurebackupjobs.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.JobsList(ctx, id)` can be used to do batched pagination
 items, err := client.JobsListComplete(ctx, id)

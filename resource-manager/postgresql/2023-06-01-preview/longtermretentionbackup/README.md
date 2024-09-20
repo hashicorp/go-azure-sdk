@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2023-06-01-preview/longtermretentionbackup` Documentation
 
-The `longtermretentionbackup` SDK allows for interaction with the Azure Resource Manager Service `postgresql` (API Version `2023-06-01-preview`).
+The `longtermretentionbackup` SDK allows for interaction with Azure Resource Manager `postgresql` (API Version `2023-06-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 payload := longtermretentionbackup.LtrBackupRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.FlexibleServerStartLtrBackupThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 payload := longtermretentionbackup.BackupRequestBase{
 	// ...
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewLtrBackupOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "ltrBackupOperationValue")
+id := longtermretentionbackup.NewLtrBackupOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "backupName")
 
 read, err := client.LtrBackupOperationsGet(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
 
 // alternatively `client.LtrBackupOperationsListByServer(ctx, id)` can be used to do batched pagination
 items, err := client.LtrBackupOperationsListByServerComplete(ctx, id)

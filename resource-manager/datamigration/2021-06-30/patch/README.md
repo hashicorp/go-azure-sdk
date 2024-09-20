@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch` Documentation
 
-The `patch` SDK allows for interaction with the Azure Resource Manager Service `datamigration` (API Version `2021-06-30`).
+The `patch` SDK allows for interaction with Azure Resource Manager `datamigration` (API Version `2021-06-30`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := patch.NewFileID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "fileValue")
+id := patch.NewFileID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "fileName")
 
 payload := patch.ProjectFile{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue")
+id := patch.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
 
 payload := patch.Project{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "serviceTaskValue")
+id := patch.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
 
 payload := patch.ProjectTask{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue")
+id := patch.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
 
 payload := patch.DataMigrationService{
 	// ...
@@ -104,7 +104,7 @@ if err := client.ServicesUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "serviceValue", "projectValue", "taskValue")
+id := patch.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
 
 payload := patch.ProjectTask{
 	// ...

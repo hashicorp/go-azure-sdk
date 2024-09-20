@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DatabaseConnectionId{}
 
 func TestNewDatabaseConnectionID(t *testing.T) {
-	id := NewDatabaseConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue", "databaseConnectionValue")
+	id := NewDatabaseConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "databaseConnectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDatabaseConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.StaticSiteName != "staticSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "staticSiteValue")
+	if id.StaticSiteName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'StaticSiteName'", id.StaticSiteName, "name")
 	}
 
-	if id.DatabaseConnectionName != "databaseConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseConnectionName'", id.DatabaseConnectionName, "databaseConnectionValue")
+	if id.DatabaseConnectionName != "databaseConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseConnectionName'", id.DatabaseConnectionName, "databaseConnectionName")
 	}
 }
 
 func TestFormatDatabaseConnectionID(t *testing.T) {
-	actual := NewDatabaseConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "staticSiteValue", "databaseConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections/databaseConnectionValue"
+	actual := NewDatabaseConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "databaseConnectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections/databaseConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDatabaseConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections/databaseConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections/databaseConnectionName",
 			Expected: &DatabaseConnectionId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				StaticSiteName:         "staticSiteValue",
-				DatabaseConnectionName: "databaseConnectionValue",
+				StaticSiteName:         "name",
+				DatabaseConnectionName: "databaseConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections/databaseConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections/databaseConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDatabaseConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/dAtAbAsEcOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/dAtAbAsEcOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections/databaseConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections/databaseConnectionName",
 			Expected: &DatabaseConnectionId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				StaticSiteName:         "staticSiteValue",
-				DatabaseConnectionName: "databaseConnectionValue",
+				StaticSiteName:         "name",
+				DatabaseConnectionName: "databaseConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/staticSiteValue/databaseConnections/databaseConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/staticSites/name/databaseConnections/databaseConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/dAtAbAsEcOnNeCtIoNs/dAtAbAsEcOnNeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/dAtAbAsEcOnNeCtIoNs/dAtAbAsEcOnNeCtIoNnAmE",
 			Expected: &DatabaseConnectionId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				StaticSiteName:         "sTaTiCsItEvAlUe",
-				DatabaseConnectionName: "dAtAbAsEcOnNeCtIoNvAlUe",
+				StaticSiteName:         "nAmE",
+				DatabaseConnectionName: "dAtAbAsEcOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/sTaTiCsItEvAlUe/dAtAbAsEcOnNeCtIoNs/dAtAbAsEcOnNeCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sTaTiCsItEs/nAmE/dAtAbAsEcOnNeCtIoNs/dAtAbAsEcOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

@@ -40,7 +40,7 @@ func (s *BackupEngineBaseResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalBackupEngineBaseImplementation(v)
+		impl, err := UnmarshalBackupEngineBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'BackupEngineBaseResource': %+v", err)
 		}

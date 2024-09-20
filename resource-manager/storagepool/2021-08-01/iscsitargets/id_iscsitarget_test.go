@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IscsiTargetId{}
 
 func TestNewIscsiTargetID(t *testing.T) {
-	id := NewIscsiTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue", "iscsiTargetValue")
+	id := NewIscsiTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName", "iscsiTargetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewIscsiTargetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DiskPoolName != "diskPoolValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiskPoolName'", id.DiskPoolName, "diskPoolValue")
+	if id.DiskPoolName != "diskPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiskPoolName'", id.DiskPoolName, "diskPoolName")
 	}
 
-	if id.IscsiTargetName != "iscsiTargetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IscsiTargetName'", id.IscsiTargetName, "iscsiTargetValue")
+	if id.IscsiTargetName != "iscsiTargetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IscsiTargetName'", id.IscsiTargetName, "iscsiTargetName")
 	}
 }
 
 func TestFormatIscsiTargetID(t *testing.T) {
-	actual := NewIscsiTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue", "iscsiTargetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets/iscsiTargetValue"
+	actual := NewIscsiTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolName", "iscsiTargetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets/iscsiTargetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseIscsiTargetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets/iscsiTargetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets/iscsiTargetName",
 			Expected: &IscsiTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DiskPoolName:      "diskPoolValue",
-				IscsiTargetName:   "iscsiTargetValue",
+				DiskPoolName:      "diskPoolName",
+				IscsiTargetName:   "iscsiTargetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets/iscsiTargetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets/iscsiTargetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseIscsiTargetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLvAlUe/iScSiTaRgEtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLnAmE/iScSiTaRgEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets/iscsiTargetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets/iscsiTargetName",
 			Expected: &IscsiTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DiskPoolName:      "diskPoolValue",
-				IscsiTargetName:   "iscsiTargetValue",
+				DiskPoolName:      "diskPoolName",
+				IscsiTargetName:   "iscsiTargetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolValue/iscsiTargets/iscsiTargetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StoragePool/diskPools/diskPoolName/iscsiTargets/iscsiTargetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLvAlUe/iScSiTaRgEtS/iScSiTaRgEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLnAmE/iScSiTaRgEtS/iScSiTaRgEtNaMe",
 			Expected: &IscsiTargetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DiskPoolName:      "dIsKpOoLvAlUe",
-				IscsiTargetName:   "iScSiTaRgEtVaLuE",
+				DiskPoolName:      "dIsKpOoLnAmE",
+				IscsiTargetName:   "iScSiTaRgEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLvAlUe/iScSiTaRgEtS/iScSiTaRgEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGePoOl/dIsKpOoLs/dIsKpOoLnAmE/iScSiTaRgEtS/iScSiTaRgEtNaMe/extra",
 			Error: true,
 		},
 	}

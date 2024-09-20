@@ -15,7 +15,7 @@ type ManagedDatabaseTransparentDataEncryptionClient struct {
 }
 
 func NewManagedDatabaseTransparentDataEncryptionClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseTransparentDataEncryptionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasetransparentdataencryption", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "manageddatabasetransparentdataencryption", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseTransparentDataEncryptionClient: %+v", err)
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-05-01-preview/syncgroups` Documentation
 
-The `syncgroups` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-05-01-preview`).
+The `syncgroups` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 read, err := client.CancelSync(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 payload := syncgroups.SyncGroup{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commonids.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := commonids.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName")
 
 // alternatively `client.ListByDatabase(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id)
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 // alternatively `client.ListHubSchemas(ctx, id)` can be used to do batched pagination
 items, err := client.ListHubSchemasComplete(ctx, id)
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 // alternatively `client.ListLogs(ctx, id, syncgroups.DefaultListLogsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLogsComplete(ctx, id, syncgroups.DefaultListLogsOperationOptions())
@@ -137,7 +137,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := syncgroups.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListSyncDatabaseIds(ctx, id)` can be used to do batched pagination
 items, err := client.ListSyncDatabaseIdsComplete(ctx, id)
@@ -154,7 +154,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 if err := client.RefreshHubSchemaThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -166,7 +166,7 @@ if err := client.RefreshHubSchemaThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 read, err := client.TriggerSync(ctx, id)
 if err != nil {
@@ -182,7 +182,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue", "syncGroupValue")
+id := syncgroups.NewSyncGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "syncGroupName")
 
 payload := syncgroups.SyncGroup{
 	// ...

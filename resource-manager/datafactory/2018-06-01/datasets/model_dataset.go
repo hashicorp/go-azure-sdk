@@ -10,18 +10,42 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Dataset interface {
+	Dataset() BaseDatasetImpl
 }
 
-// RawDatasetImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ Dataset = BaseDatasetImpl{}
+
+type BaseDatasetImpl struct {
+	Annotations       *[]interface{}                     `json:"annotations,omitempty"`
+	Description       *string                            `json:"description,omitempty"`
+	Folder            *DatasetFolder                     `json:"folder,omitempty"`
+	LinkedServiceName LinkedServiceReference             `json:"linkedServiceName"`
+	Parameters        *map[string]ParameterSpecification `json:"parameters,omitempty"`
+	Schema            *interface{}                       `json:"schema,omitempty"`
+	Structure         *interface{}                       `json:"structure,omitempty"`
+	Type              string                             `json:"type"`
+}
+
+func (s BaseDatasetImpl) Dataset() BaseDatasetImpl {
+	return s
+}
+
+var _ Dataset = RawDatasetImpl{}
+
+// RawDatasetImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDatasetImpl struct {
-	Type   string
-	Values map[string]interface{}
+	dataset BaseDatasetImpl
+	Type    string
+	Values  map[string]interface{}
 }
 
-func unmarshalDatasetImplementation(input []byte) (Dataset, error) {
+func (s RawDatasetImpl) Dataset() BaseDatasetImpl {
+	return s.dataset
+}
+
+func UnmarshalDatasetImplementation(input []byte) (Dataset, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -876,10 +900,15 @@ func unmarshalDatasetImplementation(input []byte) (Dataset, error) {
 		return out, nil
 	}
 
-	out := RawDatasetImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDatasetImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDatasetImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDatasetImpl{
+		dataset: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
 
 }

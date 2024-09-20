@@ -30,7 +30,7 @@ func (s *ValidateCrossRegionRestoreRequestObject) UnmarshalJSON(bytes []byte) er
 	}
 
 	if v, ok := temp["restoreRequestObject"]; ok {
-		impl, err := unmarshalAzureBackupRestoreRequestImplementation(v)
+		impl, err := UnmarshalAzureBackupRestoreRequestImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RestoreRequestObject' for 'ValidateCrossRegionRestoreRequestObject': %+v", err)
 		}

@@ -46,7 +46,6 @@ func (c DevOpsClient) ConfigurationsGet(ctx context.Context, id SecurityConnecto
 
 	var model DevOpsConfiguration
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

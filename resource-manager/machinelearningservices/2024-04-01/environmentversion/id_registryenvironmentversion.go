@@ -46,7 +46,7 @@ func ParseRegistryEnvironmentVersionID(input string) (*RegistryEnvironmentVersio
 	}
 
 	id := RegistryEnvironmentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRegistryEnvironmentVersionIDInsensitively(input string) (*RegistryEnvi
 	}
 
 	id := RegistryEnvironmentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id RegistryEnvironmentVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMachineLearningServices", "Microsoft.MachineLearningServices", "Microsoft.MachineLearningServices"),
 		resourceids.StaticSegment("staticRegistries", "registries", "registries"),
-		resourceids.UserSpecifiedSegment("registryName", "registryValue"),
+		resourceids.UserSpecifiedSegment("registryName", "registryName"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.UserSpecifiedSegment("environmentName", "environmentValue"),
+		resourceids.UserSpecifiedSegment("environmentName", "environmentName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "version"),
 	}
 }
 

@@ -37,7 +37,7 @@ func (s *ActiveSecurityAdminRulesListResult) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]ActiveBaseSecurityAdminRule, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalActiveBaseSecurityAdminRuleImplementation(val)
+			impl, err := UnmarshalActiveBaseSecurityAdminRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Value' for 'ActiveSecurityAdminRulesListResult': %+v", i, err)
 			}

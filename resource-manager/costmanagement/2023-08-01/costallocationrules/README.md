@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/costallocationrules` Documentation
 
-The `costallocationrules` SDK allows for interaction with the Azure Resource Manager Service `costmanagement` (API Version `2023-08-01`).
+The `costallocationrules` SDK allows for interaction with Azure Resource Manager `costmanagement` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewBillingAccountID("billingAccountIdValue")
+id := costallocationrules.NewBillingAccountID("billingAccountId")
 
 payload := costallocationrules.CostAllocationRuleCheckNameAvailabilityRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountIdValue", "costAllocationRuleValue")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
 
 payload := costallocationrules.CostAllocationRuleDefinition{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountIdValue", "costAllocationRuleValue")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountIdValue", "costAllocationRuleValue")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewBillingAccountID("billingAccountIdValue")
+id := costallocationrules.NewBillingAccountID("billingAccountId")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

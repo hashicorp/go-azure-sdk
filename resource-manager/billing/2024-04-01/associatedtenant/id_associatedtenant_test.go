@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AssociatedTenantId{}
 
 func TestNewAssociatedTenantID(t *testing.T) {
-	id := NewAssociatedTenantID("billingAccountValue", "associatedTenantValue")
+	id := NewAssociatedTenantID("billingAccountName", "associatedTenantName")
 
-	if id.BillingAccountName != "billingAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountValue")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.AssociatedTenantName != "associatedTenantValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssociatedTenantName'", id.AssociatedTenantName, "associatedTenantValue")
+	if id.AssociatedTenantName != "associatedTenantName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssociatedTenantName'", id.AssociatedTenantName, "associatedTenantName")
 	}
 }
 
 func TestFormatAssociatedTenantID(t *testing.T) {
-	actual := NewAssociatedTenantID("billingAccountValue", "associatedTenantValue").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants/associatedTenantValue"
+	actual := NewAssociatedTenantID("billingAccountName", "associatedTenantName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants/associatedTenantName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseAssociatedTenantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants/associatedTenantValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants/associatedTenantName",
 			Expected: &AssociatedTenantId{
-				BillingAccountName:   "billingAccountValue",
-				AssociatedTenantName: "associatedTenantValue",
+				BillingAccountName:   "billingAccountName",
+				AssociatedTenantName: "associatedTenantName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants/associatedTenantValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants/associatedTenantName/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseAssociatedTenantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aSsOcIaTeDtEnAnTs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aSsOcIaTeDtEnAnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants/associatedTenantValue",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants/associatedTenantName",
 			Expected: &AssociatedTenantId{
-				BillingAccountName:   "billingAccountValue",
-				AssociatedTenantName: "associatedTenantValue",
+				BillingAccountName:   "billingAccountName",
+				AssociatedTenantName: "associatedTenantName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountValue/associatedTenants/associatedTenantValue/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/associatedTenants/associatedTenantName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aSsOcIaTeDtEnAnTs/aSsOcIaTeDtEnAnTvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aSsOcIaTeDtEnAnTs/aSsOcIaTeDtEnAnTnAmE",
 			Expected: &AssociatedTenantId{
-				BillingAccountName:   "bIlLiNgAcCoUnTvAlUe",
-				AssociatedTenantName: "aSsOcIaTeDtEnAnTvAlUe",
+				BillingAccountName:   "bIlLiNgAcCoUnTnAmE",
+				AssociatedTenantName: "aSsOcIaTeDtEnAnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTvAlUe/aSsOcIaTeDtEnAnTs/aSsOcIaTeDtEnAnTvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/aSsOcIaTeDtEnAnTs/aSsOcIaTeDtEnAnTnAmE/extra",
 			Error: true,
 		},
 	}

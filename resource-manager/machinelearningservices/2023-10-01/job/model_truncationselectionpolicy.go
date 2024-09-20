@@ -14,8 +14,18 @@ type TruncationSelectionPolicy struct {
 	TruncationPercentage *int64 `json:"truncationPercentage,omitempty"`
 
 	// Fields inherited from EarlyTerminationPolicy
-	DelayEvaluation    *int64 `json:"delayEvaluation,omitempty"`
-	EvaluationInterval *int64 `json:"evaluationInterval,omitempty"`
+
+	DelayEvaluation    *int64                     `json:"delayEvaluation,omitempty"`
+	EvaluationInterval *int64                     `json:"evaluationInterval,omitempty"`
+	PolicyType         EarlyTerminationPolicyType `json:"policyType"`
+}
+
+func (s TruncationSelectionPolicy) EarlyTerminationPolicy() BaseEarlyTerminationPolicyImpl {
+	return BaseEarlyTerminationPolicyImpl{
+		DelayEvaluation:    s.DelayEvaluation,
+		EvaluationInterval: s.EvaluationInterval,
+		PolicyType:         s.PolicyType,
+	}
 }
 
 var _ json.Marshaler = TruncationSelectionPolicy{}
@@ -29,9 +39,10 @@ func (s TruncationSelectionPolicy) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TruncationSelectionPolicy: %+v", err)
 	}
+
 	decoded["policyType"] = "TruncationSelection"
 
 	encoded, err = json.Marshal(decoded)

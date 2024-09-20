@@ -38,7 +38,7 @@ func ParseRoleIdID(input string) (*RoleIdId, error) {
 	}
 
 	id := RoleIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseRoleIdIDInsensitively(input string) (*RoleIdId, error) {
 	}
 
 	id := RoleIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -96,7 +96,7 @@ func (id RoleIdId) ID() string {
 // Segments returns a slice of Resource ID Segments which comprise this Role Id ID
 func (id RoleIdId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.UserSpecifiedSegment("roleId", "roleIdValue"),
+		resourceids.UserSpecifiedSegment("roleId", "roleId"),
 	}
 }
 

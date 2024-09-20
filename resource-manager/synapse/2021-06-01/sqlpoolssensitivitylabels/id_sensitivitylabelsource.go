@@ -52,7 +52,7 @@ func ParseSensitivityLabelSourceID(input string) (*SensitivityLabelSourceId, err
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -69,7 +69,7 @@ func ParseSensitivityLabelSourceIDInsensitively(input string) (*SensitivityLabel
 	}
 
 	id := SensitivityLabelSourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -153,15 +153,15 @@ func (id SensitivityLabelSourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticSqlPools", "sqlPools", "sqlPools"),
-		resourceids.UserSpecifiedSegment("sqlPoolName", "sqlPoolValue"),
+		resourceids.UserSpecifiedSegment("sqlPoolName", "sqlPoolName"),
 		resourceids.StaticSegment("staticSchemas", "schemas", "schemas"),
-		resourceids.UserSpecifiedSegment("schemaName", "schemaValue"),
+		resourceids.UserSpecifiedSegment("schemaName", "schemaName"),
 		resourceids.StaticSegment("staticTables", "tables", "tables"),
-		resourceids.UserSpecifiedSegment("tableName", "tableValue"),
+		resourceids.UserSpecifiedSegment("tableName", "tableName"),
 		resourceids.StaticSegment("staticColumns", "columns", "columns"),
-		resourceids.UserSpecifiedSegment("columnName", "columnValue"),
+		resourceids.UserSpecifiedSegment("columnName", "columnName"),
 		resourceids.StaticSegment("staticSensitivityLabels", "sensitivityLabels", "sensitivityLabels"),
 		resourceids.ConstantSegment("sensitivityLabelSource", PossibleValuesForSensitivityLabelSource(), "current"),
 	}

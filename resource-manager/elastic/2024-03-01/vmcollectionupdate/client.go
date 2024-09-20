@@ -15,7 +15,7 @@ type VMCollectionUpdateClient struct {
 }
 
 func NewVMCollectionUpdateClientWithBaseURI(sdkApi sdkEnv.Api) (*VMCollectionUpdateClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vmcollectionupdate", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "vmcollectionupdate", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMCollectionUpdateClient: %+v", err)
 	}

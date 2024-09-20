@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2015-11-01/deploymentoperations` Documentation
 
-The `deploymentoperations` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2015-11-01`).
+The `deploymentoperations` SDK allows for interaction with Azure Resource Manager `resources` (API Version `2015-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deploymentoperations.NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue", "operationIdValue")
+id := deploymentoperations.NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName", "operationId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deploymentoperations.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentValue")
+id := deploymentoperations.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentName")
 
 // alternatively `client.List(ctx, id, deploymentoperations.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, deploymentoperations.DefaultListOperationOptions())

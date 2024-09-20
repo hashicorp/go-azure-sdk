@@ -49,7 +49,6 @@ func (c SyncSetsClient) Update(ctx context.Context, id SyncSetId, input SyncSetU
 
 	var model SyncSet
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

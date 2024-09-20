@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2024-02-02-preview/privateendpointconnections` Documentation
 
-The `privateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `containerapps` (API Version `2024-02-02-preview`).
+The `privateendpointconnections` SDK allows for interaction with Azure Resource Manager `containerapps` (API Version `2024-02-02-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdateThenP
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
 
 if err := client.ManagedEnvironmentPrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.ManagedEnvironmentPrivateEndpointConnectionsDeleteThenPoll(ctx,
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
 
 read, err := client.ManagedEnvironmentPrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue")
+id := privateendpointconnections.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
 
 // alternatively `client.ManagedEnvironmentPrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.ManagedEnvironmentPrivateEndpointConnectionsListComplete(ctx, id)

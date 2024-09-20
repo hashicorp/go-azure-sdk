@@ -46,7 +46,6 @@ func (c StandardOperationClient) FilesReadWrite(ctx context.Context, id FileId) 
 
 	var model FileStorageInfo
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

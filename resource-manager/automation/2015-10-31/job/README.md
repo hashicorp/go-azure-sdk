@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/job` Documentation
 
-The `job` SDK allows for interaction with the Azure Resource Manager Service `automation` (API Version `2015-10-31`).
+The `job` SDK allows for interaction with Azure Resource Manager `automation` (API Version `2015-10-31`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 payload := job.JobCreateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.GetOutput(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.GetRunbookContent(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue")
+id := job.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName")
 
 // alternatively `client.ListByAutomationAccount(ctx, id, job.DefaultListByAutomationAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAutomationAccountComplete(ctx, id, job.DefaultListByAutomationAccountOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.Resume(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.Stop(ctx, id)
 if err != nil {
@@ -142,7 +142,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "jobId")
 
 read, err := client.Suspend(ctx, id)
 if err != nil {

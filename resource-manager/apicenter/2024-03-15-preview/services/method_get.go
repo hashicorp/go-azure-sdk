@@ -45,7 +45,6 @@ func (c ServicesClient) Get(ctx context.Context, id ServiceId) (result GetOperat
 
 	var model Service
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -16,6 +16,7 @@ var _ LegacyReservationRecommendationProperties = LegacySharedScopeReservationRe
 type LegacySharedScopeReservationRecommendationProperties struct {
 
 	// Fields inherited from LegacyReservationRecommendationProperties
+
 	CostWithNoReservedInstances    *float64       `json:"costWithNoReservedInstances,omitempty"`
 	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
 	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
@@ -27,9 +28,30 @@ type LegacySharedScopeReservationRecommendationProperties struct {
 	RecommendedQuantity            *float64       `json:"recommendedQuantity,omitempty"`
 	RecommendedQuantityNormalized  *float64       `json:"recommendedQuantityNormalized,omitempty"`
 	ResourceType                   *string        `json:"resourceType,omitempty"`
+	Scope                          string         `json:"scope"`
 	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
 	Term                           *string        `json:"term,omitempty"`
 	TotalCostWithReservedInstances *float64       `json:"totalCostWithReservedInstances,omitempty"`
+}
+
+func (s LegacySharedScopeReservationRecommendationProperties) LegacyReservationRecommendationProperties() BaseLegacyReservationRecommendationPropertiesImpl {
+	return BaseLegacyReservationRecommendationPropertiesImpl{
+		CostWithNoReservedInstances:    s.CostWithNoReservedInstances,
+		FirstUsageDate:                 s.FirstUsageDate,
+		InstanceFlexibilityGroup:       s.InstanceFlexibilityGroup,
+		InstanceFlexibilityRatio:       s.InstanceFlexibilityRatio,
+		LookBackPeriod:                 s.LookBackPeriod,
+		MeterId:                        s.MeterId,
+		NetSavings:                     s.NetSavings,
+		NormalizedSize:                 s.NormalizedSize,
+		RecommendedQuantity:            s.RecommendedQuantity,
+		RecommendedQuantityNormalized:  s.RecommendedQuantityNormalized,
+		ResourceType:                   s.ResourceType,
+		Scope:                          s.Scope,
+		SkuProperties:                  s.SkuProperties,
+		Term:                           s.Term,
+		TotalCostWithReservedInstances: s.TotalCostWithReservedInstances,
+	}
 }
 
 func (o *LegacySharedScopeReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
@@ -55,9 +77,10 @@ func (s LegacySharedScopeReservationRecommendationProperties) MarshalJSON() ([]b
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling LegacySharedScopeReservationRecommendationProperties: %+v", err)
 	}
+
 	decoded["scope"] = "Shared"
 
 	encoded, err = json.Marshal(decoded)

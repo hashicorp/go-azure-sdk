@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-05-05-preview/smartgroups` Documentation
 
-The `smartgroups` SDK allows for interaction with the Azure Resource Manager Service `alertsmanagement` (API Version `2019-05-05-preview`).
+The `smartgroups` SDK allows for interaction with Azure Resource Manager `alertsmanagement` (API Version `2019-05-05-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupIdValue")
+id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupId")
 
 read, err := client.ChangeState(ctx, id, smartgroups.DefaultChangeStateOperationOptions())
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupIdValue")
+id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupId")
 
 read, err := client.GetById(ctx, id)
 if err != nil {
@@ -74,7 +74,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupIdValue")
+id := smartgroups.NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupId")
 
 read, err := client.GetHistory(ctx, id)
 if err != nil {

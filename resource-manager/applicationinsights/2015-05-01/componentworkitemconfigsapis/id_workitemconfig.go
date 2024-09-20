@@ -44,7 +44,7 @@ func ParseWorkItemConfigID(input string) (*WorkItemConfigId, error) {
 	}
 
 	id := WorkItemConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseWorkItemConfigIDInsensitively(input string) (*WorkItemConfigId, error)
 	}
 
 	id := WorkItemConfigId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id WorkItemConfigId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticComponents", "components", "components"),
-		resourceids.UserSpecifiedSegment("componentName", "componentValue"),
+		resourceids.UserSpecifiedSegment("componentName", "resourceName"),
 		resourceids.StaticSegment("staticWorkItemConfigs", "workItemConfigs", "workItemConfigs"),
-		resourceids.UserSpecifiedSegment("workItemConfigId", "workItemConfigIdValue"),
+		resourceids.UserSpecifiedSegment("workItemConfigId", "workItemConfigId"),
 	}
 }
 

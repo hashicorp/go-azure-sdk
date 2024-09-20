@@ -13,6 +13,14 @@ var _ Partition = SingletonPartitionScheme{}
 type SingletonPartitionScheme struct {
 
 	// Fields inherited from Partition
+
+	PartitionScheme PartitionScheme `json:"partitionScheme"`
+}
+
+func (s SingletonPartitionScheme) Partition() BasePartitionImpl {
+	return BasePartitionImpl{
+		PartitionScheme: s.PartitionScheme,
+	}
 }
 
 var _ json.Marshaler = SingletonPartitionScheme{}
@@ -26,9 +34,10 @@ func (s SingletonPartitionScheme) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SingletonPartitionScheme: %+v", err)
 	}
+
 	decoded["partitionScheme"] = "Singleton"
 
 	encoded, err = json.Marshal(decoded)

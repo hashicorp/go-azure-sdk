@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entities` Documentation
 
-The `entities` SDK allows for interaction with the Azure Resource Manager Service `securityinsights` (API Version `2022-10-01-preview`).
+The `entities` SDK allows for interaction with Azure Resource Manager `securityinsights` (API Version `2022-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 payload := entities.EntityExpandParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 payload := entities.EntityGetInsightsParameters{
 	// ...
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 payload := entities.EntityTimelineParameters{
 	// ...
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := entities.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "entityId")
 
 read, err := client.Queries(ctx, id, entities.DefaultQueriesOperationOptions())
 if err != nil {

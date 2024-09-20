@@ -50,7 +50,6 @@ func (c ApiDefinitionsClient) CreateOrUpdate(ctx context.Context, id DefinitionI
 
 	var model ApiDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

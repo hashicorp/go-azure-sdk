@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReplicaId{}
 
 func TestNewReplicaID(t *testing.T) {
-	id := NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue", "replicaValue")
+	id := NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "replicaName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewReplicaID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConfigurationStoreName != "configurationStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configurationStoreValue")
+	if id.ConfigurationStoreName != "configStoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configStoreName")
 	}
 
-	if id.ReplicaName != "replicaValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReplicaName'", id.ReplicaName, "replicaValue")
+	if id.ReplicaName != "replicaName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicaName'", id.ReplicaName, "replicaName")
 	}
 }
 
 func TestFormatReplicaID(t *testing.T) {
-	actual := NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue", "replicaValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas/replicaValue"
+	actual := NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "replicaName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas/replicaName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseReplicaID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas/replicaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas/replicaName",
 			Expected: &ReplicaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ConfigurationStoreName: "configurationStoreValue",
-				ReplicaName:            "replicaValue",
+				ConfigurationStoreName: "configStoreName",
+				ReplicaName:            "replicaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas/replicaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas/replicaName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseReplicaIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/rEpLiCaS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/rEpLiCaS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas/replicaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas/replicaName",
 			Expected: &ReplicaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ConfigurationStoreName: "configurationStoreValue",
-				ReplicaName:            "replicaValue",
+				ConfigurationStoreName: "configStoreName",
+				ReplicaName:            "replicaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/replicas/replicaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/replicas/replicaName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/rEpLiCaS/rEpLiCaVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/rEpLiCaS/rEpLiCaNaMe",
 			Expected: &ReplicaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ConfigurationStoreName: "cOnFiGuRaTiOnStOrEvAlUe",
-				ReplicaName:            "rEpLiCaVaLuE",
+				ConfigurationStoreName: "cOnFiGsToReNaMe",
+				ReplicaName:            "rEpLiCaNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/rEpLiCaS/rEpLiCaVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/rEpLiCaS/rEpLiCaNaMe/extra",
 			Error: true,
 		},
 	}

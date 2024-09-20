@@ -15,7 +15,7 @@ type LiveEventsClient struct {
 }
 
 func NewLiveEventsClientWithBaseURI(sdkApi sdkEnv.Api) (*LiveEventsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "liveevents", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "liveevents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LiveEventsClient: %+v", err)
 	}

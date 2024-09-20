@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2023-05-01-preview/portalconfig` Documentation
 
-The `portalconfig` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2023-05-01-preview`).
+The `portalconfig` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "portalConfigIdValue")
+id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "portalConfigId")
 
 payload := portalconfig.PortalConfigContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "portalConfigIdValue")
+id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "portalConfigId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "portalConfigIdValue")
+id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "portalConfigId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := portalconfig.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
+id := portalconfig.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName")
 
 // alternatively `client.ListByService(ctx, id)` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "portalConfigIdValue")
+id := portalconfig.NewPortalConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "portalConfigId")
 
 payload := portalconfig.PortalConfigContract{
 	// ...

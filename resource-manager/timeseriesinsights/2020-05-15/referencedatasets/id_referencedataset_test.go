@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReferenceDataSetId{}
 
 func TestNewReferenceDataSetID(t *testing.T) {
-	id := NewReferenceDataSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "referenceDataSetValue")
+	id := NewReferenceDataSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "referenceDataSetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewReferenceDataSetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.EnvironmentName != "environmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentValue")
+	if id.EnvironmentName != "environmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentName")
 	}
 
-	if id.ReferenceDataSetName != "referenceDataSetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReferenceDataSetName'", id.ReferenceDataSetName, "referenceDataSetValue")
+	if id.ReferenceDataSetName != "referenceDataSetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReferenceDataSetName'", id.ReferenceDataSetName, "referenceDataSetName")
 	}
 }
 
 func TestFormatReferenceDataSetID(t *testing.T) {
-	actual := NewReferenceDataSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "referenceDataSetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets/referenceDataSetValue"
+	actual := NewReferenceDataSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "referenceDataSetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets/referenceDataSetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseReferenceDataSetID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets/referenceDataSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets/referenceDataSetName",
 			Expected: &ReferenceDataSetId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				EnvironmentName:      "environmentValue",
-				ReferenceDataSetName: "referenceDataSetValue",
+				EnvironmentName:      "environmentName",
+				ReferenceDataSetName: "referenceDataSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets/referenceDataSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets/referenceDataSetName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseReferenceDataSetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/rEfErEnCeDaTaSeTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/rEfErEnCeDaTaSeTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets/referenceDataSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets/referenceDataSetName",
 			Expected: &ReferenceDataSetId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				EnvironmentName:      "environmentValue",
-				ReferenceDataSetName: "referenceDataSetValue",
+				EnvironmentName:      "environmentName",
+				ReferenceDataSetName: "referenceDataSetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentValue/referenceDataSets/referenceDataSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.TimeSeriesInsights/environments/environmentName/referenceDataSets/referenceDataSetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/rEfErEnCeDaTaSeTs/rEfErEnCeDaTaSeTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/rEfErEnCeDaTaSeTs/rEfErEnCeDaTaSeTnAmE",
 			Expected: &ReferenceDataSetId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				EnvironmentName:      "eNvIrOnMeNtVaLuE",
-				ReferenceDataSetName: "rEfErEnCeDaTaSeTvAlUe",
+				EnvironmentName:      "eNvIrOnMeNtNaMe",
+				ReferenceDataSetName: "rEfErEnCeDaTaSeTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtVaLuE/rEfErEnCeDaTaSeTs/rEfErEnCeDaTaSeTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.tImEsErIeSiNsIgHtS/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/rEfErEnCeDaTaSeTs/rEfErEnCeDaTaSeTnAmE/extra",
 			Error: true,
 		},
 	}

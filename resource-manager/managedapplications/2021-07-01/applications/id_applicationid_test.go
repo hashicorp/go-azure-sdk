@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdId{}
 
 func TestNewApplicationIdID(t *testing.T) {
-	id := NewApplicationIdID("applicationIdValue")
+	id := NewApplicationIdID("applicationId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 }
 
 func TestFormatApplicationIdID(t *testing.T) {
-	actual := NewApplicationIdID("applicationIdValue").ID()
-	expected := "/applicationIdValue"
+	actual := NewApplicationIdID("applicationId").ID()
+	expected := "/applicationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,14 +40,14 @@ func TestParseApplicationIdID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applicationIdValue",
+			Input: "/applicationId",
 			Expected: &ApplicationIdId{
-				ApplicationId: "applicationIdValue",
+				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applicationIdValue/extra",
+			Input: "/applicationId/extra",
 			Error: true,
 		},
 	}
@@ -86,26 +86,26 @@ func TestParseApplicationIdIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applicationIdValue",
+			Input: "/applicationId",
 			Expected: &ApplicationIdId{
-				ApplicationId: "applicationIdValue",
+				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applicationIdValue/extra",
+			Input: "/applicationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnId",
 			Expected: &ApplicationIdId{
-				ApplicationId: "aPpLiCaTiOnIdVaLuE",
+				ApplicationId: "aPpLiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnId/extra",
 			Error: true,
 		},
 	}

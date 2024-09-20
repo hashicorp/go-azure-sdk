@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RouteId{}
 
 func TestNewRouteID(t *testing.T) {
-	id := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue", "routeValue")
+	id := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableName", "routeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRouteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RouteTableName != "routeTableValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteTableName'", id.RouteTableName, "routeTableValue")
+	if id.RouteTableName != "routeTableName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteTableName'", id.RouteTableName, "routeTableName")
 	}
 
-	if id.RouteName != "routeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RouteName'", id.RouteName, "routeValue")
+	if id.RouteName != "routeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RouteName'", id.RouteName, "routeName")
 	}
 }
 
 func TestFormatRouteID(t *testing.T) {
-	actual := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue", "routeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes/routeValue"
+	actual := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableName", "routeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes/routeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRouteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes/routeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes/routeName",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteTableName:    "routeTableValue",
-				RouteName:         "routeValue",
+				RouteTableName:    "routeTableName",
+				RouteName:         "routeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes/routeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes/routeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRouteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe/rOuTeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE/rOuTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes/routeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes/routeName",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				RouteTableName:    "routeTableValue",
-				RouteName:         "routeValue",
+				RouteTableName:    "routeTableName",
+				RouteName:         "routeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableValue/routes/routeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/routeTables/routeTableName/routes/routeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe/rOuTeS/rOuTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE/rOuTeS/rOuTeNaMe",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RouteTableName:    "rOuTeTaBlEvAlUe",
-				RouteName:         "rOuTeVaLuE",
+				RouteTableName:    "rOuTeTaBlEnAmE",
+				RouteName:         "rOuTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEvAlUe/rOuTeS/rOuTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/rOuTeTaBlEs/rOuTeTaBlEnAmE/rOuTeS/rOuTeNaMe/extra",
 			Error: true,
 		},
 	}

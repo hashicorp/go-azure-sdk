@@ -15,7 +15,7 @@ type AssessmentsClient struct {
 }
 
 func NewAssessmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*AssessmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "assessments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "assessments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AssessmentsClient: %+v", err)
 	}

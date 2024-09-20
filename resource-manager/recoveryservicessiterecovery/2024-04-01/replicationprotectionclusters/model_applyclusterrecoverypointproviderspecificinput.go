@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplyClusterRecoveryPointProviderSpecificInput interface {
+	ApplyClusterRecoveryPointProviderSpecificInput() BaseApplyClusterRecoveryPointProviderSpecificInputImpl
 }
 
-// RawApplyClusterRecoveryPointProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ ApplyClusterRecoveryPointProviderSpecificInput = BaseApplyClusterRecoveryPointProviderSpecificInputImpl{}
+
+type BaseApplyClusterRecoveryPointProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseApplyClusterRecoveryPointProviderSpecificInputImpl) ApplyClusterRecoveryPointProviderSpecificInput() BaseApplyClusterRecoveryPointProviderSpecificInputImpl {
+	return s
+}
+
+var _ ApplyClusterRecoveryPointProviderSpecificInput = RawApplyClusterRecoveryPointProviderSpecificInputImpl{}
+
+// RawApplyClusterRecoveryPointProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawApplyClusterRecoveryPointProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	applyClusterRecoveryPointProviderSpecificInput BaseApplyClusterRecoveryPointProviderSpecificInputImpl
+	Type                                           string
+	Values                                         map[string]interface{}
 }
 
-func unmarshalApplyClusterRecoveryPointProviderSpecificInputImplementation(input []byte) (ApplyClusterRecoveryPointProviderSpecificInput, error) {
+func (s RawApplyClusterRecoveryPointProviderSpecificInputImpl) ApplyClusterRecoveryPointProviderSpecificInput() BaseApplyClusterRecoveryPointProviderSpecificInputImpl {
+	return s.applyClusterRecoveryPointProviderSpecificInput
+}
+
+func UnmarshalApplyClusterRecoveryPointProviderSpecificInputImplementation(input []byte) (ApplyClusterRecoveryPointProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalApplyClusterRecoveryPointProviderSpecificInputImplementation(input
 		return out, nil
 	}
 
-	out := RawApplyClusterRecoveryPointProviderSpecificInputImpl{
+	var parent BaseApplyClusterRecoveryPointProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseApplyClusterRecoveryPointProviderSpecificInputImpl: %+v", err)
+	}
+
+	return RawApplyClusterRecoveryPointProviderSpecificInputImpl{
+		applyClusterRecoveryPointProviderSpecificInput: parent,
 		Type:   value,
 		Values: temp,
-	}
-	return out, nil
+	}, nil
 
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2022-09-01/reservationsummaries` Documentation
 
-The `reservationsummaries` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2022-09-01`).
+The `reservationsummaries` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -42,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reservationsummaries.NewReservationOrderID("reservationOrderIdValue")
+id := reservationsummaries.NewReservationOrderID("reservationOrderId")
 
 // alternatively `client.ReservationsSummariesListByReservationOrder(ctx, id, reservationsummaries.DefaultReservationsSummariesListByReservationOrderOperationOptions())` can be used to do batched pagination
 items, err := client.ReservationsSummariesListByReservationOrderComplete(ctx, id, reservationsummaries.DefaultReservationsSummariesListByReservationOrderOperationOptions())
@@ -59,7 +59,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reservationsummaries.NewReservationID("reservationOrderIdValue", "reservationIdValue")
+id := reservationsummaries.NewReservationID("reservationOrderId", "reservationId")
 
 // alternatively `client.ReservationsSummariesListByReservationOrderAndReservation(ctx, id, reservationsummaries.DefaultReservationsSummariesListByReservationOrderAndReservationOperationOptions())` can be used to do batched pagination
 items, err := client.ReservationsSummariesListByReservationOrderAndReservationComplete(ctx, id, reservationsummaries.DefaultReservationsSummariesListByReservationOrderAndReservationOperationOptions())

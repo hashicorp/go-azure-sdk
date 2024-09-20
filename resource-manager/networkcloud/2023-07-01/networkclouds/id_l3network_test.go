@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &L3NetworkId{}
 
 func TestNewL3NetworkID(t *testing.T) {
-	id := NewL3NetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "l3NetworkValue")
+	id := NewL3NetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "l3NetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewL3NetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.L3NetworkName != "l3NetworkValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'L3NetworkName'", id.L3NetworkName, "l3NetworkValue")
+	if id.L3NetworkName != "l3NetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'L3NetworkName'", id.L3NetworkName, "l3NetworkName")
 	}
 }
 
 func TestFormatL3NetworkID(t *testing.T) {
-	actual := NewL3NetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "l3NetworkValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkValue"
+	actual := NewL3NetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "l3NetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseL3NetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkName",
 			Expected: &L3NetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				L3NetworkName:     "l3NetworkValue",
+				L3NetworkName:     "l3NetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseL3NetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkName",
 			Expected: &L3NetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				L3NetworkName:     "l3NetworkValue",
+				L3NetworkName:     "l3NetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkCloud/l3Networks/l3NetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/l3nEtWoRkS/l3nEtWoRkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/l3nEtWoRkS/l3nEtWoRkNaMe",
 			Expected: &L3NetworkId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				L3NetworkName:     "l3nEtWoRkVaLuE",
+				L3NetworkName:     "l3nEtWoRkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/l3nEtWoRkS/l3nEtWoRkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkClOuD/l3nEtWoRkS/l3nEtWoRkNaMe/extra",
 			Error: true,
 		},
 	}

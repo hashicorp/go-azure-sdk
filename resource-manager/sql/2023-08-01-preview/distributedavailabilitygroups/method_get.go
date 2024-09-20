@@ -45,7 +45,6 @@ func (c DistributedAvailabilityGroupsClient) Get(ctx context.Context, id Distrib
 
 	var model DistributedAvailabilityGroup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession` Documentation
 
-The `dataflowdebugsession` SDK allows for interaction with the Azure Resource Manager Service `datafactory` (API Version `2018-06-01`).
+The `dataflowdebugsession` SDK allows for interaction with Azure Resource Manager `datafactory` (API Version `2018-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 payload := dataflowdebugsession.DataFlowDebugPackage{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 payload := dataflowdebugsession.CreateDataFlowDebugSessionRequest{
 	// ...
@@ -62,7 +62,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 payload := dataflowdebugsession.DeleteDataFlowDebugSessionRequest{
 	// ...
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 payload := dataflowdebugsession.DataFlowDebugCommandRequest{
 	// ...
@@ -100,7 +100,7 @@ if err := client.ExecuteCommandThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue")
+id := dataflowdebugsession.NewFactoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName")
 
 // alternatively `client.QueryByFactory(ctx, id)` can be used to do batched pagination
 items, err := client.QueryByFactoryComplete(ctx, id)

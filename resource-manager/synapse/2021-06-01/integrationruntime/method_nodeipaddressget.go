@@ -46,7 +46,6 @@ func (c IntegrationRuntimeClient) NodeIPAddressGet(ctx context.Context, id NodeI
 
 	var model IntegrationRuntimeNodeIPAddress
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2023-12-01/dppresourceguardproxies` Documentation
 
-The `dppresourceguardproxies` SDK allows for interaction with the Azure Resource Manager Service `dataprotection` (API Version `2023-12-01`).
+The `dppresourceguardproxies` SDK allows for interaction with Azure Resource Manager `dataprotection` (API Version `2023-12-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupResourceGuardProxyValue")
+id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName")
 
 payload := dppresourceguardproxies.ResourceGuardProxyBaseResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupResourceGuardProxyValue")
+id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName")
 
 read, err := client.DppResourceGuardProxyDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupResourceGuardProxyValue")
+id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName")
 
 read, err := client.DppResourceGuardProxyGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dppresourceguardproxies.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue")
+id := dppresourceguardproxies.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.DppResourceGuardProxyList(ctx, id)` can be used to do batched pagination
 items, err := client.DppResourceGuardProxyListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupResourceGuardProxyValue")
+id := dppresourceguardproxies.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "resourceGuardProxyName")
 
 payload := dppresourceguardproxies.UnlockDeleteRequest{
 	// ...

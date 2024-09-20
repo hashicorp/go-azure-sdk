@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AliasId{}
 
 func TestNewAliasID(t *testing.T) {
-	id := NewAliasID("aliasValue")
+	id := NewAliasID("aliasName")
 
-	if id.AliasName != "aliasValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AliasName'", id.AliasName, "aliasValue")
+	if id.AliasName != "aliasName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AliasName'", id.AliasName, "aliasName")
 	}
 }
 
 func TestFormatAliasID(t *testing.T) {
-	actual := NewAliasID("aliasValue").ID()
-	expected := "/providers/Microsoft.Subscription/aliases/aliasValue"
+	actual := NewAliasID("aliasName").ID()
+	expected := "/providers/Microsoft.Subscription/aliases/aliasName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseAliasID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Subscription/aliases/aliasValue",
+			Input: "/providers/Microsoft.Subscription/aliases/aliasName",
 			Expected: &AliasId{
-				AliasName: "aliasValue",
+				AliasName: "aliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Subscription/aliases/aliasValue/extra",
+			Input: "/providers/Microsoft.Subscription/aliases/aliasName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseAliasIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Subscription/aliases/aliasValue",
+			Input: "/providers/Microsoft.Subscription/aliases/aliasName",
 			Expected: &AliasId{
-				AliasName: "aliasValue",
+				AliasName: "aliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Subscription/aliases/aliasValue/extra",
+			Input: "/providers/Microsoft.Subscription/aliases/aliasName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/aLiAsEs/aLiAsVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/aLiAsEs/aLiAsNaMe",
 			Expected: &AliasId{
-				AliasName: "aLiAsVaLuE",
+				AliasName: "aLiAsNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/aLiAsEs/aLiAsVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.sUbScRiPtIoN/aLiAsEs/aLiAsNaMe/extra",
 			Error: true,
 		},
 	}

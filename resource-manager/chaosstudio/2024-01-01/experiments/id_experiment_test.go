@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExperimentId{}
 
 func TestNewExperimentID(t *testing.T) {
-	id := NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+	id := NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewExperimentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ExperimentName != "experimentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExperimentName'", id.ExperimentName, "experimentValue")
+	if id.ExperimentName != "experimentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExperimentName'", id.ExperimentName, "experimentName")
 	}
 }
 
 func TestFormatExperimentID(t *testing.T) {
-	actual := NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue"
+	actual := NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseExperimentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName",
 			Expected: &ExperimentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ExperimentName:    "experimentValue",
+				ExperimentName:    "experimentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseExperimentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName",
 			Expected: &ExperimentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ExperimentName:    "experimentValue",
+				ExperimentName:    "experimentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Chaos/experiments/experimentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE",
 			Expected: &ExperimentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ExperimentName:    "eXpErImEnTvAlUe",
+				ExperimentName:    "eXpErImEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cHaOs/eXpErImEnTs/eXpErImEnTnAmE/extra",
 			Error: true,
 		},
 	}

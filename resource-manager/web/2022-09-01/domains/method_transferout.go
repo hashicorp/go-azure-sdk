@@ -46,7 +46,6 @@ func (c DomainsClient) TransferOut(ctx context.Context, id DomainId) (result Tra
 
 	var model Domain
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

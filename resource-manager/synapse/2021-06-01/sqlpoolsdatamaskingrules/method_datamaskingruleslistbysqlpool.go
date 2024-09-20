@@ -46,7 +46,6 @@ func (c SqlPoolsDataMaskingRulesClient) DataMaskingRulesListBySqlPool(ctx contex
 
 	var model DataMaskingRuleListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

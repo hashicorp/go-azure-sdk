@@ -39,6 +39,7 @@ func (o FetchCrossRegionRestoreJobsListOperationOptions) ToHeaders() *client.Hea
 
 func (o FetchCrossRegionRestoreJobsListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

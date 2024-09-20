@@ -44,7 +44,7 @@ func ParseSqlRoleDefinitionID(input string) (*SqlRoleDefinitionId, error) {
 	}
 
 	id := SqlRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseSqlRoleDefinitionIDInsensitively(input string) (*SqlRoleDefinitionId, 
 	}
 
 	id := SqlRoleDefinitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id SqlRoleDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticDatabaseAccounts", "databaseAccounts", "databaseAccounts"),
-		resourceids.UserSpecifiedSegment("databaseAccountName", "databaseAccountValue"),
+		resourceids.UserSpecifiedSegment("databaseAccountName", "accountName"),
 		resourceids.StaticSegment("staticSqlRoleDefinitions", "sqlRoleDefinitions", "sqlRoleDefinitions"),
-		resourceids.UserSpecifiedSegment("roleDefinitionId", "roleDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("roleDefinitionId", "roleDefinitionId"),
 	}
 }
 

@@ -45,7 +45,6 @@ func (c WorkspacePrivateEndpointConnectionsClient) Get(ctx context.Context, id W
 
 	var model PrivateEndpointConnectionDescription
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

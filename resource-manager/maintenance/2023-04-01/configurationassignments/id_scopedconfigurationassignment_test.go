@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedConfigurationAssignmentId{}
 
 func TestNewScopedConfigurationAssignmentID(t *testing.T) {
-	id := NewScopedConfigurationAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "configurationAssignmentValue")
+	id := NewScopedConfigurationAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "configurationAssignmentName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ConfigurationAssignmentName != "configurationAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentValue")
+	if id.ConfigurationAssignmentName != "configurationAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentName")
 	}
 }
 
 func TestFormatScopedConfigurationAssignmentID(t *testing.T) {
-	actual := NewScopedConfigurationAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "configurationAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue"
+	actual := NewScopedConfigurationAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "configurationAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedConfigurationAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ScopedConfigurationAssignmentId{
 				Scope:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedConfigurationAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ScopedConfigurationAssignmentId{
 				Scope:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			Expected: &ScopedConfigurationAssignmentId{
 				Scope:                       "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/storageaccounts` Documentation
 
-The `storageaccounts` SDK allows for interaction with the Azure Resource Manager Service `datalakeanalytics` (API Version `2016-11-01`).
+The `storageaccounts` SDK allows for interaction with Azure Resource Manager `datalakeanalytics` (API Version `2016-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName")
 
 payload := storageaccounts.AddStorageAccountParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue", "containerValue")
+id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName", "containerName")
 
 read, err := client.GetStorageContainer(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := storageaccounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
 
 // alternatively `client.ListByAccount(ctx, id, storageaccounts.DefaultListByAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAccountComplete(ctx, id, storageaccounts.DefaultListByAccountOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue", "containerValue")
+id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName", "containerName")
 
 // alternatively `client.ListSasTokens(ctx, id)` can be used to do batched pagination
 items, err := client.ListSasTokensComplete(ctx, id)
@@ -127,7 +127,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName")
 
 // alternatively `client.ListStorageContainers(ctx, id)` can be used to do batched pagination
 items, err := client.ListStorageContainersComplete(ctx, id)
@@ -144,7 +144,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageAccountName")
 
 payload := storageaccounts.UpdateStorageAccountParameters{
 	// ...

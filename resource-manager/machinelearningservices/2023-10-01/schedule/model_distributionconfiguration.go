@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DistributionConfiguration interface {
+	DistributionConfiguration() BaseDistributionConfigurationImpl
 }
 
-// RawDistributionConfigurationImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ DistributionConfiguration = BaseDistributionConfigurationImpl{}
+
+type BaseDistributionConfigurationImpl struct {
+	DistributionType DistributionType `json:"distributionType"`
+}
+
+func (s BaseDistributionConfigurationImpl) DistributionConfiguration() BaseDistributionConfigurationImpl {
+	return s
+}
+
+var _ DistributionConfiguration = RawDistributionConfigurationImpl{}
+
+// RawDistributionConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawDistributionConfigurationImpl struct {
-	Type   string
-	Values map[string]interface{}
+	distributionConfiguration BaseDistributionConfigurationImpl
+	Type                      string
+	Values                    map[string]interface{}
 }
 
-func unmarshalDistributionConfigurationImplementation(input []byte) (DistributionConfiguration, error) {
+func (s RawDistributionConfigurationImpl) DistributionConfiguration() BaseDistributionConfigurationImpl {
+	return s.distributionConfiguration
+}
+
+func UnmarshalDistributionConfigurationImplementation(input []byte) (DistributionConfiguration, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalDistributionConfigurationImplementation(input []byte) (Distributio
 		return out, nil
 	}
 
-	out := RawDistributionConfigurationImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseDistributionConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDistributionConfigurationImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawDistributionConfigurationImpl{
+		distributionConfiguration: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
 
 }

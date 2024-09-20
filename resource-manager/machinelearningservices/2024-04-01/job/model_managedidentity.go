@@ -16,6 +16,14 @@ type ManagedIdentity struct {
 	ResourceId *string `json:"resourceId,omitempty"`
 
 	// Fields inherited from IdentityConfiguration
+
+	IdentityType IdentityConfigurationType `json:"identityType"`
+}
+
+func (s ManagedIdentity) IdentityConfiguration() BaseIdentityConfigurationImpl {
+	return BaseIdentityConfigurationImpl{
+		IdentityType: s.IdentityType,
+	}
 }
 
 var _ json.Marshaler = ManagedIdentity{}
@@ -29,9 +37,10 @@ func (s ManagedIdentity) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ManagedIdentity: %+v", err)
 	}
+
 	decoded["identityType"] = "Managed"
 
 	encoded, err = json.Marshal(decoded)

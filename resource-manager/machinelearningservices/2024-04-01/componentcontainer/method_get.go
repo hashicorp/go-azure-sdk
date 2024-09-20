@@ -45,7 +45,6 @@ func (c ComponentContainerClient) Get(ctx context.Context, id ComponentId) (resu
 
 	var model ComponentContainerResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

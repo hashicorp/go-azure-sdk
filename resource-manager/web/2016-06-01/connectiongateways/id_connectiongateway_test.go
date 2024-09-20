@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectionGatewayId{}
 
 func TestNewConnectionGatewayID(t *testing.T) {
-	id := NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+	id := NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewConnectionGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConnectionGatewayName != "connectionGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectionGatewayName'", id.ConnectionGatewayName, "connectionGatewayValue")
+	if id.ConnectionGatewayName != "connectionGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectionGatewayName'", id.ConnectionGatewayName, "connectionGatewayName")
 	}
 }
 
 func TestFormatConnectionGatewayID(t *testing.T) {
-	actual := NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayValue"
+	actual := NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseConnectionGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayName",
 			Expected: &ConnectionGatewayId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				ConnectionGatewayName: "connectionGatewayValue",
+				ConnectionGatewayName: "connectionGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseConnectionGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayName",
 			Expected: &ConnectionGatewayId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				ConnectionGatewayName: "connectionGatewayValue",
+				ConnectionGatewayName: "connectionGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/connectionGateways/connectionGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnNeCtIoNgAtEwAyS/cOnNeCtIoNgAtEwAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnNeCtIoNgAtEwAyS/cOnNeCtIoNgAtEwAyNaMe",
 			Expected: &ConnectionGatewayId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				ConnectionGatewayName: "cOnNeCtIoNgAtEwAyVaLuE",
+				ConnectionGatewayName: "cOnNeCtIoNgAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnNeCtIoNgAtEwAyS/cOnNeCtIoNgAtEwAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnNeCtIoNgAtEwAyS/cOnNeCtIoNgAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

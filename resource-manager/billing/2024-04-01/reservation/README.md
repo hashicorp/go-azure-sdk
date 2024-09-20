@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservation` Documentation
 
-The `reservation` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2024-04-01`).
+The `reservation` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2024-04-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reservation.NewReservationID("billingAccountValue", "reservationOrderIdValue", "reservationIdValue")
+id := reservation.NewReservationID("billingAccountName", "reservationOrderId", "reservationId")
 
 read, err := client.GetByReservationOrder(ctx, id, reservation.DefaultGetByReservationOrderOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reservation.NewReservationID("billingAccountValue", "reservationOrderIdValue", "reservationIdValue")
+id := reservation.NewReservationID("billingAccountName", "reservationOrderId", "reservationId")
 
 payload := reservation.Patch{
 	// ...

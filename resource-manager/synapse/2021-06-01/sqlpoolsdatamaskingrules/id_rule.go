@@ -46,7 +46,7 @@ func ParseRuleID(input string) (*RuleId, error) {
 	}
 
 	id := RuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseRuleIDInsensitively(input string) (*RuleId, error) {
 	}
 
 	id := RuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id RuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticSqlPools", "sqlPools", "sqlPools"),
-		resourceids.UserSpecifiedSegment("sqlPoolName", "sqlPoolValue"),
+		resourceids.UserSpecifiedSegment("sqlPoolName", "sqlPoolName"),
 		resourceids.StaticSegment("staticDataMaskingPolicies", "dataMaskingPolicies", "dataMaskingPolicies"),
 		resourceids.StaticSegment("dataMaskingPolicyName", "default", "default"),
 		resourceids.StaticSegment("staticRules", "rules", "rules"),
-		resourceids.UserSpecifiedSegment("ruleName", "ruleValue"),
+		resourceids.UserSpecifiedSegment("ruleName", "dataMaskingRuleName"),
 	}
 }
 

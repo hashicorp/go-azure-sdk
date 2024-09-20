@@ -46,7 +46,7 @@ func ParseContentItemID(input string) (*ContentItemId, error) {
 	}
 
 	id := ContentItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseContentItemIDInsensitively(input string) (*ContentItemId, error) {
 	}
 
 	id := ContentItemId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id ContentItemId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticContentTypes", "contentTypes", "contentTypes"),
-		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeIdValue"),
+		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeId"),
 		resourceids.StaticSegment("staticContentItems", "contentItems", "contentItems"),
-		resourceids.UserSpecifiedSegment("contentItemId", "contentItemIdValue"),
+		resourceids.UserSpecifiedSegment("contentItemId", "contentItemId"),
 	}
 }
 

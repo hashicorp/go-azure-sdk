@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/subscriptions` Documentation
 
-The `subscriptions` SDK allows for interaction with the Azure Resource Manager Service `streamanalytics` (API Version `2021-10-01-preview`).
+The `subscriptions` SDK allows for interaction with Azure Resource Manager `streamanalytics` (API Version `2021-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := subscriptions.CompileQuery{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 read, err := client.ListQuotas(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := subscriptions.SampleInput{
 	// ...
@@ -78,7 +78,7 @@ if err := client.SampleInputThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := subscriptions.TestInput{
 	// ...
@@ -95,7 +95,7 @@ if err := client.TestInputThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := subscriptions.TestOutput{
 	// ...
@@ -112,7 +112,7 @@ if err := client.TestOutputThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := subscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 payload := subscriptions.TestQuery{
 	// ...

@@ -15,7 +15,7 @@ type MHSMListPrivateEndpointConnectionsClient struct {
 }
 
 func NewMHSMListPrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMListPrivateEndpointConnectionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mhsmlistprivateendpointconnections", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "mhsmlistprivateendpointconnections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MHSMListPrivateEndpointConnectionsClient: %+v", err)
 	}

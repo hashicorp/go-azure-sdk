@@ -50,7 +50,6 @@ func (c MigrationsClient) Create(ctx context.Context, id MigrationId, input Migr
 
 	var model MigrationResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -50,7 +50,6 @@ func (c EnvironmentsClient) CreateOrUpdate(ctx context.Context, id EnvironmentId
 
 	var model Environment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -14,6 +14,14 @@ type ExistingStorageAccount struct {
 	AzureStorageAccountId string `json:"azureStorageAccountId"`
 
 	// Fields inherited from StorageAccountCustomDetails
+
+	ResourceType string `json:"resourceType"`
+}
+
+func (s ExistingStorageAccount) StorageAccountCustomDetails() BaseStorageAccountCustomDetailsImpl {
+	return BaseStorageAccountCustomDetailsImpl{
+		ResourceType: s.ResourceType,
+	}
 }
 
 var _ json.Marshaler = ExistingStorageAccount{}
@@ -27,9 +35,10 @@ func (s ExistingStorageAccount) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ExistingStorageAccount: %+v", err)
 	}
+
 	decoded["resourceType"] = "Existing"
 
 	encoded, err = json.Marshal(decoded)

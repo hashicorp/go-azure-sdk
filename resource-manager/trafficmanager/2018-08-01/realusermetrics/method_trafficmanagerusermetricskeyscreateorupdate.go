@@ -47,7 +47,6 @@ func (c RealUserMetricsClient) TrafficManagerUserMetricsKeysCreateOrUpdate(ctx c
 
 	var model UserMetricsModel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

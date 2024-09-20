@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apidiagnostic` Documentation
 
-The `apidiagnostic` SDK allows for interaction with the Azure Resource Manager Service `apimanagement` (API Version `2024-05-01`).
+The `apidiagnostic` SDK allows for interaction with Azure Resource Manager `apimanagement` (API Version `2024-05-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "diagnosticId")
 
 payload := apidiagnostic.DiagnosticContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "diagnosticId")
 
 read, err := client.Delete(ctx, id, apidiagnostic.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "diagnosticId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "diagnosticId")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := apidiagnostic.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId")
 
 // alternatively `client.ListByService(ctx, id, apidiagnostic.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, apidiagnostic.DefaultListByServiceOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "apiId", "diagnosticId")
 
 payload := apidiagnostic.DiagnosticContract{
 	// ...
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId", "diagnosticId")
 
 payload := apidiagnostic.DiagnosticContract{
 	// ...
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId", "diagnosticId")
 
 read, err := client.WorkspaceApiDiagnosticDelete(ctx, id, apidiagnostic.DefaultWorkspaceApiDiagnosticDeleteOperationOptions())
 if err != nil {
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId", "diagnosticId")
 
 read, err := client.WorkspaceApiDiagnosticGet(ctx, id)
 if err != nil {
@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId", "diagnosticId")
 
 read, err := client.WorkspaceApiDiagnosticGetEntityTag(ctx, id)
 if err != nil {
@@ -200,7 +200,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue")
+id := apidiagnostic.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
 // alternatively `client.WorkspaceApiDiagnosticListByWorkspace(ctx, id, apidiagnostic.DefaultWorkspaceApiDiagnosticListByWorkspaceOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceApiDiagnosticListByWorkspaceComplete(ctx, id, apidiagnostic.DefaultWorkspaceApiDiagnosticListByWorkspaceOperationOptions())
@@ -217,7 +217,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "workspaceIdValue", "apiIdValue", "diagnosticIdValue")
+id := apidiagnostic.NewWorkspaceApiDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId", "diagnosticId")
 
 payload := apidiagnostic.DiagnosticUpdateContract{
 	// ...

@@ -32,7 +32,7 @@ func (s *LookupActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["source"]; ok {
-		impl, err := unmarshalCopySourceImplementation(v)
+		impl, err := UnmarshalCopySourceImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Source' for 'LookupActivityTypeProperties': %+v", err)
 		}

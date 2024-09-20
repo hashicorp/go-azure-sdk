@@ -15,7 +15,7 @@ type CodeContainerClient struct {
 }
 
 func NewCodeContainerClientWithBaseURI(sdkApi sdkEnv.Api) (*CodeContainerClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "codecontainer", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "codecontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CodeContainerClient: %+v", err)
 	}

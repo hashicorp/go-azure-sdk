@@ -33,7 +33,7 @@ func (s *DryrunProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["parameters"]; ok {
-		impl, err := unmarshalDryrunParametersImplementation(v)
+		impl, err := UnmarshalDryrunParametersImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Parameters' for 'DryrunProperties': %+v", err)
 		}
@@ -48,7 +48,7 @@ func (s *DryrunProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]DryrunPrerequisiteResult, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalDryrunPrerequisiteResultImplementation(val)
+			impl, err := UnmarshalDryrunPrerequisiteResultImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'PrerequisiteResults' for 'DryrunProperties': %+v", i, err)
 			}

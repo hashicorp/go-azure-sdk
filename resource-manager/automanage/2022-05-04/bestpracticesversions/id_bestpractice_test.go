@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &BestPracticeId{}
 
 func TestNewBestPracticeID(t *testing.T) {
-	id := NewBestPracticeID("bestPracticeValue")
+	id := NewBestPracticeID("bestPracticeName")
 
-	if id.BestPracticeName != "bestPracticeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BestPracticeName'", id.BestPracticeName, "bestPracticeValue")
+	if id.BestPracticeName != "bestPracticeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BestPracticeName'", id.BestPracticeName, "bestPracticeName")
 	}
 }
 
 func TestFormatBestPracticeID(t *testing.T) {
-	actual := NewBestPracticeID("bestPracticeValue").ID()
-	expected := "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue"
+	actual := NewBestPracticeID("bestPracticeName").ID()
+	expected := "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseBestPracticeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName",
 			Expected: &BestPracticeId{
-				BestPracticeName: "bestPracticeValue",
+				BestPracticeName: "bestPracticeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/extra",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseBestPracticeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName",
 			Expected: &BestPracticeId{
-				BestPracticeName: "bestPracticeValue",
+				BestPracticeName: "bestPracticeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeValue/extra",
+			Input: "/providers/Microsoft.AutoManage/bestPractices/bestPracticeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE",
 			Expected: &BestPracticeId{
-				BestPracticeName: "bEsTpRaCtIcEvAlUe",
+				BestPracticeName: "bEsTpRaCtIcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.aUtOmAnAgE/bEsTpRaCtIcEs/bEsTpRaCtIcEnAmE/extra",
 			Error: true,
 		},
 	}

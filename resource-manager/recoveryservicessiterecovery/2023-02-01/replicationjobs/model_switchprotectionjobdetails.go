@@ -14,7 +14,16 @@ type SwitchProtectionJobDetails struct {
 	NewReplicationProtectedItemId *string `json:"newReplicationProtectedItemId,omitempty"`
 
 	// Fields inherited from JobDetails
+
 	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}
+
+func (s SwitchProtectionJobDetails) JobDetails() BaseJobDetailsImpl {
+	return BaseJobDetailsImpl{
+		AffectedObjectDetails: s.AffectedObjectDetails,
+		InstanceType:          s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = SwitchProtectionJobDetails{}
@@ -28,9 +37,10 @@ func (s SwitchProtectionJobDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SwitchProtectionJobDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "SwitchProtectionJobDetails"
 
 	encoded, err = json.Marshal(decoded)

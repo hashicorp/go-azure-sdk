@@ -15,8 +15,18 @@ type AzureStorageSmbFileShareEndpointProperties struct {
 	StorageAccountResourceId string `json:"storageAccountResourceId"`
 
 	// Fields inherited from EndpointBaseProperties
+
 	Description       *string            `json:"description,omitempty"`
+	EndpointType      EndpointType       `json:"endpointType"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s AzureStorageSmbFileShareEndpointProperties) EndpointBaseProperties() BaseEndpointBasePropertiesImpl {
+	return BaseEndpointBasePropertiesImpl{
+		Description:       s.Description,
+		EndpointType:      s.EndpointType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = AzureStorageSmbFileShareEndpointProperties{}
@@ -30,9 +40,10 @@ func (s AzureStorageSmbFileShareEndpointProperties) MarshalJSON() ([]byte, error
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureStorageSmbFileShareEndpointProperties: %+v", err)
 	}
+
 	decoded["endpointType"] = "AzureStorageSmbFileShare"
 
 	encoded, err = json.Marshal(decoded)

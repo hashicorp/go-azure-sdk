@@ -14,10 +14,22 @@ type AzureDataLakeStoreWriteSettings struct {
 	ExpiryDateTime *string `json:"expiryDateTime,omitempty"`
 
 	// Fields inherited from StoreWriteSettings
+
 	CopyBehavior             *string         `json:"copyBehavior,omitempty"`
 	DisableMetricsCollection *bool           `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64          `json:"maxConcurrentConnections,omitempty"`
 	Metadata                 *[]MetadataItem `json:"metadata,omitempty"`
+	Type                     string          `json:"type"`
+}
+
+func (s AzureDataLakeStoreWriteSettings) StoreWriteSettings() BaseStoreWriteSettingsImpl {
+	return BaseStoreWriteSettingsImpl{
+		CopyBehavior:             s.CopyBehavior,
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		Metadata:                 s.Metadata,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureDataLakeStoreWriteSettings{}
@@ -31,9 +43,10 @@ func (s AzureDataLakeStoreWriteSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureDataLakeStoreWriteSettings: %+v", err)
 	}
+
 	decoded["type"] = "AzureDataLakeStoreWriteSettings"
 
 	encoded, err = json.Marshal(decoded)

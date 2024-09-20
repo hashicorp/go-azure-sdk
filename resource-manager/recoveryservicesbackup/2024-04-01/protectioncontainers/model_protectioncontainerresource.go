@@ -40,7 +40,7 @@ func (s *ProtectionContainerResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalProtectionContainerImplementation(v)
+		impl, err := UnmarshalProtectionContainerImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'ProtectionContainerResource': %+v", err)
 		}

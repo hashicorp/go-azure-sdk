@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AzureTrafficCollectorId{}
 
 func TestNewAzureTrafficCollectorID(t *testing.T) {
-	id := NewAzureTrafficCollectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureTrafficCollectorValue")
+	id := NewAzureTrafficCollectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureTrafficCollectorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAzureTrafficCollectorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AzureTrafficCollectorName != "azureTrafficCollectorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureTrafficCollectorName'", id.AzureTrafficCollectorName, "azureTrafficCollectorValue")
+	if id.AzureTrafficCollectorName != "azureTrafficCollectorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureTrafficCollectorName'", id.AzureTrafficCollectorName, "azureTrafficCollectorName")
 	}
 }
 
 func TestFormatAzureTrafficCollectorID(t *testing.T) {
-	actual := NewAzureTrafficCollectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureTrafficCollectorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorValue"
+	actual := NewAzureTrafficCollectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "azureTrafficCollectorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAzureTrafficCollectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName",
 			Expected: &AzureTrafficCollectorId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				AzureTrafficCollectorName: "azureTrafficCollectorValue",
+				AzureTrafficCollectorName: "azureTrafficCollectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAzureTrafficCollectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName",
 			Expected: &AzureTrafficCollectorId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				AzureTrafficCollectorName: "azureTrafficCollectorValue",
+				AzureTrafficCollectorName: "azureTrafficCollectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetworkFunction/azureTrafficCollectors/azureTrafficCollectorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkFuNcTiOn/aZuReTrAfFiCcOlLeCtOrS/aZuReTrAfFiCcOlLeCtOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkFuNcTiOn/aZuReTrAfFiCcOlLeCtOrS/aZuReTrAfFiCcOlLeCtOrNaMe",
 			Expected: &AzureTrafficCollectorId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				AzureTrafficCollectorName: "aZuReTrAfFiCcOlLeCtOrVaLuE",
+				AzureTrafficCollectorName: "aZuReTrAfFiCcOlLeCtOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkFuNcTiOn/aZuReTrAfFiCcOlLeCtOrS/aZuReTrAfFiCcOlLeCtOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRkFuNcTiOn/aZuReTrAfFiCcOlLeCtOrS/aZuReTrAfFiCcOlLeCtOrNaMe/extra",
 			Error: true,
 		},
 	}

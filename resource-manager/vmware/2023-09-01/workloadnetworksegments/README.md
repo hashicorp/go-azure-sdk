@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2023-09-01/workloadnetworksegments` Documentation
 
-The `workloadnetworksegments` SDK allows for interaction with the Azure Resource Manager Service `vmware` (API Version `2023-09-01`).
+The `workloadnetworksegments` SDK allows for interaction with Azure Resource Manager `vmware` (API Version `2023-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
+id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId")
 
 payload := workloadnetworksegments.WorkloadNetworkSegment{
 	// ...
@@ -41,7 +41,7 @@ if err := client.WorkloadNetworksCreateSegmentsThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
+id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId")
 
 if err := client.WorkloadNetworksDeleteSegmentThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.WorkloadNetworksDeleteSegmentThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
+id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId")
 
 read, err := client.WorkloadNetworksGetSegment(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworksegments.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue")
+id := workloadnetworksegments.NewPrivateCloudID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName")
 
 // alternatively `client.WorkloadNetworksListSegments(ctx, id)` can be used to do batched pagination
 items, err := client.WorkloadNetworksListSegmentsComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "segmentIdValue")
+id := workloadnetworksegments.NewSegmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "segmentId")
 
 payload := workloadnetworksegments.WorkloadNetworkSegment{
 	// ...

@@ -44,7 +44,7 @@ func ParseManagedInstanceRecoverableDatabaseID(input string) (*ManagedInstanceRe
 	}
 
 	id := ManagedInstanceRecoverableDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstanceRecoverableDatabaseIDInsensitively(input string) (*Mana
 	}
 
 	id := ManagedInstanceRecoverableDatabaseId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ManagedInstanceRecoverableDatabaseId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticRecoverableDatabases", "recoverableDatabases", "recoverableDatabases"),
-		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "recoverableDatabaseValue"),
+		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "recoverableDatabaseName"),
 	}
 }
 

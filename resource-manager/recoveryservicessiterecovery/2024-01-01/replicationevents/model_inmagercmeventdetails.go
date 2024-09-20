@@ -21,6 +21,14 @@ type InMageRcmEventDetails struct {
 	VirtualMachineName   *string `json:"vmName,omitempty"`
 
 	// Fields inherited from EventProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s InMageRcmEventDetails) EventProviderSpecificDetails() BaseEventProviderSpecificDetailsImpl {
+	return BaseEventProviderSpecificDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = InMageRcmEventDetails{}
@@ -34,9 +42,10 @@ func (s InMageRcmEventDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling InMageRcmEventDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "InMageRcm"
 
 	encoded, err = json.Marshal(decoded)

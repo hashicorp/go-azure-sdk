@@ -24,8 +24,18 @@ type AzureDataLakeStoreReadSettings struct {
 	WildcardFolderPath         *string `json:"wildcardFolderPath,omitempty"`
 
 	// Fields inherited from StoreReadSettings
+
 	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
+	Type                     string `json:"type"`
+}
+
+func (s AzureDataLakeStoreReadSettings) StoreReadSettings() BaseStoreReadSettingsImpl {
+	return BaseStoreReadSettingsImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureDataLakeStoreReadSettings{}
@@ -39,9 +49,10 @@ func (s AzureDataLakeStoreReadSettings) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureDataLakeStoreReadSettings: %+v", err)
 	}
+
 	decoded["type"] = "AzureDataLakeStoreReadSettings"
 
 	encoded, err = json.Marshal(decoded)

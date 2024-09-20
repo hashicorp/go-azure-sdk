@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PricingId{}
 
 func TestNewPricingID(t *testing.T) {
-	id := NewPricingID("scopeIdValue", "pricingValue")
+	id := NewPricingID("scopeId", "pricingName")
 
-	if id.ScopeId != "scopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopeId'", id.ScopeId, "scopeIdValue")
+	if id.ScopeId != "scopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopeId'", id.ScopeId, "scopeId")
 	}
 
-	if id.PricingName != "pricingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PricingName'", id.PricingName, "pricingValue")
+	if id.PricingName != "pricingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PricingName'", id.PricingName, "pricingName")
 	}
 }
 
 func TestFormatPricingID(t *testing.T) {
-	actual := NewPricingID("scopeIdValue", "pricingValue").ID()
-	expected := "/scopeIdValue/providers/Microsoft.Security/pricings/pricingValue"
+	actual := NewPricingID("scopeId", "pricingName").ID()
+	expected := "/scopeId/providers/Microsoft.Security/pricings/pricingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,35 +44,35 @@ func TestParsePricingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue",
+			Input: "/scopeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers",
+			Input: "/scopeId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers/Microsoft.Security",
+			Input: "/scopeId/providers/Microsoft.Security",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings",
+			Input: "/scopeId/providers/Microsoft.Security/pricings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings/pricingValue",
+			Input: "/scopeId/providers/Microsoft.Security/pricings/pricingName",
 			Expected: &PricingId{
-				ScopeId:     "scopeIdValue",
-				PricingName: "pricingValue",
+				ScopeId:     "scopeId",
+				PricingName: "pricingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings/pricingValue/extra",
+			Input: "/scopeId/providers/Microsoft.Security/pricings/pricingName/extra",
 			Error: true,
 		},
 	}
@@ -115,68 +115,68 @@ func TestParsePricingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue",
+			Input: "/scopeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE",
+			Input: "/sCoPeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers",
+			Input: "/scopeId/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/pRoViDeRs",
+			Input: "/sCoPeId/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers/Microsoft.Security",
+			Input: "/scopeId/providers/Microsoft.Security",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItY",
+			Input: "/sCoPeId/pRoViDeRs/mIcRoSoFt.sEcUrItY",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings",
+			Input: "/scopeId/providers/Microsoft.Security/pricings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS",
+			Input: "/sCoPeId/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings/pricingValue",
+			Input: "/scopeId/providers/Microsoft.Security/pricings/pricingName",
 			Expected: &PricingId{
-				ScopeId:     "scopeIdValue",
-				PricingName: "pricingValue",
+				ScopeId:     "scopeId",
+				PricingName: "pricingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/scopeIdValue/providers/Microsoft.Security/pricings/pricingValue/extra",
+			Input: "/scopeId/providers/Microsoft.Security/pricings/pricingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgVaLuE",
+			Input: "/sCoPeId/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgNaMe",
 			Expected: &PricingId{
-				ScopeId:     "sCoPeIdVaLuE",
-				PricingName: "pRiCiNgVaLuE",
+				ScopeId:     "sCoPeId",
+				PricingName: "pRiCiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sCoPeIdVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgVaLuE/extra",
+			Input: "/sCoPeId/pRoViDeRs/mIcRoSoFt.sEcUrItY/pRiCiNgS/pRiCiNgNaMe/extra",
 			Error: true,
 		},
 	}

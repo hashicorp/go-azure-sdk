@@ -15,7 +15,7 @@ type ServerResetGtidClient struct {
 }
 
 func NewServerResetGtidClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerResetGtidClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverresetgtid", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverresetgtid", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerResetGtidClient: %+v", err)
 	}

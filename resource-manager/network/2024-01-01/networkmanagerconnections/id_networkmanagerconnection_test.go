@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &NetworkManagerConnectionId{}
 
 func TestNewNetworkManagerConnectionID(t *testing.T) {
-	id := NewNetworkManagerConnectionID("12345678-1234-9876-4563-123456789012", "networkManagerConnectionValue")
+	id := NewNetworkManagerConnectionID("12345678-1234-9876-4563-123456789012", "networkManagerConnectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.NetworkManagerConnectionName != "networkManagerConnectionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerConnectionName'", id.NetworkManagerConnectionName, "networkManagerConnectionValue")
+	if id.NetworkManagerConnectionName != "networkManagerConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerConnectionName'", id.NetworkManagerConnectionName, "networkManagerConnectionName")
 	}
 }
 
 func TestFormatNetworkManagerConnectionID(t *testing.T) {
-	actual := NewNetworkManagerConnectionID("12345678-1234-9876-4563-123456789012", "networkManagerConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue"
+	actual := NewNetworkManagerConnectionID("12345678-1234-9876-4563-123456789012", "networkManagerConnectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseNetworkManagerConnectionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName",
 			Expected: &NetworkManagerConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				NetworkManagerConnectionName: "networkManagerConnectionValue",
+				NetworkManagerConnectionName: "networkManagerConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseNetworkManagerConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName",
 			Expected: &NetworkManagerConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				NetworkManagerConnectionName: "networkManagerConnectionValue",
+				NetworkManagerConnectionName: "networkManagerConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/networkManagerConnections/networkManagerConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNnAmE",
 			Expected: &NetworkManagerConnectionId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				NetworkManagerConnectionName: "nEtWoRkMaNaGeRcOnNeCtIoNvAlUe",
+				NetworkManagerConnectionName: "nEtWoRkMaNaGeRcOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRcOnNeCtIoNs/nEtWoRkMaNaGeRcOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

@@ -15,7 +15,7 @@ type ListServiceProvidersClient struct {
 }
 
 func NewListServiceProvidersClientWithBaseURI(sdkApi sdkEnv.Api) (*ListServiceProvidersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listserviceproviders", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "listserviceproviders", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListServiceProvidersClient: %+v", err)
 	}

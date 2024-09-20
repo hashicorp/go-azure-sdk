@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartitionSchemeDescription interface {
+	PartitionSchemeDescription() BasePartitionSchemeDescriptionImpl
 }
 
-// RawPartitionSchemeDescriptionImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ PartitionSchemeDescription = BasePartitionSchemeDescriptionImpl{}
+
+type BasePartitionSchemeDescriptionImpl struct {
+	PartitionScheme PartitionScheme `json:"partitionScheme"`
+}
+
+func (s BasePartitionSchemeDescriptionImpl) PartitionSchemeDescription() BasePartitionSchemeDescriptionImpl {
+	return s
+}
+
+var _ PartitionSchemeDescription = RawPartitionSchemeDescriptionImpl{}
+
+// RawPartitionSchemeDescriptionImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawPartitionSchemeDescriptionImpl struct {
-	Type   string
-	Values map[string]interface{}
+	partitionSchemeDescription BasePartitionSchemeDescriptionImpl
+	Type                       string
+	Values                     map[string]interface{}
 }
 
-func unmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionSchemeDescription, error) {
+func (s RawPartitionSchemeDescriptionImpl) PartitionSchemeDescription() BasePartitionSchemeDescriptionImpl {
+	return s.partitionSchemeDescription
+}
+
+func UnmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionSchemeDescription, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionS
 		return out, nil
 	}
 
-	out := RawPartitionSchemeDescriptionImpl{
-		Type:   value,
-		Values: temp,
+	var parent BasePartitionSchemeDescriptionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePartitionSchemeDescriptionImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawPartitionSchemeDescriptionImpl{
+		partitionSchemeDescription: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
 
 }

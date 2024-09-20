@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualHardDiskId{}
 
 func TestNewVirtualHardDiskID(t *testing.T) {
-	id := NewVirtualHardDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHardDiskValue")
+	id := NewVirtualHardDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHardDiskName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualHardDiskID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualHardDiskName != "virtualHardDiskValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualHardDiskName'", id.VirtualHardDiskName, "virtualHardDiskValue")
+	if id.VirtualHardDiskName != "virtualHardDiskName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualHardDiskName'", id.VirtualHardDiskName, "virtualHardDiskName")
 	}
 }
 
 func TestFormatVirtualHardDiskID(t *testing.T) {
-	actual := NewVirtualHardDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHardDiskValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskValue"
+	actual := NewVirtualHardDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHardDiskName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualHardDiskID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskName",
 			Expected: &VirtualHardDiskId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				VirtualHardDiskName: "virtualHardDiskValue",
+				VirtualHardDiskName: "virtualHardDiskName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualHardDiskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskName",
 			Expected: &VirtualHardDiskId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				VirtualHardDiskName: "virtualHardDiskValue",
+				VirtualHardDiskName: "virtualHardDiskName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/virtualHardDisks/virtualHardDiskName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/vIrTuAlHaRdDiSkS/vIrTuAlHaRdDiSkVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/vIrTuAlHaRdDiSkS/vIrTuAlHaRdDiSkNaMe",
 			Expected: &VirtualHardDiskId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualHardDiskName: "vIrTuAlHaRdDiSkVaLuE",
+				VirtualHardDiskName: "vIrTuAlHaRdDiSkNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/vIrTuAlHaRdDiSkS/vIrTuAlHaRdDiSkVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/vIrTuAlHaRdDiSkS/vIrTuAlHaRdDiSkNaMe/extra",
 			Error: true,
 		},
 	}

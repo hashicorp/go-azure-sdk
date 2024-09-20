@@ -34,7 +34,7 @@ func (s *OracleCloudStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 	}
 
 	if v, ok := temp["secretAccessKey"]; ok {
-		impl, err := unmarshalSecretBaseImplementation(v)
+		impl, err := UnmarshalSecretBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecretAccessKey' for 'OracleCloudStorageLinkedServiceTypeProperties': %+v", err)
 		}

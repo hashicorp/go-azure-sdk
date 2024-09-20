@@ -15,7 +15,16 @@ type SecretAuthInfo struct {
 	SecretInfo SecretInfoBase `json:"secretInfo"`
 
 	// Fields inherited from AuthInfoBase
+
 	AuthMode *AuthMode `json:"authMode,omitempty"`
+	AuthType AuthType  `json:"authType"`
+}
+
+func (s SecretAuthInfo) AuthInfoBase() BaseAuthInfoBaseImpl {
+	return BaseAuthInfoBaseImpl{
+		AuthMode: s.AuthMode,
+		AuthType: s.AuthType,
+	}
 }
 
 var _ json.Marshaler = SecretAuthInfo{}
@@ -29,9 +38,10 @@ func (s SecretAuthInfo) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SecretAuthInfo: %+v", err)
 	}
+
 	decoded["authType"] = "secret"
 
 	encoded, err = json.Marshal(decoded)
@@ -52,6 +62,7 @@ func (s *SecretAuthInfo) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.AuthMode = decoded.AuthMode
+	s.AuthType = decoded.AuthType
 	s.Name = decoded.Name
 
 	var temp map[string]json.RawMessage
@@ -60,7 +71,7 @@ func (s *SecretAuthInfo) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["secretInfo"]; ok {
-		impl, err := unmarshalSecretInfoBaseImplementation(v)
+		impl, err := UnmarshalSecretInfoBaseImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SecretInfo' for 'SecretAuthInfo': %+v", err)
 		}

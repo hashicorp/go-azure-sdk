@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/quota/2023-02-01/quotainformation` Documentation
 
-The `quotainformation` SDK allows for interaction with the Azure Resource Manager Service `quota` (API Version `2023-02-01`).
+The `quotainformation` SDK allows for interaction with Azure Resource Manager `quota` (API Version `2023-02-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaValue")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
 
 payload := quotainformation.CurrentQuotaLimitBase{
 	// ...
@@ -42,7 +42,7 @@ if err := client.QuotaCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaValue")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
 
 read, err := client.QuotaGet(ctx, id)
 if err != nil {
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaValue")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
 
 payload := quotainformation.CurrentQuotaLimitBase{
 	// ...

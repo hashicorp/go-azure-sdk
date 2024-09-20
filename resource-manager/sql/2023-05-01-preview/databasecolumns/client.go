@@ -15,7 +15,7 @@ type DatabaseColumnsClient struct {
 }
 
 func NewDatabaseColumnsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseColumnsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databasecolumns", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "databasecolumns", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseColumnsClient: %+v", err)
 	}

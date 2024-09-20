@@ -44,7 +44,7 @@ func ParseDedicatedSQLMinimalTLSSettingID(input string) (*DedicatedSQLMinimalTLS
 	}
 
 	id := DedicatedSQLMinimalTLSSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDedicatedSQLMinimalTLSSettingIDInsensitively(input string) (*Dedicated
 	}
 
 	id := DedicatedSQLMinimalTLSSettingId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DedicatedSQLMinimalTLSSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticDedicatedSQLMinimalTLSSettings", "dedicatedSQLMinimalTLSSettings", "dedicatedSQLMinimalTLSSettings"),
-		resourceids.UserSpecifiedSegment("dedicatedSQLMinimalTLSSettingName", "dedicatedSQLMinimalTLSSettingValue"),
+		resourceids.UserSpecifiedSegment("dedicatedSQLMinimalTLSSettingName", "dedicatedSQLminimalTlsSettingsName"),
 	}
 }
 

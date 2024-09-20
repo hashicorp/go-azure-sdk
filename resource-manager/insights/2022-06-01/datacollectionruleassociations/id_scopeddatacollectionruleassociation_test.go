@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedDataCollectionRuleAssociationId{}
 
 func TestNewScopedDataCollectionRuleAssociationID(t *testing.T) {
-	id := NewScopedDataCollectionRuleAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dataCollectionRuleAssociationValue")
+	id := NewScopedDataCollectionRuleAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationName")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.DataCollectionRuleAssociationName != "dataCollectionRuleAssociationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataCollectionRuleAssociationName'", id.DataCollectionRuleAssociationName, "dataCollectionRuleAssociationValue")
+	if id.DataCollectionRuleAssociationName != "associationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataCollectionRuleAssociationName'", id.DataCollectionRuleAssociationName, "associationName")
 	}
 }
 
 func TestFormatScopedDataCollectionRuleAssociationID(t *testing.T) {
-	actual := NewScopedDataCollectionRuleAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "dataCollectionRuleAssociationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/dataCollectionRuleAssociationValue"
+	actual := NewScopedDataCollectionRuleAssociationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "associationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/associationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedDataCollectionRuleAssociationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/dataCollectionRuleAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/associationName",
 			Expected: &ScopedDataCollectionRuleAssociationId{
 				ResourceUri:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				DataCollectionRuleAssociationName: "dataCollectionRuleAssociationValue",
+				DataCollectionRuleAssociationName: "associationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/dataCollectionRuleAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/associationName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedDataCollectionRuleAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/dataCollectionRuleAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/associationName",
 			Expected: &ScopedDataCollectionRuleAssociationId{
 				ResourceUri:                       "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				DataCollectionRuleAssociationName: "dataCollectionRuleAssociationValue",
+				DataCollectionRuleAssociationName: "associationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/dataCollectionRuleAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/dataCollectionRuleAssociations/associationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnS/aSsOcIaTiOnNaMe",
 			Expected: &ScopedDataCollectionRuleAssociationId{
 				ResourceUri:                       "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				DataCollectionRuleAssociationName: "dAtAcOlLeCtIoNrUlEaSsOcIaTiOnVaLuE",
+				DataCollectionRuleAssociationName: "aSsOcIaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dAtAcOlLeCtIoNrUlEaSsOcIaTiOnS/aSsOcIaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

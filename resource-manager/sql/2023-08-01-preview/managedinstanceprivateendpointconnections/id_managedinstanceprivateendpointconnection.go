@@ -44,7 +44,7 @@ func ParseManagedInstancePrivateEndpointConnectionID(input string) (*ManagedInst
 	}
 
 	id := ManagedInstancePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstancePrivateEndpointConnectionIDInsensitively(input string) 
 	}
 
 	id := ManagedInstancePrivateEndpointConnectionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ManagedInstancePrivateEndpointConnectionId) Segments() []resourceids.Se
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticPrivateEndpointConnections", "privateEndpointConnections", "privateEndpointConnections"),
-		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionValue"),
+		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionName"),
 	}
 }
 

@@ -15,7 +15,7 @@ type TagOperationLinkClient struct {
 }
 
 func NewTagOperationLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*TagOperationLinkClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tagoperationlink", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "tagoperationlink", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TagOperationLinkClient: %+v", err)
 	}

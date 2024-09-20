@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/security/2020-01-01/jitnetworkaccesspolicies` Documentation
 
-The `jitnetworkaccesspolicies` SDK allows for interaction with the Azure Resource Manager Service `security` (API Version `2020-01-01`).
+The `jitnetworkaccesspolicies` SDK allows for interaction with Azure Resource Manager `security` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "jitNetworkAccessPolicyValue")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
 
 payload := jitnetworkaccesspolicies.JitNetworkAccessPolicy{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "jitNetworkAccessPolicyValue")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "jitNetworkAccessPolicyValue")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "jitNetworkAccessPolicyValue")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
 
 payload := jitnetworkaccesspolicies.JitNetworkAccessPolicyInitiateRequest{
 	// ...
@@ -116,7 +116,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := jitnetworkaccesspolicies.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
 
 // alternatively `client.ListByRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByRegionComplete(ctx, id)
@@ -150,7 +150,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue")
+id := jitnetworkaccesspolicies.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation")
 
 // alternatively `client.ListByResourceGroupAndRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupAndRegionComplete(ctx, id)

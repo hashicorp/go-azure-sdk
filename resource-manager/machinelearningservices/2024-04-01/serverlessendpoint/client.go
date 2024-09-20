@@ -15,7 +15,7 @@ type ServerlessEndpointClient struct {
 }
 
 func NewServerlessEndpointClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerlessEndpointClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverlessendpoint", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "serverlessendpoint", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerlessEndpointClient: %+v", err)
 	}

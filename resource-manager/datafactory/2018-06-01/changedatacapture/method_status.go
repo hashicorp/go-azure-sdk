@@ -46,7 +46,6 @@ func (c ChangeDataCaptureClient) Status(ctx context.Context, id AdfcdcId) (resul
 
 	var model string
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

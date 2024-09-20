@@ -46,7 +46,7 @@ func ParseConfigurationProfileAssignmentReportID(input string) (*ConfigurationPr
 	}
 
 	id := ConfigurationProfileAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseConfigurationProfileAssignmentReportIDInsensitively(input string) (*Co
 	}
 
 	id := ConfigurationProfileAssignmentReportId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,13 +127,13 @@ func (id ConfigurationProfileAssignmentReportId) Segments() []resourceids.Segmen
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticMachines", "machines", "machines"),
-		resourceids.UserSpecifiedSegment("machineName", "machineValue"),
+		resourceids.UserSpecifiedSegment("machineName", "machineName"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAutoManage", "Microsoft.AutoManage", "Microsoft.AutoManage"),
 		resourceids.StaticSegment("staticConfigurationProfileAssignments", "configurationProfileAssignments", "configurationProfileAssignments"),
-		resourceids.UserSpecifiedSegment("configurationProfileAssignmentName", "configurationProfileAssignmentValue"),
+		resourceids.UserSpecifiedSegment("configurationProfileAssignmentName", "configurationProfileAssignmentName"),
 		resourceids.StaticSegment("staticReports", "reports", "reports"),
-		resourceids.UserSpecifiedSegment("reportName", "reportValue"),
+		resourceids.UserSpecifiedSegment("reportName", "reportName"),
 	}
 }
 

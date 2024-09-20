@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2023-03-01/checkpolicyrestrictions` Documentation
 
-The `checkpolicyrestrictions` SDK allows for interaction with the Azure Resource Manager Service `policyinsights` (API Version `2023-03-01`).
+The `checkpolicyrestrictions` SDK allows for interaction with Azure Resource Manager `policyinsights` (API Version `2023-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := checkpolicyrestrictions.NewManagementGroupID("managementGroupIdValue")
+id := checkpolicyrestrictions.NewManagementGroupID("managementGroupId")
 
 payload := checkpolicyrestrictions.CheckManagementGroupRestrictionsRequest{
 	// ...

@@ -36,6 +36,7 @@ func (o UpdateOperationOptions) ToHeaders() *client.Headers {
 
 func (o UpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c WorkspaceClient) Update(ctx context.Context, id WorkspaceId, input Works
 
 	var model WorkspaceContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

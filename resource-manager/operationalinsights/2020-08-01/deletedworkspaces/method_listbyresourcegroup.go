@@ -47,7 +47,6 @@ func (c DeletedWorkspacesClient) ListByResourceGroup(ctx context.Context, id com
 
 	var model WorkspaceListResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type ForecastsClient struct {
 }
 
 func NewForecastsClientWithBaseURI(sdkApi sdkEnv.Api) (*ForecastsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "forecasts", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "forecasts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ForecastsClient: %+v", err)
 	}

@@ -15,7 +15,7 @@ type PortalRevisionClient struct {
 }
 
 func NewPortalRevisionClientWithBaseURI(sdkApi sdkEnv.Api) (*PortalRevisionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "portalrevision", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "portalrevision", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PortalRevisionClient: %+v", err)
 	}

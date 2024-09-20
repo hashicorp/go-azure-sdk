@@ -45,7 +45,6 @@ func (c ServerTrustCertificatesClient) Get(ctx context.Context, id ServerTrustCe
 
 	var model ServerTrustCertificate
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

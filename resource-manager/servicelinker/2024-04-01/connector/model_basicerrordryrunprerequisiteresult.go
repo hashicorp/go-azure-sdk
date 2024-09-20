@@ -15,6 +15,14 @@ type BasicErrorDryrunPrerequisiteResult struct {
 	Message *string `json:"message,omitempty"`
 
 	// Fields inherited from DryrunPrerequisiteResult
+
+	Type DryrunPrerequisiteResultType `json:"type"`
+}
+
+func (s BasicErrorDryrunPrerequisiteResult) DryrunPrerequisiteResult() BaseDryrunPrerequisiteResultImpl {
+	return BaseDryrunPrerequisiteResultImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = BasicErrorDryrunPrerequisiteResult{}
@@ -28,9 +36,10 @@ func (s BasicErrorDryrunPrerequisiteResult) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BasicErrorDryrunPrerequisiteResult: %+v", err)
 	}
+
 	decoded["type"] = "basicError"
 
 	encoded, err = json.Marshal(decoded)

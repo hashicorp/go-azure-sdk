@@ -39,7 +39,7 @@ func (s *ExperimentProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Selector, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalSelectorImplementation(val)
+			impl, err := UnmarshalSelectorImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Selectors' for 'ExperimentProperties': %+v", i, err)
 			}

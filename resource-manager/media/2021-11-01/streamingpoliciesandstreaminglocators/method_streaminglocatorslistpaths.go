@@ -46,7 +46,6 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingLocatorsListPaths(
 
 	var model ListPathsResponse
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

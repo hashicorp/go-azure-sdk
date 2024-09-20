@@ -45,7 +45,6 @@ func (c MSIXPackageClient) Get(ctx context.Context, id MsixPackageId) (result Ge
 
 	var model MSIXPackage
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

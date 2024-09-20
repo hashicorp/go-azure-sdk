@@ -81,7 +81,7 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["customDetails"]; ok {
-		impl, err := unmarshalJobDetailsImplementation(v)
+		impl, err := UnmarshalJobDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'JobProperties': %+v", err)
 		}

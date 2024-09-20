@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataStoreId{}
 
 func TestNewDataStoreID(t *testing.T) {
-	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue")
+	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDataStoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DataStoreName != "dataStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataStoreName'", id.DataStoreName, "dataStoreValue")
+	if id.DataStoreName != "datastoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataStoreName'", id.DataStoreName, "datastoreName")
 	}
 }
 
 func TestFormatDataStoreID(t *testing.T) {
-	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreValue"
+	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDataStoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataStoreName:     "dataStoreValue",
+				DataStoreName:     "datastoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDataStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataStoreName:     "dataStoreValue",
+				DataStoreName:     "datastoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/dAtAsToReS/dAtAsToReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/dAtAsToReS/dAtAsToReNaMe",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DataStoreName:     "dAtAsToReVaLuE",
+				DataStoreName:     "dAtAsToReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/dAtAsToReS/dAtAsToReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/dAtAsToReS/dAtAsToReNaMe/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c AllowedConnectionsClient) Get(ctx context.Context, id ConnectionTypeId) 
 
 	var model AllowedConnectionsResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

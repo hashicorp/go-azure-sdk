@@ -14,7 +14,16 @@ type ClusterSwitchProtectionJobDetails struct {
 	NewReplicationProtectionClusterId *string `json:"newReplicationProtectionClusterId,omitempty"`
 
 	// Fields inherited from JobDetails
+
 	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}
+
+func (s ClusterSwitchProtectionJobDetails) JobDetails() BaseJobDetailsImpl {
+	return BaseJobDetailsImpl{
+		AffectedObjectDetails: s.AffectedObjectDetails,
+		InstanceType:          s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = ClusterSwitchProtectionJobDetails{}
@@ -28,9 +37,10 @@ func (s ClusterSwitchProtectionJobDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling ClusterSwitchProtectionJobDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "ClusterSwitchProtectionJobDetails"
 
 	encoded, err = json.Marshal(decoded)

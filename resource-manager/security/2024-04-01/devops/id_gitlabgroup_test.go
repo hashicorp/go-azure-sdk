@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &GitLabGroupId{}
 
 func TestNewGitLabGroupID(t *testing.T) {
-	id := NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorValue", "gitLabGroupValue")
+	id := NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewGitLabGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SecurityConnectorName != "securityConnectorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecurityConnectorName'", id.SecurityConnectorName, "securityConnectorValue")
+	if id.SecurityConnectorName != "securityConnectorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecurityConnectorName'", id.SecurityConnectorName, "securityConnectorName")
 	}
 
-	if id.GitLabGroupName != "gitLabGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GitLabGroupName'", id.GitLabGroupName, "gitLabGroupValue")
+	if id.GitLabGroupName != "groupFQName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GitLabGroupName'", id.GitLabGroupName, "groupFQName")
 	}
 }
 
 func TestFormatGitLabGroupID(t *testing.T) {
-	actual := NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorValue", "gitLabGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups/gitLabGroupValue"
+	actual := NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups/groupFQName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,37 +87,37 @@ func TestParseGitLabGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups/gitLabGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups/groupFQName",
 			Expected: &GitLabGroupId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				SecurityConnectorName: "securityConnectorValue",
-				GitLabGroupName:       "gitLabGroupValue",
+				SecurityConnectorName: "securityConnectorName",
+				GitLabGroupName:       "groupFQName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups/gitLabGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups/groupFQName/extra",
 			Error: true,
 		},
 	}
@@ -238,72 +238,72 @@ func TestParseGitLabGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE/dEvOpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE/dEvOpS/dEfAuLt",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE/dEvOpS/dEfAuLt/gItLaBgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItLaBgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups/gitLabGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups/groupFQName",
 			Expected: &GitLabGroupId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				SecurityConnectorName: "securityConnectorValue",
-				GitLabGroupName:       "gitLabGroupValue",
+				SecurityConnectorName: "securityConnectorName",
+				GitLabGroupName:       "groupFQName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorValue/devops/default/gitLabGroups/gitLabGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitLabGroups/groupFQName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE/dEvOpS/dEfAuLt/gItLaBgRoUpS/gItLaBgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItLaBgRoUpS/gRoUpFqNaMe",
 			Expected: &GitLabGroupId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				SecurityConnectorName: "sEcUrItYcOnNeCtOrVaLuE",
-				GitLabGroupName:       "gItLaBgRoUpVaLuE",
+				SecurityConnectorName: "sEcUrItYcOnNeCtOrNaMe",
+				GitLabGroupName:       "gRoUpFqNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrVaLuE/dEvOpS/dEfAuLt/gItLaBgRoUpS/gItLaBgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItLaBgRoUpS/gRoUpFqNaMe/extra",
 			Error: true,
 		},
 	}

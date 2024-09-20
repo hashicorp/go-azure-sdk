@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ConfigurationAssignmentId{}
 
 func TestNewConfigurationAssignmentID(t *testing.T) {
-	id := NewConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "configurationAssignmentValue")
+	id := NewConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "configurationAssignmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ConfigurationAssignmentName != "configurationAssignmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentValue")
+	if id.ConfigurationAssignmentName != "configurationAssignmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationAssignmentName'", id.ConfigurationAssignmentName, "configurationAssignmentName")
 	}
 }
 
 func TestFormatConfigurationAssignmentID(t *testing.T) {
-	actual := NewConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "configurationAssignmentValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue"
+	actual := NewConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "configurationAssignmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseConfigurationAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseConfigurationAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName",
 			Expected: &ConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ConfigurationAssignmentName: "configurationAssignmentValue",
+				ConfigurationAssignmentName: "configurationAssignmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/configurationAssignments/configurationAssignmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			Expected: &ConfigurationAssignmentId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtVaLuE",
+				ConfigurationAssignmentName: "cOnFiGuRaTiOnAsSiGnMeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/cOnFiGuRaTiOnAsSiGnMeNtS/cOnFiGuRaTiOnAsSiGnMeNtNaMe/extra",
 			Error: true,
 		},
 	}

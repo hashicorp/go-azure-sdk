@@ -15,7 +15,7 @@ type RaiContentFiltersClient struct {
 }
 
 func NewRaiContentFiltersClientWithBaseURI(sdkApi sdkEnv.Api) (*RaiContentFiltersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "raicontentfilters", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "raicontentfilters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RaiContentFiltersClient: %+v", err)
 	}

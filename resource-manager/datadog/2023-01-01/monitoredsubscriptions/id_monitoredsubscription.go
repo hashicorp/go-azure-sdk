@@ -44,7 +44,7 @@ func ParseMonitoredSubscriptionID(input string) (*MonitoredSubscriptionId, error
 	}
 
 	id := MonitoredSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseMonitoredSubscriptionIDInsensitively(input string) (*MonitoredSubscrip
 	}
 
 	id := MonitoredSubscriptionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id MonitoredSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDatadog", "Microsoft.Datadog", "Microsoft.Datadog"),
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
-		resourceids.UserSpecifiedSegment("monitorName", "monitorValue"),
+		resourceids.UserSpecifiedSegment("monitorName", "monitorName"),
 		resourceids.StaticSegment("staticMonitoredSubscriptions", "monitoredSubscriptions", "monitoredSubscriptions"),
-		resourceids.UserSpecifiedSegment("monitoredSubscriptionName", "monitoredSubscriptionValue"),
+		resourceids.UserSpecifiedSegment("monitoredSubscriptionName", "configurationName"),
 	}
 }
 

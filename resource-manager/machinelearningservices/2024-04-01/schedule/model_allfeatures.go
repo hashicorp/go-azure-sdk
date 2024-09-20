@@ -13,6 +13,14 @@ var _ MonitoringFeatureFilterBase = AllFeatures{}
 type AllFeatures struct {
 
 	// Fields inherited from MonitoringFeatureFilterBase
+
+	FilterType MonitoringFeatureFilterType `json:"filterType"`
+}
+
+func (s AllFeatures) MonitoringFeatureFilterBase() BaseMonitoringFeatureFilterBaseImpl {
+	return BaseMonitoringFeatureFilterBaseImpl{
+		FilterType: s.FilterType,
+	}
 }
 
 var _ json.Marshaler = AllFeatures{}
@@ -26,9 +34,10 @@ func (s AllFeatures) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AllFeatures: %+v", err)
 	}
+
 	decoded["filterType"] = "AllFeatures"
 
 	encoded, err = json.Marshal(decoded)

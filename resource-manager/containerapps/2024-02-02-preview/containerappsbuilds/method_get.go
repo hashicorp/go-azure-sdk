@@ -45,7 +45,6 @@ func (c ContainerAppsBuildsClient) Get(ctx context.Context, id ContainerAppBuild
 
 	var model ContainerAppsBuildResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

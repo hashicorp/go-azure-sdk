@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationDefinitionId{}
 
 func TestNewApplicationDefinitionID(t *testing.T) {
-	id := NewApplicationDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationDefinitionValue")
+	id := NewApplicationDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationDefinitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewApplicationDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationDefinitionName != "applicationDefinitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationDefinitionName'", id.ApplicationDefinitionName, "applicationDefinitionValue")
+	if id.ApplicationDefinitionName != "applicationDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationDefinitionName'", id.ApplicationDefinitionName, "applicationDefinitionName")
 	}
 }
 
 func TestFormatApplicationDefinitionID(t *testing.T) {
-	actual := NewApplicationDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationDefinitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionValue"
+	actual := NewApplicationDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationDefinitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseApplicationDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionName",
 			Expected: &ApplicationDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				ApplicationDefinitionName: "applicationDefinitionValue",
+				ApplicationDefinitionName: "applicationDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseApplicationDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionName",
 			Expected: &ApplicationDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				ApplicationDefinitionName: "applicationDefinitionValue",
+				ApplicationDefinitionName: "applicationDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Solutions/applicationDefinitions/applicationDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/aPpLiCaTiOnDeFiNiTiOnS/aPpLiCaTiOnDeFiNiTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/aPpLiCaTiOnDeFiNiTiOnS/aPpLiCaTiOnDeFiNiTiOnNaMe",
 			Expected: &ApplicationDefinitionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationDefinitionName: "aPpLiCaTiOnDeFiNiTiOnVaLuE",
+				ApplicationDefinitionName: "aPpLiCaTiOnDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/aPpLiCaTiOnDeFiNiTiOnS/aPpLiCaTiOnDeFiNiTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sOlUtIoNs/aPpLiCaTiOnDeFiNiTiOnS/aPpLiCaTiOnDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -48,7 +48,7 @@ func ParseWorkloadClassifierID(input string) (*WorkloadClassifierId, error) {
 	}
 
 	id := WorkloadClassifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseWorkloadClassifierIDInsensitively(input string) (*WorkloadClassifierId
 	}
 
 	id := WorkloadClassifierId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id WorkloadClassifierId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
-		resourceids.UserSpecifiedSegment("databaseName", "databaseValue"),
+		resourceids.UserSpecifiedSegment("databaseName", "databaseName"),
 		resourceids.StaticSegment("staticWorkloadGroups", "workloadGroups", "workloadGroups"),
-		resourceids.UserSpecifiedSegment("workloadGroupName", "workloadGroupValue"),
+		resourceids.UserSpecifiedSegment("workloadGroupName", "workloadGroupName"),
 		resourceids.StaticSegment("staticWorkloadClassifiers", "workloadClassifiers", "workloadClassifiers"),
-		resourceids.UserSpecifiedSegment("workloadClassifierName", "workloadClassifierValue"),
+		resourceids.UserSpecifiedSegment("workloadClassifierName", "workloadClassifierName"),
 	}
 }
 

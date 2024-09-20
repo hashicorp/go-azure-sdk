@@ -45,7 +45,6 @@ func (c LongTermRetentionBackupsClient) GetByResourceGroup(ctx context.Context, 
 
 	var model LongTermRetentionBackup
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

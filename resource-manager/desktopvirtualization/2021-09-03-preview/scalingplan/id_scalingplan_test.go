@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScalingPlanId{}
 
 func TestNewScalingPlanID(t *testing.T) {
-	id := NewScalingPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue")
+	id := NewScalingPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewScalingPlanID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ScalingPlanName != "scalingPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScalingPlanName'", id.ScalingPlanName, "scalingPlanValue")
+	if id.ScalingPlanName != "scalingPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScalingPlanName'", id.ScalingPlanName, "scalingPlanName")
 	}
 }
 
 func TestFormatScalingPlanID(t *testing.T) {
-	actual := NewScalingPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue"
+	actual := NewScalingPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseScalingPlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanName",
 			Expected: &ScalingPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ScalingPlanName:   "scalingPlanValue",
+				ScalingPlanName:   "scalingPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseScalingPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanName",
 			Expected: &ScalingPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ScalingPlanName:   "scalingPlanValue",
+				ScalingPlanName:   "scalingPlanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnNaMe",
 			Expected: &ScalingPlanId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ScalingPlanName:   "sCaLiNgPlAnVaLuE",
+				ScalingPlanName:   "sCaLiNgPlAnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnNaMe/extra",
 			Error: true,
 		},
 	}

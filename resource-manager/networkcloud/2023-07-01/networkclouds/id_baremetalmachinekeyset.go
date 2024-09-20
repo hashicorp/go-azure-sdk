@@ -44,7 +44,7 @@ func ParseBareMetalMachineKeySetID(input string) (*BareMetalMachineKeySetId, err
 	}
 
 	id := BareMetalMachineKeySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseBareMetalMachineKeySetIDInsensitively(input string) (*BareMetalMachine
 	}
 
 	id := BareMetalMachineKeySetId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id BareMetalMachineKeySetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkCloud", "Microsoft.NetworkCloud", "Microsoft.NetworkCloud"),
 		resourceids.StaticSegment("staticClusters", "clusters", "clusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("clusterName", "clusterName"),
 		resourceids.StaticSegment("staticBareMetalMachineKeySets", "bareMetalMachineKeySets", "bareMetalMachineKeySets"),
-		resourceids.UserSpecifiedSegment("bareMetalMachineKeySetName", "bareMetalMachineKeySetValue"),
+		resourceids.UserSpecifiedSegment("bareMetalMachineKeySetName", "bareMetalMachineKeySetName"),
 	}
 }
 

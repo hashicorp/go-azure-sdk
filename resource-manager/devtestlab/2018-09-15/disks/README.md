@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/disks` Documentation
 
-The `disks` SDK allows for interaction with the Azure Resource Manager Service `devtestlab` (API Version `2018-09-15`).
+The `disks` SDK allows for interaction with Azure Resource Manager `devtestlab` (API Version `2018-09-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := disks.AttachDiskProperties{
 	// ...
@@ -41,7 +41,7 @@ if err := client.AttachThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := disks.Disk{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := disks.DetachDiskProperties{
 	// ...
@@ -87,7 +87,7 @@ if err := client.DetachThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 read, err := client.Get(ctx, id, disks.DefaultGetOperationOptions())
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
+id := disks.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName")
 
 // alternatively `client.List(ctx, id, disks.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, disks.DefaultListOperationOptions())
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := disks.UpdateResource{
 	// ...

@@ -30,7 +30,7 @@ func (s *ContainerRegistryProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["credentials"]; ok {
-		impl, err := unmarshalContainerRegistryCredentialsImplementation(v)
+		impl, err := UnmarshalContainerRegistryCredentialsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Credentials' for 'ContainerRegistryProperties': %+v", err)
 		}

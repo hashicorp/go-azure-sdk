@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2023-10-01/datacontainerregistry` Documentation
 
-The `datacontainerregistry` SDK allows for interaction with the Azure Resource Manager Service `machinelearningservices` (API Version `2023-10-01`).
+The `datacontainerregistry` SDK allows for interaction with Azure Resource Manager `machinelearningservices` (API Version `2023-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "dataValue")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
 
 payload := datacontainerregistry.DataContainerResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.RegistryDataContainersCreateOrUpdateThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "dataValue")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
 
 if err := client.RegistryDataContainersDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.RegistryDataContainersDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue", "dataValue")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
 
 read, err := client.RegistryDataContainersGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryValue")
+id := datacontainerregistry.NewRegistryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName")
 
 // alternatively `client.RegistryDataContainersList(ctx, id, datacontainerregistry.DefaultRegistryDataContainersListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryDataContainersListComplete(ctx, id, datacontainerregistry.DefaultRegistryDataContainersListOperationOptions())

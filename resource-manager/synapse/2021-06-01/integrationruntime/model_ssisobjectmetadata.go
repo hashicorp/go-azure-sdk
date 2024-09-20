@@ -10,18 +10,38 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SsisObjectMetadata interface {
+	SsisObjectMetadata() BaseSsisObjectMetadataImpl
 }
 
-// RawSsisObjectMetadataImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ SsisObjectMetadata = BaseSsisObjectMetadataImpl{}
+
+type BaseSsisObjectMetadataImpl struct {
+	Description *string                `json:"description,omitempty"`
+	Id          *int64                 `json:"id,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Type        SsisObjectMetadataType `json:"type"`
+}
+
+func (s BaseSsisObjectMetadataImpl) SsisObjectMetadata() BaseSsisObjectMetadataImpl {
+	return s
+}
+
+var _ SsisObjectMetadata = RawSsisObjectMetadataImpl{}
+
+// RawSsisObjectMetadataImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawSsisObjectMetadataImpl struct {
-	Type   string
-	Values map[string]interface{}
+	ssisObjectMetadata BaseSsisObjectMetadataImpl
+	Type               string
+	Values             map[string]interface{}
 }
 
-func unmarshalSsisObjectMetadataImplementation(input []byte) (SsisObjectMetadata, error) {
+func (s RawSsisObjectMetadataImpl) SsisObjectMetadata() BaseSsisObjectMetadataImpl {
+	return s.ssisObjectMetadata
+}
+
+func UnmarshalSsisObjectMetadataImplementation(input []byte) (SsisObjectMetadata, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -68,10 +88,15 @@ func unmarshalSsisObjectMetadataImplementation(input []byte) (SsisObjectMetadata
 		return out, nil
 	}
 
-	out := RawSsisObjectMetadataImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseSsisObjectMetadataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSsisObjectMetadataImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawSsisObjectMetadataImpl{
+		ssisObjectMetadata: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
 
 }

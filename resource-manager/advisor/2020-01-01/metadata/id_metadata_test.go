@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MetadataId{}
 
 func TestNewMetadataID(t *testing.T) {
-	id := NewMetadataID("metadataValue")
+	id := NewMetadataID("name")
 
-	if id.MetadataName != "metadataValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MetadataName'", id.MetadataName, "metadataValue")
+	if id.MetadataName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'MetadataName'", id.MetadataName, "name")
 	}
 }
 
 func TestFormatMetadataID(t *testing.T) {
-	actual := NewMetadataID("metadataValue").ID()
-	expected := "/providers/Microsoft.Advisor/metadata/metadataValue"
+	actual := NewMetadataID("name").ID()
+	expected := "/providers/Microsoft.Advisor/metadata/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMetadataID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Advisor/metadata/metadataValue",
+			Input: "/providers/Microsoft.Advisor/metadata/name",
 			Expected: &MetadataId{
-				MetadataName: "metadataValue",
+				MetadataName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Advisor/metadata/metadataValue/extra",
+			Input: "/providers/Microsoft.Advisor/metadata/name/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMetadataIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Advisor/metadata/metadataValue",
+			Input: "/providers/Microsoft.Advisor/metadata/name",
 			Expected: &MetadataId{
-				MetadataName: "metadataValue",
+				MetadataName: "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Advisor/metadata/metadataValue/extra",
+			Input: "/providers/Microsoft.Advisor/metadata/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aDvIsOr/mEtAdAtA/mEtAdAtAvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.aDvIsOr/mEtAdAtA/nAmE",
 			Expected: &MetadataId{
-				MetadataName: "mEtAdAtAvAlUe",
+				MetadataName: "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aDvIsOr/mEtAdAtA/mEtAdAtAvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.aDvIsOr/mEtAdAtA/nAmE/extra",
 			Error: true,
 		},
 	}

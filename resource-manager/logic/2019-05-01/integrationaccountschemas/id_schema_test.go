@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SchemaId{}
 
 func TestNewSchemaID(t *testing.T) {
-	id := NewSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "schemaValue")
+	id := NewSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "schemaName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSchemaID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.IntegrationAccountName != "integrationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountValue")
+	if id.IntegrationAccountName != "integrationAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountName")
 	}
 
-	if id.SchemaName != "schemaValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SchemaName'", id.SchemaName, "schemaValue")
+	if id.SchemaName != "schemaName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SchemaName'", id.SchemaName, "schemaName")
 	}
 }
 
 func TestFormatSchemaID(t *testing.T) {
-	actual := NewSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "schemaValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas/schemaValue"
+	actual := NewSchemaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "schemaName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas/schemaName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSchemaID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas/schemaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas/schemaName",
 			Expected: &SchemaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				IntegrationAccountName: "integrationAccountValue",
-				SchemaName:             "schemaValue",
+				IntegrationAccountName: "integrationAccountName",
+				SchemaName:             "schemaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas/schemaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas/schemaName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSchemaIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/sChEmAs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/sChEmAs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas/schemaValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas/schemaName",
 			Expected: &SchemaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				IntegrationAccountName: "integrationAccountValue",
-				SchemaName:             "schemaValue",
+				IntegrationAccountName: "integrationAccountName",
+				SchemaName:             "schemaName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/schemas/schemaValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/schemas/schemaName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/sChEmAs/sChEmAvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/sChEmAs/sChEmAnAmE",
 			Expected: &SchemaId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTvAlUe",
-				SchemaName:             "sChEmAvAlUe",
+				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTnAmE",
+				SchemaName:             "sChEmAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/sChEmAs/sChEmAvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/sChEmAs/sChEmAnAmE/extra",
 			Error: true,
 		},
 	}

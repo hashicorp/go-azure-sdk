@@ -10,18 +10,39 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StoreWriteSettings interface {
+	StoreWriteSettings() BaseStoreWriteSettingsImpl
 }
 
-// RawStoreWriteSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ StoreWriteSettings = BaseStoreWriteSettingsImpl{}
+
+type BaseStoreWriteSettingsImpl struct {
+	CopyBehavior             *string         `json:"copyBehavior,omitempty"`
+	DisableMetricsCollection *bool           `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64          `json:"maxConcurrentConnections,omitempty"`
+	Metadata                 *[]MetadataItem `json:"metadata,omitempty"`
+	Type                     string          `json:"type"`
+}
+
+func (s BaseStoreWriteSettingsImpl) StoreWriteSettings() BaseStoreWriteSettingsImpl {
+	return s
+}
+
+var _ StoreWriteSettings = RawStoreWriteSettingsImpl{}
+
+// RawStoreWriteSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawStoreWriteSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	storeWriteSettings BaseStoreWriteSettingsImpl
+	Type               string
+	Values             map[string]interface{}
 }
 
-func unmarshalStoreWriteSettingsImplementation(input []byte) (StoreWriteSettings, error) {
+func (s RawStoreWriteSettingsImpl) StoreWriteSettings() BaseStoreWriteSettingsImpl {
+	return s.storeWriteSettings
+}
+
+func UnmarshalStoreWriteSettingsImplementation(input []byte) (StoreWriteSettings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -92,10 +113,15 @@ func unmarshalStoreWriteSettingsImplementation(input []byte) (StoreWriteSettings
 		return out, nil
 	}
 
-	out := RawStoreWriteSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseStoreWriteSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseStoreWriteSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawStoreWriteSettingsImpl{
+		storeWriteSettings: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
 
 }

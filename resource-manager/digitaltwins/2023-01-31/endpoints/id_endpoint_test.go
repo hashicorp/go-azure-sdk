@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EndpointId{}
 
 func TestNewEndpointID(t *testing.T) {
-	id := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "endpointValue")
+	id := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "endpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DigitalTwinsInstanceName != "digitalTwinsInstanceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "digitalTwinsInstanceValue")
+	if id.DigitalTwinsInstanceName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "resourceName")
 	}
 
-	if id.EndpointName != "endpointValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EndpointName'", id.EndpointName, "endpointValue")
+	if id.EndpointName != "endpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EndpointName'", id.EndpointName, "endpointName")
 	}
 }
 
 func TestFormatEndpointID(t *testing.T) {
-	actual := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "endpointValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints/endpointValue"
+	actual := NewEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "endpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints/endpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints/endpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints/endpointName",
 			Expected: &EndpointId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "digitalTwinsInstanceValue",
-				EndpointName:             "endpointValue",
+				DigitalTwinsInstanceName: "resourceName",
+				EndpointName:             "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints/endpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints/endpointName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/eNdPoInTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/eNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints/endpointValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints/endpointName",
 			Expected: &EndpointId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "digitalTwinsInstanceValue",
-				EndpointName:             "endpointValue",
+				DigitalTwinsInstanceName: "resourceName",
+				EndpointName:             "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/endpoints/endpointValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/endpoints/endpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/eNdPoInTs/eNdPoInTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/eNdPoInTs/eNdPoInTnAmE",
 			Expected: &EndpointId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				DigitalTwinsInstanceName: "dIgItAlTwInSiNsTaNcEvAlUe",
-				EndpointName:             "eNdPoInTvAlUe",
+				DigitalTwinsInstanceName: "rEsOuRcEnAmE",
+				EndpointName:             "eNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/eNdPoInTs/eNdPoInTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/eNdPoInTs/eNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

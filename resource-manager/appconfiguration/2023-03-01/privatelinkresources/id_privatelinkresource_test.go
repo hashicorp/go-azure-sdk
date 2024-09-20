@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkResourceId{}
 
 func TestNewPrivateLinkResourceID(t *testing.T) {
-	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue", "privateLinkResourceValue")
+	id := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "groupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConfigurationStoreName != "configurationStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configurationStoreValue")
+	if id.ConfigurationStoreName != "configStoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationStoreName'", id.ConfigurationStoreName, "configStoreName")
 	}
 
-	if id.PrivateLinkResourceName != "privateLinkResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "privateLinkResourceValue")
+	if id.PrivateLinkResourceName != "groupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "groupName")
 	}
 }
 
 func TestFormatPrivateLinkResourceID(t *testing.T) {
-	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue", "privateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources/privateLinkResourceValue"
+	actual := NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "groupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources/groupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParsePrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources/groupName",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ConfigurationStoreName:  "configurationStoreValue",
-				PrivateLinkResourceName: "privateLinkResourceValue",
+				ConfigurationStoreName:  "configStoreName",
+				PrivateLinkResourceName: "groupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources/groupName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParsePrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/pRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/pRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources/privateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources/groupName",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
-				ConfigurationStoreName:  "configurationStoreValue",
-				PrivateLinkResourceName: "privateLinkResourceValue",
+				ConfigurationStoreName:  "configStoreName",
+				PrivateLinkResourceName: "groupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configurationStoreValue/privateLinkResources/privateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppConfiguration/configurationStores/configStoreName/privateLinkResources/groupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/pRiVaTeLiNkReSoUrCeS/gRoUpNaMe",
 			Expected: &PrivateLinkResourceId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ConfigurationStoreName:  "cOnFiGuRaTiOnStOrEvAlUe",
-				PrivateLinkResourceName: "pRiVaTeLiNkReSoUrCeVaLuE",
+				ConfigurationStoreName:  "cOnFiGsToReNaMe",
+				PrivateLinkResourceName: "gRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGuRaTiOnStOrEvAlUe/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/cOnFiGuRaTiOnStOrEs/cOnFiGsToReNaMe/pRiVaTeLiNkReSoUrCeS/gRoUpNaMe/extra",
 			Error: true,
 		},
 	}

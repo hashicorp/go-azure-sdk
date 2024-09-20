@@ -37,7 +37,7 @@ func (s *FiltersConfiguration) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]Filter, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalFilterImplementation(val)
+			impl, err := UnmarshalFilterImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Filters' for 'FiltersConfiguration': %+v", i, err)
 			}

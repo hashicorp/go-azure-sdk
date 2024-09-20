@@ -15,7 +15,7 @@ type LinkersClient struct {
 }
 
 func NewLinkersClientWithBaseURI(sdkApi sdkEnv.Api) (*LinkersClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "linkers", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "linkers", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LinkersClient: %+v", err)
 	}

@@ -16,6 +16,14 @@ type VMNicUpdatesTaskDetails struct {
 	VMId  *string `json:"vmId,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s VMNicUpdatesTaskDetails) TaskTypeDetails() BaseTaskTypeDetailsImpl {
+	return BaseTaskTypeDetailsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = VMNicUpdatesTaskDetails{}
@@ -29,9 +37,10 @@ func (s VMNicUpdatesTaskDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling VMNicUpdatesTaskDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "VmNicUpdatesTaskDetails"
 
 	encoded, err = json.Marshal(decoded)

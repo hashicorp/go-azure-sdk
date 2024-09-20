@@ -46,7 +46,7 @@ func ParseVersionID(input string) (*VersionId, error) {
 	}
 
 	id := VersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 	}
 
 	id := VersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKeyVault", "Microsoft.KeyVault", "Microsoft.KeyVault"),
 		resourceids.StaticSegment("staticManagedHSMs", "managedHSMs", "managedHSMs"),
-		resourceids.UserSpecifiedSegment("managedHSMName", "managedHSMValue"),
+		resourceids.UserSpecifiedSegment("managedHSMName", "name"),
 		resourceids.StaticSegment("staticKeys", "keys", "keys"),
-		resourceids.UserSpecifiedSegment("keyName", "keyValue"),
+		resourceids.UserSpecifiedSegment("keyName", "keyName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "keyVersion"),
 	}
 }
 

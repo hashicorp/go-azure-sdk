@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/usages` Documentation
 
-The `usages` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-08-01-preview`).
+The `usages` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-08-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := usages.NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolValue")
+id := usages.NewInstancePoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "instancePoolName")
 
 // alternatively `client.ListByInstancePool(ctx, id, usages.DefaultListByInstancePoolOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInstancePoolComplete(ctx, id, usages.DefaultListByInstancePoolOperationOptions())

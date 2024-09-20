@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/deletedwebapps` Documentation
 
-The `deletedwebapps` SDK allows for interaction with the Azure Resource Manager Service `web` (API Version `2022-09-01`).
+The `deletedwebapps` SDK allows for interaction with Azure Resource Manager `web` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deletedwebapps.NewLocationDeletedSiteID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedSiteIdValue")
+id := deletedwebapps.NewLocationDeletedSiteID("12345678-1234-9876-4563-123456789012", "location", "deletedSiteId")
 
 read, err := client.GetDeletedWebAppByLocation(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deletedwebapps.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := deletedwebapps.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "location")
 
 // alternatively `client.ListByLocation(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLocationComplete(ctx, id)

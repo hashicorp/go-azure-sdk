@@ -15,7 +15,7 @@ type LabClient struct {
 }
 
 func NewLabClientWithBaseURI(sdkApi sdkEnv.Api) (*LabClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "lab", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "lab", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LabClient: %+v", err)
 	}

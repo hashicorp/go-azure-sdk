@@ -14,7 +14,16 @@ type AddonVrProperties struct {
 	VrsCount int64 `json:"vrsCount"`
 
 	// Fields inherited from AddonProperties
+
+	AddonType         AddonType               `json:"addonType"`
 	ProvisioningState *AddonProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s AddonVrProperties) AddonProperties() BaseAddonPropertiesImpl {
+	return BaseAddonPropertiesImpl{
+		AddonType:         s.AddonType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = AddonVrProperties{}
@@ -28,9 +37,10 @@ func (s AddonVrProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AddonVrProperties: %+v", err)
 	}
+
 	decoded["addonType"] = "VR"
 
 	encoded, err = json.Marshal(decoded)

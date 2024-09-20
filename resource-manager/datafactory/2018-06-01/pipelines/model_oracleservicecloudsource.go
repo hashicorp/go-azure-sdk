@@ -16,10 +16,22 @@ type OracleServiceCloudSource struct {
 	QueryTimeout      *string      `json:"queryTimeout,omitempty"`
 
 	// Fields inherited from CopySource
+
 	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
 	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
 	SourceRetryCount         *int64  `json:"sourceRetryCount,omitempty"`
 	SourceRetryWait          *string `json:"sourceRetryWait,omitempty"`
+	Type                     string  `json:"type"`
+}
+
+func (s OracleServiceCloudSource) CopySource() BaseCopySourceImpl {
+	return BaseCopySourceImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SourceRetryCount:         s.SourceRetryCount,
+		SourceRetryWait:          s.SourceRetryWait,
+		Type:                     s.Type,
+	}
 }
 
 var _ json.Marshaler = OracleServiceCloudSource{}
@@ -33,9 +45,10 @@ func (s OracleServiceCloudSource) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling OracleServiceCloudSource: %+v", err)
 	}
+
 	decoded["type"] = "OracleServiceCloudSource"
 
 	encoded, err = json.Marshal(decoded)

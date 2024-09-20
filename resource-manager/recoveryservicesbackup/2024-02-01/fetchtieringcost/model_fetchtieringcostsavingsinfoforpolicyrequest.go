@@ -14,8 +14,18 @@ type FetchTieringCostSavingsInfoForPolicyRequest struct {
 	PolicyName string `json:"policyName"`
 
 	// Fields inherited from FetchTieringCostInfoRequest
+
+	ObjectType     string                `json:"objectType"`
 	SourceTierType RecoveryPointTierType `json:"sourceTierType"`
 	TargetTierType RecoveryPointTierType `json:"targetTierType"`
+}
+
+func (s FetchTieringCostSavingsInfoForPolicyRequest) FetchTieringCostInfoRequest() BaseFetchTieringCostInfoRequestImpl {
+	return BaseFetchTieringCostInfoRequestImpl{
+		ObjectType:     s.ObjectType,
+		SourceTierType: s.SourceTierType,
+		TargetTierType: s.TargetTierType,
+	}
 }
 
 var _ json.Marshaler = FetchTieringCostSavingsInfoForPolicyRequest{}
@@ -29,9 +39,10 @@ func (s FetchTieringCostSavingsInfoForPolicyRequest) MarshalJSON() ([]byte, erro
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FetchTieringCostSavingsInfoForPolicyRequest: %+v", err)
 	}
+
 	decoded["objectType"] = "FetchTieringCostSavingsInfoForPolicyRequest"
 
 	encoded, err = json.Marshal(decoded)

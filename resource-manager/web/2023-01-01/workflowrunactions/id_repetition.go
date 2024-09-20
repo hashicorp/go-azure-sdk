@@ -50,7 +50,7 @@ func ParseRepetitionID(input string) (*RepetitionId, error) {
 	}
 
 	id := RepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -67,7 +67,7 @@ func ParseRepetitionIDInsensitively(input string) (*RepetitionId, error) {
 	}
 
 	id := RepetitionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -139,7 +139,7 @@ func (id RepetitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteName", "siteValue"),
+		resourceids.UserSpecifiedSegment("siteName", "name"),
 		resourceids.StaticSegment("staticHostRuntime", "hostRuntime", "hostRuntime"),
 		resourceids.StaticSegment("staticRuntime", "runtime", "runtime"),
 		resourceids.StaticSegment("staticWebHooks", "webHooks", "webHooks"),
@@ -147,13 +147,13 @@ func (id RepetitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticApi", "api", "api"),
 		resourceids.StaticSegment("staticManagement", "management", "management"),
 		resourceids.StaticSegment("staticWorkflows", "workflows", "workflows"),
-		resourceids.UserSpecifiedSegment("workflowName", "workflowValue"),
+		resourceids.UserSpecifiedSegment("workflowName", "workflowName"),
 		resourceids.StaticSegment("staticRuns", "runs", "runs"),
-		resourceids.UserSpecifiedSegment("runName", "runValue"),
+		resourceids.UserSpecifiedSegment("runName", "runName"),
 		resourceids.StaticSegment("staticActions", "actions", "actions"),
-		resourceids.UserSpecifiedSegment("actionName", "actionValue"),
+		resourceids.UserSpecifiedSegment("actionName", "actionName"),
 		resourceids.StaticSegment("staticRepetitions", "repetitions", "repetitions"),
-		resourceids.UserSpecifiedSegment("repetitionName", "repetitionValue"),
+		resourceids.UserSpecifiedSegment("repetitionName", "repetitionName"),
 	}
 }
 

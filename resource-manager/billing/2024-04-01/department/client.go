@@ -15,7 +15,7 @@ type DepartmentClient struct {
 }
 
 func NewDepartmentClientWithBaseURI(sdkApi sdkEnv.Api) (*DepartmentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "department", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "department", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DepartmentClient: %+v", err)
 	}

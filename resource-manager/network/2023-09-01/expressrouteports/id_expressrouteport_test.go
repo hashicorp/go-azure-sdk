@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ExpressRoutePortId{}
 
 func TestNewExpressRoutePortID(t *testing.T) {
-	id := NewExpressRoutePortID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRoutePortValue")
+	id := NewExpressRoutePortID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRoutePortName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewExpressRoutePortID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ExpressRoutePortName != "expressRoutePortValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExpressRoutePortName'", id.ExpressRoutePortName, "expressRoutePortValue")
+	if id.ExpressRoutePortName != "expressRoutePortName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExpressRoutePortName'", id.ExpressRoutePortName, "expressRoutePortName")
 	}
 }
 
 func TestFormatExpressRoutePortID(t *testing.T) {
-	actual := NewExpressRoutePortID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRoutePortValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortValue"
+	actual := NewExpressRoutePortID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRoutePortName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseExpressRoutePortID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortName",
 			Expected: &ExpressRoutePortId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ExpressRoutePortName: "expressRoutePortValue",
+				ExpressRoutePortName: "expressRoutePortName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseExpressRoutePortIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortName",
 			Expected: &ExpressRoutePortId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				ExpressRoutePortName: "expressRoutePortValue",
+				ExpressRoutePortName: "expressRoutePortName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/expressRoutePorts/expressRoutePortName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTs/eXpReSsRoUtEpOrTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTs/eXpReSsRoUtEpOrTnAmE",
 			Expected: &ExpressRoutePortId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				ExpressRoutePortName: "eXpReSsRoUtEpOrTvAlUe",
+				ExpressRoutePortName: "eXpReSsRoUtEpOrTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTs/eXpReSsRoUtEpOrTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTs/eXpReSsRoUtEpOrTnAmE/extra",
 			Error: true,
 		},
 	}

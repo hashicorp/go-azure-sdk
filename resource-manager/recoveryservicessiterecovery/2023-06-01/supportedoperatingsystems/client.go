@@ -15,7 +15,7 @@ type SupportedOperatingSystemsClient struct {
 }
 
 func NewSupportedOperatingSystemsClientWithBaseURI(sdkApi sdkEnv.Api) (*SupportedOperatingSystemsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "supportedoperatingsystems", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "supportedoperatingsystems", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SupportedOperatingSystemsClient: %+v", err)
 	}

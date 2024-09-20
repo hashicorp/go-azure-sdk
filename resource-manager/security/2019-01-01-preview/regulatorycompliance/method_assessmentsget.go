@@ -45,7 +45,6 @@ func (c RegulatoryComplianceClient) AssessmentsGet(ctx context.Context, id Regul
 
 	var model RegulatoryComplianceAssessment
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

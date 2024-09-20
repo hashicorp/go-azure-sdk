@@ -46,7 +46,6 @@ func (c ReplicationVaultHealthClient) Get(ctx context.Context, id VaultId) (resu
 
 	var model VaultHealthDetails
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

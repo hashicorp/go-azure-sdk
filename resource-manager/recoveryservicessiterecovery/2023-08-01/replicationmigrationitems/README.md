@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-08-01/replicationmigrationitems` Documentation
 
-The `replicationmigrationitems` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicessiterecovery` (API Version `2023-08-01`).
+The `replicationmigrationitems` SDK allows for interaction with Azure Resource Manager `recoveryservicessiterecovery` (API Version `2023-08-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.EnableMigrationInput{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 if err := client.DeleteThenPoll(ctx, id, replicationmigrationitems.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id, replicationmigrationitems.DefaultDelete
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := replicationmigrationitems.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 // alternatively `client.List(ctx, id, replicationmigrationitems.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, replicationmigrationitems.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue")
+id := replicationmigrationitems.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName")
 
 // alternatively `client.ListByReplicationProtectionContainers(ctx, id, replicationmigrationitems.DefaultListByReplicationProtectionContainersOperationOptions())` can be used to do batched pagination
 items, err := client.ListByReplicationProtectionContainersComplete(ctx, id, replicationmigrationitems.DefaultListByReplicationProtectionContainersOperationOptions())
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.MigrateInput{
 	// ...
@@ -120,7 +120,7 @@ if err := client.MigrateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.PauseReplicationInput{
 	// ...
@@ -137,7 +137,7 @@ if err := client.PauseReplicationThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.ResumeReplicationInput{
 	// ...
@@ -154,7 +154,7 @@ if err := client.ResumeReplicationThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.ResyncInput{
 	// ...
@@ -171,7 +171,7 @@ if err := client.ResyncThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.TestMigrateInput{
 	// ...
@@ -188,7 +188,7 @@ if err := client.TestMigrateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.TestMigrateCleanupInput{
 	// ...
@@ -205,7 +205,7 @@ if err := client.TestMigrateCleanupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationMigrationItemValue")
+id := replicationmigrationitems.NewReplicationMigrationItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "migrationItemName")
 
 payload := replicationmigrationitems.UpdateMigrationItemInput{
 	// ...

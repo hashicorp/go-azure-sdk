@@ -44,7 +44,7 @@ func ParseVirtualNetworkRuleID(input string) (*VirtualNetworkRuleId, error) {
 	}
 
 	id := VirtualNetworkRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseVirtualNetworkRuleIDInsensitively(input string) (*VirtualNetworkRuleId
 	}
 
 	id := VirtualNetworkRuleId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id VirtualNetworkRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataLakeStore", "Microsoft.DataLakeStore", "Microsoft.DataLakeStore"),
 		resourceids.StaticSegment("staticAccounts", "accounts", "accounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("accountName", "accountName"),
 		resourceids.StaticSegment("staticVirtualNetworkRules", "virtualNetworkRules", "virtualNetworkRules"),
-		resourceids.UserSpecifiedSegment("virtualNetworkRuleName", "virtualNetworkRuleValue"),
+		resourceids.UserSpecifiedSegment("virtualNetworkRuleName", "virtualNetworkRuleName"),
 	}
 }
 

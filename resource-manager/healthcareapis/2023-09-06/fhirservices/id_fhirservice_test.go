@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FhirServiceId{}
 
 func TestNewFhirServiceID(t *testing.T) {
-	id := NewFhirServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "fhirServiceValue")
+	id := NewFhirServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "fhirServiceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewFhirServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.WorkspaceName != "workspaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.FhirServiceName != "fhirServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FhirServiceName'", id.FhirServiceName, "fhirServiceValue")
+	if id.FhirServiceName != "fhirServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FhirServiceName'", id.FhirServiceName, "fhirServiceName")
 	}
 }
 
 func TestFormatFhirServiceID(t *testing.T) {
-	actual := NewFhirServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "fhirServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices/fhirServiceValue"
+	actual := NewFhirServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "fhirServiceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices/fhirServiceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseFhirServiceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices/fhirServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices/fhirServiceName",
 			Expected: &FhirServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				FhirServiceName:   "fhirServiceValue",
+				WorkspaceName:     "workspaceName",
+				FhirServiceName:   "fhirServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices/fhirServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices/fhirServiceName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseFhirServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/fHiRsErViCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/fHiRsErViCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices/fhirServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices/fhirServiceName",
 			Expected: &FhirServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				FhirServiceName:   "fhirServiceValue",
+				WorkspaceName:     "workspaceName",
+				FhirServiceName:   "fhirServiceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/fhirServices/fhirServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/fhirServices/fhirServiceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/fHiRsErViCeS/fHiRsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/fHiRsErViCeS/fHiRsErViCeNaMe",
 			Expected: &FhirServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
-				FhirServiceName:   "fHiRsErViCeVaLuE",
+				WorkspaceName:     "wOrKsPaCeNaMe",
+				FhirServiceName:   "fHiRsErViCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/fHiRsErViCeS/fHiRsErViCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeNaMe/fHiRsErViCeS/fHiRsErViCeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -46,7 +46,6 @@ func (c DeploymentsClient) ExportTemplateAtSubscriptionScope(ctx context.Context
 
 	var model DeploymentExportResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

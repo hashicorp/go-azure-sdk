@@ -45,7 +45,6 @@ func (c GroupClient) WorkspaceGroupGet(ctx context.Context, id WorkspaceGroupId)
 
 	var model GroupContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MasterSiteId{}
 
 func TestNewMasterSiteID(t *testing.T) {
-	id := NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue")
+	id := NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewMasterSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MasterSiteName != "masterSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MasterSiteName'", id.MasterSiteName, "masterSiteValue")
+	if id.MasterSiteName != "siteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MasterSiteName'", id.MasterSiteName, "siteName")
 	}
 }
 
 func TestFormatMasterSiteID(t *testing.T) {
-	actual := NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/masterSiteValue"
+	actual := NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/siteName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseMasterSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/masterSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/siteName",
 			Expected: &MasterSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MasterSiteName:    "masterSiteValue",
+				MasterSiteName:    "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/masterSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/siteName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseMasterSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/masterSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/siteName",
 			Expected: &MasterSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MasterSiteName:    "masterSiteValue",
+				MasterSiteName:    "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/masterSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/masterSites/siteName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/mAsTeRsItEs/mAsTeRsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/mAsTeRsItEs/sItEnAmE",
 			Expected: &MasterSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MasterSiteName:    "mAsTeRsItEvAlUe",
+				MasterSiteName:    "sItEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/mAsTeRsItEs/mAsTeRsItEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/mAsTeRsItEs/sItEnAmE/extra",
 			Error: true,
 		},
 	}

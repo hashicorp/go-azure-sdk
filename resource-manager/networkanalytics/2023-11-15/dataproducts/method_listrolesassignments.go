@@ -50,7 +50,6 @@ func (c DataProductsClient) ListRolesAssignments(ctx context.Context, id DataPro
 
 	var model ListRoleAssignments
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -42,7 +42,7 @@ func ParseLabPlanID(input string) (*LabPlanId, error) {
 	}
 
 	id := LabPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseLabPlanIDInsensitively(input string) (*LabPlanId, error) {
 	}
 
 	id := LabPlanId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -115,7 +115,7 @@ func (id LabPlanId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftLabServices", "Microsoft.LabServices", "Microsoft.LabServices"),
 		resourceids.StaticSegment("staticLabPlans", "labPlans", "labPlans"),
-		resourceids.UserSpecifiedSegment("labPlanName", "labPlanValue"),
+		resourceids.UserSpecifiedSegment("labPlanName", "labPlanName"),
 	}
 }
 

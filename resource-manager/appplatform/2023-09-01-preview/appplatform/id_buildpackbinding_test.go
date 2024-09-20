@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BuildPackBindingId{}
 
 func TestNewBuildPackBindingID(t *testing.T) {
-	id := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "buildServiceValue", "builderValue", "buildPackBindingValue")
+	id := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "buildServiceName", "builderName", "buildpackBindingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,26 +22,26 @@ func TestNewBuildPackBindingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SpringName != "springValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "springValue")
+	if id.SpringName != "serviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "serviceName")
 	}
 
-	if id.BuildServiceName != "buildServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BuildServiceName'", id.BuildServiceName, "buildServiceValue")
+	if id.BuildServiceName != "buildServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BuildServiceName'", id.BuildServiceName, "buildServiceName")
 	}
 
-	if id.BuilderName != "builderValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BuilderName'", id.BuilderName, "builderValue")
+	if id.BuilderName != "builderName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BuilderName'", id.BuilderName, "builderName")
 	}
 
-	if id.BuildPackBindingName != "buildPackBindingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BuildPackBindingName'", id.BuildPackBindingName, "buildPackBindingValue")
+	if id.BuildPackBindingName != "buildpackBindingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BuildPackBindingName'", id.BuildPackBindingName, "buildpackBindingName")
 	}
 }
 
 func TestFormatBuildPackBindingID(t *testing.T) {
-	actual := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "buildServiceValue", "builderValue", "buildPackBindingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildPackBindingValue"
+	actual := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "buildServiceName", "builderName", "buildpackBindingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings/buildpackBindingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -95,49 +95,49 @@ func TestParseBuildPackBindingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildPackBindingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings/buildpackBindingName",
 			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				SpringName:           "springValue",
-				BuildServiceName:     "buildServiceValue",
-				BuilderName:          "builderValue",
-				BuildPackBindingName: "buildPackBindingValue",
+				SpringName:           "serviceName",
+				BuildServiceName:     "buildServiceName",
+				BuilderName:          "builderName",
+				BuildPackBindingName: "buildpackBindingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildPackBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings/buildpackBindingName/extra",
 			Error: true,
 		},
 	}
@@ -266,96 +266,96 @@ func TestParseBuildPackBindingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE/bUiLdErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE/bUiLdErS/bUiLdErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/bUiLdPaCkBiNdInGs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE/bUiLdErS/bUiLdErNaMe/bUiLdPaCkBiNdInGs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildPackBindingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings/buildpackBindingName",
 			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				SpringName:           "springValue",
-				BuildServiceName:     "buildServiceValue",
-				BuilderName:          "builderValue",
-				BuildPackBindingName: "buildPackBindingValue",
+				SpringName:           "serviceName",
+				BuildServiceName:     "buildServiceName",
+				BuilderName:          "builderName",
+				BuildPackBindingName: "buildpackBindingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildPackBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceName/buildServices/buildServiceName/builders/builderName/buildPackBindings/buildpackBindingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/bUiLdPaCkBiNdInGs/bUiLdPaCkBiNdInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE/bUiLdErS/bUiLdErNaMe/bUiLdPaCkBiNdInGs/bUiLdPaCkBiNdInGnAmE",
 			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				SpringName:           "sPrInGvAlUe",
-				BuildServiceName:     "bUiLdSeRvIcEvAlUe",
-				BuilderName:          "bUiLdErVaLuE",
-				BuildPackBindingName: "bUiLdPaCkBiNdInGvAlUe",
+				SpringName:           "sErViCeNaMe",
+				BuildServiceName:     "bUiLdSeRvIcEnAmE",
+				BuilderName:          "bUiLdErNaMe",
+				BuildPackBindingName: "bUiLdPaCkBiNdInGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/bUiLdPaCkBiNdInGs/bUiLdPaCkBiNdInGvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeNaMe/bUiLdSeRvIcEs/bUiLdSeRvIcEnAmE/bUiLdErS/bUiLdErNaMe/bUiLdPaCkBiNdInGs/bUiLdPaCkBiNdInGnAmE/extra",
 			Error: true,
 		},
 	}

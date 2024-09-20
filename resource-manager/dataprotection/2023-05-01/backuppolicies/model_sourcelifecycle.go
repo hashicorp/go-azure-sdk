@@ -32,7 +32,7 @@ func (s *SourceLifeCycle) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["deleteAfter"]; ok {
-		impl, err := unmarshalDeleteOptionImplementation(v)
+		impl, err := UnmarshalDeleteOptionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DeleteAfter' for 'SourceLifeCycle': %+v", err)
 		}

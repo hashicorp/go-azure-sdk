@@ -44,7 +44,7 @@ func ParseHostingEnvironmentRecommendationID(input string) (*HostingEnvironmentR
 	}
 
 	id := HostingEnvironmentRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseHostingEnvironmentRecommendationIDInsensitively(input string) (*Hostin
 	}
 
 	id := HostingEnvironmentRecommendationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id HostingEnvironmentRecommendationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticHostingEnvironments", "hostingEnvironments", "hostingEnvironments"),
-		resourceids.UserSpecifiedSegment("hostingEnvironmentName", "hostingEnvironmentValue"),
+		resourceids.UserSpecifiedSegment("hostingEnvironmentName", "hostingEnvironmentName"),
 		resourceids.StaticSegment("staticRecommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationName", "recommendationValue"),
+		resourceids.UserSpecifiedSegment("recommendationName", "name"),
 	}
 }
 

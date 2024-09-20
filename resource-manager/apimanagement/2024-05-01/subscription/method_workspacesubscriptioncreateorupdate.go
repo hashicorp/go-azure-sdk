@@ -38,6 +38,7 @@ func (o WorkspaceSubscriptionCreateOrUpdateOperationOptions) ToHeaders() *client
 
 func (o WorkspaceSubscriptionCreateOrUpdateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -86,7 +87,6 @@ func (c SubscriptionClient) WorkspaceSubscriptionCreateOrUpdate(ctx context.Cont
 
 	var model SubscriptionContract
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

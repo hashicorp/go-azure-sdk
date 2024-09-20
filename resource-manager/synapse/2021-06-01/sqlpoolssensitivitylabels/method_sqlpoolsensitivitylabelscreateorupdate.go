@@ -51,7 +51,6 @@ func (c SqlPoolsSensitivityLabelsClient) SqlPoolSensitivityLabelsCreateOrUpdate(
 
 	var model SensitivityLabel
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -15,7 +15,7 @@ type SecurityConnectorsClient struct {
 }
 
 func NewSecurityConnectorsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecurityConnectorsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "securityconnectors", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "securityconnectors", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecurityConnectorsClient: %+v", err)
 	}

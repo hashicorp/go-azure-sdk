@@ -15,8 +15,18 @@ type BanditPolicy struct {
 	SlackFactor *float64 `json:"slackFactor,omitempty"`
 
 	// Fields inherited from EarlyTerminationPolicy
-	DelayEvaluation    *int64 `json:"delayEvaluation,omitempty"`
-	EvaluationInterval *int64 `json:"evaluationInterval,omitempty"`
+
+	DelayEvaluation    *int64                     `json:"delayEvaluation,omitempty"`
+	EvaluationInterval *int64                     `json:"evaluationInterval,omitempty"`
+	PolicyType         EarlyTerminationPolicyType `json:"policyType"`
+}
+
+func (s BanditPolicy) EarlyTerminationPolicy() BaseEarlyTerminationPolicyImpl {
+	return BaseEarlyTerminationPolicyImpl{
+		DelayEvaluation:    s.DelayEvaluation,
+		EvaluationInterval: s.EvaluationInterval,
+		PolicyType:         s.PolicyType,
+	}
 }
 
 var _ json.Marshaler = BanditPolicy{}
@@ -30,9 +40,10 @@ func (s BanditPolicy) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling BanditPolicy: %+v", err)
 	}
+
 	decoded["policyType"] = "Bandit"
 
 	encoded, err = json.Marshal(decoded)

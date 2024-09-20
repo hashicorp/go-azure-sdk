@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HcxEnterpriseSiteId{}
 
 func TestNewHcxEnterpriseSiteID(t *testing.T) {
-	id := NewHcxEnterpriseSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "hcxEnterpriseSiteValue")
+	id := NewHcxEnterpriseSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "hcxEnterpriseSiteName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewHcxEnterpriseSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateCloudName != "privateCloudValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudValue")
+	if id.PrivateCloudName != "privateCloudName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateCloudName'", id.PrivateCloudName, "privateCloudName")
 	}
 
-	if id.HcxEnterpriseSiteName != "hcxEnterpriseSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HcxEnterpriseSiteName'", id.HcxEnterpriseSiteName, "hcxEnterpriseSiteValue")
+	if id.HcxEnterpriseSiteName != "hcxEnterpriseSiteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HcxEnterpriseSiteName'", id.HcxEnterpriseSiteName, "hcxEnterpriseSiteName")
 	}
 }
 
 func TestFormatHcxEnterpriseSiteID(t *testing.T) {
-	actual := NewHcxEnterpriseSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "hcxEnterpriseSiteValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites/hcxEnterpriseSiteValue"
+	actual := NewHcxEnterpriseSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudName", "hcxEnterpriseSiteName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites/hcxEnterpriseSiteName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseHcxEnterpriseSiteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites/hcxEnterpriseSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites/hcxEnterpriseSiteName",
 			Expected: &HcxEnterpriseSiteId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				PrivateCloudName:      "privateCloudValue",
-				HcxEnterpriseSiteName: "hcxEnterpriseSiteValue",
+				PrivateCloudName:      "privateCloudName",
+				HcxEnterpriseSiteName: "hcxEnterpriseSiteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites/hcxEnterpriseSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites/hcxEnterpriseSiteName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseHcxEnterpriseSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/hCxEnTeRpRiSeSiTeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/hCxEnTeRpRiSeSiTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites/hcxEnterpriseSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites/hcxEnterpriseSiteName",
 			Expected: &HcxEnterpriseSiteId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				PrivateCloudName:      "privateCloudValue",
-				HcxEnterpriseSiteName: "hcxEnterpriseSiteValue",
+				PrivateCloudName:      "privateCloudName",
+				HcxEnterpriseSiteName: "hcxEnterpriseSiteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/hcxEnterpriseSites/hcxEnterpriseSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudName/hcxEnterpriseSites/hcxEnterpriseSiteName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/hCxEnTeRpRiSeSiTeS/hCxEnTeRpRiSeSiTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/hCxEnTeRpRiSeSiTeS/hCxEnTeRpRiSeSiTeNaMe",
 			Expected: &HcxEnterpriseSiteId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateCloudName:      "pRiVaTeClOuDvAlUe",
-				HcxEnterpriseSiteName: "hCxEnTeRpRiSeSiTeVaLuE",
+				PrivateCloudName:      "pRiVaTeClOuDnAmE",
+				HcxEnterpriseSiteName: "hCxEnTeRpRiSeSiTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/hCxEnTeRpRiSeSiTeS/hCxEnTeRpRiSeSiTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDnAmE/hCxEnTeRpRiSeSiTeS/hCxEnTeRpRiSeSiTeNaMe/extra",
 			Error: true,
 		},
 	}

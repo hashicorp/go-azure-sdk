@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/namespacesprivateendpointconnections` Documentation
 
-The `namespacesprivateendpointconnections` SDK allows for interaction with the Azure Resource Manager Service `relay` (API Version `2021-11-01`).
+The `namespacesprivateendpointconnections` SDK allows for interaction with Azure Resource Manager `relay` (API Version `2021-11-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateEndpointConnectionValue")
+id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "privateEndpointConnectionName")
 
 payload := namespacesprivateendpointconnections.PrivateEndpointConnection{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateEndpointConnectionValue")
+id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "privateEndpointConnectionName")
 
 if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateEndpointConnectionValue")
+id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "privateEndpointConnectionName")
 
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesprivateendpointconnections.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+id := namespacesprivateendpointconnections.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
 
 // alternatively `client.PrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListComplete(ctx, id)

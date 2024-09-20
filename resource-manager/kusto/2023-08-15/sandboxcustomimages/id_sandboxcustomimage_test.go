@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SandboxCustomImageId{}
 
 func TestNewSandboxCustomImageID(t *testing.T) {
-	id := NewSandboxCustomImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "sandboxCustomImageValue")
+	id := NewSandboxCustomImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "sandboxCustomImageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSandboxCustomImageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ClusterName != "clusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.SandboxCustomImageName != "sandboxCustomImageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SandboxCustomImageName'", id.SandboxCustomImageName, "sandboxCustomImageValue")
+	if id.SandboxCustomImageName != "sandboxCustomImageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SandboxCustomImageName'", id.SandboxCustomImageName, "sandboxCustomImageName")
 	}
 }
 
 func TestFormatSandboxCustomImageID(t *testing.T) {
-	actual := NewSandboxCustomImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "sandboxCustomImageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages/sandboxCustomImageValue"
+	actual := NewSandboxCustomImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "sandboxCustomImageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages/sandboxCustomImageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSandboxCustomImageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages/sandboxCustomImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages/sandboxCustomImageName",
 			Expected: &SandboxCustomImageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ClusterName:            "clusterValue",
-				SandboxCustomImageName: "sandboxCustomImageValue",
+				ClusterName:            "clusterName",
+				SandboxCustomImageName: "sandboxCustomImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages/sandboxCustomImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages/sandboxCustomImageName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSandboxCustomImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/sAnDbOxCuStOmImAgEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/sAnDbOxCuStOmImAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages/sandboxCustomImageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages/sandboxCustomImageName",
 			Expected: &SandboxCustomImageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ClusterName:            "clusterValue",
-				SandboxCustomImageName: "sandboxCustomImageValue",
+				ClusterName:            "clusterName",
+				SandboxCustomImageName: "sandboxCustomImageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/sandboxCustomImages/sandboxCustomImageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterName/sandboxCustomImages/sandboxCustomImageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/sAnDbOxCuStOmImAgEs/sAnDbOxCuStOmImAgEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/sAnDbOxCuStOmImAgEs/sAnDbOxCuStOmImAgEnAmE",
 			Expected: &SandboxCustomImageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:            "cLuStErVaLuE",
-				SandboxCustomImageName: "sAnDbOxCuStOmImAgEvAlUe",
+				ClusterName:            "cLuStErNaMe",
+				SandboxCustomImageName: "sAnDbOxCuStOmImAgEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErVaLuE/sAnDbOxCuStOmImAgEs/sAnDbOxCuStOmImAgEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.kUsTo/cLuStErS/cLuStErNaMe/sAnDbOxCuStOmImAgEs/sAnDbOxCuStOmImAgEnAmE/extra",
 			Error: true,
 		},
 	}

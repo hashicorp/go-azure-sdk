@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EnableMigrationProviderSpecificInput interface {
+	EnableMigrationProviderSpecificInput() BaseEnableMigrationProviderSpecificInputImpl
 }
 
-// RawEnableMigrationProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ EnableMigrationProviderSpecificInput = BaseEnableMigrationProviderSpecificInputImpl{}
+
+type BaseEnableMigrationProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseEnableMigrationProviderSpecificInputImpl) EnableMigrationProviderSpecificInput() BaseEnableMigrationProviderSpecificInputImpl {
+	return s
+}
+
+var _ EnableMigrationProviderSpecificInput = RawEnableMigrationProviderSpecificInputImpl{}
+
+// RawEnableMigrationProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawEnableMigrationProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	enableMigrationProviderSpecificInput BaseEnableMigrationProviderSpecificInputImpl
+	Type                                 string
+	Values                               map[string]interface{}
 }
 
-func unmarshalEnableMigrationProviderSpecificInputImplementation(input []byte) (EnableMigrationProviderSpecificInput, error) {
+func (s RawEnableMigrationProviderSpecificInputImpl) EnableMigrationProviderSpecificInput() BaseEnableMigrationProviderSpecificInputImpl {
+	return s.enableMigrationProviderSpecificInput
+}
+
+func UnmarshalEnableMigrationProviderSpecificInputImplementation(input []byte) (EnableMigrationProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalEnableMigrationProviderSpecificInputImplementation(input []byte) (
 		return out, nil
 	}
 
-	out := RawEnableMigrationProviderSpecificInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseEnableMigrationProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEnableMigrationProviderSpecificInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawEnableMigrationProviderSpecificInputImpl{
+		enableMigrationProviderSpecificInput: parent,
+		Type:                                 value,
+		Values:                               temp,
+	}, nil
 
 }

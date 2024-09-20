@@ -44,7 +44,7 @@ func ParseStorageTaskAssignmentID(input string) (*StorageTaskAssignmentId, error
 	}
 
 	id := StorageTaskAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseStorageTaskAssignmentIDInsensitively(input string) (*StorageTaskAssign
 	}
 
 	id := StorageTaskAssignmentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id StorageTaskAssignmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftStorage", "Microsoft.Storage", "Microsoft.Storage"),
 		resourceids.StaticSegment("staticStorageAccounts", "storageAccounts", "storageAccounts"),
-		resourceids.UserSpecifiedSegment("storageAccountName", "storageAccountValue"),
+		resourceids.UserSpecifiedSegment("storageAccountName", "accountName"),
 		resourceids.StaticSegment("staticStorageTaskAssignments", "storageTaskAssignments", "storageTaskAssignments"),
-		resourceids.UserSpecifiedSegment("storageTaskAssignmentName", "storageTaskAssignmentValue"),
+		resourceids.UserSpecifiedSegment("storageTaskAssignmentName", "storageTaskAssignmentName"),
 	}
 }
 

@@ -38,7 +38,7 @@ func ParseBestPracticeID(input string) (*BestPracticeId, error) {
 	}
 
 	id := BestPracticeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -55,7 +55,7 @@ func ParseBestPracticeIDInsensitively(input string) (*BestPracticeId, error) {
 	}
 
 	id := BestPracticeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -99,7 +99,7 @@ func (id BestPracticeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAutoManage", "Microsoft.AutoManage", "Microsoft.AutoManage"),
 		resourceids.StaticSegment("staticBestPractices", "bestPractices", "bestPractices"),
-		resourceids.UserSpecifiedSegment("bestPracticeName", "bestPracticeValue"),
+		resourceids.UserSpecifiedSegment("bestPracticeName", "bestPracticeName"),
 	}
 }
 

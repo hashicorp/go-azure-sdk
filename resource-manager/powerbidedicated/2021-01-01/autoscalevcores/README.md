@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/autoscalevcores` Documentation
 
-The `autoscalevcores` SDK allows for interaction with the Azure Resource Manager Service `powerbidedicated` (API Version `2021-01-01`).
+The `autoscalevcores` SDK allows for interaction with Azure Resource Manager `powerbidedicated` (API Version `2021-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
 
 payload := autoscalevcores.AutoScaleVCore{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
 
 payload := autoscalevcores.AutoScaleVCoreUpdateParameters{
 	// ...

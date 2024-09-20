@@ -65,7 +65,7 @@ func (s *RoleManagementPolicyProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]RoleManagementPolicyRule, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRoleManagementPolicyRuleImplementation(val)
+			impl, err := UnmarshalRoleManagementPolicyRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'EffectiveRules' for 'RoleManagementPolicyProperties': %+v", i, err)
 			}
@@ -82,7 +82,7 @@ func (s *RoleManagementPolicyProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]RoleManagementPolicyRule, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRoleManagementPolicyRuleImplementation(val)
+			impl, err := UnmarshalRoleManagementPolicyRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'Rules' for 'RoleManagementPolicyProperties': %+v", i, err)
 			}

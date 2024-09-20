@@ -15,7 +15,7 @@ type WorkloadNetworkSegmentsClient struct {
 }
 
 func NewWorkloadNetworkSegmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadNetworkSegmentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workloadnetworksegments", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "workloadnetworksegments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkloadNetworkSegmentsClient: %+v", err)
 	}

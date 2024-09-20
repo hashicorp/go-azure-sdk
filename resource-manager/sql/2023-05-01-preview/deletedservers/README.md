@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-05-01-preview/deletedservers` Documentation
 
-The `deletedservers` SDK allows for interaction with the Azure Resource Manager Service `sql` (API Version `2023-05-01-preview`).
+The `deletedservers` SDK allows for interaction with Azure Resource Manager `sql` (API Version `2023-05-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deletedservers.NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServerValue")
+id := deletedservers.NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationName", "deletedServerName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deletedservers.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+id := deletedservers.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListByLocation(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLocationComplete(ctx, id)
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deletedservers.NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServerValue")
+id := deletedservers.NewDeletedServerID("12345678-1234-9876-4563-123456789012", "locationName", "deletedServerName")
 
 if err := client.RecoverThenPoll(ctx, id); err != nil {
 	// handle the error

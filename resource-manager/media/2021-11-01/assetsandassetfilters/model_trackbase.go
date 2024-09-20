@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TrackBase interface {
+	TrackBase() BaseTrackBaseImpl
 }
 
-// RawTrackBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ TrackBase = BaseTrackBaseImpl{}
+
+type BaseTrackBaseImpl struct {
+	OdataType string `json:"@odata.type"`
+}
+
+func (s BaseTrackBaseImpl) TrackBase() BaseTrackBaseImpl {
+	return s
+}
+
+var _ TrackBase = RawTrackBaseImpl{}
+
+// RawTrackBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawTrackBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	trackBase BaseTrackBaseImpl
+	Type      string
+	Values    map[string]interface{}
 }
 
-func unmarshalTrackBaseImplementation(input []byte) (TrackBase, error) {
+func (s RawTrackBaseImpl) TrackBase() BaseTrackBaseImpl {
+	return s.trackBase
+}
+
+func UnmarshalTrackBaseImplementation(input []byte) (TrackBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +77,15 @@ func unmarshalTrackBaseImplementation(input []byte) (TrackBase, error) {
 		return out, nil
 	}
 
-	out := RawTrackBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseTrackBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTrackBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawTrackBaseImpl{
+		trackBase: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
 
 }

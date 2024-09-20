@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/replicationstorageclassificationmappings` Documentation
 
-The `replicationstorageclassificationmappings` SDK allows for interaction with the Azure Resource Manager Service `recoveryservicessiterecovery` (API Version `2023-01-01`).
+The `replicationstorageclassificationmappings` SDK allows for interaction with Azure Resource Manager `recoveryservicessiterecovery` (API Version `2023-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationStorageClassificationValue", "replicationStorageClassificationMappingValue")
+id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "storageClassificationName", "storageClassificationMappingName")
 
 payload := replicationstorageclassificationmappings.StorageClassificationMappingInput{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationStorageClassificationValue", "replicationStorageClassificationMappingValue")
+id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "storageClassificationName", "storageClassificationMappingName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationStorageClassificationValue", "replicationStorageClassificationMappingValue")
+id := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "storageClassificationName", "storageClassificationMappingName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassificationmappings.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := replicationstorageclassificationmappings.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationstorageclassificationmappings.NewReplicationStorageClassificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationStorageClassificationValue")
+id := replicationstorageclassificationmappings.NewReplicationStorageClassificationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "storageClassificationName")
 
 // alternatively `client.ListByReplicationStorageClassifications(ctx, id)` can be used to do batched pagination
 items, err := client.ListByReplicationStorageClassificationsComplete(ctx, id)

@@ -42,6 +42,7 @@ func (o WorkspaceApiOperationListByApiOperationOptions) ToHeaders() *client.Head
 
 func (o WorkspaceApiOperationListByApiOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

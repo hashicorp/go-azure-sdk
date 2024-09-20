@@ -15,7 +15,7 @@ type MigrationRecoveryPointsClient struct {
 }
 
 func NewMigrationRecoveryPointsClientWithBaseURI(sdkApi sdkEnv.Api) (*MigrationRecoveryPointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "migrationrecoverypoints", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "migrationrecoverypoints", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MigrationRecoveryPointsClient: %+v", err)
 	}

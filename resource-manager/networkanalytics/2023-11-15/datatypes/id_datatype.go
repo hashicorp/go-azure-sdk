@@ -44,7 +44,7 @@ func ParseDataTypeID(input string) (*DataTypeId, error) {
 	}
 
 	id := DataTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseDataTypeIDInsensitively(input string) (*DataTypeId, error) {
 	}
 
 	id := DataTypeId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id DataTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetworkAnalytics", "Microsoft.NetworkAnalytics", "Microsoft.NetworkAnalytics"),
 		resourceids.StaticSegment("staticDataProducts", "dataProducts", "dataProducts"),
-		resourceids.UserSpecifiedSegment("dataProductName", "dataProductValue"),
+		resourceids.UserSpecifiedSegment("dataProductName", "dataProductName"),
 		resourceids.StaticSegment("staticDataTypes", "dataTypes", "dataTypes"),
-		resourceids.UserSpecifiedSegment("dataTypeName", "dataTypeValue"),
+		resourceids.UserSpecifiedSegment("dataTypeName", "dataTypeName"),
 	}
 }
 

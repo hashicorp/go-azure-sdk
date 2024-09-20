@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateMigrationItemProviderSpecificInput interface {
+	UpdateMigrationItemProviderSpecificInput() BaseUpdateMigrationItemProviderSpecificInputImpl
 }
 
-// RawUpdateMigrationItemProviderSpecificInputImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ UpdateMigrationItemProviderSpecificInput = BaseUpdateMigrationItemProviderSpecificInputImpl{}
+
+type BaseUpdateMigrationItemProviderSpecificInputImpl struct {
+	InstanceType string `json:"instanceType"`
+}
+
+func (s BaseUpdateMigrationItemProviderSpecificInputImpl) UpdateMigrationItemProviderSpecificInput() BaseUpdateMigrationItemProviderSpecificInputImpl {
+	return s
+}
+
+var _ UpdateMigrationItemProviderSpecificInput = RawUpdateMigrationItemProviderSpecificInputImpl{}
+
+// RawUpdateMigrationItemProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawUpdateMigrationItemProviderSpecificInputImpl struct {
-	Type   string
-	Values map[string]interface{}
+	updateMigrationItemProviderSpecificInput BaseUpdateMigrationItemProviderSpecificInputImpl
+	Type                                     string
+	Values                                   map[string]interface{}
 }
 
-func unmarshalUpdateMigrationItemProviderSpecificInputImplementation(input []byte) (UpdateMigrationItemProviderSpecificInput, error) {
+func (s RawUpdateMigrationItemProviderSpecificInputImpl) UpdateMigrationItemProviderSpecificInput() BaseUpdateMigrationItemProviderSpecificInputImpl {
+	return s.updateMigrationItemProviderSpecificInput
+}
+
+func UnmarshalUpdateMigrationItemProviderSpecificInputImplementation(input []byte) (UpdateMigrationItemProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -44,10 +61,15 @@ func unmarshalUpdateMigrationItemProviderSpecificInputImplementation(input []byt
 		return out, nil
 	}
 
-	out := RawUpdateMigrationItemProviderSpecificInputImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseUpdateMigrationItemProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseUpdateMigrationItemProviderSpecificInputImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawUpdateMigrationItemProviderSpecificInputImpl{
+		updateMigrationItemProviderSpecificInput: parent,
+		Type:                                     value,
+		Values:                                   temp,
+	}, nil
 
 }

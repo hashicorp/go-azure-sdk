@@ -104,7 +104,7 @@ func (s *RecoveryPlanProperties) UnmarshalJSON(bytes []byte) error {
 
 		output := make([]RecoveryPlanProviderSpecificDetails, 0)
 		for i, val := range listTemp {
-			impl, err := unmarshalRecoveryPlanProviderSpecificDetailsImplementation(val)
+			impl, err := UnmarshalRecoveryPlanProviderSpecificDetailsImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling index %d field 'ProviderSpecificDetails' for 'RecoveryPlanProperties': %+v", i, err)
 			}

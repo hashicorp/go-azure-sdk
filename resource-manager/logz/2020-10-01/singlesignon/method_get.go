@@ -45,7 +45,6 @@ func (c SingleSignOnClient) Get(ctx context.Context, id SingleSignOnConfiguratio
 
 	var model LogzSingleSignOnResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

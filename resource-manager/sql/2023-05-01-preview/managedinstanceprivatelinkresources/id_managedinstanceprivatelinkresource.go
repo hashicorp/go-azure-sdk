@@ -44,7 +44,7 @@ func ParseManagedInstancePrivateLinkResourceID(input string) (*ManagedInstancePr
 	}
 
 	id := ManagedInstancePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseManagedInstancePrivateLinkResourceIDInsensitively(input string) (*Mana
 	}
 
 	id := ManagedInstancePrivateLinkResourceId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id ManagedInstancePrivateLinkResourceId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
-		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "groupName"),
 	}
 }
 

@@ -16,7 +16,16 @@ type FacetResult struct {
 	TotalRecords int64       `json:"totalRecords"`
 
 	// Fields inherited from Facet
+
 	Expression string `json:"expression"`
+	ResultType string `json:"resultType"`
+}
+
+func (s FacetResult) Facet() BaseFacetImpl {
+	return BaseFacetImpl{
+		Expression: s.Expression,
+		ResultType: s.ResultType,
+	}
 }
 
 var _ json.Marshaler = FacetResult{}
@@ -30,9 +39,10 @@ func (s FacetResult) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling FacetResult: %+v", err)
 	}
+
 	decoded["resultType"] = "FacetResult"
 
 	encoded, err = json.Marshal(decoded)

@@ -44,7 +44,7 @@ func ParseOperationIdID(input string) (*OperationIdId, error) {
 	}
 
 	id := OperationIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOperationIdIDInsensitively(input string) (*OperationIdId, error) {
 	}
 
 	id := OperationIdId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,10 +121,10 @@ func (id OperationIdId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataProtection", "Microsoft.DataProtection", "Microsoft.DataProtection"),
 		resourceids.StaticSegment("staticBackupVaults", "backupVaults", "backupVaults"),
-		resourceids.UserSpecifiedSegment("backupVaultName", "backupVaultValue"),
+		resourceids.UserSpecifiedSegment("backupVaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupJobs", "backupJobs", "backupJobs"),
 		resourceids.StaticSegment("staticOperations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("operationId", "operationIdValue"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
 	}
 }
 

@@ -15,7 +15,7 @@ type ReservationOrderClient struct {
 }
 
 func NewReservationOrderClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservationOrderClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "reservationorder", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "reservationorder", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReservationOrderClient: %+v", err)
 	}

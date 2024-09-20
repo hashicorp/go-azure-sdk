@@ -10,18 +10,35 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OnlineScaleSettings interface {
+	OnlineScaleSettings() BaseOnlineScaleSettingsImpl
 }
 
-// RawOnlineScaleSettingsImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ OnlineScaleSettings = BaseOnlineScaleSettingsImpl{}
+
+type BaseOnlineScaleSettingsImpl struct {
+	ScaleType ScaleType `json:"scaleType"`
+}
+
+func (s BaseOnlineScaleSettingsImpl) OnlineScaleSettings() BaseOnlineScaleSettingsImpl {
+	return s
+}
+
+var _ OnlineScaleSettings = RawOnlineScaleSettingsImpl{}
+
+// RawOnlineScaleSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawOnlineScaleSettingsImpl struct {
-	Type   string
-	Values map[string]interface{}
+	onlineScaleSettings BaseOnlineScaleSettingsImpl
+	Type                string
+	Values              map[string]interface{}
 }
 
-func unmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettings, error) {
+func (s RawOnlineScaleSettingsImpl) OnlineScaleSettings() BaseOnlineScaleSettingsImpl {
+	return s.onlineScaleSettings
+}
+
+func UnmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettings, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +69,15 @@ func unmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettin
 		return out, nil
 	}
 
-	out := RawOnlineScaleSettingsImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseOnlineScaleSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOnlineScaleSettingsImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawOnlineScaleSettingsImpl{
+		onlineScaleSettings: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
 
 }

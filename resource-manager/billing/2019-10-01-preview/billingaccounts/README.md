@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/billing/2019-10-01-preview/billingaccounts` Documentation
 
-The `billingaccounts` SDK allows for interaction with the Azure Resource Manager Service `billing` (API Version `2019-10-01-preview`).
+The `billingaccounts` SDK allows for interaction with Azure Resource Manager `billing` (API Version `2019-10-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingaccounts.NewBillingAccountID("billingAccountValue")
+id := billingaccounts.NewBillingAccountID("billingAccountName")
 
 read, err := client.Get(ctx, id, billingaccounts.DefaultGetOperationOptions())
 if err != nil {
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingaccounts.NewBillingAccountID("billingAccountValue")
+id := billingaccounts.NewBillingAccountID("billingAccountName")
 
 // alternatively `client.ListInvoiceSectionsByCreateSubscriptionPermission(ctx, id)` can be used to do batched pagination
 items, err := client.ListInvoiceSectionsByCreateSubscriptionPermissionComplete(ctx, id)
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := billingaccounts.NewBillingAccountID("billingAccountValue")
+id := billingaccounts.NewBillingAccountID("billingAccountName")
 
 payload := billingaccounts.BillingAccountUpdateRequest{
 	// ...

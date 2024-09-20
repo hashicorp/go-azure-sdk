@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IntegrationRuntimeId{}
 
 func TestNewIntegrationRuntimeID(t *testing.T) {
-	id := NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue")
+	id := NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewIntegrationRuntimeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FactoryName != "factoryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryValue")
+	if id.FactoryName != "factoryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.IntegrationRuntimeName != "integrationRuntimeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntegrationRuntimeName'", id.IntegrationRuntimeName, "integrationRuntimeValue")
+	if id.IntegrationRuntimeName != "integrationRuntimeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntegrationRuntimeName'", id.IntegrationRuntimeName, "integrationRuntimeName")
 	}
 }
 
 func TestFormatIntegrationRuntimeID(t *testing.T) {
-	actual := NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryValue", "integrationRuntimeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes/integrationRuntimeValue"
+	actual := NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "integrationRuntimeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes/integrationRuntimeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseIntegrationRuntimeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes/integrationRuntimeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes/integrationRuntimeName",
 			Expected: &IntegrationRuntimeId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				FactoryName:            "factoryValue",
-				IntegrationRuntimeName: "integrationRuntimeValue",
+				FactoryName:            "factoryName",
+				IntegrationRuntimeName: "integrationRuntimeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes/integrationRuntimeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes/integrationRuntimeName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseIntegrationRuntimeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/iNtEgRaTiOnRuNtImEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/iNtEgRaTiOnRuNtImEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes/integrationRuntimeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes/integrationRuntimeName",
 			Expected: &IntegrationRuntimeId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				FactoryName:            "factoryValue",
-				IntegrationRuntimeName: "integrationRuntimeValue",
+				FactoryName:            "factoryName",
+				IntegrationRuntimeName: "integrationRuntimeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryValue/integrationRuntimes/integrationRuntimeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/integrationRuntimes/integrationRuntimeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/iNtEgRaTiOnRuNtImEs/iNtEgRaTiOnRuNtImEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/iNtEgRaTiOnRuNtImEs/iNtEgRaTiOnRuNtImEnAmE",
 			Expected: &IntegrationRuntimeId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				FactoryName:            "fAcToRyVaLuE",
-				IntegrationRuntimeName: "iNtEgRaTiOnRuNtImEvAlUe",
+				FactoryName:            "fAcToRyNaMe",
+				IntegrationRuntimeName: "iNtEgRaTiOnRuNtImEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyVaLuE/iNtEgRaTiOnRuNtImEs/iNtEgRaTiOnRuNtImEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/iNtEgRaTiOnRuNtImEs/iNtEgRaTiOnRuNtImEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -45,7 +45,6 @@ func (c AppResiliencyClient) Get(ctx context.Context, id ResiliencyPolicyId) (re
 
 	var model AppResiliency
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

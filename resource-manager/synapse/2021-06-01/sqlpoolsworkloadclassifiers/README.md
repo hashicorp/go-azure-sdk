@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsworkloadclassifiers` Documentation
 
-The `sqlpoolsworkloadclassifiers` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `sqlpoolsworkloadclassifiers` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue", "workloadClassifierValue")
+id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName", "workloadClassifierName")
 
 payload := sqlpoolsworkloadclassifiers.WorkloadClassifier{
 	// ...
@@ -41,7 +41,7 @@ if err := client.SqlPoolWorkloadClassifierCreateOrUpdateThenPoll(ctx, id, payloa
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue", "workloadClassifierValue")
+id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName", "workloadClassifierName")
 
 if err := client.SqlPoolWorkloadClassifierDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.SqlPoolWorkloadClassifierDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue", "workloadClassifierValue")
+id := sqlpoolsworkloadclassifiers.NewWorkloadClassifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName", "workloadClassifierName")
 
 read, err := client.SqlPoolWorkloadClassifierGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsworkloadclassifiers.NewWorkloadGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sqlPoolValue", "workloadGroupValue")
+id := sqlpoolsworkloadclassifiers.NewWorkloadGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "workloadGroupName")
 
 // alternatively `client.SqlPoolWorkloadClassifierList(ctx, id)` can be used to do batched pagination
 items, err := client.SqlPoolWorkloadClassifierListComplete(ctx, id)

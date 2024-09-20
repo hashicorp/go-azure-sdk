@@ -15,7 +15,7 @@ type StorageAccountsNetworkSecurityPerimeterConfigurationsClient struct {
 }
 
 func NewStorageAccountsNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageAccountsNetworkSecurityPerimeterConfigurationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "storageaccountsnetworksecurityperimeterconfigurations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "storageaccountsnetworksecurityperimeterconfigurations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageAccountsNetworkSecurityPerimeterConfigurationsClient: %+v", err)
 	}

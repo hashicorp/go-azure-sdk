@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VMwareSiteId{}
 
 func TestNewVMwareSiteID(t *testing.T) {
-	id := NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue")
+	id := NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVMwareSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VmwareSiteName != "vmwareSiteValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmwareSiteName'", id.VmwareSiteName, "vmwareSiteValue")
+	if id.VmwareSiteName != "siteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VmwareSiteName'", id.VmwareSiteName, "siteName")
 	}
 }
 
 func TestFormatVMwareSiteID(t *testing.T) {
-	actual := NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue"
+	actual := NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVMwareSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName",
 			Expected: &VMwareSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmwareSiteName:    "vmwareSiteValue",
+				VmwareSiteName:    "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVMwareSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName",
 			Expected: &VMwareSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VmwareSiteName:    "vmwareSiteValue",
+				VmwareSiteName:    "siteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/vmwareSiteValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/vmwareSites/siteName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE",
 			Expected: &VMwareSiteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VmwareSiteName:    "vMwArEsItEvAlUe",
+				VmwareSiteName:    "sItEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/vMwArEsItEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/vMwArEsItEs/sItEnAmE/extra",
 			Error: true,
 		},
 	}

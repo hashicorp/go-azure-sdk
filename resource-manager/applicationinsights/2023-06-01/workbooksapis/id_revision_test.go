@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RevisionId{}
 
 func TestNewRevisionID(t *testing.T) {
-	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookValue", "revisionIdValue")
+	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "revisionId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewRevisionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkbookName != "workbookValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkbookName'", id.WorkbookName, "workbookValue")
+	if id.WorkbookName != "resourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkbookName'", id.WorkbookName, "resourceName")
 	}
 
-	if id.RevisionId != "revisionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RevisionId'", id.RevisionId, "revisionIdValue")
+	if id.RevisionId != "revisionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RevisionId'", id.RevisionId, "revisionId")
 	}
 }
 
 func TestFormatRevisionID(t *testing.T) {
-	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookValue", "revisionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions/revisionIdValue"
+	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "revisionId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions/revisionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseRevisionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions/revisionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions/revisionId",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkbookName:      "workbookValue",
-				RevisionId:        "revisionIdValue",
+				WorkbookName:      "resourceName",
+				RevisionId:        "revisionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions/revisionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions/revisionId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseRevisionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/wOrKbOoKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/rEsOuRcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/wOrKbOoKvAlUe/rEvIsIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/rEsOuRcEnAmE/rEvIsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions/revisionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions/revisionId",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkbookName:      "workbookValue",
-				RevisionId:        "revisionIdValue",
+				WorkbookName:      "resourceName",
+				RevisionId:        "revisionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/workbookValue/revisions/revisionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbooks/resourceName/revisions/revisionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/wOrKbOoKvAlUe/rEvIsIoNs/rEvIsIoNiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/rEsOuRcEnAmE/rEvIsIoNs/rEvIsIoNiD",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkbookName:      "wOrKbOoKvAlUe",
-				RevisionId:        "rEvIsIoNiDvAlUe",
+				WorkbookName:      "rEsOuRcEnAmE",
+				RevisionId:        "rEvIsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/wOrKbOoKvAlUe/rEvIsIoNs/rEvIsIoNiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKs/rEsOuRcEnAmE/rEvIsIoNs/rEvIsIoNiD/extra",
 			Error: true,
 		},
 	}

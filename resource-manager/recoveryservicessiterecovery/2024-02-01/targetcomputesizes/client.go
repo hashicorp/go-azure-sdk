@@ -15,7 +15,7 @@ type TargetComputeSizesClient struct {
 }
 
 func NewTargetComputeSizesClientWithBaseURI(sdkApi sdkEnv.Api) (*TargetComputeSizesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "targetcomputesizes", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "targetcomputesizes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TargetComputeSizesClient: %+v", err)
 	}

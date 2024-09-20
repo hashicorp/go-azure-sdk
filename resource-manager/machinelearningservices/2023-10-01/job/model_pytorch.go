@@ -14,6 +14,14 @@ type PyTorch struct {
 	ProcessCountPerInstance *int64 `json:"processCountPerInstance,omitempty"`
 
 	// Fields inherited from DistributionConfiguration
+
+	DistributionType DistributionType `json:"distributionType"`
+}
+
+func (s PyTorch) DistributionConfiguration() BaseDistributionConfigurationImpl {
+	return BaseDistributionConfigurationImpl{
+		DistributionType: s.DistributionType,
+	}
 }
 
 var _ json.Marshaler = PyTorch{}
@@ -27,9 +35,10 @@ func (s PyTorch) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling PyTorch: %+v", err)
 	}
+
 	decoded["distributionType"] = "PyTorch"
 
 	encoded, err = json.Marshal(decoded)

@@ -15,7 +15,7 @@ type NamespacesNetworkSecurityPerimeterConfigurationsClient struct {
 }
 
 func NewNamespacesNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesNetworkSecurityPerimeterConfigurationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "namespacesnetworksecurityperimeterconfigurations", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "namespacesnetworksecurityperimeterconfigurations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NamespacesNetworkSecurityPerimeterConfigurationsClient: %+v", err)
 	}

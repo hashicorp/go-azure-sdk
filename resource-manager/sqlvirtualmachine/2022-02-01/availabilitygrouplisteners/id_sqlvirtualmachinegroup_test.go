@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SqlVirtualMachineGroupId{}
 
 func TestNewSqlVirtualMachineGroupID(t *testing.T) {
-	id := NewSqlVirtualMachineGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupValue")
+	id := NewSqlVirtualMachineGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewSqlVirtualMachineGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.SqlVirtualMachineGroupName != "sqlVirtualMachineGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SqlVirtualMachineGroupName'", id.SqlVirtualMachineGroupName, "sqlVirtualMachineGroupValue")
+	if id.SqlVirtualMachineGroupName != "sqlVirtualMachineGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SqlVirtualMachineGroupName'", id.SqlVirtualMachineGroupName, "sqlVirtualMachineGroupName")
 	}
 }
 
 func TestFormatSqlVirtualMachineGroupID(t *testing.T) {
-	actual := NewSqlVirtualMachineGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue"
+	actual := NewSqlVirtualMachineGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "sqlVirtualMachineGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseSqlVirtualMachineGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName",
 			Expected: &SqlVirtualMachineGroupId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SqlVirtualMachineGroupName: "sqlVirtualMachineGroupValue",
+				SqlVirtualMachineGroupName: "sqlVirtualMachineGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseSqlVirtualMachineGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName",
 			Expected: &SqlVirtualMachineGroupId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				SqlVirtualMachineGroupName: "sqlVirtualMachineGroupValue",
+				SqlVirtualMachineGroupName: "sqlVirtualMachineGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/sqlVirtualMachineGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE",
 			Expected: &SqlVirtualMachineGroupId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				SqlVirtualMachineGroupName: "sQlViRtUaLmAcHiNeGrOuPvAlUe",
+				SqlVirtualMachineGroupName: "sQlViRtUaLmAcHiNeGrOuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQlViRtUaLmAcHiNe/sQlViRtUaLmAcHiNeGrOuPs/sQlViRtUaLmAcHiNeGrOuPnAmE/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesetvmruncommands` Documentation
 
-The `virtualmachinescalesetvmruncommands` SDK allows for interaction with the Azure Resource Manager Service `compute` (API Version `2023-03-01`).
+The `virtualmachinescalesetvmruncommands` SDK allows for interaction with Azure Resource Manager `compute` (API Version `2023-03-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "runCommandName")
 
 payload := virtualmachinescalesetvmruncommands.VirtualMachineRunCommand{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "runCommandName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "runCommandName")
 
 read, err := client.Get(ctx, id, virtualmachinescalesetvmruncommands.DefaultGetOperationOptions())
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId")
 
 // alternatively `client.List(ctx, id, virtualmachinescalesetvmruncommands.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, virtualmachinescalesetvmruncommands.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "runCommandName")
 
 payload := virtualmachinescalesetvmruncommands.VirtualMachineRunCommandUpdate{
 	// ...

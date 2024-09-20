@@ -46,7 +46,7 @@ func ParseJobID(input string) (*JobId, error) {
 	}
 
 	id := JobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseJobIDInsensitively(input string) (*JobId, error) {
 	}
 
 	id := JobId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id JobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
-		resourceids.UserSpecifiedSegment("mediaServiceName", "mediaServiceValue"),
+		resourceids.UserSpecifiedSegment("mediaServiceName", "accountName"),
 		resourceids.StaticSegment("staticTransforms", "transforms", "transforms"),
-		resourceids.UserSpecifiedSegment("transformName", "transformValue"),
+		resourceids.UserSpecifiedSegment("transformName", "transformName"),
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
-		resourceids.UserSpecifiedSegment("jobName", "jobValue"),
+		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 	}
 }
 

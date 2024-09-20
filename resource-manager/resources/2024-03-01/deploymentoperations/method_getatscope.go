@@ -45,7 +45,6 @@ func (c DeploymentOperationsClient) GetAtScope(ctx context.Context, id ScopedOpe
 
 	var model DeploymentOperation
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

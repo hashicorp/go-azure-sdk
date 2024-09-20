@@ -10,18 +10,36 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PredictionDriftMetricThresholdBase interface {
+	PredictionDriftMetricThresholdBase() BasePredictionDriftMetricThresholdBaseImpl
 }
 
-// RawPredictionDriftMetricThresholdBaseImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ PredictionDriftMetricThresholdBase = BasePredictionDriftMetricThresholdBaseImpl{}
+
+type BasePredictionDriftMetricThresholdBaseImpl struct {
+	DataType  MonitoringFeatureDataType `json:"dataType"`
+	Threshold *MonitoringThreshold      `json:"threshold,omitempty"`
+}
+
+func (s BasePredictionDriftMetricThresholdBaseImpl) PredictionDriftMetricThresholdBase() BasePredictionDriftMetricThresholdBaseImpl {
+	return s
+}
+
+var _ PredictionDriftMetricThresholdBase = RawPredictionDriftMetricThresholdBaseImpl{}
+
+// RawPredictionDriftMetricThresholdBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawPredictionDriftMetricThresholdBaseImpl struct {
-	Type   string
-	Values map[string]interface{}
+	predictionDriftMetricThresholdBase BasePredictionDriftMetricThresholdBaseImpl
+	Type                               string
+	Values                             map[string]interface{}
 }
 
-func unmarshalPredictionDriftMetricThresholdBaseImplementation(input []byte) (PredictionDriftMetricThresholdBase, error) {
+func (s RawPredictionDriftMetricThresholdBaseImpl) PredictionDriftMetricThresholdBase() BasePredictionDriftMetricThresholdBaseImpl {
+	return s.predictionDriftMetricThresholdBase
+}
+
+func UnmarshalPredictionDriftMetricThresholdBaseImplementation(input []byte) (PredictionDriftMetricThresholdBase, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -52,10 +70,15 @@ func unmarshalPredictionDriftMetricThresholdBaseImplementation(input []byte) (Pr
 		return out, nil
 	}
 
-	out := RawPredictionDriftMetricThresholdBaseImpl{
-		Type:   value,
-		Values: temp,
+	var parent BasePredictionDriftMetricThresholdBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePredictionDriftMetricThresholdBaseImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawPredictionDriftMetricThresholdBaseImpl{
+		predictionDriftMetricThresholdBase: parent,
+		Type:                               value,
+		Values:                             temp,
+	}, nil
 
 }

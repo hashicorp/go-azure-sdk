@@ -41,7 +41,7 @@ func (s *ManagedNetworkSettings) UnmarshalJSON(bytes []byte) error {
 
 		output := make(map[string]OutboundRule)
 		for key, val := range dictionaryTemp {
-			impl, err := unmarshalOutboundRuleImplementation(val)
+			impl, err := UnmarshalOutboundRuleImplementation(val)
 			if err != nil {
 				return fmt.Errorf("unmarshaling key %q field 'OutboundRules' for 'ManagedNetworkSettings': %+v", key, err)
 			}

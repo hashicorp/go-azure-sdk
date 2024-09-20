@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ContactProfileId{}
 
 func TestNewContactProfileID(t *testing.T) {
-	id := NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileValue")
+	id := NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewContactProfileID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ContactProfileName != "contactProfileValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactProfileName'", id.ContactProfileName, "contactProfileValue")
+	if id.ContactProfileName != "contactProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactProfileName'", id.ContactProfileName, "contactProfileName")
 	}
 }
 
 func TestFormatContactProfileID(t *testing.T) {
-	actual := NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileValue"
+	actual := NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseContactProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileName",
 			Expected: &ContactProfileId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ContactProfileName: "contactProfileValue",
+				ContactProfileName: "contactProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseContactProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileName",
 			Expected: &ContactProfileId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				ContactProfileName: "contactProfileValue",
+				ContactProfileName: "contactProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Orbital/contactProfiles/contactProfileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/cOnTaCtPrOfIlEs/cOnTaCtPrOfIlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/cOnTaCtPrOfIlEs/cOnTaCtPrOfIlEnAmE",
 			Expected: &ContactProfileId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ContactProfileName: "cOnTaCtPrOfIlEvAlUe",
+				ContactProfileName: "cOnTaCtPrOfIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/cOnTaCtPrOfIlEs/cOnTaCtPrOfIlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oRbItAl/cOnTaCtPrOfIlEs/cOnTaCtPrOfIlEnAmE/extra",
 			Error: true,
 		},
 	}

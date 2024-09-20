@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/integrationruntimes` Documentation
 
-The `integrationruntimes` SDK allows for interaction with the Azure Resource Manager Service `synapse` (API Version `2021-06-01`).
+The `integrationruntimes` SDK allows for interaction with Azure Resource Manager `synapse` (API Version `2021-06-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "integrationRuntimeValue")
+id := integrationruntimes.NewIntegrationRuntimeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "integrationRuntimeName")
 
 read, err := client.ListOutboundNetworkDependenciesEndpoints(ctx, id)
 if err != nil {

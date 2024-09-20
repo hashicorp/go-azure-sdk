@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ExpressRouteProviderPortId{}
 
 func TestNewExpressRouteProviderPortID(t *testing.T) {
-	id := NewExpressRouteProviderPortID("12345678-1234-9876-4563-123456789012", "expressRouteProviderPortValue")
+	id := NewExpressRouteProviderPortID("12345678-1234-9876-4563-123456789012", "providerport")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ExpressRouteProviderPortName != "expressRouteProviderPortValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteProviderPortName'", id.ExpressRouteProviderPortName, "expressRouteProviderPortValue")
+	if id.ExpressRouteProviderPortName != "providerport" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExpressRouteProviderPortName'", id.ExpressRouteProviderPortName, "providerport")
 	}
 }
 
 func TestFormatExpressRouteProviderPortID(t *testing.T) {
-	actual := NewExpressRouteProviderPortID("12345678-1234-9876-4563-123456789012", "expressRouteProviderPortValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/expressRouteProviderPortValue"
+	actual := NewExpressRouteProviderPortID("12345678-1234-9876-4563-123456789012", "providerport").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/providerport"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseExpressRouteProviderPortID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/expressRouteProviderPortValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/providerport",
 			Expected: &ExpressRouteProviderPortId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ExpressRouteProviderPortName: "expressRouteProviderPortValue",
+				ExpressRouteProviderPortName: "providerport",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/expressRouteProviderPortValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/providerport/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseExpressRouteProviderPortIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/expressRouteProviderPortValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/providerport",
 			Expected: &ExpressRouteProviderPortId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ExpressRouteProviderPortName: "expressRouteProviderPortValue",
+				ExpressRouteProviderPortName: "providerport",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/expressRouteProviderPortValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRouteProviderPorts/providerport/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpRoViDeRpOrTs/eXpReSsRoUtEpRoViDeRpOrTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpRoViDeRpOrTs/pRoViDeRpOrT",
 			Expected: &ExpressRouteProviderPortId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ExpressRouteProviderPortName: "eXpReSsRoUtEpRoViDeRpOrTvAlUe",
+				ExpressRouteProviderPortName: "pRoViDeRpOrT",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpRoViDeRpOrTs/eXpReSsRoUtEpRoViDeRpOrTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpRoViDeRpOrTs/pRoViDeRpOrT/extra",
 			Error: true,
 		},
 	}

@@ -36,7 +36,7 @@ func (s *CredentialResource) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalCredentialImplementation(v)
+		impl, err := UnmarshalCredentialImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'CredentialResource': %+v", err)
 		}

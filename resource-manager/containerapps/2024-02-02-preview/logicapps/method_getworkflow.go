@@ -45,7 +45,6 @@ func (c LogicAppsClient) GetWorkflow(ctx context.Context, id WorkflowId) (result
 
 	var model WorkflowEnvelope
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

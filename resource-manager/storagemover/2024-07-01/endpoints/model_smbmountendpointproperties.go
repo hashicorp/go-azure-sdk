@@ -16,8 +16,18 @@ type SmbMountEndpointProperties struct {
 	ShareName   string                       `json:"shareName"`
 
 	// Fields inherited from EndpointBaseProperties
+
 	Description       *string            `json:"description,omitempty"`
+	EndpointType      EndpointType       `json:"endpointType"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}
+
+func (s SmbMountEndpointProperties) EndpointBaseProperties() BaseEndpointBasePropertiesImpl {
+	return BaseEndpointBasePropertiesImpl{
+		Description:       s.Description,
+		EndpointType:      s.EndpointType,
+		ProvisioningState: s.ProvisioningState,
+	}
 }
 
 var _ json.Marshaler = SmbMountEndpointProperties{}
@@ -31,9 +41,10 @@ func (s SmbMountEndpointProperties) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling SmbMountEndpointProperties: %+v", err)
 	}
+
 	decoded["endpointType"] = "SmbMount"
 
 	encoded, err = json.Marshal(decoded)

@@ -36,6 +36,7 @@ func (o ListOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -79,7 +80,6 @@ func (c CustomAPIsClient) List(ctx context.Context, id commonids.SubscriptionId,
 
 	var model CustomApiDefinitionCollection
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

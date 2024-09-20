@@ -15,7 +15,7 @@ type KafkaConfigurationClient struct {
 }
 
 func NewKafkaConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*KafkaConfigurationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "kafkaconfiguration", defaultApiVersion)
+	client, err := resourcemanager.NewClient(sdkApi, "kafkaconfiguration", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KafkaConfigurationClient: %+v", err)
 	}

@@ -40,7 +40,7 @@ func ParseAgentVersionID(input string) (*AgentVersionId, error) {
 	}
 
 	id := AgentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -57,7 +57,7 @@ func ParseAgentVersionIDInsensitively(input string) (*AgentVersionId, error) {
 	}
 
 	id := AgentVersionId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -105,9 +105,9 @@ func (id AgentVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticOsType", "osType", "osType"),
-		resourceids.UserSpecifiedSegment("osTypeName", "osTypeValue"),
+		resourceids.UserSpecifiedSegment("osTypeName", "osType"),
 		resourceids.StaticSegment("staticAgentVersions", "agentVersions", "agentVersions"),
-		resourceids.UserSpecifiedSegment("agentVersionName", "agentVersionValue"),
+		resourceids.UserSpecifiedSegment("agentVersionName", "version"),
 	}
 }
 

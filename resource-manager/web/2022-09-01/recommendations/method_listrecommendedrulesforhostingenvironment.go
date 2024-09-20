@@ -41,6 +41,7 @@ func (o ListRecommendedRulesForHostingEnvironmentOperationOptions) ToHeaders() *
 
 func (o ListRecommendedRulesForHostingEnvironmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

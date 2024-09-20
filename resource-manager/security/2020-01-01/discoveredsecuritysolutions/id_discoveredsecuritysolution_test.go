@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DiscoveredSecuritySolutionId{}
 
 func TestNewDiscoveredSecuritySolutionID(t *testing.T) {
-	id := NewDiscoveredSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "discoveredSecuritySolutionValue")
+	id := NewDiscoveredSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "discoveredSecuritySolutionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDiscoveredSecuritySolutionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocationName != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
+	if id.LocationName != "ascLocation" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "ascLocation")
 	}
 
-	if id.DiscoveredSecuritySolutionName != "discoveredSecuritySolutionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiscoveredSecuritySolutionName'", id.DiscoveredSecuritySolutionName, "discoveredSecuritySolutionValue")
+	if id.DiscoveredSecuritySolutionName != "discoveredSecuritySolutionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiscoveredSecuritySolutionName'", id.DiscoveredSecuritySolutionName, "discoveredSecuritySolutionName")
 	}
 }
 
 func TestFormatDiscoveredSecuritySolutionID(t *testing.T) {
-	actual := NewDiscoveredSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "discoveredSecuritySolutionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions/discoveredSecuritySolutionValue"
+	actual := NewDiscoveredSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "discoveredSecuritySolutionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions/discoveredSecuritySolutionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDiscoveredSecuritySolutionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions/discoveredSecuritySolutionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions/discoveredSecuritySolutionName",
 			Expected: &DiscoveredSecuritySolutionId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
-				LocationName:                   "locationValue",
-				DiscoveredSecuritySolutionName: "discoveredSecuritySolutionValue",
+				LocationName:                   "ascLocation",
+				DiscoveredSecuritySolutionName: "discoveredSecuritySolutionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions/discoveredSecuritySolutionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions/discoveredSecuritySolutionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDiscoveredSecuritySolutionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/dIsCoVeReDsEcUrItYsOlUtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/dIsCoVeReDsEcUrItYsOlUtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions/discoveredSecuritySolutionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions/discoveredSecuritySolutionName",
 			Expected: &DiscoveredSecuritySolutionId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
-				LocationName:                   "locationValue",
-				DiscoveredSecuritySolutionName: "discoveredSecuritySolutionValue",
+				LocationName:                   "ascLocation",
+				DiscoveredSecuritySolutionName: "discoveredSecuritySolutionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationValue/discoveredSecuritySolutions/discoveredSecuritySolutionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/discoveredSecuritySolutions/discoveredSecuritySolutionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/dIsCoVeReDsEcUrItYsOlUtIoNs/dIsCoVeReDsEcUrItYsOlUtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/dIsCoVeReDsEcUrItYsOlUtIoNs/dIsCoVeReDsEcUrItYsOlUtIoNnAmE",
 			Expected: &DiscoveredSecuritySolutionId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "eXaMpLe-rEsOuRcE-GrOuP",
-				LocationName:                   "lOcAtIoNvAlUe",
-				DiscoveredSecuritySolutionName: "dIsCoVeReDsEcUrItYsOlUtIoNvAlUe",
+				LocationName:                   "aScLoCaTiOn",
+				DiscoveredSecuritySolutionName: "dIsCoVeReDsEcUrItYsOlUtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNvAlUe/dIsCoVeReDsEcUrItYsOlUtIoNs/dIsCoVeReDsEcUrItYsOlUtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/dIsCoVeReDsEcUrItYsOlUtIoNs/dIsCoVeReDsEcUrItYsOlUtIoNnAmE/extra",
 			Error: true,
 		},
 	}

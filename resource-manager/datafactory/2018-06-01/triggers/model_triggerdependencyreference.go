@@ -14,6 +14,14 @@ type TriggerDependencyReference struct {
 	ReferenceTrigger TriggerReference `json:"referenceTrigger"`
 
 	// Fields inherited from DependencyReference
+
+	Type string `json:"type"`
+}
+
+func (s TriggerDependencyReference) DependencyReference() BaseDependencyReferenceImpl {
+	return BaseDependencyReferenceImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = TriggerDependencyReference{}
@@ -27,9 +35,10 @@ func (s TriggerDependencyReference) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling TriggerDependencyReference: %+v", err)
 	}
+
 	decoded["type"] = "TriggerDependencyReference"
 
 	encoded, err = json.Marshal(decoded)

@@ -50,7 +50,6 @@ func (c POSTClient) CheckMigrationNameAvailability(ctx context.Context, id Flexi
 
 	var model MigrationNameAvailabilityResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

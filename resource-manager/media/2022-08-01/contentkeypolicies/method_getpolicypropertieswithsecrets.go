@@ -46,7 +46,6 @@ func (c ContentKeyPoliciesClient) GetPolicyPropertiesWithSecrets(ctx context.Con
 
 	var model ContentKeyPolicyProperties
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

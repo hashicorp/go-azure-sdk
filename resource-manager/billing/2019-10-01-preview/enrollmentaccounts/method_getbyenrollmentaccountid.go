@@ -35,6 +35,7 @@ func (o GetByEnrollmentAccountIdOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByEnrollmentAccountIdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c EnrollmentAccountsClient) GetByEnrollmentAccountId(ctx context.Context, 
 
 	var model EnrollmentAccount
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

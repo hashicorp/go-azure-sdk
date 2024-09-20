@@ -40,7 +40,7 @@ func (s *Probe) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["probeAction"]; ok {
-		impl, err := unmarshalProbeActionImplementation(v)
+		impl, err := UnmarshalProbeActionImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProbeAction' for 'Probe': %+v", err)
 		}

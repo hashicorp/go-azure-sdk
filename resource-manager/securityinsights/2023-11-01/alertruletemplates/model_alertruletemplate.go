@@ -4,24 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AlertRuleTemplate interface {
+	AlertRuleTemplate() BaseAlertRuleTemplateImpl
 }
 
-// RawAlertRuleTemplateImpl is returned when the Discriminated Value
-// doesn't match any of the defined types
+var _ AlertRuleTemplate = BaseAlertRuleTemplateImpl{}
+
+type BaseAlertRuleTemplateImpl struct {
+	Id         *string                `json:"id,omitempty"`
+	Kind       AlertRuleKind          `json:"kind"`
+	Name       *string                `json:"name,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+}
+
+func (s BaseAlertRuleTemplateImpl) AlertRuleTemplate() BaseAlertRuleTemplateImpl {
+	return s
+}
+
+var _ AlertRuleTemplate = RawAlertRuleTemplateImpl{}
+
+// RawAlertRuleTemplateImpl is returned when the Discriminated Value doesn't match any of the defined types
 // NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
 // and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
 type RawAlertRuleTemplateImpl struct {
-	Type   string
-	Values map[string]interface{}
+	alertRuleTemplate BaseAlertRuleTemplateImpl
+	Type              string
+	Values            map[string]interface{}
 }
 
-func unmarshalAlertRuleTemplateImplementation(input []byte) (AlertRuleTemplate, error) {
+func (s RawAlertRuleTemplateImpl) AlertRuleTemplate() BaseAlertRuleTemplateImpl {
+	return s.alertRuleTemplate
+}
+
+func UnmarshalAlertRuleTemplateImplementation(input []byte) (AlertRuleTemplate, error) {
 	if input == nil {
 		return nil, nil
 	}
@@ -60,10 +83,15 @@ func unmarshalAlertRuleTemplateImplementation(input []byte) (AlertRuleTemplate, 
 		return out, nil
 	}
 
-	out := RawAlertRuleTemplateImpl{
-		Type:   value,
-		Values: temp,
+	var parent BaseAlertRuleTemplateImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAlertRuleTemplateImpl: %+v", err)
 	}
-	return out, nil
+
+	return RawAlertRuleTemplateImpl{
+		alertRuleTemplate: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
 
 }

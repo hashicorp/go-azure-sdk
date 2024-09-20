@@ -22,7 +22,7 @@ func (s *RemoveDisksInputProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalRemoveDisksProviderSpecificInputImplementation(v)
+		impl, err := UnmarshalRemoveDisksProviderSpecificInputImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'RemoveDisksInputProperties': %+v", err)
 		}

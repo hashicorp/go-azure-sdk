@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplicationGatewayWebApplicationFirewallPolicyId{}
 
 func TestNewApplicationGatewayWebApplicationFirewallPolicyID(t *testing.T) {
-	id := NewApplicationGatewayWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayWebApplicationFirewallPolicyValue")
+	id := NewApplicationGatewayWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewApplicationGatewayWebApplicationFirewallPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplicationGatewayWebApplicationFirewallPolicyName != "applicationGatewayWebApplicationFirewallPolicyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGatewayWebApplicationFirewallPolicyName'", id.ApplicationGatewayWebApplicationFirewallPolicyName, "applicationGatewayWebApplicationFirewallPolicyValue")
+	if id.ApplicationGatewayWebApplicationFirewallPolicyName != "policyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationGatewayWebApplicationFirewallPolicyName'", id.ApplicationGatewayWebApplicationFirewallPolicyName, "policyName")
 	}
 }
 
 func TestFormatApplicationGatewayWebApplicationFirewallPolicyID(t *testing.T) {
-	actual := NewApplicationGatewayWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationGatewayWebApplicationFirewallPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/applicationGatewayWebApplicationFirewallPolicyValue"
+	actual := NewApplicationGatewayWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/policyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseApplicationGatewayWebApplicationFirewallPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/applicationGatewayWebApplicationFirewallPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/policyName",
 			Expected: &ApplicationGatewayWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplicationGatewayWebApplicationFirewallPolicyName: "applicationGatewayWebApplicationFirewallPolicyValue",
+				ApplicationGatewayWebApplicationFirewallPolicyName: "policyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/applicationGatewayWebApplicationFirewallPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/policyName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseApplicationGatewayWebApplicationFirewallPolicyIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/applicationGatewayWebApplicationFirewallPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/policyName",
 			Expected: &ApplicationGatewayWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplicationGatewayWebApplicationFirewallPolicyName: "applicationGatewayWebApplicationFirewallPolicyValue",
+				ApplicationGatewayWebApplicationFirewallPolicyName: "policyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/applicationGatewayWebApplicationFirewallPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies/policyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcIeS/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcIeS/pOlIcYnAmE",
 			Expected: &ApplicationGatewayWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplicationGatewayWebApplicationFirewallPolicyName: "aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcYvAlUe",
+				ApplicationGatewayWebApplicationFirewallPolicyName: "pOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcIeS/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/aPpLiCaTiOnGaTeWaYwEbApPlIcAtIoNfIrEwAlLpOlIcIeS/pOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

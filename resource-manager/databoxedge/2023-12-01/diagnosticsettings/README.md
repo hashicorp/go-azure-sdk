@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/diagnosticsettings` Documentation
 
-The `diagnosticsettings` SDK allows for interaction with the Azure Resource Manager Service `databoxedge` (API Version `2023-12-01`).
+The `diagnosticsettings` SDK allows for interaction with Azure Resource Manager `databoxedge` (API Version `2023-12-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 read, err := client.GetDiagnosticProactiveLogCollectionSettings(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 read, err := client.GetDiagnosticRemoteSupportSettings(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 payload := diagnosticsettings.DiagnosticProactiveLogCollectionSettings{
 	// ...
@@ -73,7 +73,7 @@ if err := client.UpdateDiagnosticProactiveLogCollectionSettingsThenPoll(ctx, id,
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceValue")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
 
 payload := diagnosticsettings.DiagnosticRemoteSupportSettings{
 	// ...

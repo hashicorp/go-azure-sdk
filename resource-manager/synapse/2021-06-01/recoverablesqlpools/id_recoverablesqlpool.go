@@ -44,7 +44,7 @@ func ParseRecoverableSqlPoolID(input string) (*RecoverableSqlPoolId, error) {
 	}
 
 	id := RecoverableSqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseRecoverableSqlPoolIDInsensitively(input string) (*RecoverableSqlPoolId
 	}
 
 	id := RecoverableSqlPoolId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id RecoverableSqlPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSynapse", "Microsoft.Synapse", "Microsoft.Synapse"),
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticRecoverableSqlPools", "recoverableSqlPools", "recoverableSqlPools"),
-		resourceids.UserSpecifiedSegment("recoverableSqlPoolName", "recoverableSqlPoolValue"),
+		resourceids.UserSpecifiedSegment("recoverableSqlPoolName", "sqlPoolName"),
 	}
 }
 

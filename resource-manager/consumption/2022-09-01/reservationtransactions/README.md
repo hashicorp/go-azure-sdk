@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2022-09-01/reservationtransactions` Documentation
 
-The `reservationtransactions` SDK allows for interaction with the Azure Resource Manager Service `consumption` (API Version `2022-09-01`).
+The `reservationtransactions` SDK allows for interaction with Azure Resource Manager `consumption` (API Version `2022-09-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reservationtransactions.NewBillingAccountID("billingAccountIdValue")
+id := reservationtransactions.NewBillingAccountID("billingAccountId")
 
 // alternatively `client.List(ctx, id, reservationtransactions.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, reservationtransactions.DefaultListOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reservationtransactions.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
+id := reservationtransactions.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 // alternatively `client.ListByBillingProfile(ctx, id, reservationtransactions.DefaultListByBillingProfileOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBillingProfileComplete(ctx, id, reservationtransactions.DefaultListByBillingProfileOperationOptions())

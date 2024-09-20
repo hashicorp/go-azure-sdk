@@ -15,6 +15,14 @@ type AzureDatabricksDeltaLakeImportCommand struct {
 	TimestampFormat *string `json:"timestampFormat,omitempty"`
 
 	// Fields inherited from ImportSettings
+
+	Type string `json:"type"`
+}
+
+func (s AzureDatabricksDeltaLakeImportCommand) ImportSettings() BaseImportSettingsImpl {
+	return BaseImportSettingsImpl{
+		Type: s.Type,
+	}
 }
 
 var _ json.Marshaler = AzureDatabricksDeltaLakeImportCommand{}
@@ -28,9 +36,10 @@ func (s AzureDatabricksDeltaLakeImportCommand) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling AzureDatabricksDeltaLakeImportCommand: %+v", err)
 	}
+
 	decoded["type"] = "AzureDatabricksDeltaLakeImportCommand"
 
 	encoded, err = json.Marshal(decoded)

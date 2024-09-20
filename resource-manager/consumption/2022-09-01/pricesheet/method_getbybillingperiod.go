@@ -35,6 +35,7 @@ func (o GetByBillingPeriodOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetByBillingPeriodOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 
@@ -78,7 +79,6 @@ func (c PriceSheetClient) GetByBillingPeriod(ctx context.Context, id BillingPeri
 
 	var model PriceSheetResult
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

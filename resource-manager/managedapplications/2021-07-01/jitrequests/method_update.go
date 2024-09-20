@@ -49,7 +49,6 @@ func (c JitRequestsClient) Update(ctx context.Context, id JitRequestId, input Ji
 
 	var model JitRequestDefinition
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

@@ -45,7 +45,6 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsGet(ctx context
 
 	var model WorkspaceConnectionPropertiesV2BasicResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

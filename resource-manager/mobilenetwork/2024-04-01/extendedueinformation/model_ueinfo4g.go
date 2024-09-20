@@ -17,7 +17,16 @@ type UeInfo4G struct {
 	Info UeInfo4GProperties `json:"info"`
 
 	// Fields inherited from ExtendedUeInfoProperties
+
 	LastReadAt *string `json:"lastReadAt,omitempty"`
+	RatType    RatType `json:"ratType"`
+}
+
+func (s UeInfo4G) ExtendedUeInfoProperties() BaseExtendedUeInfoPropertiesImpl {
+	return BaseExtendedUeInfoPropertiesImpl{
+		LastReadAt: s.LastReadAt,
+		RatType:    s.RatType,
+	}
 }
 
 func (o *UeInfo4G) GetLastReadAtAsTime() (*time.Time, error) {
@@ -43,9 +52,10 @@ func (s UeInfo4G) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling UeInfo4G: %+v", err)
 	}
+
 	decoded["ratType"] = "4G"
 
 	encoded, err = json.Marshal(decoded)

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScopedResourceId{}
 
 func TestNewScopedResourceID(t *testing.T) {
-	id := NewScopedResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue", "scopedResourceValue")
+	id := NewScopedResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeName", "name")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewScopedResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateLinkScopeName != "privateLinkScopeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkScopeName'", id.PrivateLinkScopeName, "privateLinkScopeValue")
+	if id.PrivateLinkScopeName != "scopeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkScopeName'", id.PrivateLinkScopeName, "scopeName")
 	}
 
-	if id.ScopedResourceName != "scopedResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopedResourceName'", id.ScopedResourceName, "scopedResourceValue")
+	if id.ScopedResourceName != "name" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopedResourceName'", id.ScopedResourceName, "name")
 	}
 }
 
 func TestFormatScopedResourceID(t *testing.T) {
-	actual := NewScopedResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue", "scopedResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources/scopedResourceValue"
+	actual := NewScopedResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeName", "name").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources/name"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseScopedResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources/scopedResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources/name",
 			Expected: &ScopedResourceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				PrivateLinkScopeName: "privateLinkScopeValue",
-				ScopedResourceName:   "scopedResourceValue",
+				PrivateLinkScopeName: "scopeName",
+				ScopedResourceName:   "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources/scopedResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources/name/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseScopedResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/sCoPeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/sCoPeDrEsOuRcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/sCoPeNaMe/sCoPeDrEsOuRcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources/scopedResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources/name",
 			Expected: &ScopedResourceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				PrivateLinkScopeName: "privateLinkScopeValue",
-				ScopedResourceName:   "scopedResourceValue",
+				PrivateLinkScopeName: "scopeName",
+				ScopedResourceName:   "name",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/privateLinkScopeValue/scopedResources/scopedResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/privateLinkScopes/scopeName/scopedResources/name/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/sCoPeDrEsOuRcEs/sCoPeDrEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/sCoPeNaMe/sCoPeDrEsOuRcEs/nAmE",
 			Expected: &ScopedResourceId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateLinkScopeName: "pRiVaTeLiNkScOpEvAlUe",
-				ScopedResourceName:   "sCoPeDrEsOuRcEvAlUe",
+				PrivateLinkScopeName: "sCoPeNaMe",
+				ScopedResourceName:   "nAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/sCoPeDrEsOuRcEs/sCoPeDrEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/pRiVaTeLiNkScOpEs/sCoPeNaMe/sCoPeDrEsOuRcEs/nAmE/extra",
 			Error: true,
 		},
 	}

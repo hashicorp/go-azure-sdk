@@ -39,6 +39,7 @@ func (o VideosListOperationOptions) ToHeaders() *client.Headers {
 
 func (o VideosListOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+
 	return &out
 }
 

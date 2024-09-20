@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/secrets` Documentation
 
-The `secrets` SDK allows for interaction with the Azure Resource Manager Service `devtestlab` (API Version `2018-09-15`).
+The `secrets` SDK allows for interaction with Azure Resource Manager `devtestlab` (API Version `2018-09-15`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := secrets.Secret{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 read, err := client.Get(ctx, id, secrets.DefaultGetOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
+id := secrets.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName")
 
 // alternatively `client.List(ctx, id, secrets.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, secrets.DefaultListOperationOptions())
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
 
 payload := secrets.UpdateResource{
 	// ...

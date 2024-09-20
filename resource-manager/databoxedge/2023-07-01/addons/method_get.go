@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Addon
+	Model        Addon
 }
 
 // Get ...
@@ -48,11 +48,11 @@ func (c AddonsClient) Get(ctx context.Context, id AddonId) (result GetOperationR
 	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
-	model, err := unmarshalAddonImplementation(respObj)
+	model, err := UnmarshalAddonImplementation(respObj)
 	if err != nil {
 		return
 	}
-	result.Model = &model
+	result.Model = model
 
 	return
 }

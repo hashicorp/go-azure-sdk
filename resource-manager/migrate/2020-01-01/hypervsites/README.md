@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/hypervsites` Documentation
 
-The `hypervsites` SDK allows for interaction with the Azure Resource Manager Service `migrate` (API Version `2020-01-01`).
+The `hypervsites` SDK allows for interaction with Azure Resource Manager `migrate` (API Version `2020-01-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.DeleteSite(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.GetSite(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 // alternatively `client.GetSiteHealthSummary(ctx, id)` can be used to do batched pagination
 items, err := client.GetSiteHealthSummaryComplete(ctx, id)
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.GetSiteUsage(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 payload := hypervsites.HyperVSite{
 	// ...
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 payload := hypervsites.HyperVSite{
 	// ...
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteValue")
+id := hypervsites.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
 
 read, err := client.RefreshSite(ctx, id)
 if err != nil {

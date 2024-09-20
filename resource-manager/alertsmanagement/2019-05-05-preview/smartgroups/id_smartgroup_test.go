@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &SmartGroupId{}
 
 func TestNewSmartGroupID(t *testing.T) {
-	id := NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupIdValue")
+	id := NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.SmartGroupId != "smartGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SmartGroupId'", id.SmartGroupId, "smartGroupIdValue")
+	if id.SmartGroupId != "smartGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SmartGroupId'", id.SmartGroupId, "smartGroupId")
 	}
 }
 
 func TestFormatSmartGroupID(t *testing.T) {
-	actual := NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupIdValue"
+	actual := NewSmartGroupID("12345678-1234-9876-4563-123456789012", "smartGroupId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseSmartGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupId",
 			Expected: &SmartGroupId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SmartGroupId:   "smartGroupIdValue",
+				SmartGroupId:   "smartGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupId/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseSmartGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupId",
 			Expected: &SmartGroupId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SmartGroupId:   "smartGroupIdValue",
+				SmartGroupId:   "smartGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AlertsManagement/smartGroups/smartGroupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtGrOuPs/sMaRtGrOuPiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtGrOuPs/sMaRtGrOuPiD",
 			Expected: &SmartGroupId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				SmartGroupId:   "sMaRtGrOuPiDvAlUe",
+				SmartGroupId:   "sMaRtGrOuPiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtGrOuPs/sMaRtGrOuPiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/sMaRtGrOuPs/sMaRtGrOuPiD/extra",
 			Error: true,
 		},
 	}

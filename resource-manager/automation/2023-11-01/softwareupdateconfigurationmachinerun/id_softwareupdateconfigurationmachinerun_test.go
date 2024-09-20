@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SoftwareUpdateConfigurationMachineRunId{}
 
 func TestNewSoftwareUpdateConfigurationMachineRunID(t *testing.T) {
-	id := NewSoftwareUpdateConfigurationMachineRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "softwareUpdateConfigurationMachineRunIdValue")
+	id := NewSoftwareUpdateConfigurationMachineRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "softwareUpdateConfigurationMachineRunId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewSoftwareUpdateConfigurationMachineRunID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutomationAccountName != "automationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
+	if id.AutomationAccountName != "automationAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountName")
 	}
 
-	if id.SoftwareUpdateConfigurationMachineRunId != "softwareUpdateConfigurationMachineRunIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SoftwareUpdateConfigurationMachineRunId'", id.SoftwareUpdateConfigurationMachineRunId, "softwareUpdateConfigurationMachineRunIdValue")
+	if id.SoftwareUpdateConfigurationMachineRunId != "softwareUpdateConfigurationMachineRunId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SoftwareUpdateConfigurationMachineRunId'", id.SoftwareUpdateConfigurationMachineRunId, "softwareUpdateConfigurationMachineRunId")
 	}
 }
 
 func TestFormatSoftwareUpdateConfigurationMachineRunID(t *testing.T) {
-	actual := NewSoftwareUpdateConfigurationMachineRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "softwareUpdateConfigurationMachineRunIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunIdValue"
+	actual := NewSoftwareUpdateConfigurationMachineRunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "softwareUpdateConfigurationMachineRunId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseSoftwareUpdateConfigurationMachineRunID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunId",
 			Expected: &SoftwareUpdateConfigurationMachineRunId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "example-resource-group",
-				AutomationAccountName:                   "automationAccountValue",
-				SoftwareUpdateConfigurationMachineRunId: "softwareUpdateConfigurationMachineRunIdValue",
+				AutomationAccountName:                   "automationAccountName",
+				SoftwareUpdateConfigurationMachineRunId: "softwareUpdateConfigurationMachineRunId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunId/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseSoftwareUpdateConfigurationMachineRunIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunId",
 			Expected: &SoftwareUpdateConfigurationMachineRunId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "example-resource-group",
-				AutomationAccountName:                   "automationAccountValue",
-				SoftwareUpdateConfigurationMachineRunId: "softwareUpdateConfigurationMachineRunIdValue",
+				AutomationAccountName:                   "automationAccountName",
+				SoftwareUpdateConfigurationMachineRunId: "softwareUpdateConfigurationMachineRunId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/softwareUpdateConfigurationMachineRuns/softwareUpdateConfigurationMachineRunId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnId",
 			Expected: &SoftwareUpdateConfigurationMachineRunId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "eXaMpLe-rEsOuRcE-GrOuP",
-				AutomationAccountName:                   "aUtOmAtIoNaCcOuNtVaLuE",
-				SoftwareUpdateConfigurationMachineRunId: "sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnIdVaLuE",
+				AutomationAccountName:                   "aUtOmAtIoNaCcOuNtNaMe",
+				SoftwareUpdateConfigurationMachineRunId: "sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnS/sOfTwArEuPdAtEcOnFiGuRaTiOnMaChInErUnId/extra",
 			Error: true,
 		},
 	}

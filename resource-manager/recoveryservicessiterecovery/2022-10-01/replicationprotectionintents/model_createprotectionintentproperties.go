@@ -22,7 +22,7 @@ func (s *CreateProtectionIntentProperties) UnmarshalJSON(bytes []byte) error {
 	}
 
 	if v, ok := temp["providerSpecificDetails"]; ok {
-		impl, err := unmarshalCreateProtectionIntentProviderSpecificDetailsImplementation(v)
+		impl, err := UnmarshalCreateProtectionIntentProviderSpecificDetailsImplementation(v)
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'CreateProtectionIntentProperties': %+v", err)
 		}

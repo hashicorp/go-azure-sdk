@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NatGatewayId{}
 
 func TestNewNatGatewayID(t *testing.T) {
-	id := NewNatGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "natGatewayValue")
+	id := NewNatGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "natGatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewNatGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.NatGatewayName != "natGatewayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NatGatewayName'", id.NatGatewayName, "natGatewayValue")
+	if id.NatGatewayName != "natGatewayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NatGatewayName'", id.NatGatewayName, "natGatewayName")
 	}
 }
 
 func TestFormatNatGatewayID(t *testing.T) {
-	actual := NewNatGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "natGatewayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayValue"
+	actual := NewNatGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "natGatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseNatGatewayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayName",
 			Expected: &NatGatewayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NatGatewayName:    "natGatewayValue",
+				NatGatewayName:    "natGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseNatGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayName",
 			Expected: &NatGatewayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				NatGatewayName:    "natGatewayValue",
+				NatGatewayName:    "natGatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/natGateways/natGatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nAtGaTeWaYs/nAtGaTeWaYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nAtGaTeWaYs/nAtGaTeWaYnAmE",
 			Expected: &NatGatewayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				NatGatewayName:    "nAtGaTeWaYvAlUe",
+				NatGatewayName:    "nAtGaTeWaYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nAtGaTeWaYs/nAtGaTeWaYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nAtGaTeWaYs/nAtGaTeWaYnAmE/extra",
 			Error: true,
 		},
 	}

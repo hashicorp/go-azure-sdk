@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ImageId{}
 
 func TestNewImageID(t *testing.T) {
-	id := NewImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue", "imageValue")
+	id := NewImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanName", "imageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewImageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LabPlanName != "labPlanValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LabPlanName'", id.LabPlanName, "labPlanValue")
+	if id.LabPlanName != "labPlanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LabPlanName'", id.LabPlanName, "labPlanName")
 	}
 
-	if id.ImageName != "imageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "imageValue")
+	if id.ImageName != "imageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "imageName")
 	}
 }
 
 func TestFormatImageID(t *testing.T) {
-	actual := NewImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue", "imageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images/imageValue"
+	actual := NewImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanName", "imageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images/imageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseImageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images/imageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images/imageName",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LabPlanName:       "labPlanValue",
-				ImageName:         "imageValue",
+				LabPlanName:       "labPlanName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images/imageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images/imageName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE/iMaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe/iMaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images/imageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images/imageName",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				LabPlanName:       "labPlanValue",
-				ImageName:         "imageValue",
+				LabPlanName:       "labPlanName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanValue/images/imageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.LabServices/labPlans/labPlanName/images/imageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE/iMaGeS/iMaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe/iMaGeS/iMaGeNaMe",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LabPlanName:       "lAbPlAnVaLuE",
-				ImageName:         "iMaGeVaLuE",
+				LabPlanName:       "lAbPlAnNaMe",
+				ImageName:         "iMaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnVaLuE/iMaGeS/iMaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lAbSeRvIcEs/lAbPlAnS/lAbPlAnNaMe/iMaGeS/iMaGeNaMe/extra",
 			Error: true,
 		},
 	}

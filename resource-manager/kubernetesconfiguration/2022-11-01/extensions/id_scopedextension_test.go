@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedExtensionId{}
 
 func TestNewScopedExtensionID(t *testing.T) {
-	id := NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
+	id := NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.ExtensionName != "extensionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionValue")
+	if id.ExtensionName != "extensionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionName")
 	}
 }
 
 func TestFormatScopedExtensionID(t *testing.T) {
-	actual := NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue"
+	actual := NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionName",
 			Expected: &ScopedExtensionId{
 				Scope:         "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ExtensionName: "extensionValue",
+				ExtensionName: "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionName",
 			Expected: &ScopedExtensionId{
 				Scope:         "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				ExtensionName: "extensionValue",
+				ExtensionName: "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.KubernetesConfiguration/extensions/extensionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnNaMe",
 			Expected: &ScopedExtensionId{
 				Scope:         "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				ExtensionName: "eXtEnSiOnVaLuE",
+				ExtensionName: "eXtEnSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnNaMe/extra",
 			Error: true,
 		},
 	}

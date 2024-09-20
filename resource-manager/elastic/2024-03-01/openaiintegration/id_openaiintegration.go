@@ -44,7 +44,7 @@ func ParseOpenAIIntegrationID(input string) (*OpenAIIntegrationId, error) {
 	}
 
 	id := OpenAIIntegrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -61,7 +61,7 @@ func ParseOpenAIIntegrationIDInsensitively(input string) (*OpenAIIntegrationId, 
 	}
 
 	id := OpenAIIntegrationId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -121,9 +121,9 @@ func (id OpenAIIntegrationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftElastic", "Microsoft.Elastic", "Microsoft.Elastic"),
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
-		resourceids.UserSpecifiedSegment("monitorName", "monitorValue"),
+		resourceids.UserSpecifiedSegment("monitorName", "monitorName"),
 		resourceids.StaticSegment("staticOpenAIIntegrations", "openAIIntegrations", "openAIIntegrations"),
-		resourceids.UserSpecifiedSegment("openAIIntegrationName", "openAIIntegrationValue"),
+		resourceids.UserSpecifiedSegment("openAIIntegrationName", "integrationName"),
 	}
 }
 

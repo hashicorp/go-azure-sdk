@@ -45,7 +45,6 @@ func (c GETClient) ProjectsGet(ctx context.Context, id ProjectId) (result Projec
 
 	var model Project
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

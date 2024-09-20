@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DiskAccessId{}
 
 func TestNewDiskAccessID(t *testing.T) {
-	id := NewDiskAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskAccessValue")
+	id := NewDiskAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskAccessName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDiskAccessID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DiskAccessName != "diskAccessValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiskAccessName'", id.DiskAccessName, "diskAccessValue")
+	if id.DiskAccessName != "diskAccessName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiskAccessName'", id.DiskAccessName, "diskAccessName")
 	}
 }
 
 func TestFormatDiskAccessID(t *testing.T) {
-	actual := NewDiskAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskAccessValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessValue"
+	actual := NewDiskAccessID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskAccessName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDiskAccessID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessName",
 			Expected: &DiskAccessId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DiskAccessName:    "diskAccessValue",
+				DiskAccessName:    "diskAccessName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDiskAccessIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessName",
 			Expected: &DiskAccessId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DiskAccessName:    "diskAccessValue",
+				DiskAccessName:    "diskAccessName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/diskAccesses/diskAccessName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/dIsKaCcEsSeS/dIsKaCcEsSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/dIsKaCcEsSeS/dIsKaCcEsSnAmE",
 			Expected: &DiskAccessId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				DiskAccessName:    "dIsKaCcEsSvAlUe",
+				DiskAccessName:    "dIsKaCcEsSnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/dIsKaCcEsSeS/dIsKaCcEsSvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/dIsKaCcEsSeS/dIsKaCcEsSnAmE/extra",
 			Error: true,
 		},
 	}

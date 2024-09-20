@@ -42,7 +42,7 @@ func ParseSharedGalleryID(input string) (*SharedGalleryId, error) {
 	}
 
 	id := SharedGalleryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -59,7 +59,7 @@ func ParseSharedGalleryIDInsensitively(input string) (*SharedGalleryId, error) {
 	}
 
 	id := SharedGalleryId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -113,9 +113,9 @@ func (id SharedGalleryId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "location"),
 		resourceids.StaticSegment("staticSharedGalleries", "sharedGalleries", "sharedGalleries"),
-		resourceids.UserSpecifiedSegment("sharedGalleryName", "sharedGalleryValue"),
+		resourceids.UserSpecifiedSegment("sharedGalleryName", "galleryUniqueName"),
 	}
 }
 

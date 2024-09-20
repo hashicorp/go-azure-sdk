@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FleetId{}
 
 func TestNewFleetID(t *testing.T) {
-	id := NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue")
+	id := NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewFleetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FleetName != "fleetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetValue")
+	if id.FleetName != "fleetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetName")
 	}
 }
 
 func TestFormatFleetID(t *testing.T) {
-	actual := NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetValue"
+	actual := NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseFleetID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetName",
 			Expected: &FleetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FleetName:         "fleetValue",
+				FleetName:         "fleetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseFleetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetName",
 			Expected: &FleetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FleetName:         "fleetValue",
+				FleetName:         "fleetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureFleet/fleets/fleetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReFlEeT/fLeEtS/fLeEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReFlEeT/fLeEtS/fLeEtNaMe",
 			Expected: &FleetId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FleetName:         "fLeEtVaLuE",
+				FleetName:         "fLeEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReFlEeT/fLeEtS/fLeEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReFlEeT/fLeEtS/fLeEtNaMe/extra",
 			Error: true,
 		},
 	}

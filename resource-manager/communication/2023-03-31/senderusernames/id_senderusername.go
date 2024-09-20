@@ -46,7 +46,7 @@ func ParseSenderUsernameID(input string) (*SenderUsernameId, error) {
 	}
 
 	id := SenderUsernameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -63,7 +63,7 @@ func ParseSenderUsernameIDInsensitively(input string) (*SenderUsernameId, error)
 	}
 
 	id := SenderUsernameId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -127,11 +127,11 @@ func (id SenderUsernameId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCommunication", "Microsoft.Communication", "Microsoft.Communication"),
 		resourceids.StaticSegment("staticEmailServices", "emailServices", "emailServices"),
-		resourceids.UserSpecifiedSegment("emailServiceName", "emailServiceValue"),
+		resourceids.UserSpecifiedSegment("emailServiceName", "emailServiceName"),
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainName", "domainValue"),
+		resourceids.UserSpecifiedSegment("domainName", "domainName"),
 		resourceids.StaticSegment("staticSenderUsernames", "senderUsernames", "senderUsernames"),
-		resourceids.UserSpecifiedSegment("senderUsernameName", "senderUsernameValue"),
+		resourceids.UserSpecifiedSegment("senderUsernameName", "senderUsername"),
 	}
 }
 

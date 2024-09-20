@@ -46,7 +46,6 @@ func (c VaultExtendedInfoClient) Get(ctx context.Context, id VaultId) (result Ge
 
 	var model VaultExtendedInfoResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

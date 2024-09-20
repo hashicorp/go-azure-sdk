@@ -49,7 +49,6 @@ func (c GlobalParametersClient) CreateOrUpdate(ctx context.Context, id GlobalPar
 
 	var model GlobalParameterResource
 	result.Model = &model
-
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}

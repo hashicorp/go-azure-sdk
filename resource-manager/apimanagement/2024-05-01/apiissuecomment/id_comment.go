@@ -48,7 +48,7 @@ func ParseCommentID(input string) (*CommentId, error) {
 	}
 
 	id := CommentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -65,7 +65,7 @@ func ParseCommentIDInsensitively(input string) (*CommentId, error) {
 	}
 
 	id := CommentId{}
-	if err := id.FromParseResult(*parsed); err != nil {
+	if err = id.FromParseResult(*parsed); err != nil {
 		return nil, err
 	}
 
@@ -133,13 +133,13 @@ func (id CommentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticService", "service", "service"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("serviceName", "serviceName"),
 		resourceids.StaticSegment("staticApis", "apis", "apis"),
-		resourceids.UserSpecifiedSegment("apiId", "apiIdValue"),
+		resourceids.UserSpecifiedSegment("apiId", "apiId"),
 		resourceids.StaticSegment("staticIssues", "issues", "issues"),
-		resourceids.UserSpecifiedSegment("issueId", "issueIdValue"),
+		resourceids.UserSpecifiedSegment("issueId", "issueId"),
 		resourceids.StaticSegment("staticComments", "comments", "comments"),
-		resourceids.UserSpecifiedSegment("commentId", "commentIdValue"),
+		resourceids.UserSpecifiedSegment("commentId", "commentId"),
 	}
 }
 

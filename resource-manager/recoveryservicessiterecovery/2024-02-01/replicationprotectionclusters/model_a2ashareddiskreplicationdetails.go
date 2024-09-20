@@ -24,6 +24,14 @@ type A2ASharedDiskReplicationDetails struct {
 	UnprotectedDisks               *[]A2AUnprotectedDiskDetails      `json:"unprotectedDisks,omitempty"`
 
 	// Fields inherited from SharedDiskReplicationProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}
+
+func (s A2ASharedDiskReplicationDetails) SharedDiskReplicationProviderSpecificSettings() BaseSharedDiskReplicationProviderSpecificSettingsImpl {
+	return BaseSharedDiskReplicationProviderSpecificSettingsImpl{
+		InstanceType: s.InstanceType,
+	}
 }
 
 var _ json.Marshaler = A2ASharedDiskReplicationDetails{}
@@ -37,9 +45,10 @@ func (s A2ASharedDiskReplicationDetails) MarshalJSON() ([]byte, error) {
 	}
 
 	var decoded map[string]interface{}
-	if err := json.Unmarshal(encoded, &decoded); err != nil {
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
 		return nil, fmt.Errorf("unmarshaling A2ASharedDiskReplicationDetails: %+v", err)
 	}
+
 	decoded["instanceType"] = "A2A"
 
 	encoded, err = json.Marshal(decoded)
